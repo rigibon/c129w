@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        {{!-- <base href="/tryetco/"> --}}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="./files/style.css?v=14">
+        <link rel="stylesheet" href="./files/animate.min.css">
+        <link rel="icon" href={{favicon}}>
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <script src="./files/datehead.js"></script>
+
+        <style>
+            .con-body button{
+                font-size: 18px;
+                font-weight: 600;
+                background-color: {{mainColor}};
+                color: #fff;
+                text-align: center;
+                padding: .6rem;
+                margin-bottom: .5rem;
+                width: 80%;
+                border: 1px solid {{mainColor}};
+                border-radius: 3px;
+                cursor: pointer;
+                transition: transform .5s;
+            }
+
+            .con-body button:hover{
+                background-color: {{hoverMainColor}};
+            }
+
+            .con-head-ln1 {
+                background-color: {{mainColor}};
+                color: #fff;
+            }
+
+            .con-body {
+                margin: 10px;
+                /* background-image: url('./banner.jpg');
+                    background-size: cover; */
+                background-color: #fff;
+                padding: 15px;
+                border-bottom: 10px solid {{secondaryColor}};
+                border-radius: 3px;
+                box-shadow: 0px 0px 2px 2px #d1d1d1;
+            }
+
+            .inn-q-verif-content-title b {
+                color: {{mainColor}} !important;
+            }
+
+            .con-body-ln3 b {
+                color: {{mainColor}};
+            }
+
+            .con-prize .prize-ln2-title {
+                color: {{mainColor}};
+                padding-left: 15px !important;
+            }
+
+            .con-prize .con-prize-button {
+                font-size: 18px;
+                font-weight: 600;
+                background-color: {{mainColor}};
+                color: #fff;
+                text-align: center;
+                padding: 0.6rem;
+                margin: 10px -10px 0px 10px;
+                width: 80%;
+                border: 1px solid {{mainColor}};
+                border-radius: 3px;
+                cursor: pointer;
+                transition: transform 0.5s;
+            }
+
+            .con-prize .con-prize-button:hover {
+                background-color: {{hoverMainColor}};
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+
+            .comm-title button {
+                font-size: 15px;
+                padding: 7px 15px;
+                margin-left: 5px;
+                border: 0px;
+                background-color: {{mainColor}};
+                color: #fff;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            .con-footer {
+                margin: 10px;
+                background-color: #fff;
+                padding: 15px;
+                border-top: 10px solid {{secondaryColor}};
+                border-radius: 3px;
+                box-shadow: 0px 0px 2px 2px #d1d1d1;
+            }
+
+            .con-bottom-bar {
+                text-align: center !important;
+                background-color: {{secondaryColor}};
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                z-index: 99;
+                width: 100%;
+                border-top: 2px solid {{secondaryColor}};
+                padding-top: 3px;
+                padding-bottom: 3px;
+                box-shadow: 11px 0px 24px 0 rgba(0, 0, 0, 0.3);
+            }
+
+            .modal-foot button {
+                font-size: 20px;
+                padding: 0.5rem 1rem;
+                font-weight: 600;
+                background-color: {{mainColor}};
+                color: #fff;
+                border: 1px solid #fff;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            .con-head-ln2 {
+                background-color: {{secondaryColor}};
+                color: #000;
+                text-align: center;
+            }
+
+            body {
+                padding: 0px;
+                margin: 0px;
+                background-color: #e2e2e2;
+                font-family: sans-serif;
+                font-size: 14px;
+                background-image: url('{{backgroundImage}}');
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: repeat-y;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="con-full">
+            <div class="con-head">
+                <div class="con-head-ln1">
+                    <h4>{{text1}}</h4>
+                </div>
+                <div class="con-head-ln2">
+                    <div class="con-head-line">
+                        <hr/>
+                        <span>{{text2}}</span> 
+                        <hr/>
+                    </div>
+                    <img src={{brandLogo}} style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
+                    <h3><script>document.write(datehax());</script><img class="imgflg" src={{flagLogo}} alt=""></h3>
+                </div>
+            </div>
+            <div class="con-body-pad">
+                <div class="con-body" id="content-changeCol">
+                    <div class="con-body-ln1">
+                        <div class="con-body-ln1-inn1">
+                            <img src={{productImage}} id="product-img" alt="">
+                        </div>
+                        <div class="con-body-ln1-inn2">
+                            <p>
+                                <b>{{text3}}</b><br/><br/>{{text4}} <b>{{product}}!</b>
+                                {{text5}} {{brand}}.
+                            </p>
+                            <br/>
+                            <p>
+                                <b><span>{{text6}}</span></span> {{text7}} <script>document.write(datehax());</script>.</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="con-body-question">
+                        <div class="con-body-ln2">
+                            <div class="inn-question">
+                                <button class="inn-q-select" id="animate_btn_0" value="1">{{text8}}</button>
+                            </div>
+                        </div>
+                        <!-- 1 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 2 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 3 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 4 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 5 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 6 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 7 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 8 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question" >
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 9 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+                         <!-- 10 -->
+                        <div class="inn-q animate__animated">
+                            <h2>
+                                <span class="qeus-head"></span><br/><br/>
+                                <small class="qeus-numb"></small><br/>
+                                <b class="qeus-text"></b>
+                            </h2>
+                            <div class="inn-question" id="inn-last-q-item">
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text"></button>
+                            </div>
+                        </div>
+
+                        <div class="inn-q-verif-content hidden" id="verif-content">
+                            <h2 class="inn-q-verif-content-title"><b>{{text9}}</b></h2>
+                            <h2 id="inn-q-progress-state1">{{text10}}</h2>
+                            <h2 id="inn-q-progress-state2" class="hidden">{{text11}}</h2>
+                            <h2 id="inn-q-progress-state3" class="hidden">{{text12}}</h2>
+                            <h2 id="inn-q-progress-state4" class="hidden">{{text13}}</h2>
+                            <img id="inn-q-progress-loading" src="./files/loadingBL.gif" alt="">
+                            <h2 id="inn-q-progress-dones2" class="hidden">{{text14}}</h2>
+                            <h2 id="inn-q-progress-dones3" class="hidden">{{text15}}</h2>
+                            <h2 id="inn-q-progress-dones4" class="hidden">{{text16}}</h2>
+                        </div>
+
+
+                        <div class="con-body-ln3 hidden" id="prize-content-1">
+                            <h2><b>{{text17}}</b></h2>
+                            <p>{{text18}}</p>
+                            <p>{{text19}}</p>
+                            <div class="body-ln3-carret animate__animated animate__slower animate__infinite animate__shakeY"><b><i class="fas fa-angle-double-down fa-2x"></i></b></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prize-content-2" class="hidden">
+                    <div class="con-prize">
+                        <div class="con-prize-outter">
+                            <div class="con-prize-ln1">
+                                <img src={{productImage}} alt="">
+                            </div>
+                            <div class="con-prize-ln2">
+                                <h2 class="prize-ln2-title" id="prize-ln2-desc">
+                                    {{product}}
+                                </h2>
+                                <p class="prize-ln2-desc">
+                                    {{description}}           
+                                </p>
+                                <div class="prize-ln2-amount">
+                                    <div class="prize-ln2-zero1">&nbsp;{{text20}} <del>{{price}}</del></div>
+                                    <div class="prize-ln2-zero2 animate__animated animate__heartBeat animate__slower animate__infinite">$0.00</div>
+                                </div>
+                                <p class="prize-ln2-stock">&nbsp;{{text21}} <b>(<span class="animate__animated animate__flash animate__slower animate__infinite"> 2 </span>)</b></p>
+                                <p class="prize-ln2-pfs">&nbsp;{{text22}}</p>
+                                <div class="prize-ln2-btn">
+                                    <button id="btn-claim" class="con-prize-button"><i class="fas fa-shopping-cart"></i> {{text23}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="con-nothing" id="nothing-id"></div>
+            
+                <!-- ALL COMMENTS ARE LISTE HERE -->
+                <div id="comments" class="con-comment hidden">
+                    <div class="com_cont">
+
+                        <div class="comm-div">
+                            <div class="comm-desc">
+                                <div class="comm-name">{{text24}}</div>
+                                <div class="comm-box">
+                                   <textarea name="comment_box" rows="5"></textarea>
+                                </div>
+                                <div class="comm-title">
+                                    <span><i class="fas fa-comments"></i> {{text25}}</span>
+                                    <span><button><i class="fas fa-camera"></i></button><button>{{text26}}</button></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comm-div">
+                            <div class="comm-image">
+                                <img src="./files/1.jpg" alt="">
+                            </div>
+                            <div class="comm-desc">
+                                <div class="comm-name">Elizabeth Brown</div>
+                                <div class="comm-text">
+                                    {{text27}}
+                                </div>
+                                <div class="comm-footer">
+                                    <div class="comm-footer-datelike">
+                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div>
+                                        <div><i class="fas fa-thumbs-up"></i><span>52</span></div>
+                                    </div>
+                                    <div>
+                                        <a href="#">{{like}}</a>
+                                        <a href="#">{{reply}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comm-div">
+                            <div class="comm-image">
+                                <img src="./files/2.jpg" alt="">
+                            </div>
+                            <div class="comm-desc">
+                                <div class="comm-name">John Wilson</div>
+                                <div class="comm-text">
+                                    {{text28}}<br/>
+                                    <img src={{commentImage1}} alt="">
+                                </div>
+                                <div class="comm-footer">
+                                    <div class="comm-footer-datelike">
+                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
+                                        <div><i class="fas fa-thumbs-up"></i><span>84</span></div>
+                                    </div>
+                                    <div>
+                                        <a href="#">{{like}}</a>
+                                        <a href="#">{{reply}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comm-div">
+                            <div class="comm-image">
+                                <img src="./files/3.jpg" alt="">
+                            </div>
+                            <div class="comm-desc">
+                                <div class="comm-name">Jennifer Jones</div>
+                                <div class="comm-text">
+                                    {{text29}}
+                                </div>
+                                <div class="comm-footer">
+                                    <div class="comm-footer-datelike">
+                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
+                                        <div><i class="fas fa-thumbs-up"></i><span>12</span></div>
+                                    </div>
+                                    <div>
+                                        <a href="#">{{like}}</a>
+                                        <a href="#">{{reply}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comm-div">
+                            <div class="comm-image">
+                                <img src="./files/4.jpg" alt="">
+                            </div>
+                            <div class="comm-desc">
+                                <div class="comm-name">Steven Jackson </div>
+                                <div class="comm-text">
+                                    {{text30}}<br/>
+                                    <img src={{commentImage2}} alt="">
+                                </div>
+                                <div class="comm-footer">
+                                    <div class="comm-footer-datelike">
+                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
+                                        <div><i class="fas fa-thumbs-up"></i><span>97</span></div>
+                                    </div>
+                                    <div>
+                                        <a href="#">{{like}}</a>
+                                        <a href="#">{{reply}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comm-div">
+                            <div class="comm-image">
+                                <img src="./files/5.jpg" alt="">
+                            </div>
+                            <div class="comm-desc">
+                                <div class="comm-name">Dorothy Harris</div>
+                                <div class="comm-text">
+                                    {{text31}}
+                                </div>
+                                <div class="comm-footer">
+                                    <div class="comm-footer-datelike">
+                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
+                                        <div><i class="fas fa-thumbs-up"></i><span>16</span></div>
+                                    </div>
+                                    <div>
+                                        <a href="#">{{like}}</a>
+                                        <a href="#">{{reply}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="con-footer" id="con-footer">
+                    <div class="footer-content">
+                        <br /><br />
+                        <img src="./files/f_guarantee.png" alt="guarantee" height="70px" width="auto" /> <img src="./files/f_secure_1.png"
+                            alt="secureSiteLogo" height="75px" width="auto" />
+                        <p class="copyright">Copyright © <script>document.write(datenhay());</script></p>
+                        <div class="claim">
+                            {{text32}}<br/><br/>
+                            {{text33}}
+                            <br/>{{text34}}<br>
+                            <br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="con-bottom-bar">
+           <div class="offer_expires">{{text35}} <span id="time"></span></div>     
+        </div>
+
+    </body>
+    <script>
+        const brand = "Walmart";
+    </script>
+    <script>
+var qtexxtt = [
+            `When you think of Walmart, which word comes to mind first?`,
+            `Reliability`,
+            `Innovation`,
+            `Affordability`,
+            `Variety`,
+            `How do Walmart advertisements influence your shopping decisions?`,
+            `Strongly influence`,
+            `Somewhat influence`,
+            `Rarely influence`,
+            `No influence at all`,
+            `What is your primary reason for shopping at Walmart?`,
+            `Product quality`,
+            `Customer service`,
+            `Store ambiance`,
+            `Loyalty rewards`,
+            `How often do you use backpacks in your everyday tasks?`,
+            `Daily`,
+            `Weekly`,
+            `Monthly`,
+            `Rarely`,
+            `What feature of the YETI Backpack Soft Cooler excites you the most?`,
+            `Large main compartment`,
+            `Durability`,
+            `Portability`,
+            `Design and appearance`,
+            `How likely are you to participate in a Walmart promotional giveaway?`,
+            `Very likely`,
+            `Somewhat likely`,
+            `Not very likely`,
+            `Not at all likely`,
+            `If you won the YETI Backpack Soft Cooler, how would you use it?`,
+            `For daily use`,
+            `On weekend adventures and trips`,
+            `As a gift for someone else`,
+            `Not sure/I wouldn't use it`,
+            `Which aspect of Walmart shopping experience would you most like to see improved?`,
+            `Online shopping platform`,
+            `In-store product arrangement`,
+            `Customer service responsiveness`,
+            `Pricing and discounts`,
+            `How does owning a comprehensive backpack like the YETI Backpack Soft Cooler align with your lifestyle?`,
+            `Perfectly aligns`,
+            `Somewhat aligns`,
+            `Barely aligns`,
+            `Does not align at all`,
+            `After hearing about the YETI Backpack Soft Cooler giveaway, how does your perception of Walmart change?`,
+            `Much more positive`,
+            `Slightly more positive`,
+            `No change`,
+            `Less positive`,
+        ];
+    </script>
+<script>
+        const qhed = document.querySelectorAll(".qeus-head") || [];
+        const ques = document.querySelectorAll(".qeus-text") || [];
+        const qnum = document.querySelectorAll(".qeus-numb") || [];
+
+        
+
+        for (var qn = 0; qn < qnum.length; qn++) {
+            qhed[qn].innerText = `Walmart Shopper Experience Survey`;
+            qnum[qn].innerText = "Question " + (qn + 1) + " on " + qnum.length + ":";
+        }
+
+        var dsq = 0;
+        var incq = 0;
+
+        while (dsq < qtexxtt.length) {
+            ques[dsq].innerText = qtexxtt[dsq];
+            dsq++;
+        }
+    </script>
+
+    <div class="mod-con mod-con-bg hidden" id="modal-prize">
+        <div class="modal mod-con-inn">
+            <div class="btn-close">
+                <img src={{brandLogo}} height="50px" alt="">
+                <!-- <h2>Tractor Supply</h2> -->
+                <button id="btn-close" ><!-- <i  class="fas fa-times fa-lg"></i> --></button>
+            </div>
+            <hr>
+            <div class="modal-head">
+                <p><span>{{text36}}</span> {{text37}} {{product}} {{text38}}</p>
+            </div>
+            <div class="modal-body">
+                <p><span>{{text39}} {{product}}:</p>
+                <ol>
+                    <li>{{text40}}</li>
+                    <li>{{text41}}</li>
+                    <li>{{text42}}</li>
+                </ol>
+            </div>
+            <div class="modal-foot">
+                <button id="button1">{{text43}}</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./files/script.js?v=29"></script>
+    <script>        
+        document.getElementById('button1').addEventListener("click",function(){
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            window.location.href = jumpurl ;
+        },false);
+    </script>
+</html>

@@ -1,0 +1,15 @@
+{
+    "brand": "La Poste",
+    "footerBackgroundColor": "rgb(0, 61, 165)",
+    "brandLogoHeader": "./files/lplogo.png",
+    "headerColor": "#fff",
+    "buttonColor": "rgb(255, 201, 5)",
+    "stepColor": "rgb(255, 201, 5)",
+    "buttonColorHover": "rgb(255, 208, 49)",
+    "favicon": "./files/lpfav.ico",
+    "backgroundColor": "#eee",
+    "logoSize": "90px",
+    "lang": "fr-FR",
+    "baseRef": "/fr-lpt2/",
+    "wallId": "2a91616f-5d01-4427-b146-bcea56223f95"
+}
