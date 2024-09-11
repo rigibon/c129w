@@ -4,7 +4,7 @@
     "text2": "Survey About",
     "text3": "Dear Tractor Supply Shopper,",
     "text4": "We would like to offer you a unique opportunity to receive a brand new",
-    "product": "YETI Hopper® M20 Soft Backpack Cooler",
+    "product": "PRODUCT",
     "text5": "To claim, simply take this short survey about your experience with",
     "brand": "Tractor Supply",
     "text6": "Attention!",
@@ -57,6 +57,5 @@
     "commentImage1": "./files/comment_1.png",
     "commentImage2": "./files/comment_2.png",
     "description": "Description.",
-    "favicon": "./files/tsc_icon_favicon.ico",
-    "backgroundImage": "./files/bgtract.jpg"
+    "favicon": "./files/tsc_icon_favicon.ico"
 }
