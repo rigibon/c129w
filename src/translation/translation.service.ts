@@ -4,6 +4,7 @@ import * as handlebars from 'handlebars';
 import { translate } from 'google-translate-api-x';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
+const { G4F } = require('g4f');
 
 @Injectable()
 export class TranslationService {
@@ -21,6 +22,8 @@ export class TranslationService {
     'tryetco',
     'params.json',
   );
+
+  survey: string[] = [];
   // private readonly configFilePath = path.join(__dirname, '..', '..', 'client', 'tryetco', 'config.json');
   // private readonly outputFilePath = './out.html';
 
@@ -64,24 +67,24 @@ export class TranslationService {
 
     await fs.writeFile(outputFilePath, html, 'utf-8');
 
-    // const output = await fs.readFile(outputFilePath, 'utf-8');
-    // const $ = cheerio.load(output);
+    const output = await fs.readFile(outputFilePath, 'utf-8');
+    const $ = cheerio.load(output);
 
-    // const scriptTag = $('script').filter(function () {
-    //     return $(this).html().includes('var qtexxtt =');
-    // });
+    const scriptTag = $('script').filter(function () {
+      return $(this).html().includes('var qtexxtt =');
+    });
 
-    // const scriptContent = scriptTag.html();
-    // const originalArray = this.extractArrayFromScript(scriptContent);
+    const scriptContent = scriptTag.html();
+    const originalArray = this.extractArrayFromScript(scriptContent);
 
-    // const translatedArray = await this.translateArray(originalArray, "es");
+    const translatedArray = await this.translateArray(originalArray, 'es');
 
-    // const translatedArrayString = JSON.stringify(translatedArray, null, 4);
-    // const newScriptContent = `var qtexxtt = ${translatedArrayString};`;
+    const translatedArrayString = JSON.stringify(translatedArray, null, 4);
+    const newScriptContent = `var qtexxtt = ${translatedArrayString};`;
 
-    // scriptTag.html(newScriptContent);
+    scriptTag.html(newScriptContent);
 
-    // await fs.writeFile(outputFilePath, $.html(), 'utf-8');
+    await fs.writeFile(outputFilePath, $.html(), 'utf-8');
   }
 
   private getTranslationPromises(
@@ -116,17 +119,88 @@ export class TranslationService {
   }
 
   async translateArray(array, targetLang) {
-    return Promise.all(
-      array.map(async (text) => {
-        try {
-          const res = await translate(text, { to: targetLang });
-          // @ts-ignore
-          return res.text;
-        } catch (error) {
-          console.error(`Error translating: ${text}`, error);
-          return text; // Return original text if translation fails
-        }
-      }),
-    );
+    const g4f = new G4F();
+
+    const messages = [
+      {
+        role: 'user',
+        content: `
+      Change these questions and options to fit a survey about Harbor Freight and an iPhone 15 as the prize:
+          When you think of Walmart, which word comes to mind first?,
+          Reliability,
+          Innovation,
+          Affordability,
+          Variety,
+          How do Walmart advertisements influence your shopping decisions?,
+          Strongly influence,
+          Somewhat influence,
+          Rarely influence,
+          No influence at all,
+          What is your primary reason for shopping at Walmart?,
+          Product quality,
+          Customer service,
+          Store ambiance,
+          Loyalty rewards,
+          How often do you use backpacks in your everyday tasks?,
+          Daily,
+          Weekly,
+          Monthly,
+          Rarely,
+          What feature of the YETI Backpack Soft Cooler excites you the most?,
+          Large main compartment,
+          Durability,
+          Portability,
+          Design and appearance,
+          How likely are you to participate in a Walmart promotional giveaway?,
+          Very likely,
+          Somewhat likely,
+          Not very likely,
+          Not at all likely,
+          If you won the YETI Backpack Soft Cooler, how would you use it?,
+          For daily use,
+          On weekend adventures and trips,
+          As a gift for someone else,
+          Not sure/I wouldn't use it,
+          Which aspect of Walmart shopping experience would you most like to see improved?,
+          Online shopping platform,
+          In-store product arrangement,
+          Customer service responsiveness,
+          Pricing and discounts,
+          How does owning a comprehensive backpack like the YETI Backpack Soft Cooler align with your lifestyle?,
+          Perfectly aligns,
+          Somewhat aligns,
+          Barely aligns,
+          Does not align at all,
+          After hearing about the YETI Backpack Soft Cooler giveaway, how does your perception of Walmart change?,
+          Much more positive,
+          Slightly more positive,
+          No change,
+          Less positive,
+      Output as array of strings
+      `,
+      },
+    ];
+
+    const newSurvey = await g4f.chatCompletion(messages);
+
+    return JSON.parse(newSurvey);
+
+    // g4f.chatCompletion(messages).then((result) => {
+    //   this.survey = JSON.parse(result);
+
+    //   return Promise.all(
+    //     this.survey.map(async (text) => {
+    //       try {
+    //         // const res = await translate(text, { to: targetLang });
+    //         // // @ts-ignore
+    //         // return res.text;
+    //         return text;
+    //       } catch (error) {
+    //         console.error(`Error translating: ${text}`, error);
+    //         return text; // Return original text if translation fails
+    //       }
+    //     }),
+    //   );
+    // });
   }
 }

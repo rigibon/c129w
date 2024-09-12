@@ -17,24 +17,24 @@
             .con-body button{
                 font-size: 18px;
                 font-weight: 600;
-                background-color: {{mainColor}};
+                background-color: {{primaryColor}};
                 color: #fff;
                 text-align: center;
                 padding: .6rem;
                 margin-bottom: .5rem;
                 width: 80%;
-                border: 1px solid {{mainColor}};
+                border: 1px solid {{primaryColor}};
                 border-radius: 3px;
                 cursor: pointer;
                 transition: transform .5s;
             }
 
             .con-body button:hover{
-                background-color: {{hoverMainColor}};
+                background-color: {{hoverPrimaryColor}};
             }
 
             .con-head-ln1 {
-                background-color: {{mainColor}};
+                background-color: {{primaryColor}};
                 color: #fff;
             }
 
@@ -44,41 +44,41 @@
                     background-size: cover; */
                 background-color: #fff;
                 padding: 15px;
-                border-bottom: 10px solid {{secondaryColor}};
+                border-bottom: 10px solid {{primaryColor}};
                 border-radius: 3px;
                 box-shadow: 0px 0px 2px 2px #d1d1d1;
             }
 
             .inn-q-verif-content-title b {
-                color: {{mainColor}} !important;
+                color: {{primaryColor}} !important;
             }
 
             .con-body-ln3 b {
-                color: {{mainColor}};
+                color: {{primaryColor}};
             }
 
             .con-prize .prize-ln2-title {
-                color: {{mainColor}};
+                color: {{primaryColor}};
                 padding-left: 15px !important;
             }
 
             .con-prize .con-prize-button {
                 font-size: 18px;
                 font-weight: 600;
-                background-color: {{mainColor}};
+                background-color: {{primaryColor}};
                 color: #fff;
                 text-align: center;
                 padding: 0.6rem;
                 margin: 10px -10px 0px 10px;
                 width: 80%;
-                border: 1px solid {{mainColor}};
+                border: 1px solid {{primaryColor}};
                 border-radius: 3px;
                 cursor: pointer;
                 transition: transform 0.5s;
             }
 
             .con-prize .con-prize-button:hover {
-                background-color: {{hoverMainColor}};
+                background-color: {{hoverPrimaryColor}};
                 cursor: pointer;
                 transform: scale(1.1);
             }
@@ -88,7 +88,7 @@
                 padding: 7px 15px;
                 margin-left: 5px;
                 border: 0px;
-                background-color: {{mainColor}};
+                background-color: {{primaryColor}};
                 color: #fff;
                 border-radius: 3px;
                 cursor: pointer;
@@ -98,20 +98,20 @@
                 margin: 10px;
                 background-color: #fff;
                 padding: 15px;
-                border-top: 10px solid {{secondaryColor}};
+                border-top: 10px solid {{primaryColor}};
                 border-radius: 3px;
                 box-shadow: 0px 0px 2px 2px #d1d1d1;
             }
 
             .con-bottom-bar {
                 text-align: center !important;
-                background-color: {{secondaryColor}};
+                background-color: {{primaryColor}};
                 position: fixed;
                 bottom: 0;
                 left: 0;
                 z-index: 99;
                 width: 100%;
-                border-top: 2px solid {{secondaryColor}};
+                border-top: 2px solid {{primaryColor}};
                 padding-top: 3px;
                 padding-bottom: 3px;
                 box-shadow: 11px 0px 24px 0 rgba(0, 0, 0, 0.3);
@@ -121,7 +121,7 @@
                 font-size: 20px;
                 padding: 0.5rem 1rem;
                 font-weight: 600;
-                background-color: {{mainColor}};
+                background-color: {{primaryColor}};
                 color: #fff;
                 border: 1px solid #fff;
                 border-radius: 3px;
@@ -172,7 +172,7 @@
                         </div>
                         <div class="con-body-ln1-inn2">
                             <p>
-                                <b>{{text3}}</b><br/><br/>{{text4}} <b>{{product}}!</b>
+                                <b id="text3"></b><br/><br/>{{text4}} <b>{{product}}!</b>
                                 {{text5}} {{brand}}.
                             </p>
                             <br/>
@@ -517,7 +517,7 @@
                             alt="secureSiteLogo" height="75px" width="auto" />
                         <p class="copyright">Copyright © <script>document.write(datenhay());</script></p>
                         <div class="claim">
-                            {{text32}}<br/><br/>
+                            <span id="text32"></span><br/><br/>
                             {{text33}}
                             <br/>{{text34}}<br>
                             <br/><br/><br/>
@@ -533,6 +533,10 @@
         </div>
 
     </body>
+    <script>
+        document.getElementById('text3').innerText = `Dear {{brand}} Shopper`;
+        document.getElementById('text32').innerText = `This website is not affiliated with or endorsed by {{brand}} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.`
+    </script>
     <script>
         const brand = "Walmart";
     </script>

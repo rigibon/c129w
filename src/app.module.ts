@@ -5,11 +5,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BrandController } from './brands/brands.controller';
+import { BrandsModule } from './brands/brands.module';
 
 const storage = diskStorage({
   destination: path.join(__dirname, '..', 'client', 'tryetco', 'files'),
   filename: function (req, file, cb) {
-    cb(null, 'bg' + path.extname(file.originalname));
+    cb(null, file.originalname);
   },
 });
 
@@ -18,9 +21,11 @@ const storage = diskStorage({
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', 'client'),
     }),
-    MulterModule.register({
-      storage: storage,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://new_user_01:qWASO8ex9CbKZtCI@cluster0.n3ac2vj.mongodb.net/creatives-db',
+    ),
+    BrandsModule,
+    MulterModule.register({ storage: storage }),
   ],
   controllers: [TranslationController],
   providers: [TranslationService],
