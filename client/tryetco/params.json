@@ -43,9 +43,5 @@
     "text43": "Continue",
     "like": "Like",
     "reply": "Reply",
-    "flagLogo": "./files/flaglogo.png",
-    "brand": "Walmart",
-    "product": "PRODUCT",
-    "price": "$325.00",
-    "description": "Description."
+    "flagLogo": "./files/flaglogo.png"
 }

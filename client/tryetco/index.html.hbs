@@ -2,7 +2,7 @@
 
 <html lang="en-US">
     <head>
-        {{!-- <base href="/tryetco/"> --}}
+        {{!-- <base href="{{folderName}}"> --}}
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -160,15 +160,15 @@
                         <span>{{text2}}</span> 
                         <hr/>
                     </div>
-                    <img src={{brandLogo}} style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
-                    <h3><script>document.write(datehax());</script><img class="imgflg" src={{flagLogo}} alt=""></h3>
+                    <img src="{{brandLogo}}" style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
+                    <h3><script>document.write(datehax());</script><img class="imgflg" src="{{flagLogo}}" alt=""></h3>
                 </div>
             </div>
             <div class="con-body-pad">
                 <div class="con-body" id="content-changeCol">
                     <div class="con-body-ln1">
                         <div class="con-body-ln1-inn1">
-                            <img src={{productImage}} id="product-img" alt="">
+                            <img src="{{productImage}}" id="product-img" alt="">
                         </div>
                         <div class="con-body-ln1-inn2">
                             <p>
@@ -354,7 +354,7 @@
                     <div class="con-prize">
                         <div class="con-prize-outter">
                             <div class="con-prize-ln1">
-                                <img src={{productImage}} alt="">
+                                <img src="{{productImage}}" alt="">
                             </div>
                             <div class="con-prize-ln2">
                                 <h2 class="prize-ln2-title" id="prize-ln2-desc">
@@ -426,7 +426,7 @@
                                 <div class="comm-name">John Wilson</div>
                                 <div class="comm-text">
                                     {{text28}}<br/>
-                                    <img src={{commentImage1}} alt="">
+                                    <img src="{{commentImage1}}" alt="">
                                 </div>
                                 <div class="comm-footer">
                                     <div class="comm-footer-datelike">
@@ -471,7 +471,7 @@
                                 <div class="comm-name">Steven Jackson </div>
                                 <div class="comm-text">
                                     {{text30}}<br/>
-                                    <img src={{commentImage2}} alt="">
+                                    <img src="{{commentImage2}}" alt="">
                                 </div>
                                 <div class="comm-footer">
                                     <div class="comm-footer-datelike">
@@ -532,120 +532,31 @@
            <div class="offer_expires">{{text35}} <span id="time"></span></div>     
         </div>
 
-    </body>
-    <script>
-        document.getElementById('text3').innerText = `Dear {{brand}} Shopper`;
-        document.getElementById('text32').innerText = `This website is not affiliated with or endorsed by {{brand}} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.`
-    </script>
-    <script>
-        const brand = "Walmart";
-    </script>
-    <script>
-var qtexxtt = [
-            `When you think of Walmart, which word comes to mind first?`,
-            `Reliability`,
-            `Innovation`,
-            `Affordability`,
-            `Variety`,
-            `How do Walmart advertisements influence your shopping decisions?`,
-            `Strongly influence`,
-            `Somewhat influence`,
-            `Rarely influence`,
-            `No influence at all`,
-            `What is your primary reason for shopping at Walmart?`,
-            `Product quality`,
-            `Customer service`,
-            `Store ambiance`,
-            `Loyalty rewards`,
-            `How often do you use backpacks in your everyday tasks?`,
-            `Daily`,
-            `Weekly`,
-            `Monthly`,
-            `Rarely`,
-            `What feature of the YETI Backpack Soft Cooler excites you the most?`,
-            `Large main compartment`,
-            `Durability`,
-            `Portability`,
-            `Design and appearance`,
-            `How likely are you to participate in a Walmart promotional giveaway?`,
-            `Very likely`,
-            `Somewhat likely`,
-            `Not very likely`,
-            `Not at all likely`,
-            `If you won the YETI Backpack Soft Cooler, how would you use it?`,
-            `For daily use`,
-            `On weekend adventures and trips`,
-            `As a gift for someone else`,
-            `Not sure/I wouldn't use it`,
-            `Which aspect of Walmart shopping experience would you most like to see improved?`,
-            `Online shopping platform`,
-            `In-store product arrangement`,
-            `Customer service responsiveness`,
-            `Pricing and discounts`,
-            `How does owning a comprehensive backpack like the YETI Backpack Soft Cooler align with your lifestyle?`,
-            `Perfectly aligns`,
-            `Somewhat aligns`,
-            `Barely aligns`,
-            `Does not align at all`,
-            `After hearing about the YETI Backpack Soft Cooler giveaway, how does your perception of Walmart change?`,
-            `Much more positive`,
-            `Slightly more positive`,
-            `No change`,
-            `Less positive`,
-        ];
-    </script>
-<script>
-        const qhed = document.querySelectorAll(".qeus-head") || [];
-        const ques = document.querySelectorAll(".qeus-text") || [];
-        const qnum = document.querySelectorAll(".qeus-numb") || [];
-
-        
-
-        for (var qn = 0; qn < qnum.length; qn++) {
-            qhed[qn].innerText = `Walmart Shopper Experience Survey`;
-            qnum[qn].innerText = "Question " + (qn + 1) + " on " + qnum.length + ":";
-        }
-
-        var dsq = 0;
-        var incq = 0;
-
-        while (dsq < qtexxtt.length) {
-            ques[dsq].innerText = qtexxtt[dsq];
-            dsq++;
-        }
-    </script>
-
-    <div class="mod-con mod-con-bg hidden" id="modal-prize">
-        <div class="modal mod-con-inn">
-            <div class="btn-close">
-                <img src={{brandLogo}} height="50px" alt="">
-                <!-- <h2>Tractor Supply</h2> -->
-                <button id="btn-close" ><!-- <i  class="fas fa-times fa-lg"></i> --></button>
-            </div>
-            <hr>
-            <div class="modal-head">
-                <p><span>{{text36}}</span> {{text37}} {{product}} {{text38}}</p>
-            </div>
-            <div class="modal-body">
-                <p><span>{{text39}} {{product}}:</p>
-                <ol>
-                    <li>{{text40}}</li>
-                    <li>{{text41}}</li>
-                    <li>{{text42}}</li>
-                </ol>
-            </div>
-            <div class="modal-foot">
-                <button id="button1">{{text43}}</button>
+        <div class="mod-con mod-con-bg hidden" id="modal-prize">
+            <div class="modal mod-con-inn">
+                <div class="btn-close">
+                    <img src="{{brandLogo}}" height="50px" alt="">
+                    <!-- <h2>Tractor Supply</h2> -->
+                    <button id="btn-close" ><!-- <i  class="fas fa-times fa-lg"></i> --></button>
+                </div>
+                <hr>
+                <div class="modal-head">
+                    <p><span>{{text36}}</span> {{text37}} {{product}} {{text38}}</p>
+                </div>
+                <div class="modal-body">
+                    <p><span>{{text39}} {{product}}:</p>
+                    <ol>
+                        <li>{{text40}}</li>
+                        <li>{{text41}}</li>
+                        <li>{{text42}}</li>
+                    </ol>
+                </div>
+                <div class="modal-foot">
+                    <button id="button1">{{text43}}</button>
+                </div>
             </div>
         </div>
-    </div>
-
+    </body>
+    <script src="./files/script-test.js"></script>
     <script src="./files/script.js?v=29"></script>
-    <script>        
-        document.getElementById('button1').addEventListener("click",function(){
-            var urlParams = new URLSearchParams(window.location.search);
-            
-            window.location.href = jumpurl ;
-        },false);
-    </script>
 </html>

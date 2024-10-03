@@ -30,7 +30,9 @@ export class TranslationService {
   async generateHtmlWithTranslations(
     translateTexts: boolean,
     language: string,
-    backgroundImage: any,
+    brandData: any,
+    productData: any,
+    config: any,
   ) {
     const templateContent = await fs.readFile(this.templateFilePath, 'utf8');
     const template = handlebars.compile(templateContent);
@@ -38,21 +40,22 @@ export class TranslationService {
     const texts = JSON.parse(await fs.readFile(this.textsFilePath, 'utf8'));
     // const configuration = JSON.parse(await fs.readFile(this.configFilePath, 'utf8'));
 
-    // const translationPromises = this.getTranslationPromises(texts, language);
+    if (translateTexts) {
+      console.log('A');
+      const translationPromises = this.getTranslationPromises(texts, language);
 
-    // if (translateTexts) {
-    //     const translations = await Promise.all(translationPromises);
-    //     let i = 0;
-    //     for (const key in texts) {
-    //         if (texts.hasOwnProperty(key)) {
-    //             texts[key] = translations[i];
-    //             i++;
-    //         }
-    //     }
-    // }
+      const translations = await Promise.all(translationPromises);
+      let i = 0;
+      for (const key in texts) {
+        if (texts.hasOwnProperty(key)) {
+          texts[key] = translations[i];
+          i++;
+        }
+      }
+    }
 
     // const data = { ...texts, ...configuration };
-    const data = { ...texts, ...backgroundImage };
+    const data = { ...texts, ...brandData, ...productData, ...config };
     const html = template(data);
 
     // console.log(html);
@@ -65,6 +68,15 @@ export class TranslationService {
       'output.html',
     );
 
+    const scriptFilePath = path.join(
+      __dirname,
+      '..',
+      'client',
+      'tryetco',
+      'files',
+      'script-test.js',
+    );
+
     await fs.writeFile(outputFilePath, html, 'utf-8');
 
     const output = await fs.readFile(outputFilePath, 'utf-8');
@@ -75,14 +87,44 @@ export class TranslationService {
     });
 
     const scriptContent = scriptTag.html();
-    const originalArray = this.extractArrayFromScript(scriptContent);
+    // const originalArray = this.extractArrayFromScript(scriptContent);
+    const originalArray = [];
 
-    const translatedArray = await this.translateArray(originalArray, 'es');
+    const translatedArray = await this.translateArray(
+      originalArray,
+      'es',
+      brandData.brand,
+      productData.product,
+    );
 
     const translatedArrayString = JSON.stringify(translatedArray, null, 4);
     const newScriptContent = `var qtexxtt = ${translatedArrayString};`;
 
     scriptTag.html(newScriptContent);
+
+    const content = `
+      document.getElementById('text3').innerText = \`Dear ${brandData.brand} Shopper,\`;
+      document.getElementById('text32').innerText = \`This website is not affiliated with or endorsed by ${brandData.brand} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.\`;
+
+      var qtexxtt = ${translatedArrayString};
+
+      const qhed = document.querySelectorAll(".qeus-head") || [];
+      const ques = document.querySelectorAll(".qeus-text") || [];
+      const qnum = document.querySelectorAll(".qeus-numb") || [];
+
+      for (var qn = 0; qn < qnum.length; qn++) {
+          qhed[qn].innerText = \`${brandData.brand} Shopper Experience Survey\`;
+          qnum[qn].innerText = "Question " + (qn + 1) + " on " + qnum.length + ":";
+      }
+
+      var dsq = 0;
+      while (dsq < qtexxtt.length) {
+          ques[dsq].innerText = qtexxtt[dsq];
+          dsq++;
+      }
+    `;
+
+    await fs.writeFile(scriptFilePath, content, 'utf8');
 
     await fs.writeFile(outputFilePath, $.html(), 'utf-8');
   }
@@ -118,14 +160,14 @@ export class TranslationService {
     return null;
   }
 
-  async translateArray(array, targetLang) {
+  async translateArray(array, targetLang, brand, prize) {
     const g4f = new G4F();
 
     const messages = [
       {
         role: 'user',
         content: `
-      Change these questions and options to fit a survey about Harbor Freight and an iPhone 15 as the prize:
+      Change these questions and options to fit a survey about ${brand} and a ${prize} as the prize:
           When you think of Walmart, which word comes to mind first?,
           Reliability,
           Innovation,

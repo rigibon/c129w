@@ -10,4 +10,8 @@ export class BrandsService {
   async findAll(): Promise<Brand[]> {
     return await this.BrandModel.find().exec();
   }
+
+  async findById(id: number): Promise<Brand> {
+    return await this.BrandModel.findById(id).exec();
+  }
 }
