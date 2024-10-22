@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { Brand } from 'src/schemas/brand.schema';
+import { CreateBrandDto } from './createbrand';
 
 @Controller('brands')
 export class BrandController {
@@ -24,5 +25,11 @@ export class BrandController {
   @Get(':id')
   async findById(@Param() params: any): Promise<Brand> {
     return this.BrandsService.findById(params.id);
+  }
+
+  @Post("")
+  async create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
+    console.log(createBrandDto);
+    return this.BrandsService.create(createBrandDto);
   }
 }

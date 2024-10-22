@@ -12,19 +12,22 @@ export class Brand {
   name: string;
 
   @Prop()
-  primaryColor: string;
-
-  @Prop()
-  hoverPrimaryColor: string;
+  mainColor: string;
 
   @Prop()
   secondaryColor: string;
+
+  @Prop()
+  headerColor: string;
 
   @Prop()
   brandLogo: string;
 
   @Prop()
   favicon: string;
+
+  @Prop()
+  backgroundImage: string;
 }
 
 export const BrandSchema = SchemaFactory.createForClass(Brand);

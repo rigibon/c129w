@@ -1,15 +1,82 @@
 <!DOCTYPE html>
 
-<html lang="en-US">
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("{{wallID}}", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+<html lang="{{language}}">
     <head>
-        {{!-- <base href="{{folderName}}"> --}}
+        <base href="/{{folderName}}/">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{title}}</title>
         <link rel="stylesheet" href="./files/style.css?v=14">
         <link rel="stylesheet" href="./files/animate.min.css">
-        <link rel="icon" href={{favicon}}>
+        <link rel="icon" href="./files/{{favicon}}">
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
         <script src="./files/datehead.js"></script>
 
@@ -17,24 +84,24 @@
             .con-body button{
                 font-size: 18px;
                 font-weight: 600;
-                background-color: {{primaryColor}};
+                background-color: {{mainColor}};
                 color: #fff;
                 text-align: center;
                 padding: .6rem;
                 margin-bottom: .5rem;
                 width: 80%;
-                border: 1px solid {{primaryColor}};
+                border: 1px solid {{mainColor}};
                 border-radius: 3px;
                 cursor: pointer;
                 transition: transform .5s;
             }
 
             .con-body button:hover{
-                background-color: {{hoverPrimaryColor}};
+                background-color: {{mainColor}};
             }
 
             .con-head-ln1 {
-                background-color: {{primaryColor}};
+                background-color: {{mainColor}};
                 color: #fff;
             }
 
@@ -44,41 +111,41 @@
                     background-size: cover; */
                 background-color: #fff;
                 padding: 15px;
-                border-bottom: 10px solid {{primaryColor}};
+                border-bottom: 10px solid {{mainColor}};
                 border-radius: 3px;
                 box-shadow: 0px 0px 2px 2px #d1d1d1;
             }
 
             .inn-q-verif-content-title b {
-                color: {{primaryColor}} !important;
+                color: {{mainColor}} !important;
             }
 
             .con-body-ln3 b {
-                color: {{primaryColor}};
+                color: {{mainColor}};
             }
 
             .con-prize .prize-ln2-title {
-                color: {{primaryColor}};
+                color: #222;
                 padding-left: 15px !important;
             }
 
             .con-prize .con-prize-button {
                 font-size: 18px;
                 font-weight: 600;
-                background-color: {{primaryColor}};
+                background-color: {{mainColor}};
                 color: #fff;
                 text-align: center;
                 padding: 0.6rem;
                 margin: 10px -10px 0px 10px;
                 width: 80%;
-                border: 1px solid {{primaryColor}};
+                border: 1px solid {{mainColor}};
                 border-radius: 3px;
                 cursor: pointer;
                 transition: transform 0.5s;
             }
 
             .con-prize .con-prize-button:hover {
-                background-color: {{hoverPrimaryColor}};
+                background-color: {{mainColor}};
                 cursor: pointer;
                 transform: scale(1.1);
             }
@@ -88,7 +155,7 @@
                 padding: 7px 15px;
                 margin-left: 5px;
                 border: 0px;
-                background-color: {{primaryColor}};
+                background-color: {{mainColor}};
                 color: #fff;
                 border-radius: 3px;
                 cursor: pointer;
@@ -98,20 +165,20 @@
                 margin: 10px;
                 background-color: #fff;
                 padding: 15px;
-                border-top: 10px solid {{primaryColor}};
+                border-top: 10px solid {{secondaryColor}};
                 border-radius: 3px;
                 box-shadow: 0px 0px 2px 2px #d1d1d1;
             }
 
             .con-bottom-bar {
                 text-align: center !important;
-                background-color: {{primaryColor}};
+                background-color: {{secondaryColor}};
                 position: fixed;
                 bottom: 0;
                 left: 0;
                 z-index: 99;
                 width: 100%;
-                border-top: 2px solid {{primaryColor}};
+                border-top: 2px solid {{secondaryColor}};
                 padding-top: 3px;
                 padding-bottom: 3px;
                 box-shadow: 11px 0px 24px 0 rgba(0, 0, 0, 0.3);
@@ -121,15 +188,19 @@
                 font-size: 20px;
                 padding: 0.5rem 1rem;
                 font-weight: 600;
-                background-color: {{primaryColor}};
+                background-color: {{mainColor}};
                 color: #fff;
                 border: 1px solid #fff;
                 border-radius: 3px;
                 cursor: pointer;
             }
 
-            .con-head-ln2 {
+            .modal-foot {
                 background-color: {{secondaryColor}};
+            }
+
+            .con-head-ln2 {
+                background-color: {{headerColor}};
                 color: #000;
                 text-align: center;
             }
@@ -140,11 +211,15 @@
                 background-color: #e2e2e2;
                 font-family: sans-serif;
                 font-size: 14px;
-                background-image: url('{{backgroundImage}}');
+                background-image: url('./files/{{backgroundImage}}');
                 background-attachment: fixed;
                 background-position: center;
                 background-repeat: repeat-y;
                 background-size: cover;
+            }
+
+            .btn-close {
+                background-color: {{headerColor}};
             }
         </style>
     </head>
@@ -160,19 +235,19 @@
                         <span>{{text2}}</span> 
                         <hr/>
                     </div>
-                    <img src="{{brandLogo}}" style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
-                    <h3><script>document.write(datehax());</script><img class="imgflg" src="{{flagLogo}}" alt=""></h3>
+                    <img src="./files/{{brandLogo}}" style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
+                    <h3><script>document.write(datehax());</script><img class="imgflg" src="./files/{{flagLogo}}" alt=""></h3>
                 </div>
             </div>
             <div class="con-body-pad">
                 <div class="con-body" id="content-changeCol">
                     <div class="con-body-ln1">
                         <div class="con-body-ln1-inn1">
-                            <img src="{{productImage}}" id="product-img" alt="">
+                            <img src="./files/{{productImage}}" id="product-img" alt="">
                         </div>
                         <div class="con-body-ln1-inn2">
                             <p>
-                                <b id="text3"></b><br/><br/>{{text4}} <b>{{product}}!</b>
+                                <b>{{text3}}</b><br/><br/>{{text4}} <b>{{product}}!</b>
                                 {{text5}} {{brand}}.
                             </p>
                             <br/>
@@ -187,144 +262,108 @@
                                 <button class="inn-q-select" id="animate_btn_0" value="1">{{text8}}</button>
                             </div>
                         </div>
-                        <!-- 1 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 1 on 8</small><br/>
+                                <b class="qeus-text">How often do you visit {{brand}} for your shopping needs?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Multiple times a week</button>
+                                <button class="inn-q-select qeus-text">Once a week</button>
+                                <button class="inn-q-select qeus-text">A few times a month</button>
+                                <button class="inn-q-select qeus-text">Rarely or never</button>
                             </div>
                         </div>
-                         <!-- 2 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 2 on 8</small><br/>
+                                <b class="qeus-text">What primarily drives your choice to shop at {{brand}}?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Convenience of location</button>
+                                <button class="inn-q-select qeus-text">Product selection</button>
+                                <button class="inn-q-select qeus-text">Prices and deals</button>
+                                <button class="inn-q-select qeus-text">Loyalty rewards program</button>
                             </div>
                         </div>
-                         <!-- 3 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 3 on 8</small><br/>
+                                <b class="qeus-text">When seeing ads from {{brand}}, how do you typically respond?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">I look for items I need</button>
+                                <button class="inn-q-select qeus-text">I browse if there's a good deal</button>
+                                <button class="inn-q-select qeus-text">I consider visiting if there's a promo</button>
+                                <button class="inn-q-select qeus-text">I usually ignore the ads</button>
                             </div>
                         </div>
-                         <!-- 4 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 4 on 8</small><br/>
+                                <b class="qeus-text">When you think of {{brand}}, which word comes to mind first?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Reliability</button>
+                                <button class="inn-q-select qeus-text">Innovation</button>
+                                <button class="inn-q-select qeus-text">Affordability</button>
+                                <button class="inn-q-select qeus-text">Variety</button>
                             </div>
                         </div>
-                         <!-- 5 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 5 on 8</small><br/>
+                                <b class="qeus-text">If you won a {{product}} from {{brand}}, how would it change your view of the brand?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Significantly more positive</button>
+                                <button class="inn-q-select qeus-text">Somewhat more positive</button>
+                                <button class="inn-q-select qeus-text">No change</button>
+                                <button class="inn-q-select qeus-text">More negative</button>
                             </div>
                         </div>
-                         <!-- 6 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 6 on 8</small><br/>
+                                <b class="qeus-text">Which aspect of {{brand}} shopping experience would you most like to see improved?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Online shopping platform</button>
+                                <button class="inn-q-select qeus-text">In-store product arrangement</button>
+                                <button class="inn-q-select qeus-text">Customer service responsiveness</button>
+                                <button class="inn-q-select qeus-text">Pricing and discounts</button>
                             </div>
                         </div>
-                         <!-- 7 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 7 on 8</small><br/>
+                                <b class="qeus-text">How likely are you to use a {{product}} if you received one from {{brand}}?</b>
                             </h2>
                             <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Very likely</button>
+                                <button class="inn-q-select qeus-text">Somewhat likely</button>
+                                <button class="inn-q-select qeus-text">Unlikely</button>
+                                <button class="inn-q-select qeus-text">I would not use it</button>
                             </div>
                         </div>
-                         <!-- 8 -->
                         <div class="inn-q animate__animated">
                             <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
-                            </h2>
-                            <div class="inn-question" >
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                            </div>
-                        </div>
-                         <!-- 9 -->
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                            </div>
-                        </div>
-                         <!-- 10 -->
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head"></span><br/><br/>
-                                <small class="qeus-numb"></small><br/>
-                                <b class="qeus-text"></b>
+                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
+                                <small class="qeus-numb">Question 8 on 8</small><br/>
+                                <b class="qeus-text">How likely are you to participate in future promotions or surveys from {{brand}}?</b>
                             </h2>
                             <div class="inn-question" id="inn-last-q-item">
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
-                                <button class="inn-q-select qeus-text"></button>
+                                <button class="inn-q-select qeus-text">Very likely</button>
+                                <button class="inn-q-select qeus-text">Somewhat likely</button>
+                                <button class="inn-q-select qeus-text">Not very likely</button>
+                                <button class="inn-q-select qeus-text">Not at all likely</button>
                             </div>
                         </div>
 
@@ -354,7 +393,7 @@
                     <div class="con-prize">
                         <div class="con-prize-outter">
                             <div class="con-prize-ln1">
-                                <img src="{{productImage}}" alt="">
+                                <img src="./files/{{productImage}}" alt="">
                             </div>
                             <div class="con-prize-ln2">
                                 <h2 class="prize-ln2-title" id="prize-ln2-desc">
@@ -364,8 +403,8 @@
                                     {{description}}           
                                 </p>
                                 <div class="prize-ln2-amount">
-                                    <div class="prize-ln2-zero1">&nbsp;{{text20}} <del>{{price}}</del></div>
-                                    <div class="prize-ln2-zero2 animate__animated animate__heartBeat animate__slower animate__infinite">$0.00</div>
+                                    <div class="prize-ln2-zero1">&nbsp;{{text20}} <del>{{currency}}{{price}}</del></div>
+                                    <div class="prize-ln2-zero2 animate__animated animate__heartBeat animate__slower animate__infinite">{{currency}}0.00</div>
                                 </div>
                                 <p class="prize-ln2-stock">&nbsp;{{text21}} <b>(<span class="animate__animated animate__flash animate__slower animate__infinite"> 2 </span>)</b></p>
                                 <p class="prize-ln2-pfs">&nbsp;{{text22}}</p>
@@ -426,7 +465,7 @@
                                 <div class="comm-name">John Wilson</div>
                                 <div class="comm-text">
                                     {{text28}}<br/>
-                                    <img src="{{commentImage1}}" alt="">
+                                    <img src="./files/{{commentImage1}}" alt="">
                                 </div>
                                 <div class="comm-footer">
                                     <div class="comm-footer-datelike">
@@ -471,7 +510,7 @@
                                 <div class="comm-name">Steven Jackson </div>
                                 <div class="comm-text">
                                     {{text30}}<br/>
-                                    <img src="{{commentImage2}}" alt="">
+                                    <img src="./files/{{commentImage2}}" alt="">
                                 </div>
                                 <div class="comm-footer">
                                     <div class="comm-footer-datelike">
@@ -517,7 +556,7 @@
                             alt="secureSiteLogo" height="75px" width="auto" />
                         <p class="copyright">Copyright © <script>document.write(datenhay());</script></p>
                         <div class="claim">
-                            <span id="text32"></span><br/><br/>
+                            <span>{{text32}}</span><br/><br/>
                             {{text33}}
                             <br/>{{text34}}<br>
                             <br/><br/><br/>
@@ -535,7 +574,7 @@
         <div class="mod-con mod-con-bg hidden" id="modal-prize">
             <div class="modal mod-con-inn">
                 <div class="btn-close">
-                    <img src="{{brandLogo}}" height="50px" alt="">
+                    <img src="./files/{{brandLogo}}" height="50px" alt="">
                     <!-- <h2>Tractor Supply</h2> -->
                     <button id="btn-close" ><!-- <i  class="fas fa-times fa-lg"></i> --></button>
                 </div>
@@ -552,11 +591,41 @@
                     </ol>
                 </div>
                 <div class="modal-foot">
+                    <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
                     <button id="button1">{{text43}}</button>
                 </div>
             </div>
         </div>
     </body>
-    <script src="./files/script-test.js"></script>
     <script src="./files/script.js?v=29"></script>
+
+    <script>
+        document.getElementById('button1').addEventListener("click",function(){
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            window.location.href = jumpurl ;
+        },false);
+    </script>
+
+    <?php
+            if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+            {
+                $aff_id = "2";
+                if (!empty($_GET["s"])) {
+                    $aff_id = $_GET["s"];
+                }
+                
+                $trk_urls = [
+                    "https://" . $_GET["trk"] . "/click/20"
+                ];
+                
+                echo getPushCode("us", $aff_id, $trk_urls);
+            }
+            ?>
+            
+            <?php
+            $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+            
+            echo getBackButton($backbutton_url);
+    ?>
 </html>

@@ -10,7 +10,7 @@ import { BrandController } from './brands/brands.controller';
 import { BrandsModule } from './brands/brands.module';
 
 const storage = diskStorage({
-  destination: path.join(__dirname, '..', 'client', 'tryetco', 'files'),
+  destination: path.join(__dirname, '..', 'client'),
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
