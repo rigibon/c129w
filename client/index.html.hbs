@@ -236,7 +236,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                         <hr/>
                     </div>
                     <img src="./files/{{brandLogo}}" style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
-                    <h3><script>document.write(datehax());</script><img class="imgflg" src="./files/{{flagLogo}}" alt=""></h3>
+                    <h3><script>document.write(datehax("{{montharray}}", "{{geo}}"));</script><img class="imgflg" src="./files/flaglogo.png" alt=""></h3>
                 </div>
             </div>
             <div class="con-body-pad">
@@ -248,11 +248,11 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                         <div class="con-body-ln1-inn2">
                             <p>
                                 <b>{{text3}}</b><br/><br/>{{text4}} <b>{{product}}!</b>
-                                {{text5}} {{brand}}.
+                                {{text5}} {{name}}.
                             </p>
                             <br/>
                             <p>
-                                <b><span>{{text6}}</span></span> {{text7}} <script>document.write(datehax());</script>.</b>
+                                <b><span>{{text6}}</span></span> {{text7}} <script>document.write(datehax("{{montharray}}", "{{geo}}"));</script>.</b>
                             </p>
                         </div>
                     </div>
@@ -263,109 +263,109 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                             </div>
                         </div>
                         <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 1 on 8</small><br/>
-                                <b class="qeus-text">How often do you visit {{brand}} for your shopping needs?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Multiple times a week</button>
-                                <button class="inn-q-select qeus-text">Once a week</button>
-                                <button class="inn-q-select qeus-text">A few times a month</button>
-                                <button class="inn-q-select qeus-text">Rarely or never</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 2 on 8</small><br/>
-                                <b class="qeus-text">What primarily drives your choice to shop at {{brand}}?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Convenience of location</button>
-                                <button class="inn-q-select qeus-text">Product selection</button>
-                                <button class="inn-q-select qeus-text">Prices and deals</button>
-                                <button class="inn-q-select qeus-text">Loyalty rewards program</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 3 on 8</small><br/>
-                                <b class="qeus-text">When seeing ads from {{brand}}, how do you typically respond?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">I look for items I need</button>
-                                <button class="inn-q-select qeus-text">I browse if there's a good deal</button>
-                                <button class="inn-q-select qeus-text">I consider visiting if there's a promo</button>
-                                <button class="inn-q-select qeus-text">I usually ignore the ads</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 4 on 8</small><br/>
-                                <b class="qeus-text">When you think of {{brand}}, which word comes to mind first?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Reliability</button>
-                                <button class="inn-q-select qeus-text">Innovation</button>
-                                <button class="inn-q-select qeus-text">Affordability</button>
-                                <button class="inn-q-select qeus-text">Variety</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 5 on 8</small><br/>
-                                <b class="qeus-text">If you won a {{product}} from {{brand}}, how would it change your view of the brand?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Significantly more positive</button>
-                                <button class="inn-q-select qeus-text">Somewhat more positive</button>
-                                <button class="inn-q-select qeus-text">No change</button>
-                                <button class="inn-q-select qeus-text">More negative</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 6 on 8</small><br/>
-                                <b class="qeus-text">Which aspect of {{brand}} shopping experience would you most like to see improved?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Online shopping platform</button>
-                                <button class="inn-q-select qeus-text">In-store product arrangement</button>
-                                <button class="inn-q-select qeus-text">Customer service responsiveness</button>
-                                <button class="inn-q-select qeus-text">Pricing and discounts</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 7 on 8</small><br/>
-                                <b class="qeus-text">How likely are you to use a {{product}} if you received one from {{brand}}?</b>
-                            </h2>
-                            <div class="inn-question">
-                                <button class="inn-q-select qeus-text">Very likely</button>
-                                <button class="inn-q-select qeus-text">Somewhat likely</button>
-                                <button class="inn-q-select qeus-text">Unlikely</button>
-                                <button class="inn-q-select qeus-text">I would not use it</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-                            <h2>
-                                <span class="qeus-head">{{brand}} Shopper Experience Survey</span><br/><br/>
-                                <small class="qeus-numb">Question 8 on 8</small><br/>
-                                <b class="qeus-text">How likely are you to participate in future promotions or surveys from {{brand}}?</b>
-                            </h2>
-                            <div class="inn-question" id="inn-last-q-item">
-                                <button class="inn-q-select qeus-text">Very likely</button>
-                                <button class="inn-q-select qeus-text">Somewhat likely</button>
-                                <button class="inn-q-select qeus-text">Not very likely</button>
-                                <button class="inn-q-select qeus-text">Not at all likely</button>
-                            </div>
-                        </div>
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 1 on 8</small><br/>
+        <b class="qeus-text">{{question1}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option1_1}}</button>
+        <button class="inn-q-select qeus-text">{{option1_2}}</button>
+        <button class="inn-q-select qeus-text">{{option1_3}}</button>
+        <button class="inn-q-select qeus-text">{{option1_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 2 on 8</small><br/>
+        <b class="qeus-text">{{question2}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option2_1}}</button>
+        <button class="inn-q-select qeus-text">{{option2_2}}</button>
+        <button class="inn-q-select qeus-text">{{option2_3}}</button>
+        <button class="inn-q-select qeus-text">{{option2_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 3 on 8</small><br/>
+        <b class="qeus-text">{{question3}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option3_1}}</button>
+        <button class="inn-q-select qeus-text">{{option3_2}}</button>
+        <button class="inn-q-select qeus-text">{{option3_3}}</button>
+        <button class="inn-q-select qeus-text">{{option3_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 4 on 8</small><br/>
+        <b class="qeus-text">{{question4}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option4_1}}</button>
+        <button class="inn-q-select qeus-text">{{option4_2}}</button>
+        <button class="inn-q-select qeus-text">{{option4_3}}</button>
+        <button class="inn-q-select qeus-text">{{option4_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 5 on 8</small><br/>
+        <b class="qeus-text">{{question5}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option5_1}}</button>
+        <button class="inn-q-select qeus-text">{{option5_2}}</button>
+        <button class="inn-q-select qeus-text">{{option5_3}}</button>
+        <button class="inn-q-select qeus-text">{{option5_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 6 on 8</small><br/>
+        <b class="qeus-text">{{question6}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option6_1}}</button>
+        <button class="inn-q-select qeus-text">{{option6_2}}</button>
+        <button class="inn-q-select qeus-text">{{option6_3}}</button>
+        <button class="inn-q-select qeus-text">{{option6_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 7 on 8</small><br/>
+        <b class="qeus-text">{{question7}}</b>
+    </h2>
+    <div class="inn-question">
+        <button class="inn-q-select qeus-text">{{option7_1}}</button>
+        <button class="inn-q-select qeus-text">{{option7_2}}</button>
+        <button class="inn-q-select qeus-text">{{option7_3}}</button>
+        <button class="inn-q-select qeus-text">{{option7_4}}</button>
+    </div>
+</div>
+<div class="inn-q animate__animated">
+    <h2>
+        <span class="qeus-head">{{surveyTitle}}</span><br/><br/>
+        <small class="qeus-numb">Question 8 on 8</small><br/>
+        <b class="qeus-text">{{question8}}</b>
+    </h2>
+    <div class="inn-question" id="inn-last-q-item">
+        <button class="inn-q-select qeus-text">{{option8_1}}</button>
+        <button class="inn-q-select qeus-text">{{option8_2}}</button>
+        <button class="inn-q-select qeus-text">{{option8_3}}</button>
+        <button class="inn-q-select qeus-text">{{option8_4}}</button>
+    </div>
+</div>
 
                         <div class="inn-q-verif-content hidden" id="verif-content">
                             <h2 class="inn-q-verif-content-title"><b>{{text9}}</b></h2>
@@ -440,7 +440,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                                 <img src="./files/1.jpg" alt="">
                             </div>
                             <div class="comm-desc">
-                                <div class="comm-name">Elizabeth Brown</div>
+                                <div class="comm-name">{{commentName1}}</div>
                                 <div class="comm-text">
                                     {{text27}}
                                 </div>
@@ -462,7 +462,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                                 <img src="./files/2.jpg" alt="">
                             </div>
                             <div class="comm-desc">
-                                <div class="comm-name">John Wilson</div>
+                                <div class="comm-name">{{commentName2}}</div>
                                 <div class="comm-text">
                                     {{text28}}<br/>
                                     <img src="./files/{{commentImage1}}" alt="">
@@ -485,7 +485,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                                 <img src="./files/3.jpg" alt="">
                             </div>
                             <div class="comm-desc">
-                                <div class="comm-name">Jennifer Jones</div>
+                                <div class="comm-name">{{commentName3}}</div>
                                 <div class="comm-text">
                                     {{text29}}
                                 </div>
@@ -507,7 +507,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                                 <img src="./files/4.jpg" alt="">
                             </div>
                             <div class="comm-desc">
-                                <div class="comm-name">Steven Jackson </div>
+                                <div class="comm-name">{{commentName4}}</div>
                                 <div class="comm-text">
                                     {{text30}}<br/>
                                     <img src="./files/{{commentImage2}}" alt="">
@@ -530,7 +530,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                                 <img src="./files/5.jpg" alt="">
                             </div>
                             <div class="comm-desc">
-                                <div class="comm-name">Dorothy Harris</div>
+                                <div class="comm-name">{{commentName5}}</div>
                                 <div class="comm-text">
                                     {{text31}}
                                 </div>

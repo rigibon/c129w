@@ -1,4 +1,4 @@
-function datehax() {
+function datehax(months, geo) {
     var mydate = new Date()
     mydate.setDate(mydate.getDate());
     var year = mydate.getYear()
@@ -10,14 +10,16 @@ function datehax() {
     if (daym < 10)
         daym = "0" + daym
     var dayarray = Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-     var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+    //  var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     
+    var montharray = months.split(", ").map(item => item.trim());
+
     //var dayarray = Array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
     //var montharray = new Array("janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre");
     
     // var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     // var montharray = new Array("Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December")
-    return "" + montharray[month] + " " + daym + ", " + year + "";
+    return geo === "us" || geo === "uk" || geo === "nz" || geo === "ca" || geo === "au" ? "" + montharray[month] + " " + daym + ", " + year + "" : "" + daym + " " + montharray[month] + " " + year + "";
 }
 
 

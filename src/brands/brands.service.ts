@@ -17,7 +17,9 @@ export class BrandsService {
   }
 
   async create(createBrandDto: CreateBrandDto): Promise<Brand> {
-    const newBrand = new this.BrandModel(createBrandDto);
+    const { _id, ...brandData } = createBrandDto;
+
+    const newBrand = new this.BrandModel(brandData);
     return await newBrand.save();
   }
 }

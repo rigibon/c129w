@@ -6,6 +6,9 @@ import * as path from 'path';
 import { BrandsService } from 'src/brands/brands.service';
 import { promises as fs, createWriteStream } from 'fs';
 import * as archiver from 'archiver';
+import axios from 'axios';
+import OpenAI from "openai";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 interface ProductData {
   [key: string]: string;
@@ -34,6 +37,8 @@ export class TranslationController {
       for (const file of files) {
         const tempFilePath = path.join(__dirname, '..', 'client', file.filename);
         const newFilePath = path.join(newDirPath, file.filename);
+
+        console.log(newFilePath);
         await fs.rename(tempFilePath, newFilePath);
       }
 
@@ -48,21 +53,9 @@ export class TranslationController {
 
   @Post('generate')
   async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
-    const { productData, brandData, configData } = req.body;
+    const { productData, brandData, configData, survey } = req.body;
 
-    // const configData = {
-    //   folderName: 'us-ultcurl',
-    //   wallId: '',
-    // };
-
-    // const productData = {
-    //   product: 'Kitgo 137 Piece Automotive Safety Kit',
-    //   description: 'Protect Your Safety On Road: We Provide This Compact And Practical Roadside Emergency Kit,Durable Tools That Are Designed For Top Performance And Lasting Quality.',
-    //   price: '$59.99',
-    //   productImage: 'productImage.png',
-    //   commentImage1: 'commentImage1.jpg',
-    //   commentImage2: 'commentImage2.jpg',
-    // };
+    const parsedSurvey = this.parseSurvey(survey);
 
     const templatePath = path.join(
       __dirname,
@@ -76,16 +69,6 @@ export class TranslationController {
       'client'
     );
 
-    // const brandData = {
-    //   backgroundImage: 'backgroundImage.webp',
-    //   brand: "Walmart",
-    //   primaryColor: "#0071ce",
-    //   secondaryColor: "#ffc220",
-    //   hoverPrimaryColor: "#0071ce",
-    //   brandLogo: 'brandLogo.png',
-    //   favicon: 'favicon.png',
-    // };
-
     const baseFilesPath = path.join(
       __dirname,
       '..',
@@ -95,9 +78,10 @@ export class TranslationController {
     );
 
     const translate = translateTexts === 'true';
-    await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData);
+    await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
 
     const zipPath = path.join(outputFilePath, "creative.zip");
+    
     await this.createZip(templatePath, zipPath)
       .then(async () => {
         res.download(zipPath, "final.zip", async (err) => {
@@ -112,21 +96,18 @@ export class TranslationController {
         
           for (const fileToRemove of filesToRemove) {
             try {
+              await fs.stat(fileToRemove);
               await fs.unlink(fileToRemove);
-              console.log(`Removed file: ${fileToRemove}`);
             } catch (error) {
-              console.error(`Error removing file ${fileToRemove}:`, error);
             }
           }
 
           if (err) {
-            console.error("Error downloading file:", err);
             res.status(404).send("File not found");
           }
         });
       })
       .catch((error) => {
-        console.error("Error creating zip:", error);
         res.status(500).json({ message: "Error creating zip." });
       });
 
@@ -152,6 +133,114 @@ export class TranslationController {
     });
   }
 
-  @Get('survey')
-  async generateSurvey() {}
+  private parseSurvey(surveyString: string): Record<string, string> {
+    const entries = surveyString.match(/"([^"]*)"/g)?.map(entry => entry.replace(/"/g, '')) || [];
+    const surveyData: Record<string, string> = {};
+
+    let questionIndex = 1;
+    let optionIndex = 1;
+
+    entries.forEach((entry, index) => {
+        if (index % 5 === 0) {
+            surveyData[`question${questionIndex}`] = entry;
+            questionIndex++;
+            optionIndex = 1;
+        } else {
+            surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
+            optionIndex++;
+        }
+    });
+
+    return surveyData;
+}
+
+  @Post('survey')
+  async generateSurvey(@Req() req) {
+    const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+
+    const configuration = new GoogleGenerativeAI(API_KEY);
+
+    const modelId = "gemini-1.5-flash";
+    const model = configuration.getGenerativeModel({ model: modelId });
+
+    const chat = model.startChat();
+
+    const result = await chat.sendMessage("fibonacci algorithm in javascript, output must be only the code, nothing more");
+    const response = await result.response;
+    const responseText = response.text();
+
+    console.log(responseText);
+
+    // const { brand, product } = req.body;
+
+    // const API_KEY = "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"
+
+    // const openai = new OpenAI({ apiKey: API_KEY });
+
+    // const completion = await openai.chat.completions.create({
+    //     model: "gpt-4o",
+    //     messages: [
+    //       { role: "user", content: `change these questions to fit a shopper experience survey about ${brand} and a ${product} as prize, The output must ONLY containg the strings, NOTHING MORE:
+    //       "How often do you visit CVS for your shopping needs?",
+    // "Multiple times a week",
+    // "Once a week",
+    // "A few times a month",
+    // "Rarely or never",
+    // "What primarily drives your choice to shop at CVS?",
+    // "Convenience of location",
+    // "Product selection",
+    // "Prices and deals",
+    // "Loyalty rewards program",
+    // "When seeing ads from CVS, how do you typically respond?",
+    // "I look for items I need",
+    // "I browse if there's a good deal",
+    // "I consider visiting if there's a promo",
+    // "I usually ignore the ads",
+    // "If you won a Medicare Kit from CVS, how would it change your view of the CVS?",
+    // "Significantly more positive",
+    // "Somewhat more positive",
+    // "No change",
+    // "More negative",
+    // "How familiar are you with the components of a Medicare Kit?",
+    // "Very familiar",
+    // "Somewhat familiar",
+    // "A little familiar",
+    // "Not familiar at all",
+    // "How likely are you to use a Medicare Kit if you received one from CVS?",
+    // "Very likely",
+    // "Somewhat likely",
+    // "Unlikely",
+    // "I would not use it",
+    // "In terms of health and wellness products, how well do you think CVS meets your needs?",
+    // "Exceeds my needs",
+    // "Meets my needs well",
+    // "Adequately meets my needs",
+    // "Does not meet my needs",
+    // "How likely are you to participate in future promotions or surveys from CVS?",
+    // "Very likely",
+    // "Somewhat likely",
+    // "Not very likely",
+    // "Not at all likely"
+    //       `,
+    //       }
+    //     ],
+    // });
+
+    // // console.log(completion.choices[0].message.content);
+    // // console.log(completion.choices[0].message.content[0]);
+
+    // return completion.choices[0].message.content;
+
+    // const arrayMatch = completion.choices[0].message.content.match(/\[([^\]]*)\]/);
+
+    // if (arrayMatch) {
+    //     const arrayString = arrayMatch[1];
+    //     const shopperSurveyQuestions = arrayString.split(',').map(item => item.trim().replace(/(^"|"$)/g, ``));
+
+    //     console.log(shopperSurveyQuestions);
+    // } else {
+    //     console.log('No array found in the input string.');
+    // }
+  }
 }
