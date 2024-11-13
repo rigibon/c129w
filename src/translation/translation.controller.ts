@@ -9,6 +9,7 @@ import * as archiver from 'archiver';
 import axios from 'axios';
 import OpenAI from "openai";
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { translate } from 'google-translate-api-x';
 
 interface ProductData {
   [key: string]: string;
@@ -50,6 +51,24 @@ export class TranslationController {
 
     return { message: 'Files uploaded successfully', files };
   }
+
+  @Post("translation")
+  async translation(@Req() req, @Res() res) {
+    const { props, countryCode } = req.body;
+    console.log(props);
+  
+    const translationPromises = props.map((property) => {
+      return translate(property.value, { to: `${countryCode}`, forceTo: true }).then((res) => res.text);
+    });
+  
+    Promise.all(translationPromises)
+      .then((translations) => {
+        res.send(translations);
+      })
+      .catch((error) => {
+        res.status(500).send("Error occurred during translation: " + error);
+      });
+  };
 
   @Post('generate')
   async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {

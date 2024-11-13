@@ -142,6 +142,22 @@ const CZ_names = {
     commentName5: "Klára Benešová",
 }
 
+const PL_names = {
+    commentName1: "Petra Svobodová",
+    commentName2: "Tomáš Černý",
+    commentName3: "Michaela Bartošová",
+    commentName4: "David Kučera",
+    commentName5: "Klára Benešová",
+}
+
+const SG_names = {
+    commentName1: "Petra Svobodová",
+    commentName2: "Tomáš Černý",
+    commentName3: "Michaela Bartošová",
+    commentName4: "David Kučera",
+    commentName5: "Klára Benešová",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
