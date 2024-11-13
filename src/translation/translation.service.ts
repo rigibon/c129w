@@ -32,7 +32,7 @@ export class TranslationService {
     const templateContent = await fs.readFile(this.templateFilePath, 'utf8');
     const template = handlebars.compile(templateContent);
 
-    const texts = JSON.parse(await fs.readFile(this.textsFilePath, 'utf8'));
+    var texts = JSON.parse(await fs.readFile(this.textsFilePath, 'utf8'));
     texts.text1 = "Over " + configData.currency + "4,000,000 in Offers given out so far!";
     texts.text3 = "Dear " + brandData.name + " Shopper,";
     texts.text32 = "This website is not affiliated with or endorsed by " + brandData.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.";
@@ -46,15 +46,16 @@ export class TranslationService {
     texts.questionCount7 = "Question 7 on 8";
     texts.questionCount8 = "Question 8 on 8";
     
-    const newSurvey = { ...survey, surveyTitle: `${brandData.name} Shopper Experience Survey` }; 
+    var newSurvey = { ...survey, surveyTitle: `${brandData.name} Shopper Experience Survey` }; 
 
     texts.montharray = "January, February, March, April, May, June, July, August, September, October, November, December";
 
     var newData = { ...texts, ...newSurvey };
     
     if (configData.language !== "" && configData.language !== "en") {
-      newData = await this.getTranslationPromises(newSurvey, configData.language);
-      console.log(newData);
+      newSurvey = await this.getTranslationPromises(newSurvey, configData.language);
+      texts = await this.getTranslationPromises(texts, configData.language);
+      newData = { ...newSurvey, ...texts };
 
       // const translations = await Promise.all(translationPromises);
       // let i = 0;
