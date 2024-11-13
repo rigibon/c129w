@@ -50,21 +50,22 @@ export class TranslationService {
 
     texts.montharray = "January, February, March, April, May, June, July, August, September, October, November, December";
 
-    const newData = { ...texts, ...newSurvey };
+    var newData = { ...texts, ...newSurvey };
     
     if (configData.language !== "" && configData.language !== "en") {
-      const translationPromises = this.getTranslationPromises(newData, configData.language);
-
-      const translations = await Promise.all(translationPromises);
-      let i = 0;
-      for (const key in newData) {
-        if (newData.hasOwnProperty(key)) {
-          newData[key] = translations[i];
-          i++;
-        }
-      }
-
+      newData = this.getTranslationPromises(newData, configData.language);
       console.log(newData);
+
+      // const translations = await Promise.all(translationPromises);
+      // let i = 0;
+      // for (const key in newData) {
+      //   if (newData.hasOwnProperty(key)) {
+      //     newData[key] = translations[i];
+      //     i++;
+      //   }
+      // }
+
+      // console.log(newData);
     }
 
     // const data = { ...texts, ...configuration };
@@ -129,17 +130,41 @@ export class TranslationService {
     return "" + montharray[month] + " " + daym + ", " + year + "";
 }
 
-  private getTranslationPromises(
+  private async getTranslationPromises(
     textArray: Record<string, string>,
     language: string,
   ) {
-    return Object.keys(textArray).map((key) => {
-      if (key === 'comments') return Promise.resolve('');
-      const property = textArray[key];
-      return translate(property, {
-        to: language,
-        forceTo: true,
-      }).then((res) => res.text);
-    });
+    // return Object.keys(textArray).map((key) => {
+    //   if (key === 'comments') return Promise.resolve('');
+    //   const property = textArray[key];
+    //   return translate(property, {
+    //     to: language,
+    //     forceTo: true,
+    //   }).then((res) => res.text);
+    // });
+
+  const translations = Object.keys(textArray).map((key) => {
+    if (key === 'comments') return Promise.resolve('');
+    
+    const property = textArray[key];
+    return translate(property, {
+      to: language,
+      forceTo: true,
+    }).then((translationResult) => translationResult.text);
+  });
+
+  try {
+    const translatedTexts = await Promise.all(translations);
+
+    const result = Object.keys(textArray).reduce((acc, key, index) => {
+      acc[key] = translatedTexts[index];
+      return acc;
+    }, {});
+
+    return result
+
+  } catch (error) {
+    console.error('Translation error:', error);
+  }
   }
 }

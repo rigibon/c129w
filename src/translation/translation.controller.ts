@@ -52,20 +52,6 @@ export class TranslationController {
     return { message: 'Files uploaded successfully', files };
   }
 
-  private getTranslationPromises(
-    textArray: Record<string, string>,
-    language: string,
-  ) {
-    return Object.keys(textArray).map((key) => {
-      if (key === 'comments') return Promise.resolve('');
-      const property = textArray[key];
-      return translate(property, {
-        to: language,
-        forceTo: true,
-      }).then((res) => res.text);
-    });
-  }
-
   @Post("translation")
 async translation(@Req() req, @Res() res) {
   const { textArray, language } = req.body;
