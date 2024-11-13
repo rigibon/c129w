@@ -40,14 +40,7 @@ export class TranslationService {
 
     if (configData.language !== '' && configData.language !== 'en') {
       newSurvey = await this.getTranslationPromises(newSurvey, configData.language);
-      const firstTenKeys = Object.keys(texts).slice(0, 10);
-
-      const firstTenTexts = firstTenKeys.reduce((acc, key) => {
-        acc[key] = texts[key];
-        return acc;
-      }, {});
-
-      texts = await this.getTranslationPromises(firstTenTexts, configData.language);
+      texts = await this.getTranslationPromises(texts, configData.language);
       newData = { ...newSurvey, ...texts };
 
       // const translations = await Promise.all(translationPromises);
@@ -59,7 +52,7 @@ export class TranslationService {
       //   }
       // }
 
-      // console.log(newData);
+      console.log(newData);
     }
 
     // const data = { ...texts, ...configuration };
