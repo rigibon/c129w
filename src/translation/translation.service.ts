@@ -138,9 +138,7 @@ export class TranslationService {
       const property = textArray[key];
       return translate(property, {
         to: language,
-        rejectOnPartialFail: false,
         forceTo: true,
-        forceBatch: false,
       }).then((res) => res.text);
     });
   }
