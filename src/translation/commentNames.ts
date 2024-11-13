@@ -143,19 +143,19 @@ const CZ_names = {
 }
 
 const PL_names = {
-    commentName1: "Petra Svobodová",
-    commentName2: "Tomáš Černý",
-    commentName3: "Michaela Bartošová",
-    commentName4: "David Kučera",
-    commentName5: "Klára Benešová",
+    commentName1: "Ewa Zielińska",
+    commentName2: "Jakub Szymański",
+    commentName3: "Agnieszka Wiśniewska",
+    commentName4: "Michał Kwiatkowski",
+    commentName5: "Katarzyna Wójcik",
 }
 
 const SG_names = {
-    commentName1: "Petra Svobodová",
-    commentName2: "Tomáš Černý",
-    commentName3: "Michaela Bartošová",
-    commentName4: "David Kučera",
-    commentName5: "Klára Benešová",
+    commentName1: "Tan Mei Ling",
+    commentName2: "Teo Jun Rong",
+    commentName3: "Lim Xin Hui",
+    commentName4: "Ng Jun Wei",
+    commentName5: "Ho Jia Ling",
 }
 
 export const commentNamesByCountry = {
@@ -177,4 +177,6 @@ export const commentNamesByCountry = {
     "ch": CH_names,
     "se": SE_names,
     "cz": CZ_names,
+    "pl": PL_names,
+    "sg": SG_names
 };
