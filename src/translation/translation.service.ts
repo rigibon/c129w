@@ -53,7 +53,7 @@ export class TranslationService {
     var newData = { ...texts, ...newSurvey };
     
     if (configData.language !== "" && configData.language !== "en") {
-      newData = await this.getTranslationPromises(newData, configData.language);
+      newData = await this.getTranslationPromises(newSurvey, configData.language);
       console.log(newData);
 
       // const translations = await Promise.all(translationPromises);
