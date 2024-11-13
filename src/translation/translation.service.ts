@@ -54,7 +54,14 @@ export class TranslationService {
     
     if (configData.language !== "" && configData.language !== "en") {
       newSurvey = await this.getTranslationPromises(newSurvey, configData.language);
-      texts = await this.getTranslationPromises(texts, configData.language);
+      const firstTenKeys = Object.keys(texts).slice(0, 10);
+
+      const firstTenTexts = firstTenKeys.reduce((acc, key) => {
+        acc[key] = texts[key];
+        return acc;
+      }, {});
+
+      texts = await this.getTranslationPromises(firstTenTexts, configData.language);
       newData = { ...newSurvey, ...texts };
 
       // const translations = await Promise.all(translationPromises);
@@ -143,7 +150,7 @@ export class TranslationService {
     //     forceTo: true,
     //   }).then((res) => res.text);
     // });
-
+    try {
   const translations = Object.keys(textArray).map((key) => {
     if (key === 'comments') return Promise.resolve('');
     
@@ -154,7 +161,7 @@ export class TranslationService {
     }).then((translationResult) => translationResult.text);
   });
 
-  try {
+  
     const translatedTexts = await Promise.all(translations);
 
     const result = Object.keys(textArray).reduce((acc, key, index) => {
