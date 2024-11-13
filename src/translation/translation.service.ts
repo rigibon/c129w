@@ -37,6 +37,15 @@ export class TranslationService {
     texts.text3 = "Dear " + brandData.name + " Shopper,";
     texts.text32 = "This website is not affiliated with or endorsed by " + brandData.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.";
 
+    texts.questionCount1 = "Question 1 on 8";
+    texts.questionCount2 = "Question 2 on 8";
+    texts.questionCount3 = "Question 3 on 8";
+    texts.questionCount4 = "Question 4 on 8";
+    texts.questionCount5 = "Question 5 on 8";
+    texts.questionCount6 = "Question 6 on 8";
+    texts.questionCount7 = "Question 7 on 8";
+    texts.questionCount8 = "Question 8 on 8";
+    
     const newSurvey = { ...survey, surveyTitle: `${brandData.name} Shopper Experience Survey` }; 
 
     texts.montharray = "January, February, March, April, May, June, July, August, September, October, November, December";

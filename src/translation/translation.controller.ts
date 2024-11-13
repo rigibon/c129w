@@ -156,6 +156,8 @@ export class TranslationController {
 
   @Post('survey')
   async generateSurvey(@Req() req) {
+    const { brand, product } = req.body;
+
     const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
     const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
@@ -166,11 +168,50 @@ export class TranslationController {
 
     const chat = model.startChat();
 
-    const result = await chat.sendMessage("fibonacci algorithm in javascript, output must be only the code, nothing more");
+    const result = await chat.sendMessage(`change these questions to fit a shopper experience survey about ${brand} and a ${product} as prize, The output must ONLY contain the strings (don't forget to include the "" and ,) NOTHING MORE:
+          "How often do you visit CVS for your shopping needs?",
+    "Multiple times a week",
+    "Once a week",
+    "A few times a month",
+    "Rarely or never",
+    "What primarily drives your choice to shop at CVS?",
+    "Convenience of location",
+    "Product selection",
+    "Prices and deals",
+    "Loyalty rewards program",
+    "When seeing ads from CVS, how do you typically respond?",
+    "I look for items I need",
+    "I browse if there's a good deal",
+    "I consider visiting if there's a promo",
+    "I usually ignore the ads",
+    "If you won a Medicare Kit from CVS, how would it change your view of the CVS?",
+    "Significantly more positive",
+    "Somewhat more positive",
+    "No change",
+    "More negative",
+    "Regarding the Medicare Kit, which feature is most appealing to you?",
+    "Durability",
+    "Cooling efficiency",
+    "Portability",
+    "Design and appearance",
+    "How likely are you to use a Medicare Kit if you received one from CVS?",
+    "Very likely",
+    "Somewhat likely",
+    "Unlikely",
+    "I would not use it",
+    "In terms of health and wellness products, how well do you think CVS meets your needs?",
+    "Exceeds my needs",
+    "Meets my needs well",
+    "Adequately meets my needs",
+    "Does not meet my needs",
+    "How likely are you to participate in future promotions or surveys from CVS?",
+    "Very likely",
+    "Somewhat likely",
+    "Not very likely",
+    "Not at all likely"
+          `);
     const response = await result.response;
-    const responseText = response.text();
-
-    console.log(responseText);
+    return response.text();
 
     // const { brand, product } = req.body;
 

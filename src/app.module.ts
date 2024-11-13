@@ -8,6 +8,8 @@ import { diskStorage } from 'multer';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BrandController } from './brands/brands.controller';
 import { BrandsModule } from './brands/brands.module';
+import { CreatorService } from './creator/creator.service';
+import { CreatorController } from './creator/creator.controller';
 
 const storage = diskStorage({
   destination: path.join(__dirname, '..', 'client'),
@@ -27,7 +29,7 @@ const storage = diskStorage({
     BrandsModule,
     MulterModule.register({ storage: storage }),
   ],
-  controllers: [TranslationController],
-  providers: [TranslationService],
+  controllers: [TranslationController, CreatorController],
+  providers: [TranslationService, CreatorService],
 })
 export class AppModule {}

@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("{{wallID}}", null, $tag);
+
+$nas_domains_file = dirname(__FILE__) . "/../wall/nas-domains.json";
+$nas_voluum_bridge_domains_file = dirname(__FILE__) . '/../wall/nas-voluum-bridge-domains.json';
+
+if (file_exists($nas_voluum_bridge_domains_file)) {
+  $nas_domains_voluum = json_decode(file_get_contents($nas_voluum_bridge_domains_file), true);
+
+  $voluum_bridge_domains = $nas_domains_voluum["NAS-VOLUUM-BRIDGE"];
+  shuffle($voluum_bridge_domains);
+  $nas_voluum_bridge_domain = $voluum_bridge_domains[0];
+} else {
+  // $voluum_bridge_domains = ["tracknshosp.com","techstrendsstores.com"];
+  // shuffle($voluum_bridge_domains);
+  // $nas_voluum_bridge_domain = $voluum_bridge_domains[0];
+}
+
+if (file_exists($nas_domains_file)) {
+  $nas_domains = json_decode(file_get_contents($nas_domains_file), true);
+
+  $impression_domains = $nas_domains["NAS IMPRESSION"];
+  shuffle($impression_domains);
+  $nas_impression_domain = $impression_domains[0];
+
+  $tracker_domains = $nas_domains["NAS"];
+  shuffle($tracker_domains);
+  $img_domain = $tracker_domains[0];
+} else {
+  // $nas_impression_domain = "insightsandmarkets.com";
+  // $img_domain = "clipresource.com";
+}
+
+$objects = []; 
+foreach ($data as $item) {
+  $objects[] = $item;
+}
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13("Hulu"); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+<html lang="{{language}}">
+  <head>
+    <base href="/{{folderName}}/" />
+    <meta http-equiv="Cache-control" content="public" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google" content="nopagereadaloud" />
+    <title>{{title}}</title>
+
+    <!-- Bootstrap -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" media="all" onload="this.media='all'" />
+    <link href="./files/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="./files/{{favicon}}">
+    <link id="tt1" rel="stylesheet" href="./files/style2.css">
+    <!-- <link id="tt1" rel="stylesheet" href="./files/style2.css"> -->
+    <link id="tt2" rel="stylesheet" href="./files/animate.min.css">
+    <script src="./files/script.js"></script>
+    <style>
+
+      body {
+          background: url(./files/hbg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+      }
+
+      .modal span.logo img {
+          margin: 0 auto 30px
+      }
+      .modal .content {
+          padding: 0px 20px 0px
+      }
+      .modal .content h2 {
+          font-weight: 900;
+          font-size: 20px
+      }
+      .modal .modal-body {
+          padding: 0
+      }
+      .modal .modal-footer {
+          text-align: center;
+          background: #232f3e
+      }
+      .modal .modal-footer button {
+          width: 30%;
+          font-size: 18px;
+          color: #FFF;
+          background: {{mainColor}};
+          border: none;
+          box-shadow: 0 1px 0 1px {{mainColor}}
+      }
+      .modal .modal-footer button:hover,
+      .modal .modal-footer button:focus {
+          background-color: {{mainColor}}
+      }
+      #questions {
+          font-size: 14px;
+      }
+      .q1-radio {
+          font-size: 1.6em;
+      }
+      #questions .q {
+          margin-bottom: 30px;
+          font-size: 1.8em;
+      }
+      #questions .q,
+      #questions .q-count {
+          font-weight: 900
+      }
+      #questions .question {
+          margin-bottom: 30px;
+          padding: 1px;
+          display: none
+      }
+      #questions .question.active {
+          display: block
+      }
+      #offerwrapper h2 {
+          margin-top: 0
+      }
+      #offerwrapper h3 {
+          font-weight: 700
+      }
+      #offerwrapper .dday {
+          margin-bottom: 0
+      }
+      #offerwrapper span.logo img {
+          margin-bottom: 0
+      }
+      #offerwrapper p {
+          font-size: 14px
+      }
+      #offerwrapper #offers .box {
+          border: 1px solid #ccc;
+          font-size: 13px;
+          margin-bottom: 15px
+      }
+      #offerwrapper #offers .box img {
+          border-right: 1px solid #ccc
+      }
+      #offerwrapper #offers .box span.offer-regular-price,
+      #offerwrapper #offers .box span.offer-price-today,
+      #offerwrapper #offers .box span.offer-quantity {
+          display: block
+      }
+      #offerwrapper #offers .box .offer-desc {
+          margin-left: -10px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          padding-right: 15px
+      }
+      #offerwrapper #offers .box a.btn {
+          font-size: 12px;
+          color: #fff;
+          text-transform: uppercase;
+          background: {{mainColor}};
+          border-bottom: 2px solid {{mainColor}};
+          margin-top: 10px
+      }
+      #offerwrapper #offers .box a.btn:hover,
+      #offerwrapper #offers .box a.btn:focus {
+          background: {{mainColor}}
+      }
+      #offer-modal {
+          overflow: auto;
+          display: none;
+      }
+      .dday {
+          text-align: center;
+          background: {{mainColor}};
+          color: #FFF;
+          margin-bottom: 15px;
+          padding: 5px 0
+      }
+      #ringtone {
+          margin-top: 30px
+      }
+      @media (max-width: 767px) {
+          body {
+
+          background: url(./files/hbg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+
+          }
+          #offerwrapper #offers .box img {
+              margin: 0 auto;
+              border-right: none;
+              border-bottom: 1px solid #ccc
+          }
+          #offerwrapper #offers .box .offer-desc {
+              margin-left: 0;
+              padding-right: 0;
+              text-align: center
+          }
+      }
+      @media (min-width: 768px) and (max-width: 991px) {
+          body {
+          background: url(./files/hbg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+          }
+          #offerwrapper #offers .box img {
+              margin: 0 auto;
+              border-right: none;
+              border-bottom: 1px solid #ccc
+          }
+          #offerwrapper #offers .box .offer-desc {
+              margin-left: 0;
+              padding-right: 0;
+              text-align: center
+          }
+      }
+      @media (min-width: 1200px) {
+          #offer-modal .modal-dialog {
+              width: 900px
+          }
+      }
+
+
+      .a-spacing-small,.a-ws .a-ws-spacing-small {
+          margin-bottom: 10px!important
+      }
+
+      .a-button {
+          background: {{mainColor}};
+          border-radius: 3px;
+          border-color: #adadad #a2a2a2 #8d8d8d;
+          border-style: solid;
+          border-width: 1px;
+          cursor: pointer;
+          display: inline-block;
+          padding: 0;
+          text-align: center;
+          text-decoration: none!important;
+          vertical-align: middle
+      }
+
+      .a-button .a-button-inner {
+          background:{{mainColor}};
+          background: -webkit-linear-gradient(top,{{mainColor}},{{mainColor}});
+          background: linear-gradient(to bottom,{{mainColor}},{{mainColor}})
+      }
+
+      .a-button .a-button-dis-inner {
+          background: #B00000;
+          background: -webkit-linear-gradient(top, #B00000, #900000);
+          background: linear-gradient(to bottom, #B00000, #900000);
+      }
+
+
+      .a-button:hover .a-button-inner {
+          background: #e0e3e8;
+          background: -webkit-linear-gradient(top,{{mainColor}},{{mainColor}});
+          background: linear-gradient(to bottom,{{mainColor}},{{mainColor}})
+      }
+
+      .a-button:active .a-button-inner {
+          box-shadow: 0 1px 3px rgba(0,0,0,.2) inset;
+          background-color: {{mainColor}};
+          background-image: none
+      }
+
+      .a-button:active .a-button-inner {
+          background-color: #dcdfe3
+      }
+
+      .a-button:active,.a-button:active:hover {
+          border-color: #adadad #a2a2a2 #a2a2a2
+      }
+
+      .a-button:hover {
+          border-color: #a2a2a2 #979797 #828282
+      }
+
+      .a-button.a-button-focus,.a-button:focus {
+          outline: 0;
+          border-color: #e7e7e7;
+          box-shadow: 0 0 3px 2px rgba(228,121,17,.5)
+      }
+
+
+      .a-button.a-button-pressed .a-button-inner,.a-button.a-button-pressed:hover .a-button-inner {
+          background-color: #dcdfe3;
+          background-image: none;
+          box-shadow: 0 0 3px 2px rgba(228,121,17,.5)
+      }
+
+
+      .a-button .a-button-text {
+          color: #fff;
+      }
+
+      .a-button-text {
+          background-color: transparent;
+          border: 0;
+          display: block;
+          font-size: 26px;
+          line-height: 58px;
+          margin: 0;
+          outline: 0;
+          padding: 0 10px 0 11px;
+          text-align: center;
+          white-space: nowrap
+      }
+
+      .a-button-text:focus {
+          outline: 0
+      }
+
+      a.a-button-text,button.a-button-text {
+          width: 100%;
+          height: 100%
+      }
+
+      .a-button-inner {
+          display: block;
+          position: relative;
+          overflow: hidden;
+          height: 58px;
+          box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+          border-radius: 2px
+      }
+
+
+      .a-button-icon .a-icon {
+          position: absolute
+      }
+
+      .a-button-icon .a-icon-1click,.a-button-icon .a-icon-buynow,.a-button-icon .a-icon-cart,.a-button-icon .a-icon-sns {
+          top: 4px;
+          left: 4px
+      }
+
+      .a-button-icon .a-button-text {
+          padding-left: 35px;
+          position: relative;
+          z-index: 10
+      }
+
+      .a-button-icon .a-button-text {
+          padding-left: 35px;
+          position: relative;
+          z-index: 10
+      }
+
+
+      @-moz-document url-prefix() {
+          .a-button .a-button-text {
+              line-height: 58px
+          }
+      }
+
+      .a-button-primary {
+          background: #f0c14b;
+          border-color: #a8a8a8 #9c9c9c #848484;
+          color: #fff
+      }
+
+      .a-button-dis-primary {
+          background: #B00000;
+          border-color: #a8a8a8 #9c9c9c #848484;
+          color: #fff
+      }
+
+
+      .a-button-primary .a-button-inner {
+          background: #f3d078;
+          background: -webkit-linear-gradient(top,{{mainColor}},{{mainColor}}); /* hsla(42, 84%, 81%, 1) to  hsla(43, 85%, 62%, 1)  */
+          background: linear-gradient(to bottom,{{mainColor}},{{mainColor}})
+      }
+
+      .a-button-primary:hover .a-button-inner {
+          background: #f1c860;
+          background: -webkit-linear-gradient(top,{{mainColor}},{{mainColor}});
+          background: linear-gradient(to bottom,{{mainColor}},{{mainColor}})
+      }
+
+      .a-button-dis-primary .a-button-dis-inner {
+          background: #B00000;
+          background: -webkit-linear-gradient(top, #B00000, #900000);
+          background: linear-gradient(to bottom, #B00000, #900000);
+      }
+
+
+      .a-button-primary:active .a-button-inner {
+          background-color: #f0c14b;
+          background-image: none
+      }
+
+      .a-button-primary.a-button-focus,.a-button-primary:focus,.a-button-primary:hover,.a-button-primary:hover:active {
+          border-color: #a8a8a8 #9c9c9c #848484
+      }
+
+      .a-button-primary:active {
+          border-color: #a8a8a8 #9c9c9c #848484
+      }
+
+      .a-button-primary.a-button-focus,.a-button-primary:focus {
+          border-color: #e7e7e7
+      }
+
+
+      .a-button-primary .a-button-inner {
+          box-shadow: 0 1px 0 rgba(255,255,255,.4) inset
+      }
+
+      .a-button-primary .a-button-text {
+          color: #fff
+      }
+
+
+      .a-button-stack .a-button {
+          margin-bottom: 10px;
+          display: block
+      }
+
+      .a-button-stack .a-button:last-child {
+          margin-bottom: 0
+      }
+
+
+      .a-icon {
+          background-image: url(assets/images/cart4.png);
+          -webkit-background-size: 800px 1340px;
+          background-size: 800px 1340px;
+          background-repeat: no-repeat;
+          display: inline-block;
+          vertical-align: top
+      }
+
+      .a-icon-cart {
+          height: 50px;
+          width: 50px;
+          background-position: -70px -10px
+      }
+
+
+
+      @media (min-width: 992px) and (max-width: 1200px) {
+          .a-button-text {
+              font-size: 20px;
+          }
+      }
+
+          /******************************************************
+          * INFO
+          ******************************************************/
+          #info_form h1 {
+              color: #585858;
+              font-size: 20px;
+              font-family: Verdana, Geneva, sans-serif;
+              font-weight: 500;
+              text-align: center;
+          }
+          #info_form .row {
+              margin-top: 5px;
+          }
+          #info_form .row:last-child {
+              margin-top: 15px;
+          }
+
+          #info_form .row.form-group {
+              margin-bottom: 0px !important;
+          }
+
+          #info_form input {
+              font-weight: normal;
+              font-size: 19px;
+              font-family: Tahoma, Geneva, sans-serif;
+              height: 40px !important;
+          }
+
+          #info_form select {
+              font-weight: normal;
+              font-size: 19px;
+              font-family: Tahoma, Geneva, sans-serif;
+              height: 40px !important;
+          }
+
+          ::-webkit-input-placeholder {
+              color: #b1b0b0 !important;
+              text-align: center;
+          }
+
+          :-moz-placeholder { /* Firefox 18- */
+              color: #b1b0b0 !important;
+              text-align: center;
+          }
+
+          ::-moz-placeholder {  /* Firefox 19+ */
+              color: #b1b0b0 !important;
+              text-align: center;
+          }
+
+          :-ms-input-placeholder {
+              color: #b1b0b0 !important;
+              text-align: center;
+          }
+
+          #info_form button {
+              font-family: Verdana, Geneva, sans-serif;
+              font-size: 23px;
+              padding: 0px;
+              font-weight: bold;
+              color: #FFF;
+              background: {{mainColor}};
+              margin-bottom: 15px;
+              border-radius: 5px;
+              border:0;
+              height:40px;
+          }
+
+          label.btn.btn-primary.radio-button {
+              width: 49%;
+              font-family: Verdana, Geneva, sans-serif;
+              text-shadow: 0px 0px 0px !important;
+              font-size:17px;
+              text-shadow: none;
+              background-color: #e4e4e4;
+              border:0px !important;
+          }
+          label.btn.btn-primary.radio-button.active {
+              width: 49%;
+              font-family: Verdana, Geneva, sans-serif;
+              text-shadow: 0px 0px 0px !important;
+              background: {{mainColor}};
+              color: #FFF !important;
+              border:0px !important;
+          }
+
+      .action-button {
+          color: #FFF;
+          background: {{mainColor}};
+          border: none;
+          box-shadow: 0 1px 0 1px {{mainColor}};
+          display: block;
+          position: relative;
+          width: 80%;
+          left: 50%;
+          margin-left: -40%;
+          margin-bottom: 10px;
+      }
+
+      .action-button:hover,
+      .action-button:focus {
+          background-color: {{mainColor}} !important;
+      }
+
+      @media (min-width: 501px) and (max-width: 767px) {
+          .modal-dialog {
+              margin-top: 100px;
+          }
+      }
+
+      @media (max-width: 501px) {
+          .modal-dialog {
+              margin-top: 55px;
+          }
+      }
+    </style>
+    <script type="text/javascript">
+      var symbol = "$";
+      var wall_json = [
+        [
+          "Smart Watch\u00a9 + Heart & Steps!",
+          "<p><ul><li>Durable, modern design with multipurpose functionality<\/li><li>Instant notifications straight from your phone<\/li><li>Powerful, long-lasting battery<\/li><\/ul><\/p>",
+          "$79.99",
+          "$0.00 - Pay Only S&H",
+          "$7.99",
+          "6",
+          "https:\/\/clipresource.com\/nas-prod\/c_af72a9ef-05a9-4b58-a805-3ffd753c9153_1683910271.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=af72a9ef-05a9-4b58-a805-3ffd753c9153|4510152e-8c07-4ec9-8a10-9bf4c1126870|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-smartwatch",
+          "https:\/\/insightsandmarkets.com\/i\/af72a9ef-05a9-4b58-a805-3ffd753c9153\/4510152e-8c07-4ec9-8a10-9bf4c1126870",
+        ],
+        [
+          "Dash-Cam with Night-Vision + Motion Detection and Built-In LCD",
+          "<ul><li>1080P Full HD and 120\u00b0 Wide Viewing Angle<\/li><li>Protect Yourself with Accurate Record of Accidents &amp; Vandalism for Insurance Companies &amp; Law Enforcement<\/li><li>Motion Sensor, Night Vision &amp; Integrated Microphone Make This the Best Dashcam on the Market!<\/li><\/ul>",
+          "$119.99",
+          "$0.00 - Pay Only S&H",
+          "$4.95",
+          "4",
+          "https:\/\/clipresource.com\/nas-prod\/c_8cfd103b-74fa-4fad-a1d2-ff4d0036298c_1684171824.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=8cfd103b-74fa-4fad-a1d2-ff4d0036298c|c5ac8ecd-3fe8-433e-ad22-897a9c41e1cb|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-dashcam",
+          "https:\/\/insightsandmarkets.com\/i\/8cfd103b-74fa-4fad-a1d2-ff4d0036298c\/c5ac8ecd-3fe8-433e-ad22-897a9c41e1cb",
+        ],
+        [
+          "Portable Vacuum",
+          "Cordless Design & Easy Storage - Wireless vacuum design will free your movement when cleaning the corner of home, car or office. You can place this portable vacuum cleaner in any storage space. Start a pleasant journey with a Mini Vacuum handheld vacuum cleaner cordless.",
+          "$139.95",
+          "$0.00 - Pay Only S&H",
+          "$7.95",
+          "3",
+          "https:\/\/clipresource.com\/nas-prod\/c_undefined_1661551019.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=1a60f7c6-a62c-4f4f-bf3c-6260f681b77d|96c24456-46b1-4cf0-b11e-fc5efb91e613|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-portableminivacuum",
+          "https:\/\/insightsandmarkets.com\/i\/1a60f7c6-a62c-4f4f-bf3c-6260f681b77d\/96c24456-46b1-4cf0-b11e-fc5efb91e613",
+        ],
+        [
+          "Robot Vacuum Cleaner. Totally autonomous. Cleans your entire house!",
+          "Maintenance-Free Vacuum. Pet-friendly. Silent and Efficient!",
+          "$49.95",
+          "$0.00",
+          "$7.95",
+          "4",
+          "https:\/\/clipresource.com\/nas-prod\/c_22cb510a-0d9d-4d11-a06b-1f40abd2a729_1684171780.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=22cb510a-0d9d-4d11-a06b-1f40abd2a729|b96c5fc1-8fd5-4d1e-becd-693430cd39d7|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-robovacuum",
+          "https:\/\/insightsandmarkets.com\/i\/22cb510a-0d9d-4d11-a06b-1f40abd2a729\/b96c5fc1-8fd5-4d1e-becd-693430cd39d7",
+        ],
+        [
+          "Top Brand Wireless Pods",
+          '<p><ul><li><font face="Arial">Listen Without Limits &amp; Free Yourself From Cords<\/font><\/li><li><font face="Arial">Fast And Easy Setup<\/font><\/li><li><font face="Arial">Battery Lasts Up To 3 Hours &amp; Can Be Quickly Recharged By Putting Back in The Case<\/font><\/li><li><font face="Arial">Works With Any Bluetooth Enabled Device<\/font><\/li><\/ul><\/p>',
+          "$159.00",
+          "$0.00 - Pay Only S&H",
+          "$9.99",
+          "5",
+          "https:\/\/clipresource.com\/nas-prod\/c_a78835b2-4bd3-4bec-9da9-a5999639500b_1684171715.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=a78835b2-4bd3-4bec-9da9-a5999639500b|844c4ed8-a839-4576-a230-b79af972b6b0|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-airpod",
+          "https:\/\/insightsandmarkets.com\/i\/a78835b2-4bd3-4bec-9da9-a5999639500b\/844c4ed8-a839-4576-a230-b79af972b6b0",
+        ],
+        [
+          "Camera Wireless Doorbell",
+          "Syncs to your mobile phone with a Simple application that is up and running in minutes. - Just like a Video call with high definition camera and sound - Equiped Motion Detection that instantly alerts phone - Night vision",
+          "$149.95",
+          "$0.00 - Pay Only S&H",
+          "$7.95",
+          "3",
+          "https:\/\/clipresource.com\/nas-prod\/c_6067824c-691b-457e-9383-c156cce806fa_1670250183.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=6067824c-691b-457e-9383-c156cce806fa|a8fd49b7-fb37-4117-b746-24c1ab3453da|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-smartvideodoorbell",
+          "https:\/\/insightsandmarkets.com\/i\/6067824c-691b-457e-9383-c156cce806fa\/a8fd49b7-fb37-4117-b746-24c1ab3453da",
+        ],
+        [
+          "Wifi Extender - Improve Coverage Everywhere!",
+          "Compatible With All WiFi Networks, Installs In Seconds, Works Automatically!",
+          "$59.99",
+          "$0.00 - Pay Only S&H",
+          "$9.98",
+          "4",
+          "https:\/\/clipresource.com\/nas-prod\/c_a5c250fd-b081-49b8-a1a3-2448d92fd253_1684174122.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=a5c250fd-b081-49b8-a1a3-2448d92fd253|d27041db-8e28-4327-a95a-27274597ec3f|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-wifiextender",
+          "https:\/\/insightsandmarkets.com\/i\/a5c250fd-b081-49b8-a1a3-2448d92fd253\/d27041db-8e28-4327-a95a-27274597ec3f",
+        ],
+        [
+          "Tactical Sports Camera - Waterproof With 2-inch LCD",
+          "1080P, 90 Minute Rechargeable Battery, Records Audio and Video up to 96ft depth!",
+          "$149.95",
+          "$0.00 - Pay Only S&H",
+          "$12.92",
+          "1",
+          "https:\/\/clipresource.com\/nas-prod\/c_630b8e4a-5e24-47cb-b22c-55c52b7964c7_1684173963.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=630b8e4a-5e24-47cb-b22c-55c52b7964c7|439579ae-1bd4-4826-8529-a3ed717ef724|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-sportcam",
+          "https:\/\/insightsandmarkets.com\/i\/630b8e4a-5e24-47cb-b22c-55c52b7964c7\/439579ae-1bd4-4826-8529-a3ed717ef724",
+        ],
+        [
+          "Tactical Military Go-Bag",
+          "Huge 45L - Super thick at 1000D - Top Quality Zippers!",
+          "$89.57",
+          "$0.00 - Pay Only S&H",
+          "$7.95",
+          "4",
+          "https:\/\/clipresource.com\/nas-prod\/c_0d4ac1b1-cf16-4967-90cc-9b861930938f_1684171897.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=0d4ac1b1-cf16-4967-90cc-9b861930938f|45bcb68e-3725-494c-bf6f-7af60d0395da|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-backpack",
+          "https:\/\/insightsandmarkets.com\/i\/0d4ac1b1-cf16-4967-90cc-9b861930938f\/45bcb68e-3725-494c-bf6f-7af60d0395da",
+        ],
+        [
+          "Massage Gun",
+          "for professional level muscle soothing and relaxation",
+          "$79.99",
+          "$0.00 - Pay Only S&H",
+          null,
+          "2",
+          "https:\/\/clipresource.com\/nas-prod\/c_undefined_1663334253.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=924c49ba-a993-4d9a-8a1e-8dad2246f53e|b8fc5362-1d8a-45b5-8a99-f927dab361c5|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-massagegun",
+          "https:\/\/insightsandmarkets.com\/i\/924c49ba-a993-4d9a-8a1e-8dad2246f53e\/b8fc5362-1d8a-45b5-8a99-f927dab361c5",
+        ],
+        [
+          "Wifi Video Bulb",
+          "HD Quality Recording with full-color night vision.\nWatch live from your mobile phone.\nWith full 360 rotation.\nProtect and monitor",
+          "$79.99",
+          "$0.00 - Pay Only S&H",
+          "$7.95",
+          "2",
+          "https:\/\/clipresource.com\/nas-prod\/c_undefined_1662655460.jpg",
+          "https:\/\/techstrendsstores.com\/5fcbb34a-47dd-4ff2-bd51-9b9a171708e7?offerId=7d17a902-32a8-4def-9497-a024f9bc5c3f|270b8868-1e9c-44c0-9765-d264270c1612|||&c=%7C437&k=&v=&s=2&t=&cr=&src=&lp=&id=wkj1ggqmqtrfca35jhuusbfq",
+          "A",
+          "A",
+          "",
+          "-",
+          "us-srv-wifivideobulb",
+          "https:\/\/insightsandmarkets.com\/i\/7d17a902-32a8-4def-9497-a024f9bc5c3f\/270b8868-1e9c-44c0-9765-d264270c1612",
+        ],
+      ];
+      var offer_shortcut = false;
+    </script>
+    <style type="text/css">
+      img.banner {
+        position: fixed;
+        top: 0;
+        width: 150px;
+        z-index: 999999999999;
+      }
+      @media all and (max-width: 500px) {
+        img.banner {
+          width: 100px;
+        }
+
+        #button1 {
+          font-size: 14px;
+        }
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Slab:wght@600;700;800&display=swap');
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  </head>
+  <body class="">
+    <div id="firstSection">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <div id="head-con" class="container-head">
+          <img style="width: 150px;" src="./files/{{firstLogo}}" alt="">
+      </div>
+      <div>
+          <div class="pack-con">
+              <div class="pack">
+                  <div class="pack-head">
+                      <p style="font-family: 'Open Sans'; font-weight: 500; font-size: 40px; color: black; margin-top: 20px">{{text01}}</p>
+                      <img style="max-width: 230px; padding: 0; margin: 0;" src="./files/{{secondLogo}}" alt="">
+                      <!-- <br/><br /> -->
+                      <!-- <img style="min-width: 50px; padding: 0; margin: 0;" src="./files/renew.png" alt=""> -->
+                  </div>
+                  <div class="pack-body">
+                      <p class="p1" style="font-family: 'Open Sans'; font-weight: 350">{{text02}}</p>
+                      <p class="p2" style="font-family: 'Open Sans'; font-weight: 300">{{text01}}
+                      </p>
+                      <p class="p3" style="font-family: 'Open Sans'; font-weight: 300">{{text03}} <br/>
+                        {{text04}}
+                      </p>
+                      <!-- <img src="<?php echo $data->impression_url ?>" style="display:none;"></img> -->
+                      <button id="button1" style="background-color: {{mainColor}}; font-family: 'Open Sans'; font-weight: 400;">{{text05}}</button>
+
+                      <p class="p4" style="font-family: 'Open Sans'; font-weight: 300">{{text06}}</p>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <div id="foot-con" class="footer-con">
+      <div class="foot-con-inn">
+        <br/> <br/>
+          <p style="font-family: 'Open Sans'; font-weight: 300">
+              {{text07}}
+              <br /><br />
+          </p>
+      </div>
+  </div>
+</div>
+    <!-- <input type="hidden" name="wid" id="wid" value="opn1" /> -->
+    <div class="" id="offer-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="offerwrapper">
+              <div class="content">
+                <!--<h2><b>Survey About:</b></h2>
+                            <h1><span style="color:{{mainColor}}"><script type="text/javascript">document.write(r("Jnyzneg"))</script></span> </h1>-->
+                <!-- <span class="logo text-center"><img src="./files/auto-quote-logo.jpg" alt="" class="img-responsive"></span>-->
+              </div>
+              <div class="dday">
+{{brand}} {{text08}}:
+                <script>
+                  var mydate = new Date();
+                  mydate.setDate(mydate.getDate());
+                  var year = mydate.getYear();
+                  if (year < 1000) year += 1900;
+                  var day = mydate.getDay();
+                  var month = mydate.getMonth();
+                  var daym = mydate.getDate();
+                  if (daym < 10) daym = "0" + daym;
+                  var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+                  var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                  document.write("" + montharray[month] + " " + daym + ", " + year + "");
+                </script>
+              </div>
+              <div class="content">
+                <div class="text-center">
+                  <!-- <h2 style="font-family: 'Open Sans'; font-weight: 350">Thank You For Renewing Your Membership!</h2> -->
+
+                  <p style="font-family: Open Sans; font-weight: 900; padding: 0; margin: 0; font-size: 25px; color: {{mainColor}};">{{text09}}</p>
+                  <p style="font-family: Open Sans; font-weight: 900; padding: 0; margin: 0; font-size: 25px; color: {{mainColor}};">{{text10}}</p>
+                  <p></p>
+                  <!-- <h2 style="font-family: 'Open Sans'; font-weight: 350">You’ve unlocked 5+ special deals... Act fast—supplies are limited, and we know savings matter this year.</h2> -->
+                  <p></p>
+                  <!-- <h3>Please SELECT ONLY (1) ONE ITEM<br />So There Is Enough For Everyone</h3> -->
+                  <p style="font-family: Open Sans; font-weight: 350">{{text11}}
+                  </p>
+                  <p style="font-family: 'Open Sans'; font-weight: 350">
+                    {{text12}}
+                    <b
+                      ><i
+                        ><u
+                          ><span style="color: #ff0000"><!--<script type="text/javascript">document.write(r("JNYZNEG"))</script>-->{{brand}}REWARDS2024</span></u
+                        ></i
+                      ></b
+                    >
+                    {{text13}}
+                  </p>
+                  <p>
+                    <b style="font-family: 'Open Sans'; font-weight: 350">{{text14}} <span id="countdown_1" style="background-color: #ffff00; color: #ff0000">{{text15}}</span></b>
+                  </p>
+                </div>
+                <div id="offers">
+                  <div class="row row-parent">
+
+                  <?php
+                  $count = 0;
+                  foreach ($objects as $object) {
+                    if ($count >= 9) break;
+                    
+                    $randomNumber = rand(400, 600);
+                    $randomIcon = rand(0, 1) ? './files/5.png' : './files/4-5.png';
+                  ?>
+                    <div class="row"></div>
+                    <div class="col-md-12 offer_class offer_del">
+                      <div class="box">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <img
+                              src="<?php echo "https://" . $img_domain . $object->image; ?>"
+                              alt=""
+                              class="img-responsive"
+                              style="width: 90%; padding: 9px 16px 9px 16px; border: none; margin-left: auto; margin-right: auto; width: 90%"
+                            />
+                            <div align="center" style="margin-bottom: 5px"><img src="<?php echo $randomIcon; ?>" style="border: none; height: 20px; margin-top: -4px" /> (<?php echo $randomNumber; ?>)</div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="offer-desc">
+                              <img
+                                src="<?php echo "https://" . $nas_impression_domain . $object->impression_url; ?>"
+                                style="display: block"
+                                width="1"
+                                height="1"
+                                border="0"
+                              /><span class="offer-name"><strong><?php echo $object->title; ?></strong></span
+                              ><br /><span class="offer-name"
+                                ><p></p>
+                                <?php echo $object->description; ?>
+                                <p></p></span
+                              ><span class="offer-regular-price"><b>{{text16}}</b> <?php echo $object->regular_price; ?></span
+                              ><span class="offer-price-today" style="background-color: #ffff00"><b>{{text17}}</b> <?php echo $object->promo_price; ?></span
+                              ><span class="offer-quantity"><b>{{text18}}</b> <span><?php echo $object->quantity_left; ?></span></span>
+                            </div>
+                          </div>
+                          <div class="col-md-5" style="padding-top: 10px">
+                            <center>
+                              <span style="color: #ff0000"><b>{{text19}}</b></span> <span class="offer_countdown" id="countdown-0">1:15</span>
+                            </center>
+                            <br /><a
+                              style="text-decoration: none"
+                              target="_blank"
+                              class="reward_alert"
+                              href=<?php echo "https://". $nas_voluum_bridge_domain . $object->url . $offer_parameters; ?>
+                              ><div class="a-button-stack">
+                                <span class="a-button a-spacing-small a-button-primary a-button-icon"
+                                  ><span class="a-button-inner"
+                                    ><!--<i class="a-icon a-icon-cart"></i>--><span style="font-family: 'PT Sans', sans-serif" class="a-button-text"><b>{{text20}}</b></span></span
+                                  ></span
+                                >
+                              </div></a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row"></div>
+
+                    <?php $count++; }
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <!--new comments container -->
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="content zzz" style="padding-top: 10px">
+              <!-- start feedback -->
+              <style>
+                /*-- Global Selectors --*/
+                .liked {
+                  color: #47649f !important;
+                }
+
+                .zzz a {
+                  color: #47649f;
+                  text-decoration: none;
+                }
+
+                .zzz body {
+                  font-family: "helvetica";
+                }
+
+                /*-- Bootstrap Override Style --*/
+
+                /*-- Content Style --*/
+                .zzz .post-footer-option li {
+                  float: left;
+                  margin-right: 50px;
+                  padding-bottom: 15px;
+                }
+
+                .zzz .post-footer-option li a {
+                  color: #afb4bd;
+                  font-weight: 500;
+                  font-size: 1.3rem;
+                }
+
+                .zzz .photo-profile {
+                  border: 1px solid #ddd;
+                }
+
+                .zzz .anchor-username h4 {
+                  font-weight: bold;
+                }
+
+                .zzz .anchor-time {
+                  color: #adb2bb;
+                  font-size: 1.2rem;
+                }
+
+                .zzz .post-footer-comment-wrapper {
+                  background-color: #f6f7f8;
+                }
+              </style>
+
+              <div class="row">
+                <div class="panel panel-default" style="border: 0px; margin-bottom: 0px">
+                  <div class="panel-body" style="padding-bottom: 0px">
+                    <section class="post-heading" style="padding-bottom: 10px">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object photo-profile" src="./files/5.jpg" width="40" height="40" alt="Susan Williams" />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <a href="#" class="anchor-username"><h4 class="media-heading">Susan Williams</h4></a>
+                              <a href="#" class="anchor-time">19 hrs · <i class="glyphicon glyphicon-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="post-body">
+                      <p style="font-size: 14px">
+                      {{comment1}}
+                      </p>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="panel panel-default" style="border: 0px; margin-bottom: 0px; padding-top: 0px">
+                  <div class="panel-body" style="padding-bottom: 0px">
+                    <section class="post-heading" style="padding-bottom: 10px">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object photo-profile" src="./files/3.jpg" width="40" height="40" alt="James Washington" />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <a href="#" class="anchor-username"><h4 class="media-heading">James Washington</h4></a>
+                              <a href="#" class="anchor-time">14 hrs · <i class="glyphicon glyphicon-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="post-body">
+                      <p style="font-size: 14px">
+                      {{comment2}}
+                      </p>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="panel panel-default" style="border: 0px; margin-bottom: 0px; padding-top: 0px">
+                  <div class="panel-body" style="padding-bottom: 0px">
+                    <section class="post-heading" style="padding-bottom: 10px">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object photo-profile" src="./files/4.jpg" width="40" height="40" alt="Kimberly Garnet" />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <a href="#" class="anchor-username"><h4 class="media-heading">Kimberly Garnet</h4></a>
+                              <a href="#" class="anchor-time">11 hrs · <i class="glyphicon glyphicon-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="post-body">
+                      <p style="font-size: 14px">
+                      {{comment3}}
+                      </p>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="panel panel-default" style="border: 0px; margin-bottom: 0px; padding-top: 0px">
+                  <div class="panel-body" style="padding-bottom: 0px">
+                    <section class="post-heading" style="padding-bottom: 10px">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object photo-profile" src="./files/2.jpg" width="40" height="40" alt="David Irving" />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <a href="#" class="anchor-username"><h4 class="media-heading">David Irving</h4></a>
+                              <a href="#" class="anchor-time">4 hrs · <i class="glyphicon glyphicon-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="post-body">
+                      <p style="font-size: 14px">{{comment4}}</p>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="panel panel-default" style="border: 0px; margin-bottom: 0px; padding-top: 0px">
+                  <div class="panel-body" style="padding-bottom: 0px">
+                    <section class="post-heading" style="padding-bottom: 10px">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object photo-profile" src="./files/1.jpg" width="40" height="40" alt="Lisa York" />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <a href="#" class="anchor-username"><h4 class="media-heading">Lisa York</h4></a>
+                              <a href="#" class="anchor-time">52 mins · <i class="glyphicon glyphicon-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section class="post-body">
+                      <p style="font-size: 14px">
+                      {{comment5}}
+                      </p>
+                    </section>
+                    <section class="post-footer">
+                      <hr style="margin-top: 15px; margin-bottom: 10px" />
+                      <div class="post-footer-option container" style="width: 100% !important">
+                        <ul class="list-unstyled">
+                          <li>
+                            <a href="#" class="like"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;Like</a>
+                          </li>
+                          <li>
+                            <a href="#" id="comment_btn_click"><i class="glyphicon glyphicon-comment"></i>&nbsp;Comment</a>
+                          </li>
+                          <!-- <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Share</a></li> -->
+                        </ul>
+                      </div>
+                      <hr style="margin-top: 0px; margin-bottom: 15px" />
+                      <div class="post-footer-comment-wrapper">
+                        <div class="comment" style="padding-bottom: 8px">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img
+                                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH4AsEAQYGnNl/4AAABBhJREFUWMOtl8tvG1UUxn/3zsMex3H8KA5NH6jNpioSolKVJSsWLLrif+PfYI2ExAKkLmg30KoqrZQCDmlqGsexk3jsmbmHxZ3xO45NfKWRZs59nO+e893vnlHf/fhOWLEpBQoFZFMVgiArrwTuSo5Tl/3IYAS0svbs3Xf1BKy1AlAK4sQuvbu9wZ1qnmLeTj8LYxqtkD//vbCLOmrpaCwFIHO+kXP45os6O5U8kkaEdMdffrbF4UnID783Oe8nS4PQywAQsbt68mibnUoeI4KIYMSG374LO5U8Tx5trxSBKwFoZXP+cGeTeilHYgStVPqQPvY7MUK9lOPhzib9yAw5ci0AAmituFcvpIAuXzXru18voLVaioxXAjACOVezVfCsYdGu0r5SwSPnasxaOJAeMXeZeKbN1TY9y4TgSgBKQWyEQWyGgBaBBRjEhtgIah0cUAqiROiG8dIR6IYxUbIuAFh2Nzv9ZQNAs9MnMZLK9TUBCIKjoXEcpoAWgbWtcRziaDv3+gAEPEdzeBLS7PRRirkiI2LT1ez0OTwJ8Ry9PiXMRObZfntos2poHZsxT8/220OxWmrtRZ1KZafAYER4edDl6dtWalfD/uz96dsWLw+6GBFiY4b9i5q7yHmUCMYIm4HLg5tF8p7DT68+ctAKeXyvTLVoxal1FvH8XZu/Pvb4+vNPCKOE1+/P6PZitFZ4C+4GNa8gUQoGsbC95bN3v8Ltah7ftcH65yTk59fHfDjto9LtiQjbWzm+elDjViUPWC04aIX8un/Ch9MBvjsfxAwApSCKhU/LOb59fBPXyZyM+gE6vZj2RQRAueBRCty54+JE+P75e47afbw5IOZyQIC93TKuY8k3zgcR218KXO7WAu7WAkqBizA6CZnzxAiuo9jbLV96ICcAqBRxpeBxqxIA4EzdAbYeZHgCskcxS7hs7q1KQKXgEScyoyOTEVAW9Y2Sv5A44xG5iulWRxQ3Sr6N5tTYqQgojECt6Kep+B9l7kw67Rq1oo/1P4lATw/WCqob3lhSrtvsGtUND61mNzWZArF520yr3fW5h828azmx6BQItvjMeUsp9Eot52lbrE7ZJwGI1X0vO/tIWvWu7lCyijl16Tm2cF2oA1pZBXtzdI4ZVr8jlmeLmrGS3EzZhj9rYxWzMcKbo3MG8WylPHEXCJYDv/xxzG9/d7hTzXO7FlAv5SgFLq7OODyPHSNbbIROL6bZ6XNw3KPRCun0IntFswBA1nxXc96PedHo8qLRxfc0xZxDueCxlcpu4Dv4aU6jROgNEjq9mNOLiPZFxFk/YRDZOtJzFb47vz6YC0AEHKVwfbsrIyPtN4bhb9l4ajKb1jbsjlYEvh71X8KjS6/jTNuHA1MyTArJ6Pd8ZLFoJAV+VfsP/1HtKxltqQcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTYtMTEtMDRUMDE6MDY6MDYtMDQ6MDCEXxpkAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE2LTExLTA0VDAxOjA2OjA2LTA0OjAw9QKi2AAAAABJRU5ErkJggg=="
+                                />
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <form id="commentform">
+                                <div class="form-group" id="comment_box_div">
+                                  <input id="comment_box" type="text" placeholder="Write a comment..." class="form-control" />
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+              <!--  end feedback  -->
+            </div>
+          </div>
+        </div>
+        <!--end new comments container -->
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      function startCountdown(element, totalSeconds) {
+        let remainingTime = totalSeconds;
+
+        const updateDisplay = () => {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            element.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        };
+
+        updateDisplay(); // Display initial time
+
+        const interval = setInterval(() => {
+            remainingTime -= 1;
+            updateDisplay(); // Update countdown display
+
+            if (remainingTime <= 0) {
+                clearInterval(interval);
+                element.textContent = "Time's up!"; // Final message
+            }
+        }, 1000); // Update every second
+    }
+
+      function initializeCountdowns() {
+        const countdownElements = document.querySelectorAll('span[id^="countdown-"]');
+        
+        countdownElements.forEach((element) => {
+            const randomMinutes = Math.floor(Math.random() * 4) + 6;
+            const randomSeconds = Math.floor(Math.random() * 60);
+            const totalSeconds = (randomMinutes * 60) + randomSeconds;
+
+            startCountdown(element, totalSeconds);
+        });
+    }
+
+    const randomMinutes = Math.floor(Math.random() * 3) + 7;
+    const totalSeconds = randomMinutes * 60;
+
+
+      $(document).ready(function(){
+        $("#button1").click(function(){
+          $("#firstSection").fadeOut();
+          $("#offer-modal").fadeIn(3000);
+
+          const firstCounter = document.getElementById("countdown_1");
+          startCountdown(firstCounter, 600);
+          initializeCountdowns();
+        });
+      });
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="/js/jquery/1.11.2/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      !(function (t) {
+        var i = t(window);
+        t.fn.visible = function (t, e, o) {
+          if (!(this.length < 1)) {
+            var r = this.length > 1 ? this.eq(0) : this,
+              n = r.get(0),
+              f = i.width(),
+              h = i.height(),
+              o = o ? o : "both",
+              l = e === !0 ? n.offsetWidth * n.offsetHeight : !0;
+            if ("function" == typeof n.getBoundingClientRect) {
+              var g = n.getBoundingClientRect(),
+                u = g.top >= 0 && g.top < h,
+                s = g.bottom > 0 && g.bottom <= h,
+                c = g.left >= 0 && g.left < f,
+                a = g.right > 0 && g.right <= f,
+                v = t ? u || s : u && s,
+                b = t ? c || a : c && a;
+              if ("both" === o) return l && v && b;
+              if ("vertical" === o) return l && v;
+              if ("horizontal" === o) return l && b;
+            } else {
+              var d = i.scrollTop(),
+                p = d + h,
+                w = i.scrollLeft(),
+                m = w + f,
+                y = r.offset(),
+                z = y.top,
+                B = z + r.height(),
+                C = y.left,
+                R = C + r.width(),
+                j = t === !0 ? B : z,
+                q = t === !0 ? z : B,
+                H = t === !0 ? R : C,
+                L = t === !0 ? C : R;
+              if ("both" === o) return !!l && p >= q && j >= d && m >= L && H >= w;
+              if ("vertical" === o) return !!l && p >= q && j >= d;
+              if ("horizontal" === o) return !!l && m >= L && H >= w;
+            }
+          }
+        };
+      })(jQuery);
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- <script type="text/javascript" src="/utils/banners/banner-bf.js?v=1.04"></script>
+    <img src="/utils/banners/images/2024-months/2024-10.png?v=1" class="banner" /> -->
+  </body>
+
+  <?php
+		if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+		{
+			$aff_id = "2";
+			if (!empty($_GET["s"])) {
+				$aff_id = $_GET["s"];
+			}
+			
+			$trk_urls = [
+				 "https://" . $_GET["trk"] . "/click/20"
+			];
+			
+			echo getPushCode("us", $aff_id, $trk_urls);
+		   }
+		?>
+		
+		<?php
+		$backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+		
+		echo getBackButton($backbutton_url);
+?>
+</html>

@@ -11,7 +11,7 @@ async function bootstrap() {
   app.use(json({ limit: '10mb' }));
   app.use(urlencoded({ limit: '10mb', extended: true }));
 
-  await app.listen(3000);
+  await app.listen(3001);
 
   if (module.hot) {
     module.hot.accept();

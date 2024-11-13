@@ -134,6 +134,14 @@ const SE_names = {
     commentName5: "Alice Johansson",
 }
 
+const CZ_names = {
+    commentName1: "Petra Svobodová",
+    commentName2: "Tomáš Černý",
+    commentName3: "Michaela Bartošová",
+    commentName4: "David Kučera",
+    commentName5: "Klára Benešová",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -151,5 +159,6 @@ export const commentNamesByCountry = {
     "at": AT_names,
     "es": ES_names,
     "ch": CH_names,
-    "se": SE_names
+    "se": SE_names,
+    "cz": CZ_names,
 };
