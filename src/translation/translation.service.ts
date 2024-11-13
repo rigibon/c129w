@@ -8,51 +8,37 @@ import { commentNamesByCountry } from './commentNames';
 
 @Injectable()
 export class TranslationService {
-  private readonly templateFilePath = path.join(
-    __dirname,
-    '..',
-    'client',
-    'index.html.hbs',
-  );
-  private readonly textsFilePath = path.join(
-    __dirname,
-    '..',
-    'client',
-    'params.json',
-  );
+  private readonly templateFilePath = path.join(__dirname, '..', 'client', 'index.html.hbs');
+  private readonly textsFilePath = path.join(__dirname, '..', 'client', 'params.json');
 
-  async generateHtmlWithTranslations(
-    translateTexts: boolean,
-    language: string,
-    brandData: any,
-    productData: any,
-    configData: any,
-    survey: any
-  ) {
+  async generateHtmlWithTranslations(translateTexts: boolean, language: string, brandData: any, productData: any, configData: any, survey: any) {
     const templateContent = await fs.readFile(this.templateFilePath, 'utf8');
     const template = handlebars.compile(templateContent);
 
     var texts = JSON.parse(await fs.readFile(this.textsFilePath, 'utf8'));
-    texts.text1 = "Over " + configData.currency + "4,000,000 in Offers given out so far!";
-    texts.text3 = "Dear " + brandData.name + " Shopper,";
-    texts.text32 = "This website is not affiliated with or endorsed by " + brandData.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.";
+    texts.text1 = 'Over ' + configData.currency + '4,000,000 in Offers given out so far!';
+    texts.text3 = 'Dear ' + brandData.name + ' Shopper,';
+    texts.text32 =
+      'This website is not affiliated with or endorsed by ' +
+      brandData.name +
+      ' or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.';
 
-    texts.questionCount1 = "Question 1 on 8";
-    texts.questionCount2 = "Question 2 on 8";
-    texts.questionCount3 = "Question 3 on 8";
-    texts.questionCount4 = "Question 4 on 8";
-    texts.questionCount5 = "Question 5 on 8";
-    texts.questionCount6 = "Question 6 on 8";
-    texts.questionCount7 = "Question 7 on 8";
-    texts.questionCount8 = "Question 8 on 8";
-    
-    var newSurvey = { ...survey, surveyTitle: `${brandData.name} Shopper Experience Survey` }; 
+    texts.questionCount1 = 'Question 1 on 8';
+    texts.questionCount2 = 'Question 2 on 8';
+    texts.questionCount3 = 'Question 3 on 8';
+    texts.questionCount4 = 'Question 4 on 8';
+    texts.questionCount5 = 'Question 5 on 8';
+    texts.questionCount6 = 'Question 6 on 8';
+    texts.questionCount7 = 'Question 7 on 8';
+    texts.questionCount8 = 'Question 8 on 8';
 
-    texts.montharray = "January, February, March, April, May, June, July, August, September, October, November, December";
+    var newSurvey = { ...survey, surveyTitle: `${brandData.name} Shopper Experience Survey` };
+
+    texts.montharray = 'January, February, March, April, May, June, July, August, September, October, November, December';
 
     var newData = { ...texts, ...newSurvey };
-    
-    if (configData.language !== "" && configData.language !== "en") {
+
+    if (configData.language !== '' && configData.language !== 'en') {
       newSurvey = await this.getTranslationPromises(newSurvey, configData.language);
       const firstTenKeys = Object.keys(texts).slice(0, 10);
 
@@ -81,20 +67,9 @@ export class TranslationService {
 
     const html = template(data);
 
-    const baseFilesPath = path.join(
-      __dirname,
-      '..',
-      'client',
-      'images',
-    );
+    const baseFilesPath = path.join(__dirname, '..', 'client', 'images');
 
-    const outputFilePath = path.join(
-      __dirname,
-      '..',
-      'client',
-      'tryetco',
-      'output.html',
-    );
+    const outputFilePath = path.join(__dirname, '..', 'client', 'tryetco', 'output.html');
 
     await fs.writeFile(outputFilePath, html, 'utf-8');
 
@@ -113,66 +88,58 @@ export class TranslationService {
     } catch (error) {
       console.log(error);
     }
-    
   }
 
   datehax(montharray, geo) {
-    var mydate = new Date()
+    var mydate = new Date();
     mydate.setDate(mydate.getDate());
-    var year = mydate.getFullYear()
-    if (year < 1000)
-        year += 1900
-    var day = mydate.getDay()
-    var month = mydate.getMonth()
-    var daym = mydate.getDate()
-    if (daym < 10)
-        daym = Number("0") + daym;
-    var dayarray = Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+    var year = mydate.getFullYear();
+    if (year < 1000) year += 1900;
+    var day = mydate.getDay();
+    var month = mydate.getMonth();
+    var daym = mydate.getDate();
+    if (daym < 10) daym = Number('0') + daym;
+    var dayarray = Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
     //  var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-    
+
     //var dayarray = Array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
     //var montharray = new Array("janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre");
-    
+
     // var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     // var montharray = new Array("Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December")
-    return "" + montharray[month] + " " + daym + ", " + year + "";
-}
-
-  private async getTranslationPromises(
-    textArray: Record<string, string>,
-    language: string,
-  ) {
-    // return Object.keys(textArray).map((key) => {
-    //   if (key === 'comments') return Promise.resolve('');
-    //   const property = textArray[key];
-    //   return translate(property, {
-    //     to: language,
-    //     forceTo: true,
-    //   }).then((res) => res.text);
-    // });
-    try {
-  const translations = Object.keys(textArray).map((key) => {
-    if (key === 'comments') return Promise.resolve('');
-    
-    const property = textArray[key];
-    return translate(property, {
-      to: language,
-      forceTo: true,
-    }).then((translationResult) => translationResult.text);
-  });
-
-  
-    const translatedTexts = await Promise.all(translations);
-
-    const result = Object.keys(textArray).reduce((acc, key, index) => {
-      acc[key] = translatedTexts[index];
-      return acc;
-    }, {});
-
-    return result
-
-  } catch (error) {
-    console.error('Translation error:', error);
+    return '' + montharray[month] + ' ' + daym + ', ' + year + '';
   }
+
+  private async getTranslationPromises(textArray: Record<string, string>, language: string) {
+    try {
+      const batchSize = 5;
+      const translations = [];
+
+      for (var i = 0; i < Object.keys(textArray).length; i += batchSize) {
+        const batch = Object.keys(textArray)
+          .slice(i, i + batchSize)
+          .map((key) => {
+            if (key === 'comments') return Promise.resolve('');
+
+            const property = textArray[key];
+            return translate(property, {
+              to: language,
+              forceTo: true,
+            }).then((translationResult) => translationResult.text);
+          });
+
+        const batchResults = await Promise.all(batch);
+        translations.push(...batchResults);
+      }
+
+      const result = Object.keys(textArray).reduce((acc, key, index) => {
+        acc[key] = translations[index];
+        return acc;
+      }, {});
+
+      return result;
+    } catch (error) {
+      console.error('Translation error:', error);
+    }
   }
 }
