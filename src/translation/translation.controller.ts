@@ -52,23 +52,50 @@ export class TranslationController {
     return { message: 'Files uploaded successfully', files };
   }
 
-  @Post("translation")
-  async translation(@Req() req, @Res() res) {
-    const { props, countryCode } = req.body;
-    console.log(props);
-  
-    const translationPromises = props.map((property) => {
-      return translate(property.value, { to: `${countryCode}`, forceTo: true }).then((res) => res.text);
+  private getTranslationPromises(
+    textArray: Record<string, string>,
+    language: string,
+  ) {
+    return Object.keys(textArray).map((key) => {
+      if (key === 'comments') return Promise.resolve('');
+      const property = textArray[key];
+      return translate(property, {
+        to: language,
+        forceTo: true,
+      }).then((res) => res.text);
     });
-  
-    Promise.all(translationPromises)
-      .then((translations) => {
-        res.send(translations);
-      })
-      .catch((error) => {
-        res.status(500).send("Error occurred during translation: " + error);
-      });
-  };
+  }
+
+  @Post("translation")
+async translation(@Req() req, @Res() res) {
+  const { textArray, language } = req.body;
+  console.log(textArray);
+
+  const translations = Object.keys(textArray).map((key) => {
+    if (key === 'comments') return Promise.resolve('');
+    
+    const property = textArray[key];
+    return translate(property, {
+      to: language,
+      forceTo: true,
+    }).then((translationResult) => translationResult.text);
+  });
+
+  try {
+    const translatedTexts = await Promise.all(translations);
+
+    const result = Object.keys(textArray).reduce((acc, key, index) => {
+      acc[key] = translatedTexts[index];
+      return acc;
+    }, {});
+
+    res.send(result);
+
+  } catch (error) {
+    console.error('Translation error:', error);
+    res.status(500).send({ error: 'Translation failed' });
+  }
+}
 
   @Post('generate')
   async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
