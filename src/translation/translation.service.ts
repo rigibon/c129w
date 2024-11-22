@@ -5,6 +5,7 @@ import { translate } from 'google-translate-api-x';
 import * as path from 'path';
 import * as archiver from 'archiver';
 import { commentNamesByCountry } from './commentNames';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 @Injectable()
 export class TranslationService {
@@ -38,24 +39,15 @@ export class TranslationService {
 
     var newData = { ...texts, ...newSurvey };
 
-    if (configData.language !== '' && configData.language !== 'en') {
-      newSurvey = await this.getTranslationPromises(newSurvey, configData.language);
-      texts = await this.getTranslationPromises(texts, configData.language);
-      newData = { ...newSurvey, ...texts };
+    if (configData.language !== '' && configData.language !== 'english') {
+      productData.description = await this.translateKeyword(productData.description, configData.language);
+      newData = await this.translateKeywords(JSON.stringify(newData), configData.language);
 
-      // const translations = await Promise.all(translationPromises);
-      // let i = 0;
-      // for (const key in newData) {
-      //   if (newData.hasOwnProperty(key)) {
-      //     newData[key] = translations[i];
-      //     i++;
-      //   }
-      // }
+      newData = JSON.parse(newData.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
 
       console.log(newData);
     }
 
-    // const data = { ...texts, ...configuration };
     const data = { ...newData, ...brandData, ...productData, ...configData, ...commentNamesByCountry[configData.geo] };
 
     const html = template(data);
@@ -103,6 +95,23 @@ export class TranslationService {
     return '' + montharray[month] + ' ' + daym + ', ' + year + '';
   }
 
+  private async translateKeywords(keywords: any, language: string) {
+    const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+    const configuration = new GoogleGenerativeAI(API_KEY);
+
+    const modelId = 'gemini-1.5-flash';
+    const model = configuration.getGenerativeModel({ model: modelId });
+
+    const chat = model.startChat();
+
+    const result = await chat.sendMessage(`translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
+
+    const response = await result.response;
+
+    return response.text();
+  }
+
   private async getTranslationPromises(textArray: Record<string, string>, language: string) {
     try {
       const batchSize = 5;
@@ -134,5 +143,22 @@ export class TranslationService {
     } catch (error) {
       console.error('Translation error:', error);
     }
+  }
+
+  private async translateKeyword(keyword: string, language: string) {
+    const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+    const configuration = new GoogleGenerativeAI(API_KEY);
+
+    const modelId = 'gemini-1.5-flash';
+    const model = configuration.getGenerativeModel({ model: modelId });
+
+    const chat = model.startChat();
+
+    const result = await chat.sendMessage(`translate this string to ${language}, output must be only the string translated, nothing else: ${keyword}`);
+
+    const response = await result.response;
+
+    return response.text();
   }
 }

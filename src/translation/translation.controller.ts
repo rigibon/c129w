@@ -7,7 +7,7 @@ import { BrandsService } from 'src/brands/brands.service';
 import { promises as fs, createWriteStream } from 'fs';
 import * as archiver from 'archiver';
 import axios from 'axios';
-import OpenAI from "openai";
+import OpenAI from 'openai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { translate } from 'google-translate-api-x';
 
@@ -52,36 +52,35 @@ export class TranslationController {
     return { message: 'Files uploaded successfully', files };
   }
 
-  @Post("translation")
-async translation(@Req() req, @Res() res) {
-  const { textArray, language } = req.body;
-  console.log(textArray);
+  @Post('translation')
+  async translation(@Req() req, @Res() res) {
+    const { textArray, language } = req.body;
+    console.log(textArray);
 
-  const translations = Object.keys(textArray).map((key) => {
-    if (key === 'comments') return Promise.resolve('');
-    
-    const property = textArray[key];
-    return translate(property, {
-      to: language,
-      forceTo: true,
-    }).then((translationResult) => translationResult.text);
-  });
+    const translations = Object.keys(textArray).map((key) => {
+      if (key === 'comments') return Promise.resolve('');
 
-  try {
-    const translatedTexts = await Promise.all(translations);
+      const property = textArray[key];
+      return translate(property, {
+        to: language,
+        forceTo: true,
+      }).then((translationResult) => translationResult.text);
+    });
 
-    const result = Object.keys(textArray).reduce((acc, key, index) => {
-      acc[key] = translatedTexts[index];
-      return acc;
-    }, {});
+    try {
+      const translatedTexts = await Promise.all(translations);
 
-    res.send(result);
+      const result = Object.keys(textArray).reduce((acc, key, index) => {
+        acc[key] = translatedTexts[index];
+        return acc;
+      }, {});
 
-  } catch (error) {
-    console.error('Translation error:', error);
-    res.status(500).send({ error: 'Translation failed' });
+      res.send(result);
+    } catch (error) {
+      console.error('Translation error:', error);
+      res.status(500).send({ error: 'Translation failed' });
+    }
   }
-}
 
   @Post('generate')
   async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
@@ -89,34 +88,19 @@ async translation(@Req() req, @Res() res) {
 
     const parsedSurvey = this.parseSurvey(survey);
 
-    const templatePath = path.join(
-      __dirname,
-      '..',
-      'client',
-      'tryetco'
-    );
-    const outputFilePath = path.join(
-      __dirname,
-      '..',
-      'client'
-    );
+    const templatePath = path.join(__dirname, '..', 'client', 'tryetco');
+    const outputFilePath = path.join(__dirname, '..', 'client');
 
-    const baseFilesPath = path.join(
-      __dirname,
-      '..',
-      'client',
-      'tryetco',
-      'files',
-    );
+    const baseFilesPath = path.join(__dirname, '..', 'client', 'tryetco', 'files');
 
     const translate = translateTexts === 'true';
     await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
 
-    const zipPath = path.join(outputFilePath, "creative.zip");
-    
+    const zipPath = path.join(outputFilePath, 'creative.zip');
+
     await this.createZip(templatePath, zipPath)
       .then(async () => {
-        res.download(zipPath, "final.zip", async (err) => {
+        res.download(zipPath, 'final.zip', async (err) => {
           const filesToRemove = [
             path.join(baseFilesPath, productData.productImage),
             path.join(baseFilesPath, productData.commentImage1),
@@ -125,22 +109,21 @@ async translation(@Req() req, @Res() res) {
             path.join(baseFilesPath, brandData.backgroundImage),
             path.join(baseFilesPath, brandData.favicon),
           ];
-        
+
           for (const fileToRemove of filesToRemove) {
             try {
               await fs.stat(fileToRemove);
               await fs.unlink(fileToRemove);
-            } catch (error) {
-            }
+            } catch (error) {}
           }
 
           if (err) {
-            res.status(404).send("File not found");
+            res.status(404).send('File not found');
           }
         });
       })
       .catch((error) => {
-        res.status(500).json({ message: "Error creating zip." });
+        res.status(500).json({ message: 'Error creating zip.' });
       });
 
     return { message: 'HTML file generated successfully' };
@@ -149,13 +132,13 @@ async translation(@Req() req, @Res() res) {
   async createZip(sourceFolder, outPath) {
     return new Promise((resolve, reject) => {
       const output = createWriteStream(outPath);
-      const archive = archiver("zip");
+      const archive = archiver('zip');
 
-      output.on("close", () => {
+      output.on('close', () => {
         resolve(null);
       });
 
-      archive.on("error", (err) => {
+      archive.on('error', (err) => {
         reject(err);
       });
 
@@ -166,25 +149,45 @@ async translation(@Req() req, @Res() res) {
   }
 
   private parseSurvey(surveyString: string): Record<string, string> {
-    const entries = surveyString.match(/"([^"]*)"/g)?.map(entry => entry.replace(/"/g, '')) || [];
+    const entries = surveyString.match(/"([^"]*)"/g)?.map((entry) => entry.replace(/"/g, '')) || [];
     const surveyData: Record<string, string> = {};
 
     let questionIndex = 1;
     let optionIndex = 1;
 
     entries.forEach((entry, index) => {
-        if (index % 5 === 0) {
-            surveyData[`question${questionIndex}`] = entry;
-            questionIndex++;
-            optionIndex = 1;
-        } else {
-            surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
-            optionIndex++;
-        }
+      if (index % 5 === 0) {
+        surveyData[`question${questionIndex}`] = entry;
+        questionIndex++;
+        optionIndex = 1;
+      } else {
+        surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
+        optionIndex++;
+      }
     });
 
     return surveyData;
-}
+  }
+
+  @Post('translate')
+  async translateKeywords(@Req() req) {
+    const { keywords } = req.body;
+
+    const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+    const configuration = new GoogleGenerativeAI(API_KEY);
+
+    const modelId = 'gemini-1.5-flash';
+    const model = configuration.getGenerativeModel({ model: modelId });
+
+    const chat = model.startChat();
+
+    const result = await chat.sendMessage(`translate these keywords to swedish, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
+
+    const response = await result.response;
+
+    return response.text();
+  }
 
   @Post('survey')
   async generateSurvey(@Req() req) {
@@ -195,7 +198,7 @@ async translation(@Req() req, @Res() res) {
 
     const configuration = new GoogleGenerativeAI(API_KEY);
 
-    const modelId = "gemini-1.5-flash";
+    const modelId = 'gemini-1.5-flash';
     const model = configuration.getGenerativeModel({ model: modelId });
 
     const chat = model.startChat();
