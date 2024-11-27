@@ -10,6 +10,11 @@ dotenv.config();
 export class CreatorController {
   constructor(private readonly creatorService: CreatorService) {}
 
+  @Get('/index')
+  async getIndex(@Res() res): Promise<void> {
+    return res.json('Hola');
+  }
+
   @Get('/generate-index')
   async generateIndex(@Req() req: Request, @Res() res: Response): Promise<void> {
     const data = {
