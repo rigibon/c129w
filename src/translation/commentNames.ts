@@ -158,6 +158,22 @@ const SG_names = {
     commentName5: "Ho Jia Ling",
 }
 
+const TR_names = {
+    commentName1: "Ayşe Yılmaz",
+    commentName2: "Emre Demir",
+    commentName3: "Zeynep Kaya",
+    commentName4: "Ahmet Çelik",
+    commentName5: "Elif Şahin",
+}
+
+const ZA_names = {
+    commentName1: "Thandiwe Nkosi",
+    commentName2: "Lungile Mthembu",
+    commentName3: "Naledi Dlamini",
+    commentName4: "Sipho Mabuza",
+    commentName5: "Zanele Ndlovu",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -178,5 +194,7 @@ export const commentNamesByCountry = {
     "se": SE_names,
     "cz": CZ_names,
     "pl": PL_names,
-    "sg": SG_names
+    "sg": SG_names,
+    "tr": TR_names,
+    "za": ZA_names
 };
