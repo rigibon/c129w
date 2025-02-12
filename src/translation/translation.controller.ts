@@ -23,7 +23,7 @@ export class TranslationController {
   constructor(
     private readonly translationService: TranslationService,
     private readonly brandsService: BrandsService,
-  ) {}
+  ) { }
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('files'))
@@ -114,7 +114,7 @@ export class TranslationController {
             try {
               await fs.stat(fileToRemove);
               await fs.unlink(fileToRemove);
-            } catch (error) {}
+            } catch (error) { }
           }
 
           if (err) {
@@ -198,7 +198,7 @@ export class TranslationController {
 
     const configuration = new GoogleGenerativeAI(API_KEY);
 
-    const modelId = 'gemini-1.5-flash';
+    const modelId = 'gemini-1.5-flash-8b';
     const model = configuration.getGenerativeModel({ model: modelId });
 
     const chat = model.startChat();
