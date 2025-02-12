@@ -15,7 +15,7 @@ import { CreateBrandDto } from './createbrand';
 
 @Controller('brands')
 export class BrandController {
-  constructor(private readonly BrandsService: BrandsService) {}
+  constructor(private readonly BrandsService: BrandsService) { }
 
   @Get()
   async findAll(): Promise<Brand[]> {
@@ -31,5 +31,11 @@ export class BrandController {
   async create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
     console.log(createBrandDto);
     return this.BrandsService.create(createBrandDto);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateBrandDto: CreateBrandDto): Promise<Brand> {
+    console.log('Updating brand with ID:', id);
+    return this.BrandsService.update(id, updateBrandDto);
   }
 }
