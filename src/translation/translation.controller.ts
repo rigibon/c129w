@@ -94,7 +94,12 @@ export class TranslationController {
     const baseFilesPath = path.join(__dirname, '..', 'client', 'tryetco', 'files');
 
     const translate = translateTexts === 'true';
-    await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
+
+    try {
+      await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
+    } catch (error) {
+      res.status(500).send("Error creating landing page" + error);
+    }
 
     const zipPath = path.join(outputFilePath, 'creative.zip');
 

@@ -40,8 +40,12 @@ export class TranslationService {
     var newData = { ...texts, ...newSurvey };
 
     if (configData.language !== '' && configData.language !== 'english') {
-      productData.description = await this.translateKeyword(productData.description, configData.language);
-      newData = await this.translateKeywords(JSON.stringify(newData), configData.language);
+      try {
+        productData.description = await this.translateKeyword(productData.description, configData.language);
+        newData = await this.translateKeywords(JSON.stringify(newData), configData.language);
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
 
       newData = JSON.parse(newData.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
 
@@ -96,20 +100,37 @@ export class TranslationService {
   }
 
   private async translateKeywords(keywords: any, language: string) {
-    const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    try {
+      // Replace the API key with environment variables or another secure method in a real application
+      const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
 
-    const configuration = new GoogleGenerativeAI(API_KEY);
+      // Set up the API client configuration
+      const configuration = new GoogleGenerativeAI(API_KEY);
+      const modelId = 'gemini-1.5-flash-8b'; // Replace with your model ID
+      const model = configuration.getGenerativeModel({ model: modelId });
 
-    const modelId = 'gemini-1.5-flash-8b';
-    const model = configuration.getGenerativeModel({ model: modelId });
+      // Start the chat session for translation
+      const chat = model.startChat();
 
-    const chat = model.startChat();
+      // Send the message to the model asking for the translation in JSON format
+      const message = `Translate these keywords to ${language}. Output must be the same as the input but with the keywords translated, as JSON format: ${JSON.stringify(keywords)}`;
 
-    const result = await chat.sendMessage(`translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
+      // Get the result from the model's response
+      const result = await chat.sendMessage(message);
 
-    const response = await result.response;
+      // Ensure the model returns a response
+      if (result && result.response && result.response.text) {
+        const translatedKeywords = result.response.text; // Get the text response
 
-    return response.text();
+        // Return the translated keywords in the same format as input
+        return translatedKeywords;
+      } else {
+        throw new Error('No response from model');
+      }
+    } catch (error) {
+      console.error('Error during translation:', error.message || error);
+      throw new Error('An error occurred while translating keywords.');
+    }
   }
 
   private async getTranslationPromises(textArray: Record<string, string>, language: string) {
