@@ -94,12 +94,7 @@ export class TranslationController {
     const baseFilesPath = path.join(__dirname, '..', 'client', 'tryetco', 'files');
 
     const translate = translateTexts === 'true';
-
-    try {
-      await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
-    } catch (error) {
-      res.status(500).send("Error creating landing page" + error);
-    }
+    await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
 
     const zipPath = path.join(outputFilePath, 'creative.zip');
 
@@ -182,7 +177,7 @@ export class TranslationController {
 
     const configuration = new GoogleGenerativeAI(API_KEY);
 
-    const modelId = 'gemini-1.5-flash';
+    const modelId = 'gemini-1.5-flash-8b';
     const model = configuration.getGenerativeModel({ model: modelId });
 
     const chat = model.startChat();
