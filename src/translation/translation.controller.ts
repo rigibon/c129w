@@ -86,6 +86,8 @@ export class TranslationController {
   async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
     const { productData, brandData, configData, survey } = req.body;
 
+    console.log(configData);
+
     const parsedSurvey = this.parseSurvey(survey);
 
     const templatePath = path.join(__dirname, '..', 'client', 'tryetco');
