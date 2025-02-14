@@ -38,4 +38,9 @@ export class BrandController {
     console.log('Updating brand with ID:', id);
     return this.BrandsService.update(id, updateBrandDto);
   }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<void> {
+    await this.BrandsService.remove(id);
+  }
 }

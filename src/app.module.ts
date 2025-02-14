@@ -32,4 +32,4 @@ const storage = diskStorage({
   controllers: [TranslationController, CreatorController],
   providers: [TranslationService, CreatorService],
 })
-export class AppModule {}
+export class AppModule { }

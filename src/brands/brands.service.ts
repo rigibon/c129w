@@ -34,4 +34,12 @@ export class BrandsService {
 
     return brand.save();
   }
+
+  async remove(id: string): Promise<void> {
+    const brand = await this.BrandModel.findByIdAndDelete(id);
+
+    if (!brand) {
+      throw new NotFoundException(`Brand with ID ${id} not found`);
+    }
+  }
 }
