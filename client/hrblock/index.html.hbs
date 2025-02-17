@@ -1,5 +1,72 @@
 <!DOCTYPE html>
 
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("{{wallID}}", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
 <html lang="{{langTag}}">
 
 <head>
@@ -733,10 +800,10 @@
                                         </div>
                                     </div>
                                     <a class="remove_link" target="_blank">
-                                        <img src="" style="display:none;"></img>
+                                        <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
                                         <button
                                             style="background-color: {{mainColor}} !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                            id="buttonLink_<?php echo $object->title; ?>"
+                                            id="button1"
                                             class="text-center btn-lg click_claim_btn">{{text23}}
                                             <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
                                         </button>
@@ -911,21 +978,14 @@
         <div class="footer">
             <p class="copyright">Copyright © <span class="year"></span> <a id="policy-btn">{{text38}}</a> | <a
                     id="terms-btn">{{text39}}</a></p>
-            THIS IS AN INDEPENDENT SURVEY. This website is not affiliated with or endorsed by, and does not claim to own
-            any
-            of the trademarks, trade names or rights related to any of the products which are the property of their
-            respective
-            owners, who do not own, endorse or promote this website. * Sample products offered on the last page require
-            shipping and handling. Please consult the manufacturer's website for details as terms vary with offers.
-            Please
-            review the important terms and conditions relating to this survey, site and advertisement.
+            {{text40}}
         </div>
     </div>
     <div class="bottom-bar expire-bar" style="background-color: {{mainColor}} !important;">
         <div class="bottom_bg" style="background-color: {{mainColor}} !important;"></div>
         <div class="container footer_container" style="margin: auto">
             <div class="row">
-                <div class="offer_expires expire-tx" style="color: white !important;">{{text40}} <span id="time"
+                <div class="offer_expires expire-tx" style="color: white !important;">{{text41}} <span id="time"
                         class="time" style="color: white !important;">6:30</span></div>
             </div>
         </div>
@@ -994,5 +1054,35 @@
         }
     </script>
 </body>
+
+<script>
+    document.getElementById('button1').addEventListener("click",function(){
+        var urlParams = new URLSearchParams(window.location.search);
+        
+        window.location.href = jumpurl ;
+    },false);
+</script>
+
+<?php
+        if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+        {
+            $aff_id = "2";
+            if (!empty($_GET["s"])) {
+                $aff_id = $_GET["s"];
+            }
+            
+            $trk_urls = [
+                "https://" . $_GET["trk"] . "/click/20"
+            ];
+            
+            echo getPushCode("us", $aff_id, $trk_urls);
+        }
+        ?>
+        
+        <?php
+        $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+        
+        echo getBackButton($backbutton_url);
+?>
 
 </html>
