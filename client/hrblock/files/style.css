@@ -1,0 +1,127 @@
+body{display: block;
+background-color: white !important;}
+body{
+    /* background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/acehardwarebg_new.jpg)no-repeat!important;
+    background-size: cover!important;
+    background-attachment: fixed!important; */
+    /* background: rgb(255,255,255); */
+    /* background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(235,58,50,0.3015800070028011) 100%); */
+}
+.icon-comments:before {
+content: "\e900";
+}
+.bg-color {background-color: #f2f2f2 !important;}
+.top_bar, .continue, .choices .answerOption, .remove_link button{
+    background-color: rgb(227, 24, 55) !important;
+    -webkit-box-shadow: 0 2px 0 #c43028!important;
+    box-shadow: 0 2px 0 #c43028!important;
+}
+.btn-color {background-color: rgb(227, 24, 55) !important;}
+.btn-tx {color: #ffffff !important;}
+.btxh-color:hover {color: #ffffff !important;}
+.btnh-color:hover {background-color: #c43028 !important;}
+.btnh-tx-color:hover {color: #ffffff !important;}
+.bh-color:hover, .choices .answerOption:hover{background-color: #c43028 !important;}
+.time {color: #e32626 !important;}
+/* .hd {background-color: #fff !important;} */
+.hd-top {background-color: rgb(227, 24, 55) !important;}
+.hd-top-tx {color: #ffffff !important;}
+.front-progress {background-color: rgb(227, 24, 55) !important;}
+.progress {background-color: #e3e3e3 !important;}
+.date-tx {color: #000000 !important;}
+.date-border {border-color: #ededed !important;}
+.expire-tx {color: #000000 !important;}
+.expire-bar {background-color: #e8e8e8 !important;}
+.date-bg {background-color: #fcfcfc !important;}
+.hd-top.hd-top-tx{
+    background-color: rgb(227, 24, 55) !important;
+    color: #fff !important;
+}
+.marqueeStyle .mr-2{
+    fill: #fff;
+}
+.modal-header{
+background-color: #fff !important;
+}
+.text-center .logo-container{
+max-width: 290px;
+margin-bottom: -5px;
+margin-top: 0;
+max-height: 100%;
+}
+.text-center .logo-container{
+    max-width: 100%;
+}
+.site-logo{
+    text-indent: 0;
+    color: rgb(227, 24, 55);
+    font-size: 50px;
+    font-weight: 700;
+    margin: -5px auto -10px;
+}
+/* .congrat_block,
+.loader_label,
+.reward-page .thankyou-text2{
+    background-image: linear-gradient(to right, rgb(227, 24, 55), #eb433b, #eb4c43, #ea544c, #e95b54, #e95b54, #e95b54, #e95b54, #ea544c, #eb4c43, #eb433b, rgb(227, 24, 55));
+} */
+.sub_title.container{
+    display: block;
+}
+.rl_ogo .logo-container span.site-logo{
+    text-indent: -9999px;
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/r_logo_style/acehardware_logo.png) no-repeat;
+    width: 130px;
+    height: 96px;
+    background-size: cover;
+    margin: 5px auto 10px;
+}   
+.rl_ogo .text-center .logo-container{
+    max-height: 80px;
+}
+.rlt_logo{
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/r_logo_style/acehardware_logo.png) no-repeat;
+    width: 130px;
+    height: 80px;
+    background-size: cover;
+    margin: 5px auto 15px;
+}  
+.congrats_block, .tga_tt{
+    color: rgb(227, 24, 55);
+}
+#prod-img {
+    width: 300px;
+}
+@media only screen and (max-width: 700px) {
+    #prod-img {
+        width: 170px;
+    }
+}
+@media only screen and (max-width: 500px){
+    .bh-color:hover {background-color: #c43028 !important;}
+    .bh-color:active {background-color: #c43028 !important;}
+    .btxh-color:hover {color: #ffffff !important;}
+    .btxh-color:active {color: #ffffff !important;}
+    .text-center .logo-container {
+        max-width: 100%;
+        margin-bottom: 10px;
+        margin-top: 0px;
+    }
+    .site-logo {
+        text-indent: 0;
+        color: rgb(227, 24, 55);
+        font-size: 40px;
+        font-weight: 700;
+        margin: -5px auto -18px;
+    }
+    .rl_ogo .logo-container span.site-logo{
+        width: 100px;
+        height: 61px;
+        margin: 5px auto 10px;
+    }   
+    .rlt_logo{
+        width: 110px;
+        height: 68px;
+        background-size: cover;
+        margin: 5px auto 0px;
+    }
+} 
