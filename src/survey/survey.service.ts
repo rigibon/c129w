@@ -143,12 +143,13 @@ export class SurveyService {
             try {
                 texts = await this.translateKeywords(JSON.stringify(texts), config.language);
                 texts = JSON.parse(texts.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-                texts = { ...texts, ...config };
             } catch (error) {
                 console.error(`Error translating keywords: ${error.message}`);
                 throw new Error('Failed to translate texts');
             }
         }
+
+        texts = { ...texts, ...config };
 
         var html;
         try {

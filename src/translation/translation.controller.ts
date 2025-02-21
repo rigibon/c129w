@@ -34,10 +34,18 @@ export class TranslationController {
 		}
 
 		try {
-			const newDirPath = path.join(__dirname, '..', 'client', req.body.directory);
+			var newDirPath;
+
+			if (req.body.directory && req.body.directory === "creative") {
+				newDirPath = path.join(__dirname, '..', 'src', 'creative', 'templates', 'files');
+			} else {
+				newDirPath = path.join(__dirname, '..', 'client', req.body.directory);
+			}
 
 			for (const file of files) {
-				const tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+				var tempFilePath;
+				tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+
 				const newFilePath = path.join(newDirPath, file.filename);
 
 				console.log(newFilePath);

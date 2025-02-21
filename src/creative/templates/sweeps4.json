@@ -1,0 +1,23 @@
+{ 
+    "brand": "Harbor Freight",
+    "mainColor": "rgb(229, 32, 55)",
+    "secondaryColor": "rgb(0, 0, 0)",
+    "title_color_text": "#000000",
+    "description_color_text": "rgb(229, 32, 55)",
+    "text_color": "#ffffff",
+    "text_button_color": "#ffffff",
+    "button_color": "#ffffff",
+    "titleImg": "https://devsrv.neptuneads.com/us-harbp/files/logo2.png",
+    "productImg": "https://devsrv.neptuneads.com/us-harbp/files/product.png",
+    "height_creative": "950px",
+    "product": "Pittsburgh 225 Piece Tool Set",
+    "creativeTitle": "It will take you only a minute to receive this fantastic prize!",
+    "surveyTitle": "TAKE A SURVEY AND WIN A REWARD!",
+    "title": "Congratulations!",
+    "paragraph": "Share your valuable insights and win big! You've been chosen for a quick survey about store promotions at ",
+    "paragraph2": ". By participating, you could win a ",
+    "claimText": "To claim, simply take this short survey about your experience with ",
+    "buttonText": "GET STARTED NOW",
+    "unsubscribeText": "If you no longer wish to receive these emails, you may unsubscribe by clicking here",
+    "color_text_warning_1": "#666"
+}
