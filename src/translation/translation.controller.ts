@@ -38,21 +38,33 @@ export class TranslationController {
 
 			if (req.body.directory && req.body.directory === "creative") {
 				newDirPath = path.join(__dirname, '..', 'src', 'creative', 'templates', 'files');
+
+				for (const file of files) {
+					var tempFilePath;
+					tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+
+					const newFilePath = path.join(newDirPath, file.filename);
+
+					await fs.copyFile(tempFilePath, newFilePath);
+					await fs.unlink(tempFilePath);
+				}
+
+				res.json({ message: 'Files uploaded and moved successfully!' });
 			} else {
 				newDirPath = path.join(__dirname, '..', 'client', req.body.directory);
+
+				for (const file of files) {
+					var tempFilePath;
+					tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+
+					const newFilePath = path.join(newDirPath, file.filename);
+
+					console.log(newFilePath);
+					await fs.rename(tempFilePath, newFilePath);
+				}
+
+				res.json({ message: 'Files uploaded and moved successfully!' });
 			}
-
-			for (const file of files) {
-				var tempFilePath;
-				tempFilePath = path.join(__dirname, '..', 'client', file.filename);
-
-				const newFilePath = path.join(newDirPath, file.filename);
-
-				console.log(newFilePath);
-				await fs.rename(tempFilePath, newFilePath);
-			}
-
-			res.json({ message: 'Files uploaded and moved successfully!' });
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({ error: 'An error occurred while processing the files.' });
