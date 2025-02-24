@@ -1,7 +1,7 @@
 import { BadRequestException, Controller, Post, Req, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { CreativeService } from './creative.service';
 import * as path from "path";
-import { createWriteStream, promises as fs } from 'fs';
+import { copyFileSync, createReadStream, createWriteStream, promises as fs, mkdirSync, readdirSync, rmSync } from 'fs';
 import handlebars from 'handlebars';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { GoogleGenerativeAI } from '@google/generative-ai';
@@ -237,7 +237,29 @@ export class CreativeController {
             });
 
             archive.pipe(output);
-            archive.directory(sourceFolder, false);
+
+            // Step 1: Read the source folder and process the files
+            const templateFiles = readdirSync(sourceFolder);
+
+            // Filter out only the files that need to be processed (ignoring /files)
+            const creatives = ['sweeps', 'sweeps2', 'sweeps3', 'sweeps4'];
+            creatives.forEach((creative, index) => {
+                const creativeFolder = `creative${index + 1}`;
+
+                // Step 2: Create a folder for each creative and add files
+                archive.directory(path.join(sourceFolder, 'files'), `${creativeFolder}/files`);
+
+                // Step 3: Add the renamed index.html (renamed from sweeps.html)
+                const sweepsFile = path.join(sourceFolder, `${creative}.html`);
+                const indexHtmlPath = `${creativeFolder}/index.html`;
+                archive.append(createReadStream(sweepsFile), { name: indexHtmlPath });
+
+                // Step 4: Exclude sweeps.json and sweeps.html.hbs
+                // (We don't add them to the zip archive, so no need to read them)
+
+                // Step 5: Finalize and add the creative folder to the archive
+            });
+
             archive.finalize();
         });
     }
