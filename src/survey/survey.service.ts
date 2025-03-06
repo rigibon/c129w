@@ -68,6 +68,7 @@ export class SurveyService {
         texts.questionCount6 = 'Question 6 on 8';
         texts.questionCount7 = 'Question 7 on 8';
         texts.questionCount8 = 'Question 8 on 8';
+        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of the " + product.product + ", thank you!";
 
         var newSurvey = { ...survey, surveyTitle: `${brand.name} Shopper Experience Survey` };
 

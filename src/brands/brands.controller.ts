@@ -1,13 +1,14 @@
 import {
-  Get,
-  Post,
-  Body,
-  Put,
-  Delete,
-  Query,
-  Param,
-  Controller,
-  Req,
+    Get,
+    Post,
+    Body,
+    Put,
+    Delete,
+    Query,
+    Param,
+    Controller,
+    Req,
+    Res,
 } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { Brand } from 'src/schemas/brand.schema';
@@ -15,32 +16,42 @@ import { CreateBrandDto } from './createbrand';
 
 @Controller('brands')
 export class BrandController {
-  constructor(private readonly BrandsService: BrandsService) { }
+    constructor(private readonly BrandsService: BrandsService) { }
 
-  @Get()
-  async findAll(): Promise<Brand[]> {
-    return this.BrandsService.findAll();
-  }
+    @Get()
+    async findAll(): Promise<Brand[]> {
+        return this.BrandsService.findAll();
+    }
 
-  @Get(':id')
-  async findById(@Param() params: any): Promise<Brand> {
-    return this.BrandsService.findById(params.id);
-  }
+    @Get(':id')
+    async findById(@Param() params: any): Promise<Brand> {
+        return this.BrandsService.findById(params.id);
+    }
 
-  @Post("")
-  async create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
-    console.log(createBrandDto);
-    return this.BrandsService.create(createBrandDto);
-  }
+    @Post("")
+    async create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
+        console.log(createBrandDto);
+        return this.BrandsService.create(createBrandDto);
+    }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() updateBrandDto: CreateBrandDto): Promise<Brand> {
-    console.log('Updating brand with ID:', id);
-    return this.BrandsService.update(id, updateBrandDto);
-  }
+    @Put(':id')
+    async update(@Param('id') id: string, @Body() updateBrandDto: CreateBrandDto): Promise<Brand> {
+        console.log('Updating brand with ID:', id);
+        return this.BrandsService.update(id, updateBrandDto);
+    }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string): Promise<void> {
-    await this.BrandsService.remove(id);
-  }
+    @Delete(':id')
+    async remove(@Param('id') id: string): Promise<void> {
+        await this.BrandsService.remove(id);
+    }
+
+    @Post('suggestions')
+    async getBrandSuggestions(@Req() req, @Res() res) {
+        const { product, geo } = req.body;
+
+        const suggestions = await this.BrandsService.getBrandSuggestions(product, geo);
+        console.log(suggestions);
+
+        return res.status(200).json({ message: suggestions });
+    }
 }
