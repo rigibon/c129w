@@ -75,6 +75,10 @@ export class SurveyService {
         texts = { ...texts, ...newSurvey };
     }
 
+    async addCustomKeywords2(template, texts, product, brand, survey, config) {
+        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of the " + product.product + ", thank you!";
+    }
+
     async addCustomComments(geo, templateName) {
         try {
             for (var i = 1; i <= 5; i++) {
@@ -128,6 +132,10 @@ export class SurveyService {
 
             if (config.templateName === "tryetco") {
                 this.addCustomKeywords("tryetco", texts, product, brand, survey, config);
+            }
+
+            if (config.templateName === "hrblock") {
+                this.addCustomKeywords2("tryetco", texts, product, brand, survey, config);
             }
 
             var parsedSurvey = this.parseSurvey(survey);
