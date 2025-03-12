@@ -1,0 +1,939 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweepstake Landing</title>
+    <link rel="stylesheet" href="./files/styles2.css" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body class="min-h-screen bg-slate-50">
+    <header class="bg-brand text-white top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <!-- <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center"> -->
+                <!-- <span class="text-brand font-bold text-lg">Walmart</span> -->
+                <!-- </div> -->
+                <span class="text-white">Independent Customer Survey</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-1 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-clock h-4 w-4">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>March 5, 2025</span>
+                </div>
+                <div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-timer h-4 w-4">
+                        <line x1="10" x2="14" y1="2" y2="2"></line>
+                        <line x1="12" x2="15" y1="14" y2="11"></line>
+                        <circle cx="12" cy="14" r="8"></circle>
+                    </svg>
+                    <span id="timer">6:04</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pb-8 md:pb-12" id="main-content">
+        <div class="flex justify-center align-center">
+            <img src="./files/wlogo.png" class="py-4" style="width: 200px !important;" />
+        </div>
+        <div id="content-placeholder2 relative flex justify-center align-center">
+
+            <!-- renderWelcome() -->
+            <div class="max-w-5xl mx-auto" id="renderWelcome">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="order-2 md:order-1">
+                        <span class="text-white px-3 py-1 mb-4 inline-block bg-brand-secondary"
+                            style="height: 24px; font-size: 12px; border-radius: 50px;">Exclusive Offer</span>
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+                            Win a Brand New
+                            Professional Parkside Tool Set!
+                        </h1>
+                        <p class="text-slate-600 mb-6">
+                            Share your shopping experience with
+                            Walmart
+                            and get a chance to win a
+                            Professional Parkside Tool Set
+                            worth over
+                            €299.
+                        </p>
+                        <div class="flex flex-col gap-4 mb-8">
+                        </div>
+                        <button onclick="startSurvey();"
+                            class="inline-flex items-center justify-center ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 w-full md:w-auto py-7 px-10 text-lg font-semibold bg-gradient-to-r bg-brand bg-brand-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer">START
+                            SURVEY
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-chevron-right ml-2 h-5 w-5">
+                                <path d="m9 18 6-6-6-6"></path>
+                            </svg></button>
+                    </div>
+                    <div
+                        class="order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8">
+                        <img src="./files/product.png" alt="Parkside Professional Tool Set"
+                            class="object-contain w-full h-auto" />
+                    </div>
+                </div>
+                <div class="mt-16 pt-8 border-t border-zinc-200">
+                    <h2 class="text-xl font-semibold text-center text-slate-800 mb-6">What The Customers Say About
+                        Walmart</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200"
+                            data-v0-t="card">
+                            <div class="p-6">
+                                <div class="flex items-start gap-4"><span
+                                        class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
+                                            class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white">T</span></span>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1"><span
+                                                class="font-medium text-slate-900">Thomas K.</span><span
+                                                class="text-xs text-slate-500"></span></div>
+                                        <div class="flex mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg></div>
+                                        <p class="text-sm text-slate-600">Been using Parkside tools for years.
+                                            Professional quality at an amazing price point.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200"
+                            data-v0-t="card">
+                            <div class="p-6">
+                                <div class="flex items-start gap-4"><span
+                                        class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
+                                            class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white">M</span></span>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1"><span
+                                                class="font-medium text-slate-900">Maria S.</span><span
+                                                class="text-xs text-slate-500"></span></div>
+                                        <div class="flex mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg></div>
+                                        <p class="text-sm text-slate-600">The cordless drill is fantastic! Perfect for
+                                            both DIY and professional use.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200"
+                            data-v0-t="card">
+                            <div class="p-6">
+                                <div class="flex items-start gap-4"><span
+                                        class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
+                                            class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white">R</span></span>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1"><span
+                                                class="font-medium text-slate-900">Robert M.</span><span
+                                                class="text-xs text-slate-500"></span></div>
+                                        <div class="flex mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star w-4 h-4 text-brand fill-current">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                </polygon>
+                                            </svg></div>
+                                        <p class="text-sm text-slate-600">Great value for money. The tool set has
+                                            everything you need for home projects.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- renderSurvey() -->
+            <div class="max-w-2xl mx-auto hidden-class" id="renderSurvey">
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8" id="question1">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 1 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How often do you shop at Walmart? <br /></h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(2);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Multiple
+                                times a week</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(2);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Once
+                                a week</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(2);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">A
+                                few times a month</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(2);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Once
+                                a month</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(2);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Less
+                                than once a month</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 12.5%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 1</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question2">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 2 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How satisfied are you with the quality of
+                            Walmart products?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(3);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                satisfied</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(3);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Satisfied</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(3);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Neutral</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(3);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Dissatisfied</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(3);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                dissatisfied</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 25%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 2</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question3">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 3 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How would you rate the freshness of the
+                            produce at Walmart?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(4);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Excellent</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(4);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Good</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(4);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Average</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(4);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Below
+                                average</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(4);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Poor</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 37.5%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 3</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question4">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 4 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How do you usually find the prices at
+                            Walmart?
+                        </h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(5);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                affordable</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(5);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Affordable</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(5);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Average</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(5);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Expensive</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(5);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                expensive</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 50%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 4</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question5">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 5 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">If you won the Parkside Tool Set, how would
+                            you use it?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(6);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">For
+                                home improvement projects</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(6);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">For
+                                DIY repairs around the
+                                house</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(6);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">For
+                                creative crafting
+                                projects</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(6);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">For
+                                car maintenance or
+                                repairs</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(6);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">I
+                                don’t know yet</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 62.5%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 5</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question6">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 6 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How likely are you to recommend Walmart to a
+                            friend or family member?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(7);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Extremely
+                                likely</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(7);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Likely</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(7);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Neutral</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(7);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Unlikely</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(7);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Extremely
+                                unlikely</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 75%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 6</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question7">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 7 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">In terms of tools and hardware products, how
+                            well do you think Walmart meets your needs?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(8);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                well</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(8);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Well</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(8);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Neutral</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(8);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Poorly</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="nextQuestion(8);"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                poorly</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 87.5%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 7</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-0 shadow-xl p-8 hidden-class hidden" id="question8">
+                    <div class="text-center mb-8">
+                        <span class="bg-brand text-white px-3 py-1 rounded"
+                            style="border-radius: 50px; font-size: 12px;">Question 8 of 8</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-4">How would you rate your overall shopping
+                            experience at Walmart?</h2>
+                        <p class="text-slate-500 mt-2">Help us improve your shopping experience</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="showProcessing();"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Excellent</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="showProcessing();"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Good</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="showProcessing();"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Neutral</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="showProcessing();"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Poor</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="showProcessing();"
+                                class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
+                                poor</button>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand" style="width: 100%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm text-slate-500">
+                            <span>Question 8</span>
+                            <span>8 questions total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- renderProcessing() -->
+            <div class="max-w-2xl mx-auto hidden-class" id="renderProcessing">
+                <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
+                    <div class="bg-brand text-white p-8 text-center">
+                        <h2 class="text-2xl font-bold mb-2">Processing Your Response</h2>
+                        <p class="text-blue-100 mb-6">Please wait while we check your eligibility...</p>
+                        <div class="w-full h-2 rounded-full overflow-hidden mb-6 bg-brand-h">
+                            <div id="progress-bar" class="h-full bg-brand-secondary" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-4" id="steps-container">
+                        <!-- Steps will be injected here via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- renderReward() -->
+            <div class="hidden-class" id="renderReward">
+                <div class="max-w-4xl mx-auto hidden" id="renderReward2">
+                    <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
+                        <div class="bg-brand text-white p-8 text-center">
+                            <h1 class="text-3xl font-bold mb-4">Congratulations!</h1>
+                            <p class="text-lg text-blue-100">You've been selected to receive a Professional Parkside
+                                Tool Set!</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <img src="./files/product.png" alt="Parkside Professional Tool Set" width="{500}"
+                                        height="{400}" class="object-contain w-full h-auto" />
+                                </div>
+
+                                <div>
+                                    <p class="bg-brand-secondary text-white"
+                                        style="width: 110px; text-align: center; border-radius: 50px; font-size: 12px; padding: 4px; margin-bottom: 10px; font-weight: bold;">
+                                        LIMITED STOCK</p>
+                                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Professional Parkside Tool Set
+                                    </h2>
+
+                                    <div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg><span class="ml-2 text-sm text-slate-600">4.8/5 (2,942 reviews)</span>
+                                    </div>
+
+                                    <div class="space-y-4 mb-6">
+                                        <div class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-check h-5 w-5 text-emerald-600 mt-0.5">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg><span>20V Cordless Drill with 2.0Ah Battery &amp; Charger</span></div>
+                                        <div class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-check h-5 w-5 text-emerald-600 mt-0.5">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg><span>Professional-Grade Hand Tools &amp; Sockets</span></div>
+                                        <div class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-check h-5 w-5 text-emerald-600 mt-0.5">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg><span>Premium Aluminum Case for Storage</span></div>
+                                        <div class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-check h-5 w-5 text-emerald-600 mt-0.5">
+                                                <path d="M20 6 9 17l-5-5"></path>
+                                            </svg><span>3-Year Parkside Warranty Included</span></div>
+                                    </div>
+
+                                    <div class="bg-slate-50 p-4 rounded-lg mb-6">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-slate-600">Regular Price:</span>
+                                            <span class="text-slate-900 line-through">€299.99</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-lg font-bold">
+                                            <span class="text-brand">Your Price:</span>
+                                            <span class="text-brand">€0.00</span>
+                                        </div>
+                                        <div class="text-sm text-slate-500 text-center mt-2">Just pay shipping &
+                                            handling
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <button
+                                            class="w-full bg-gradient-to-r bg-brand bg-brand-hover text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+                                            Claim Your Tool Set Now
+                                        </button>
+
+                                        <div class="flex items-center justify-center gap-2 text-sm text-slate-500"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-clock h-4 w-4">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg><span>Offer expires in: <span id="timer2"></span></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mt-8">
+                    <div class="border-0 shadow-xl" style="border-radius: 12px;">
+                        <div class="p-8">
+                            <h2 class="text-xl font-semibold mb-6">Recent Comments:</h2>
+
+                            <div class="space-y-6">
+                                <div class="flex gap-4"><span
+                                        class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
+                                            class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white">Y</span></span>
+                                    <div class="flex-1">
+                                        <div class="relative"><input placeholder="Write a comment..."
+                                                class="w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent"
+                                                type="text" /><button
+                                                class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="comments-list" class="space-y-6">
+                                    <div class="comment-container">
+                                        <div class="avatar"><img src="./files/1_us.jpg" style="border-radius: 50%;" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-name">Hannah Weber</span>
+                                                <span class="comment-time">2 hours ago</span>
+                                                <span class="verified-badge">Verified</span>
+                                            </div>
+                                            <p class="comment-text">War erst skeptisch bei der Umfrage, aber das
+                                                Parkside Set ist wirklich angekommen! Perfekt für meine DIY Projekte.
+                                            </p>
+                                            <button class="like-button">
+                                                <svg class="like-icon" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>27</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-container">
+                                        <div class="avatar"><img src="./files/2_us.jpg" style="border-radius: 50%;" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-name">Markus Schmidt</span>
+                                                <span class="comment-time">8 hours ago</span>
+                                                <span class="verified-badge">Verified</span>
+                                            </div>
+                                            <p class="comment-text">Die Umfrage hat nur 5 Minuten gedauert und der
+                                                Versand war super schnell. Kann ich nur empfehlen! 👍</p>
+                                            <button class="like-button">
+                                                <svg class="like-icon" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>22</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-container">
+                                        <div class="avatar"><img src="./files/3_us.jpg" style="border-radius: 50%;" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-name">Laura Fischer</span>
+                                                <span class="comment-time">1 day ago</span>
+                                                <span class="verified-badge">Verified</span>
+                                            </div>
+                                            <p class="comment-text">Habe mitgemacht aber noch nichts bekommen... Hoffe
+                                                es klappt noch!</p>
+                                            <button class="like-button">
+                                                <svg class="like-icon" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>8</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-container">
+                                        <div class="avatar"><img src="./files/4_us.jpg" style="border-radius: 50%;" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-name">Thomas Becker</span>
+                                                <span class="comment-time">1 day ago</span>
+                                                <!-- <span class="verified-badge">Verified</span> -->
+                                            </div>
+                                            <p class="comment-text">Normalerweise mache ich bei sowas nicht mit, aber
+                                                das Werkzeugset ist echt klasse. Besonders der Koffer ist sehr
+                                                hochwertig verarbeitet.</p>
+                                            <button class="like-button">
+                                                <svg class="like-icon" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>45</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-container">
+                                        <div class="avatar"><img src="./files/5_us.jpg" style="border-radius: 50%;" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-name">Mila Schneider</span>
+                                                <span class="comment-time">1 day ago</span>
+                                                <span class="verified-badge">Verified</span>
+                                            </div>
+                                            <p class="comment-text">Gerade das Werkzeugset bekommen - die Qualität ist
+                                                echt überraschend gut! Der Akkubohrer ist besonders beeindruckend. Danke
+                                                Walmart! 🛠️</p>
+                                            <button class="like-button">
+                                                <svg class="like-icon" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                                    </path>
+                                                </svg>
+                                                <span>34</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="bg-white border-t mt-140 border-zinc-200">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-slate-600">Copyright &copy; 2025</div>
+                <div class="flex gap-6">
+                    <a href="#" class="text-sm text-slate-600 hover:text-brand">Privacy Policy</a>
+                    <a href="#" class="text-sm text-slate-600 hover:text-brand">Terms of Service</a>
+                    <a href="#" class="text-sm text-slate-600 hover:text-brand">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="mt-14 text-center text-[12px] text-slate-600">
+                This website is not affiliated with or endorsed by
+                Walmart
+                or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights
+                associated with any of the products which are the property of their respective owners
+                who do not own, endorse, or promote this website. *Products offered on the last page require shipping
+                and handling fees. See manufacturer's site for details as terms vary with offers. See
+                important terms and conditions regarding this survey, website and advertisement.
+                <br />*Important: Shipping costs may apply.<br />
+            </div>
+        </div>
+    </div>
+
+    <script src="./files/script.js?v=119"></script>
+    <script>
+        const progressBar = document.getElementById("progress-bar"); progressBar.style.color = `#ffc220`; progressBar.style.backgroundColor = `#ffc220`; var bg = "bg-[#0071ce]";
+        var text = "text-[#0071ce]"; var border = "border-[#0071ce]"; var bgHover = "hover:bg-[#1182df]"; var focusRing = "focus:ring-[#0071ce]"; var bgSecondary = "bg-[#ffc220]";
+        var bgLight = "bg-[#1182df]"; var bgs = document.querySelectorAll(".bg-brand"); var texts = document.querySelectorAll(".text-brand"); var borders =
+            document.querySelectorAll(".text-brand"); var bgHovers = document.querySelectorAll(".bg-brand-hover"); var focusRings = document.querySelectorAll(".brand-focus-ring"); var bgsSecondary =
+                document.querySelectorAll(".bg-brand-secondary"); var bgsLight = document.querySelectorAll(".bg-brand-h"); bgs.forEach(function (element) { element.classList.add(bg); }); texts.forEach(function
+                    (element) { element.classList.add(text); }); borders.forEach(function (element) { element.classList.add(border); }); bgHovers.forEach(function (element) { element.classList.add(bgHover); });
+        focusRings.forEach(function (element) { element.classList.add(focusRing); }); bgsSecondary.forEach(function (element) { element.classList.add(bgSecondary); }); bgsLight.forEach(function
+            (element) { element.classList.add(bgLight); });
+    </script>
+</body>
+
+</html>

