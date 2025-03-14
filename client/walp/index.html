@@ -41,6 +41,9 @@
                     </svg>
                     <span id="timer">6:04</span>
                 </div>
+                <span class="date-flag date-border date-bg rounded-full">
+                    <img style="width:25px" class="flag" src="./files/flaglogo.png?v=12" alt="Flag">
+                </span>
             </div>
         </div>
     </header>
@@ -328,15 +331,6 @@
                                 than once a month</button>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 12.5%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 1</span>
-                            <span>8 questions total</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question2">
@@ -369,15 +363,6 @@
                             <button onclick="nextQuestion(3);"
                                 class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
                                 dissatisfied</button>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 25%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 2</span>
-                            <span>8 questions total</span>
                         </div>
                     </div>
                 </div>
@@ -413,15 +398,6 @@
                                 class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Poor</button>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 37.5%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 3</span>
-                            <span>8 questions total</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question4">
@@ -454,15 +430,6 @@
                             <button onclick="nextQuestion(5);"
                                 class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Very
                                 expensive</button>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 50%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 4</span>
-                            <span>8 questions total</span>
                         </div>
                     </div>
                 </div>
@@ -506,15 +473,6 @@
                                 don’t know yet</button>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 62.5%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 5</span>
-                            <span>8 questions total</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question6">
@@ -547,15 +505,6 @@
                             <button onclick="nextQuestion(7);"
                                 class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Extremely
                                 unlikely</button>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 75%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 6</span>
-                            <span>8 questions total</span>
                         </div>
                     </div>
                 </div>
@@ -592,15 +541,6 @@
                                 poorly</button>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 87.5%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 7</span>
-                            <span>8 questions total</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="border-0 shadow-xl p-8 hidden-class hidden" id="question8">
@@ -634,14 +574,14 @@
                                 poor</button>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-brand" style="width: 100%;"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-slate-500">
-                            <span>Question 8</span>
-                            <span>8 questions total</span>
-                        </div>
+                </div>
+                <div class="mt-8">
+                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-brand" style="width: 12.5%;" id="progress-bar2"></div>
+                    </div>
+                    <div class="flex justify-between mt-2 text-sm text-slate-500">
+                        <span id="question-number">Question 1</span>
+                        <span>8 questions total</span>
                     </div>
                 </div>
             </div>
@@ -653,7 +593,7 @@
                         <h2 class="text-2xl font-bold mb-2">Processing Your Response</h2>
                         <p class="text-blue-100 mb-6">Please wait while we check your eligibility...</p>
                         <div class="w-full h-2 bg-white/20 rounded-full overflow-hidden mb-6">
-                            <div id="progress-bar" class="h-full bg-brand" style="width: 0%;"></div>
+                            <div id="progress-bar" class="h-full bg-white" style="width: 0%;"></div>
                         </div>
                     </div>
                     <div class="p-8 space-y-4" id="steps-container">
@@ -964,7 +904,7 @@
         </div>
     </div>
 
-    <script src="./files/script.js?v=119"></script>
+    <script src="./files/script.js?v=125"></script>
     <script>
         var bg = "bg-[#0050AA]";
         var text = "text-[#0050AA]";

@@ -128,3 +128,54 @@
   flex: 1;
   padding: 20px;
 }
+
+/* Pulse effect on completed steps */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 5px rgba(0, 255, 0, 0.3),
+      0 0 15px rgba(0, 255, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 10px rgba(0, 255, 0, 0.4),
+      0 0 25px rgba(0, 255, 0, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 5px rgba(0, 255, 0, 0.3),
+      0 0 15px rgba(0, 255, 0, 0.2);
+  }
+}
+
+/* Scale up on completion */
+.step-completed {
+  background-color: #10b981; /* Emerald background */
+  color: #064e3b; /* Emerald text */
+  animation: pulse 1s ease-out infinite;
+}
+
+/* Step item smooth slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fade-in for steps */
+.step-item {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Text color transition for smooth change */
+.step-text {
+  transition: color 0.3s ease;
+}

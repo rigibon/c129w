@@ -76,7 +76,34 @@ export class SurveyService {
     }
 
     async addCustomKeywords2(template, texts, product, brand, survey, config) {
+        texts.questionCount1 = 'Question 1 on 8';
+        texts.questionCount2 = 'Question 2 on 8';
+        texts.questionCount3 = 'Question 3 on 8';
+        texts.questionCount4 = 'Question 4 on 8';
+        texts.questionCount5 = 'Question 5 on 8';
+        texts.questionCount6 = 'Question 6 on 8';
+        texts.questionCount7 = 'Question 7 on 8';
+        texts.questionCount8 = 'Question 8 on 8';
+
         texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of the " + product.product + ", thank you!";
+    }
+
+    async addCustomKeywords3(template, texts, product, brand, survey, config) {
+        texts.questionCount1 = 'Question 1 on 8';
+        texts.questionCount2 = 'Question 2 on 8';
+        texts.questionCount3 = 'Question 3 on 8';
+        texts.questionCount4 = 'Question 4 on 8';
+        texts.questionCount5 = 'Question 5 on 8';
+        texts.questionCount6 = 'Question 6 on 8';
+        texts.questionCount7 = 'Question 7 on 8';
+        texts.questionCount8 = 'Question 8 on 8';
+
+        texts.text2 = "Win a " + product.product + "!";
+        texts.text5 = "What The Customers Say About This Product";
+        texts.text3 = "Share your shopping experience with " + brand.name + " and get a chance to win a " + product.product + " worth over " + config.currency + product.price + ".";
+        texts.text9 = "You've been selected to receive a " + product.product;
+
+        texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + "or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
     }
 
     async addCustomComments(geo, templateName) {
@@ -90,6 +117,23 @@ export class SurveyService {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    async generateReviews(product) {
+        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+        const configuration = new GoogleGenerativeAI(API_KEY);
+
+        const modelId = 'gemini-1.5-flash-8b';
+        const model = configuration.getGenerativeModel({ model: modelId });
+
+        const chat = model.startChat();
+
+        const result = await chat.sendMessage(`generate 3 short positive reviews for this product: ${product}, output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`);
+
+        const response = await result.response;
+
+        return response.text();
     }
 
     private parseSurvey(surveyString: string): Record<string, string> {
@@ -126,6 +170,10 @@ export class SurveyService {
             throw new Error('Failed to read or compile template');
         }
 
+        var reviews = await this.generateReviews(product.product);
+
+        var newReviews = JSON.parse(reviews.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
+
         var texts;
         try {
             texts = await this.readTexts(textsFilePath);
@@ -138,11 +186,15 @@ export class SurveyService {
                 this.addCustomKeywords2("tryetco", texts, product, brand, survey, config);
             }
 
+            if (config.templateName === "walp") {
+                this.addCustomKeywords3("tryetco", texts, product, brand, survey, config);
+            }
+
             var parsedSurvey = this.parseSurvey(survey);
 
             parsedSurvey = { ...parsedSurvey, surveyTitle: `${brand.name} Shopper Experience Survey` };
 
-            texts = { ...texts, ...product, ...brand, ...parsedSurvey, ...commentNamesByCountry[config.geo] };
+            texts = { ...texts, ...product, ...brand, ...parsedSurvey, ...commentNamesByCountry[config.geo], ...newReviews };
         } catch (error) {
             console.error(`Error reading texts: ${error.message}`);
             throw new Error('Failed to read texts');
@@ -151,6 +203,7 @@ export class SurveyService {
         if (config.language !== '' && config.language !== 'english') {
             try {
                 texts = await this.translateKeywords(JSON.stringify(texts), config.language);
+                console.log(texts);
                 texts = JSON.parse(texts.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
             } catch (error) {
                 console.error(`Error translating keywords: ${error.message}`);

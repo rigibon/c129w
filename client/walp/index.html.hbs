@@ -1,82 +1,134 @@
-<html lang="en">
+<!DOCTYPE html>
+
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("{{wallID}}", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+<html lang="{{langTag}}">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/{{folderName}}/">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Customer Survey</title>
-    <link rel="stylesheet" href="./files/styles2.css" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="./files/{{favicon}}">
+    <link rel='stylesheet' href='./files/styles2.css' />
+    <script src='https://unpkg.com/@tailwindcss/browser@4'></script>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' rel='stylesheet' />
   </head>
 
-  <body class="min-h-screen bg-slate-50">
-    <header class="bg-brand text-white top-0 z-10">
-      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-2">
+  <body class='min-h-screen bg-slate-50'>
+    <header class='bg-brand text-white top-0 z-10'>
+      <div class='container mx-auto px-4 py-3 flex items-center justify-between'>
+        <div class='flex items-center gap-2'>
           <!-- <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center"> -->
           <!-- <span class="text-brand font-bold text-lg">{{brand}}</span> -->
           <!-- </div> -->
-          <span class="text-white">{{title}}</span>
+          <span class='text-white'>{{title}}</span>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="hidden md:flex items-center gap-1 text-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-clock h-4 w-4"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
+        <div class='flex items-center gap-3'>
+          <div class='hidden md:flex items-center gap-1 text-sm'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-clock h-4 w-4'>
+              <circle cx='12' cy='12' r='10'></circle>
+              <polyline points='12 6 12 12 16 14'></polyline>
             </svg>
             <span>March 5, 2025</span>
           </div>
-          <div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-timer h-4 w-4"
-            >
-              <line x1="10" x2="14" y1="2" y2="2"></line>
-              <line x1="12" x2="15" y1="14" y2="11"></line>
-              <circle cx="12" cy="14" r="8"></circle>
+          <div class='flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-timer h-4 w-4'>
+              <line x1='10' x2='14' y1='2' y2='2'></line>
+              <line x1='12' x2='15' y1='14' y2='11'></line>
+              <circle cx='12' cy='14' r='8'></circle>
             </svg>
-            <span id="timer">6:04</span>
+            <span id='timer'>6:04</span>
           </div>
+          <span class="date-flag date-border date-bg rounded-full">
+              <img style="width:20px" class="flag" src="./files/flaglogo.png" alt="Flag">
+          </span>
         </div>
       </div>
     </header>
 
-    <main class="container mx-auto px-4 pb-8 md:pb-12" id="main-content">
-      <div class="flex justify-center align-center">
-        <img src="./files/{{brandLogo}}" class="py-4" style="width: 200px !important;" />
+    <main class='container mx-auto px-4 pb-8 md:pb-12' id='main-content'>
+      <div class='flex justify-center align-center'>
+        <img src='./files/{{brandLogo}}' class='py-4' style='width: 200px !important;' />
       </div>
-      <div id="content-placeholder2 relative flex justify-center align-center">
+      <div id='content-placeholder2 relative flex justify-center align-center'>
 
         <!-- renderWelcome() -->
-        <div class="max-w-5xl mx-auto" id="renderWelcome">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="order-2 md:order-1">
-              <span class="text-white px-3 py-1 mb-4 inline-block bg-brand-secondary" style="height: 24px; font-size: 12px; border-radius: 50px;">{{text1}}</span>
-              <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+        <div class='max-w-5xl mx-auto' id='renderWelcome'>
+          <div class='grid md:grid-cols-2 gap-8'>
+            <div class='order-2 md:order-1'>
+              <span class='text-white px-3 py-1 mb-4 inline-block bg-brand-secondary' style='height: 24px; font-size: 12px; border-radius: 50px;'>{{text1}}</span>
+              <h1 class='text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4'>
                 {{text2}}
               </h1>
-              <p class="text-slate-600 mb-6">
+              <p class='text-slate-600 mb-6'>
                 {{text3}}
               </p>
-              <div class="flex flex-col gap-4 mb-8">
+              <div class='flex flex-col gap-4 mb-8'>
                 {{! <div class="flex items-center gap-3">
                   <div class="w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
                     <svg
@@ -141,276 +193,94 @@
                 </div> }}
               </div>
               <button
-                onclick="startSurvey();"
-                class="inline-flex items-center justify-center ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 w-full md:w-auto py-7 px-10 text-lg font-semibold bg-gradient-to-r bg-brand bg-brand-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer"
+                onclick='startSurvey();'
+                class='inline-flex items-center justify-center ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 w-full md:w-auto py-7 px-10 text-lg font-semibold bg-gradient-to-r bg-brand bg-brand-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer'
               >{{text4}}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-chevron-right ml-2 h-5 w-5"
-                >
-                  <path d="m9 18 6-6-6-6"></path>
+                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-right ml-2 h-5 w-5'>
+                  <path d='m9 18 6-6-6-6'></path>
                 </svg></button>
             </div>
-            <div class="order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8">
-              <img src="./files/{{productImage}}" alt="Parkside Professional Tool Set" class="object-contain w-full h-auto" />
+            <div class='order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8'>
+              <img src='./files/{{productImage}}' alt='Parkside Professional Tool Set' class='object-contain w-full h-auto' />
             </div>
           </div>
-          <div class="mt-16 pt-8 border-t border-zinc-200">
-            <h2 class="text-xl font-semibold text-center text-slate-800 mb-6">{{text5}}</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >T</span></span>
+          <div class='mt-16 pt-8 border-t border-zinc-200'>
+            <h2 class='text-xl font-semibold text-center text-slate-800 mb-6'>{{text5}}</h2>
+            <div class='grid md:grid-cols-3 gap-6'>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>T</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Thomas K.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Thomas K.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">{{review1}}</p>
+                      <p class='text-sm text-slate-600'>{{review1}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >M</span></span>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>M</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Maria S.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Maria S.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">{{review2}}</p>
+                      <p class='text-sm text-slate-600'>{{review2}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >R</span></span>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>R</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Robert M.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Robert M.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">{{review3}}</p>
+                      <p class='text-sm text-slate-600'>{{review3}}</p>
                     </div>
                   </div>
                 </div>
@@ -420,405 +290,341 @@
         </div>
 
         <!-- renderSurvey() -->
-        <div class="max-w-2xl mx-auto hidden-class" id="renderSurvey">
+        <div class='max-w-2xl mx-auto hidden-class' id='renderSurvey'>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8" id="question1">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount1}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question1}} <br /></h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8' id='question1'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount1}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question1}} <br /></h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option1_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option1_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option1_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option1_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option1_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option1_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option1_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option1_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 12.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 1</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question2">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount2}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question2}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question2'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount2}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question2}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option2_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option2_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option2_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option2_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option2_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option2_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option2_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option2_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 25%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 2</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question3">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount3}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question3}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question3'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount3}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question3}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option3_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option3_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option3_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option3_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option3_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option3_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option3_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option3_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 37.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 3</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question4">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount4}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question4}}
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question4'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount4}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question4}}
               </h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option4_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option4_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option4_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option4_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option4_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option4_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option4_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option4_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 50%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 4</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question5">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount5}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question5}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question5'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount5}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question5}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option5_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option5_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option5_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option5_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option5_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option5_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option5_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option5_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 62.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 5</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question6">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount6}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question6}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question6'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount6}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question6}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option6_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option6_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option6_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option6_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option6_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option6_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option6_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option6_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 75%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 6</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question7">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount7}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question7}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question7'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount7}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question7}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option7_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option7_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option7_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option7_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option7_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option7_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option7_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option7_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 87.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 7</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
 
-          <div class="border-0 shadow-xl p-8 hidden-class hidden" id="question8">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;">{{questionCount8}}</span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">{{question8}}</h2>
-              <p class="text-slate-500 mt-2">{{surveyTitle}}</p>
+          <div class='border-0 shadow-xl p-8 hidden-class hidden' id='question8'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>{{questionCount8}}</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>{{question8}}</h2>
+              <p class='text-slate-500 mt-2'>{{surveyTitle}}</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option8_1}}</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option8_1}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option8_2}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option8_2}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option8_3}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option8_3}}</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">{{option8_4}}</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>{{option8_4}}</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 100%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
                 <span>{{question}} 8</span>
                 <span>{{totalQuestions}}</span>
               </div>
             </div>
           </div>
+          <div class='w-full bg-slate-100 h-2 rounded-full overflow-hidden'>
+                <div class='h-full bg-brand' style='width: 12.5%;' id="progress-bar2"></div>
+              </div>
         </div>
 
         <!-- renderProcessing() -->
-        <div class="max-w-2xl mx-auto hidden-class" id="renderProcessing">
-          <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
-            <div class="bg-brand text-white p-8 text-center">
-              <h2 class="text-2xl font-bold mb-2">{{text6}}</h2>
-              <p class="text-blue-100 mb-6">{{text7}}</p>
-              <div class="w-full h-2 rounded-full overflow-hidden mb-6 bg-brand-h">
-                <div id="progress-bar" class="h-full bg-brand-secondary" style="width: 0%;"></div>
+        <div class='max-w-2xl mx-auto hidden-class' id='renderProcessing'>
+          <div class='border-0 shadow-xl overflow-hidden' style='border-radius: 12px;'>
+            <div class='bg-brand text-white p-8 text-center'>
+              <h2 class='text-2xl font-bold mb-2'>{{text6}}</h2>
+              <p class='text-blue-100 mb-6'>{{text7}}</p>
+              <div class='w-full h-2 rounded-full overflow-hidden mb-6 bg-brand-h'>
+                <div id='progress-bar' class='h-full bg-brand-secondary' style='width: 0%;'></div>
               </div>
             </div>
-            <div class="p-8 space-y-4" id="steps-container">
+            <div class='p-8 space-y-4' id='steps-container'>
               <!-- Steps will be injected here via JavaScript -->
             </div>
           </div>
         </div>
 
         <!-- renderReward() -->
-        <div class="hidden-class" id="renderReward">
-          <div class="max-w-4xl mx-auto hidden" id="renderReward2">
-            <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
-              <div class="bg-brand text-white p-8 text-center">
-                <h1 class="text-3xl font-bold mb-4">{{text8}}</h1>
-                <p class="text-lg text-blue-100">{{text9}}</p>
+        <div class='hidden-class' id='renderReward'>
+          <div class='max-w-4xl mx-auto hidden' id='renderReward2'>
+            <div class='border-0 shadow-xl overflow-hidden' style='border-radius: 12px;'>
+              <div class='bg-brand text-white p-8 text-center'>
+                <h1 class='text-3xl font-bold mb-4'>{{text8}}</h1>
+                <p class='text-lg text-blue-100'>{{text9}}</p>
               </div>
 
-              <div class="p-8">
-                <div class="grid md:grid-cols-2 gap-8">
+              <div class='p-8'>
+                <div class='grid md:grid-cols-2 gap-8'>
                   <div>
-                    <img src="./files/{{productImage}}" alt="Parkside Professional Tool Set" width="{500}" height="{400}" class="object-contain w-full h-auto" />
+                    <img src='./files/{{productImage}}' alt='Parkside Professional Tool Set' width='{500}' height='{400}' class='object-contain w-full h-auto' />
                   </div>
 
                   <div>
-                    <p class="bg-brand-secondary text-white" style="width: 110px; text-align: center; border-radius: 50px; font-size: 12px; padding: 4px; margin-bottom: 10px; font-weight: bold;">
+                    <p class='bg-brand-secondary text-white' style='width: 110px; text-align: center; border-radius: 50px; font-size: 10px; padding: 4px; margin-bottom: 10px; font-weight: bold;'>
                       {{text10}}</p>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-4">{{product}}
+                    <h2 class='text-2xl font-bold text-slate-900 mb-4'>{{product}}
                     </h2>
 
-                    <div class="flex items-center mb-4"><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
+                    <div class='flex items-center mb-4'><svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        stroke-width='2'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'
                       >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><span class="ml-2 text-sm text-slate-600">4.8/5 (2,942 reviews)</span>
+                      </svg><span class='ml-2 text-sm text-slate-600'>4.8/5 (2,942 reviews)</span>
                     </div>
 
-                    <div class="space-y-4 mb-6">
+                    <div class='space-y-4 mb-6'>
                       {{description}}
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-lg mb-6">
-                      <div class="flex items-center justify-between mb-2">
-                        <span class="text-slate-600">{{text11}}</span>
-                        <span class="text-slate-900 line-through">{{currency}}{{price}}</span>
+                    <div class='bg-slate-50 p-4 rounded-lg mb-6'>
+                      <div class='flex items-center justify-between mb-2'>
+                        <span class='text-slate-600'>{{text11}}</span>
+                        <span class='text-slate-900 line-through'>{{currency}}{{price}}</span>
                       </div>
-                      <div class="flex items-center justify-between text-lg font-bold">
-                        <span class="text-brand">{{text12}}</span>
-                        <span class="text-brand">{{currrency}}0.00</span>
+                      <div class='flex items-center justify-between text-lg font-bold'>
+                        <span class='text-brand'>{{text12}}</span>
+                        <span class='text-brand'>{{currrency}}0.00</span>
                       </div>
-                      <div class="text-sm text-slate-500 text-center mt-2">{{text13}}
+                      <div class='text-sm text-slate-500 text-center mt-2'>{{text13}}
                       </div>
                     </div>
 
-                    <div class="space-y-4">
-                      <button class="w-full bg-gradient-to-r bg-brand bg-brand-hover text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+                    <div class='space-y-4'>
+                      <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
+                      <button id="button1" class='w-full bg-gradient-to-r bg-brand bg-brand-hover text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer'>
                         {{text14}}
                       </button>
 
-                      <div class="flex items-center justify-center gap-2 text-sm text-slate-500"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-clock h-4 w-4"
+                      <div class='flex items-center justify-center gap-2 text-sm text-slate-500'><svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='24'
+                          height='24'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='lucide lucide-clock h-4 w-4'
                         >
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg><span>{{text15}} <span id="timer2"></span></span></div>
+                          <circle cx='12' cy='12' r='10'></circle>
+                          <polyline points='12 6 12 12 16 14'></polyline>
+                        </svg><span>{{text15}} <span id='timer2'></span></span></div>
                     </div>
                   </div>
                 </div>
@@ -826,47 +632,36 @@
             </div>
           </div>
 
-          <div class="max-w-4xl mx-auto mt-8">
-            <div class="border-0 shadow-xl" style="border-radius: 12px;">
-              <div class="p-8">
-                <h2 class="text-xl font-semibold mb-6">{{text16}}</h2>
+          <div class='max-w-4xl mx-auto mt-8'>
+            <div class='border-0 shadow-xl' style='border-radius: 12px;'>
+              <div class='p-8'>
+                <h2 class='text-xl font-semibold mb-6'>{{text16}}</h2>
 
-                <div class="space-y-6">
-                  <div class="flex gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >Y</span></span>
-                    <div class="flex-1">
-                      <div class="relative"><input
-                          placeholder="Write a comment..."
-                          class="w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent"
-                          type="text"
-                        /><button
-                          class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white"
+                <div class='space-y-6'>
+                  <div class='flex gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>Y</span></span>
+                    <div class='flex-1'>
+                      <div class='relative'><input placeholder='Write a comment...' class='w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent' type='text' /><button
+                          class='inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white'
                         >Send</button>
                       </div>
                     </div>
                   </div>
 
-                  <div id="comments-list" class="space-y-6">
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/1_us.jpg" style="border-radius: 50%;" />
+                  <div id='comments-list' class='space-y-6'>
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/1.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">{{commentName1}}</span>
-                          <span class="comment-time">{{text17}}</span>
-                          <span class="verified-badge">{{verified}}</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>{{commentName1}}</span>
+                          <span class='comment-time'>{{text17}}</span>
+                          <span class='verified-badge'>{{verified}}</span>
                         </div>
-                        <p class="comment-text">{{text18}}
+                        <p class='comment-text'>{{text18}}
                         </p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>27</span>
@@ -874,24 +669,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/2_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/2.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">{{commentName2}}</span>
-                          <span class="comment-time">{{text19}}</span>
-                          <span class="verified-badge">{{verified}}</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>{{commentName2}}</span>
+                          <span class='comment-time'>{{text19}}</span>
+                          <span class='verified-badge'>{{verified}}</span>
                         </div>
-                        <p class="comment-text">{{text20}}</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>{{text20}}</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>22</span>
@@ -899,24 +689,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/3_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/3.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">{{commentName3}}</span>
-                          <span class="comment-time">{{text21}}</span>
-                          <span class="verified-badge">{{verified}}</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>{{commentName3}}</span>
+                          <span class='comment-time'>{{text21}}</span>
+                          <span class='verified-badge'>{{verified}}</span>
                         </div>
-                        <p class="comment-text">{{text22}}</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>{{text22}}</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>8</span>
@@ -924,24 +709,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/4_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/4.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">{{commentName4}}</span>
-                          <span class="comment-time">{{text23}}</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>{{commentName4}}</span>
+                          <span class='comment-time'>{{text23}}</span>
                           <!-- <span class="verified-badge">{{verified}}</span> -->
                         </div>
-                        <p class="comment-text">{{text24}}</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>{{text24}}</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>45</span>
@@ -949,24 +729,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/5_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/5.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">{{commentName5}}</span>
-                          <span class="comment-time">{{text25}}</span>
-                          <span class="verified-badge">{{verified}}</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>{{commentName5}}</span>
+                          <span class='comment-time'>{{text25}}</span>
+                          <span class='verified-badge'>{{verified}}</span>
                         </div>
-                        <p class="comment-text">{{text26}}</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>{{commentt}}</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>34</span>
@@ -983,35 +758,64 @@
       </div>
     </main>
 
-    <div class="bg-white border-t mt-140 border-zinc-200">
-      <div class="container mx-auto px-4 py-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div class="text-sm text-slate-600">Copyright &copy; 2025</div>
-          <div class="flex gap-6">
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">{{text27}}</a>
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">{{text28}}</a>
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">{{text29}}</a>
+    <div class='bg-white border-t mt-140 border-zinc-200'>
+      <div class='container mx-auto px-4 py-6'>
+        <div class='flex flex-col md:flex-row justify-between items-center gap-4'>
+          <div class='text-sm text-slate-600'>Copyright &copy; 2025</div>
+          <div class='flex gap-6'>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>{{text27}}</a>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>{{text28}}</a>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>{{text29}}</a>
           </div>
         </div>
 
-        <div class="mt-14 text-center text-[12px] text-slate-600">
+        <div class='mt-14 text-center text-[12px] text-slate-600'>
           {{text30}}
           <br />{{text31}}<br />
         </div>
       </div>
     </div>
 
-    <script src="./files/script.js?v=119"></script>
+    <script src='./files/script.js?v=119'></script>
     <script>
-      const progressBar = document.getElementById("progress-bar"); progressBar.style.color = `{{secondaryColor}}`; progressBar.style.backgroundColor = `{{secondaryColor}}`; var bg = "bg-[{{mainColor}}]";
-      var text = "text-[{{mainColor}}]"; var border = "border-[{{mainColor}}]"; var bgHover = "hover:bg-[{{hoverColor}}]"; var focusRing = "focus:ring-[{{mainColor}}]"; var bgSecondary = "bg-[{{secondaryColor}}]";
-      var bgLight = "bg-[{{hoverColor}}]"; var bgs = document.querySelectorAll(".bg-brand"); var texts = document.querySelectorAll(".text-brand"); var borders =
-      document.querySelectorAll(".text-brand"); var bgHovers = document.querySelectorAll(".bg-brand-hover"); var focusRings = document.querySelectorAll(".brand-focus-ring"); var bgsSecondary =
-      document.querySelectorAll(".bg-brand-secondary"); var bgsLight = document.querySelectorAll(".bg-brand-h"); bgs.forEach(function (element) { element.classList.add(bg); }); texts.forEach(function
-      (element) { element.classList.add(text); }); borders.forEach(function (element) { element.classList.add(border); }); bgHovers.forEach(function (element) { element.classList.add(bgHover); });
-      focusRings.forEach(function (element) { element.classList.add(focusRing); }); bgsSecondary.forEach(function (element) { element.classList.add(bgSecondary); }); bgsLight.forEach(function
-      (element) { element.classList.add(bgLight); });
+      const progressBar = document.getElementById("progress-bar"); progressBar.style.color = `{{secondaryColor}}`; progressBar.style.backgroundColor = `{{secondaryColor}}`; 
+      const progressBar2 = document.getElementById("progress-bar2"); progressBar2.style.color = `{{secondaryColor}}`; progressBar2.style.backgroundColor = `{{secondaryColor}}`;
+      var bg = "bg-[{{mainColor}}]"; var text = "text-[{{mainColor}}]"; var border = "border-[{{mainColor}}]"; var bgHover =
+      "hover:bg-[{{hoverColor}}]"; var focusRing = "focus:ring-[{{mainColor}}]"; var bgSecondary = "bg-[{{secondaryColor}}]"; var bgLight = "bg-[{{hoverColor}}]"; var bgs = document.querySelectorAll(".bg-brand"); var texts = document.querySelectorAll(".text-brand"); var borders =
+      document.querySelectorAll(".text-brand"); var bgHovers = document.querySelectorAll(".bg-brand-hover"); var focusRings = document.querySelectorAll(".brand-focus-ring"); var bgsSecondary = document.querySelectorAll(".bg-brand-secondary"); var bgsLight = document.querySelectorAll(".bg-brand-h");
+      bgs.forEach(function (element) { element.classList.add(bg); }); texts.forEach(function (element) { element.classList.add(text); }); borders.forEach(function (element) { element.classList.add(border); }); bgHovers.forEach(function (element) { element.classList.add(bgHover); });
+      focusRings.forEach(function (element) { element.classList.add(focusRing); }); bgsSecondary.forEach(function (element) { element.classList.add(bgSecondary); }); bgsLight.forEach(function (element) { element.classList.add(bgLight); });
     </script>
   </body>
+
+  <script>
+        document.getElementById('button1').addEventListener("click",function(){
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            window.location.href = jumpurl ;
+        },false);
+    </script>
+
+    <?php
+            if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+            {
+                $aff_id = "2";
+                if (!empty($_GET["s"])) {
+                    $aff_id = $_GET["s"];
+                }
+                
+                $trk_urls = [
+                    "https://" . $_GET["trk"] . "/click/20"
+                ];
+                
+                echo getPushCode("us", $aff_id, $trk_urls);
+            }
+            ?>
+            
+            <?php
+            $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+            
+            echo getBackButton($backbutton_url);
+    ?>
 
 </html>

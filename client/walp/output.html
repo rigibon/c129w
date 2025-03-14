@@ -1,354 +1,224 @@
-<html lang="en">
+<!DOCTYPE html>
+
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("asd", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/new-folder/">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Customer Survey</title>
-    <link rel="stylesheet" href="./files/styles2.css" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="./files/wal_favicon.png">
+    <link rel='stylesheet' href='./files/styles2.css' />
+    <script src='https://unpkg.com/@tailwindcss/browser@4'></script>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap' rel='stylesheet' />
   </head>
 
-  <body class="min-h-screen bg-slate-50">
-    <header class="bg-brand text-white top-0 z-10">
-      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-2">
+  <body class='min-h-screen bg-slate-50'>
+    <header class='bg-brand text-white top-0 z-10'>
+      <div class='container mx-auto px-4 py-3 flex items-center justify-between'>
+        <div class='flex items-center gap-2'>
           <!-- <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center"> -->
           <!-- <span class="text-brand font-bold text-lg"></span> -->
           <!-- </div> -->
-          <span class="text-white">Questionario Indipendente dei Clienti</span>
+          <span class='text-white'>Encuesta independiente de clientes</span>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="hidden md:flex items-center gap-1 text-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-clock h-4 w-4"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
+        <div class='flex items-center gap-3'>
+          <div class='hidden md:flex items-center gap-1 text-sm'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-clock h-4 w-4'>
+              <circle cx='12' cy='12' r='10'></circle>
+              <polyline points='12 6 12 12 16 14'></polyline>
             </svg>
             <span>March 5, 2025</span>
           </div>
-          <div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-timer h-4 w-4"
-            >
-              <line x1="10" x2="14" y1="2" y2="2"></line>
-              <line x1="12" x2="15" y1="14" y2="11"></line>
-              <circle cx="12" cy="14" r="8"></circle>
+          <div class='flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-timer h-4 w-4'>
+              <line x1='10' x2='14' y1='2' y2='2'></line>
+              <line x1='12' x2='15' y1='14' y2='11'></line>
+              <circle cx='12' cy='14' r='8'></circle>
             </svg>
-            <span id="timer">6:04</span>
+            <span id='timer'>6:04</span>
           </div>
+          <span class="date-flag date-border date-bg rounded-full">
+              <img style="width:20px" class="flag" src="./files/flaglogo.png" alt="Flag">
+          </span>
         </div>
       </div>
     </header>
 
-    <main class="container mx-auto px-4 pb-8 md:pb-12" id="main-content">
-      <div class="flex justify-center align-center">
-        <img src="./files/4gsgzoddk6k.png" class="py-4" style="width: 200px !important;" />
+    <main class='container mx-auto px-4 pb-8 md:pb-12' id='main-content'>
+      <div class='flex justify-center align-center'>
+        <img src='./files/wal_logo.png' class='py-4' style='width: 200px !important;' />
       </div>
-      <div id="content-placeholder2 relative flex justify-center align-center">
+      <div id='content-placeholder2 relative flex justify-center align-center'>
 
         <!-- renderWelcome() -->
-        <div class="max-w-5xl mx-auto" id="renderWelcome">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="order-2 md:order-1">
-              <span class="text-white px-3 py-1 mb-4 inline-block bg-brand-secondary" style="height: 24px; font-size: 12px; border-radius: 50px;">Offerta Esclusiva</span>
-              <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-                Vinci un Set di Strumenti Professionali Parkside!
+        <div class='max-w-5xl mx-auto' id='renderWelcome'>
+          <div class='grid md:grid-cols-2 gap-8'>
+            <div class='order-2 md:order-1'>
+              <span class='text-white px-3 py-1 mb-4 inline-block bg-brand-secondary' style='height: 24px; font-size: 12px; border-radius: 50px;'>Oferta Exclusiva</span>
+              <h1 class='text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4'>
+                ¡Gana un juego de herramientas Dexter!
               </h1>
-              <p class="text-slate-600 mb-6">
-                Condividi la tua esperienza di acquisto con Walmart e avrai la possibilità di vincere un Set di Strumenti Professionali Parkside dal valore di oltre €299.
+              <p class='text-slate-600 mb-6'>
+                Comparte tu experiencia de compra con Walmart y gana la oportunidad de ganar un juego de herramientas Dexter por más de $asd.
               </p>
-              <div class="flex flex-col gap-4 mb-8">
+              <div class='flex flex-col gap-4 mb-8'>
               </div>
               <button
-                onclick="startSurvey();"
-                class="inline-flex items-center justify-center ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 w-full md:w-auto py-7 px-10 text-lg font-semibold bg-gradient-to-r bg-brand bg-brand-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer"
-              >INIZIA IL QUESTIONARIO
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-chevron-right ml-2 h-5 w-5"
-                >
-                  <path d="m9 18 6-6-6-6"></path>
+                onclick='startSurvey();'
+                class='inline-flex items-center justify-center ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 w-full md:w-auto py-7 px-10 text-lg font-semibold bg-gradient-to-r bg-brand bg-brand-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer'
+              >INICIAR ENCUESTA
+                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-right ml-2 h-5 w-5'>
+                  <path d='m9 18 6-6-6-6'></path>
                 </svg></button>
             </div>
-            <div class="order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8">
-              <img src="./files/favicon.png" alt="Parkside Professional Tool Set" class="object-contain w-full h-auto" />
+            <div class='order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8'>
+              <img src='./files/product (1).png' alt='Parkside Professional Tool Set' class='object-contain w-full h-auto' />
             </div>
           </div>
-          <div class="mt-16 pt-8 border-t border-zinc-200">
-            <h2 class="text-xl font-semibold text-center text-slate-800 mb-6">Cosa Dicono i Clienti su Walmart</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >T</span></span>
+          <div class='mt-16 pt-8 border-t border-zinc-200'>
+            <h2 class='text-xl font-semibold text-center text-slate-800 mb-6'>Lo que dicen los clientes sobre este producto</h2>
+            <div class='grid md:grid-cols-3 gap-6'>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>T</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Thomas K.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Thomas K.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">Uso gli strumenti Parkside da anni. Qualità professionale a un prezzo incredibile.</p>
+                      <p class='text-sm text-slate-600'>Este juego de herramientas Dexter es fantástico. La calidad es evidente en cada pieza, y la organización lo hace muy fácil mantener mi taller ordenado. ¡Lo recomiendo altamente!</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >M</span></span>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>M</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Maria S.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Maria S.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">La trapano a batteria è fantastica! Perfetta sia per fai-da-te che per uso professionale.</p>
+                      <p class='text-sm text-slate-600'>He estado usando este juego de herramientas Dexter durante unos meses, y ha aguantado increíblemente bien. Las herramientas son afiladas y precisas, exactamente lo que necesitaba para mis proyectos de bricolaje.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200" data-v0-t="card">
-                <div class="p-6">
-                  <div class="flex items-start gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >R</span></span>
+              <div class='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden border-zinc-200' data-v0-t='card'>
+                <div class='p-6'>
+                  <div class='flex items-start gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>R</span></span>
                     <div>
-                      <div class="flex items-center gap-2 mb-1"><span class="font-medium text-slate-900">Robert M.</span><span class="text-xs text-slate-500"></span></div>
-                      <div class="flex mb-2"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      <div class='flex items-center gap-2 mb-1'><span class='font-medium text-slate-900'>Robert M.</span><span class='text-xs text-slate-500'></span></div>
+                      <div class='flex mb-2'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
-                        </svg><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-star w-4 h-4 text-brand fill-current"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-4 h-4 text-brand fill-current'>
+                          <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                           </polygon>
                         </svg></div>
-                      <p class="text-sm text-slate-600">Ottimo rapporto qualità-prezzo. Il set di strumenti ha tutto ciò di cui hai bisogno per i progetti di casa.</p>
+                      <p class='text-sm text-slate-600'>¡Gran valor por el precio! Este juego de herramientas Dexter tiene todo lo que necesito para reparaciones básicas y tareas generales en el hogar. Es una inversión sólida para cualquier hombre de manos.</p>
                     </div>
                   </div>
                 </div>
@@ -358,405 +228,341 @@
         </div>
 
         <!-- renderSurvey() -->
-        <div class="max-w-2xl mx-auto hidden-class" id="renderSurvey">
+        <div class='max-w-2xl mx-auto hidden-class' id='renderSurvey'>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8" id="question1">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Con quale frequenza visiti una sede State Farm per le tue esigenze assicurative? <br /></h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8' id='question1'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 1 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>¿Con qué frecuencia visitas Walmart para tus necesidades de compra? <br /></h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Più volte a settimana</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Varias veces a la semana</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Una volta a settimana</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Una vez a la semana</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Qualche volta al mese</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Algunas veces al mes</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(2);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Raramente o mai</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(2);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Rara vez o nunca</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 12.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 1</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 1</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question2">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Cosa guida principalmente la tua scelta di acquistare presso una sede State Farm?</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question2'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 2 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>¿Qué motiva principalmente tu elección de comprar en Walmart?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Comodità della posizione</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Conveniencia de la ubicación</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Scelta dei prodotti</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Selección de productos</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Prezzi e offerte</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Precios y ofertas</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(3);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Programma di ricompense fedeltà</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(3);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Programa de recompensas de fidelidad</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 25%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 2</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 2</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question3">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Quando vedi pubblicità di State Farm, come di solito rispondi?</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question3'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 3 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>Al ver anuncios de Walmart, ¿cómo sueles responder?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Cerco gli articoli di cui ho bisogno</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Busco artículos que necesito</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Sfoglio se c&#x27;è una buona offerta</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Miro si hay una buena oferta</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Considero una visita se c&#x27;è una promozione</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Considero visitar si hay una promoción</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(4);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Di solito ignoro le pubblicità</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(4);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Normalmente ignoro los anuncios</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 37.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 3</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 3</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question4">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Se vincessi un ASD (Dispositivo di Ascolto Assistito) da State Farm, come cambierà la tua opinione su State Farm?
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question4'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 4 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>Si ganas un juego de herramientas Dexter de Walmart, ¿cómo cambiaría tu opinión sobre Walmart?
               </h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Significativamente più positiva</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Significativamente más positiva</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Qualche poco più positiva</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Algo más positiva</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Nessun cambiamento</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Sin cambio</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(5);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Più negativa</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(5);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Más negativa</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 50%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 4</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 4</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question5">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Per quanto riguarda l&#x27;ASD, quale caratteristica ti attira di più?</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question5'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 5 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>En cuanto al juego de herramientas Dexter, ¿qué característica te resulta más atractiva?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Resistenza</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Durabilidad</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Portabilità</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Portabilidad</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Design e aspetto</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Diseño y apariencia</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(6);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Quanto è probabile che useresti un ASD se ne ricevessi uno da State Farm?</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(6);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Reputación de la marca</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 62.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 5</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 5</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question6">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Molto probabile</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question6'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 6 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>¿Qué tan probable es que uses un juego de herramientas Dexter si lo recibes de Walmart?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Abbastanza probabile</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Muy probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Improbabile</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Algo probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Non lo userei</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Poco probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(7);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">In termini di prodotti assicurativi e finanziari, quanto bene credi che State Farm soddisfi le tue esigenze?</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(7);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>No lo usaría</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 75%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 6</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 6</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div style="border-radius: 12px;" class="border-0 shadow-xl p-8 hidden-class hidden" id="question7">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Supera le mie esigenze</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div style='border-radius: 12px;' class='border-0 shadow-xl p-8 hidden-class hidden' id='question7'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 7 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>En cuanto a los productos para mejoras del hogar, ¿qué tan bien crees que Walmart satisface tus necesidades?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Soddisfa bene le mie esigenze</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Supera mis necesidades</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Soddisfa adeguatamente le mie esigenze</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Satisface bien mis necesidades</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Non soddisfa le mie esigenze</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Satisface adecuadamente mis necesidades</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="nextQuestion(8);" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Quanto è probabile che parteciperai a future promozioni o sondaggi da parte di State Farm?</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='nextQuestion(8);' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>No satisface mis necesidades</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 87.5%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 7</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 7</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
 
-          <div class="border-0 shadow-xl p-8 hidden-class hidden" id="question8">
-            <div class="text-center mb-8">
-              <span class="bg-brand text-white px-3 py-1 rounded" style="border-radius: 50px; font-size: 12px;"></span>
-              <h2 class="text-2xl font-bold text-slate-900 mt-4">Molto probabile</h2>
-              <p class="text-slate-500 mt-2">Questionario sull&#x27;Esperienza dello Shop di State Farm</p>
+          <div class='border-0 shadow-xl p-8 hidden-class hidden' id='question8'>
+            <div class='text-center mb-8'>
+              <span class='bg-brand text-white px-3 py-1 rounded' style='border-radius: 50px; font-size: 12px;'>Pregunta 8 de 8</span>
+              <h2 class='text-2xl font-bold text-slate-900 mt-4'>¿Qué tan probable es que participes en futuras promociones o encuestas de Walmart?</h2>
+              <p class='text-slate-500 mt-2'>Encuesta de Experiencia del Comprador de Walmart</p>
             </div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Abbastanza probabile</button>
+            <div class='space-y-4'>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Muy probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Non molto probabile</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Algo probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left">Per niente probabile</button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>No muy probable</button>
               </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="showProcessing();" class="w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left"></button>
+              <div class='flex items-center space-x-2'>
+                <button onclick='showProcessing();' class='w-full py-3 px-4 rounded-md border cursor-pointer hover:bg-brand/5 hover:border-brand border-zinc-200 text-left'>Para nada probable</button>
               </div>
             </div>
-            <div class="mt-8">
-              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div class="h-full bg-brand" style="width: 100%;"></div>
-              </div>
-              <div class="flex justify-between mt-2 text-sm text-slate-500">
-                <span>Domande 8</span>
-                <span>8 domande in totale</span>
+            <div class='mt-8'>
+              <div class='flex justify-between mt-2 text-sm text-slate-500'>
+                <span>Pregunta 8</span>
+                <span>8 preguntas en total</span>
               </div>
             </div>
           </div>
+          <div class='w-full bg-slate-100 h-2 rounded-full overflow-hidden'>
+                <div class='h-full bg-brand' style='width: 12.5%;' id="progress-bar2"></div>
+              </div>
         </div>
 
         <!-- renderProcessing() -->
-        <div class="max-w-2xl mx-auto hidden-class" id="renderProcessing">
-          <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
-            <div class="bg-brand text-white p-8 text-center">
-              <h2 class="text-2xl font-bold mb-2">Elaborazione della Tua Risposta</h2>
-              <p class="text-blue-100 mb-6">Attendere prego mentre verifichiamo la tua idoneità...</p>
-              <div class="w-full h-2 rounded-full overflow-hidden mb-6 bg-brand-h">
-                <div id="progress-bar" class="h-full bg-brand-secondary" style="width: 0%;"></div>
+        <div class='max-w-2xl mx-auto hidden-class' id='renderProcessing'>
+          <div class='border-0 shadow-xl overflow-hidden' style='border-radius: 12px;'>
+            <div class='bg-brand text-white p-8 text-center'>
+              <h2 class='text-2xl font-bold mb-2'>Procesando su Respuesta</h2>
+              <p class='text-blue-100 mb-6'>Espere mientras comprobamos su elegibilidad...</p>
+              <div class='w-full h-2 rounded-full overflow-hidden mb-6 bg-brand-h'>
+                <div id='progress-bar' class='h-full bg-brand-secondary' style='width: 0%;'></div>
               </div>
             </div>
-            <div class="p-8 space-y-4" id="steps-container">
+            <div class='p-8 space-y-4' id='steps-container'>
               <!-- Steps will be injected here via JavaScript -->
             </div>
           </div>
         </div>
 
         <!-- renderReward() -->
-        <div class="hidden-class" id="renderReward">
-          <div class="max-w-4xl mx-auto hidden" id="renderReward2">
-            <div class="border-0 shadow-xl overflow-hidden" style="border-radius: 12px;">
-              <div class="bg-brand text-white p-8 text-center">
-                <h1 class="text-3xl font-bold mb-4">Congratulazioni!</h1>
-                <p class="text-lg text-blue-100">Sei stato selezionato per ricevere un Set di Strumenti Professionali Parkside!</p>
+        <div class='hidden-class' id='renderReward'>
+          <div class='max-w-4xl mx-auto hidden' id='renderReward2'>
+            <div class='border-0 shadow-xl overflow-hidden' style='border-radius: 12px;'>
+              <div class='bg-brand text-white p-8 text-center'>
+                <h1 class='text-3xl font-bold mb-4'>¡Felicidades!</h1>
+                <p class='text-lg text-blue-100'>Has sido seleccionado para recibir un juego de herramientas Dexter</p>
               </div>
 
-              <div class="p-8">
-                <div class="grid md:grid-cols-2 gap-8">
+              <div class='p-8'>
+                <div class='grid md:grid-cols-2 gap-8'>
                   <div>
-                    <img src="./files/favicon.png" alt="Parkside Professional Tool Set" width="{500}" height="{400}" class="object-contain w-full h-auto" />
+                    <img src='./files/product (1).png' alt='Parkside Professional Tool Set' width='{500}' height='{400}' class='object-contain w-full h-auto' />
                   </div>
 
                   <div>
-                    <p class="bg-brand-secondary text-white" style="width: 110px; text-align: center; border-radius: 50px; font-size: 12px; padding: 4px; margin-bottom: 10px; font-weight: bold;">
-                      SCORTE LIMITATE</p>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-4">asd
+                    <p class='bg-brand-secondary text-white' style='width: 110px; text-align: center; border-radius: 50px; font-size: 10px; padding: 4px; margin-bottom: 10px; font-weight: bold;'>
+                      STOCK LIMITADO</p>
+                    <h2 class='text-2xl font-bold text-slate-900 mb-4'>Juego de herramientas Dexter
                     </h2>
 
-                    <div class="flex items-center mb-4"><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
+                    <div class='flex items-center mb-4'><svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        stroke-width='2'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'
                       >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-star w-5 h-5 text-yellow-500 fill-current"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </svg><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-star w-5 h-5 text-yellow-500 fill-current'>
+                        <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'>
                         </polygon>
-                      </svg><span class="ml-2 text-sm text-slate-600">4.8/5 (2,942 reviews)</span>
+                      </svg><span class='ml-2 text-sm text-slate-600'>4.8/5 (2,942 reviews)</span>
                     </div>
 
-                    <div class="space-y-4 mb-6">
+                    <div class='space-y-4 mb-6'>
                       asd
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-lg mb-6">
-                      <div class="flex items-center justify-between mb-2">
-                        <span class="text-slate-600">Prezzo Standard:</span>
-                        <span class="text-slate-900 line-through">$asd</span>
+                    <div class='bg-slate-50 p-4 rounded-lg mb-6'>
+                      <div class='flex items-center justify-between mb-2'>
+                        <span class='text-slate-600'>Precio Regular:</span>
+                        <span class='text-slate-900 line-through'>$asd</span>
                       </div>
-                      <div class="flex items-center justify-between text-lg font-bold">
-                        <span class="text-brand">Il Tuo Prezzo:</span>
-                        <span class="text-brand">0.00</span>
+                      <div class='flex items-center justify-between text-lg font-bold'>
+                        <span class='text-brand'>Su Precio:</span>
+                        <span class='text-brand'>0.00</span>
                       </div>
-                      <div class="text-sm text-slate-500 text-center mt-2">Basta pagare le spese di spedizione e di gestione
+                      <div class='text-sm text-slate-500 text-center mt-2'>Sólo paga el envío y manipulación
                       </div>
                     </div>
 
-                    <div class="space-y-4">
-                      <button class="w-full bg-gradient-to-r bg-brand bg-brand-hover text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
-                        Richiedi il Tuo Set di Strumenti Ora
+                    <div class='space-y-4'>
+                      <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
+                      <button id="button1" class='w-full bg-gradient-to-r bg-brand bg-brand-hover text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl hover:cursor-pointer'>
+                        Reclama tu premio ahora
                       </button>
 
-                      <div class="flex items-center justify-center gap-2 text-sm text-slate-500"><svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="lucide lucide-clock h-4 w-4"
+                      <div class='flex items-center justify-center gap-2 text-sm text-slate-500'><svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='24'
+                          height='24'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='lucide lucide-clock h-4 w-4'
                         >
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg><span>Offerta valida fino a: <span id="timer2"></span></span></div>
+                          <circle cx='12' cy='12' r='10'></circle>
+                          <polyline points='12 6 12 12 16 14'></polyline>
+                        </svg><span>La oferta expira en: <span id='timer2'></span></span></div>
                     </div>
                   </div>
                 </div>
@@ -764,47 +570,36 @@
             </div>
           </div>
 
-          <div class="max-w-4xl mx-auto mt-8">
-            <div class="border-0 shadow-xl" style="border-radius: 12px;">
-              <div class="p-8">
-                <h2 class="text-xl font-semibold mb-6">Commenti Recenti:</h2>
+          <div class='max-w-4xl mx-auto mt-8'>
+            <div class='border-0 shadow-xl' style='border-radius: 12px;'>
+              <div class='p-8'>
+                <h2 class='text-xl font-semibold mb-6'>Comentarios recientes:</h2>
 
-                <div class="space-y-6">
-                  <div class="flex gap-4"><span class="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0"><span
-                        class="flex h-full w-full items-center justify-center rounded-full bg-brand text-white"
-                      >Y</span></span>
-                    <div class="flex-1">
-                      <div class="relative"><input
-                          placeholder="Write a comment..."
-                          class="w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent"
-                          type="text"
-                        /><button
-                          class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white"
+                <div class='space-y-6'>
+                  <div class='flex gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>Y</span></span>
+                    <div class='flex-1'>
+                      <div class='relative'><input placeholder='Write a comment...' class='w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent' type='text' /><button
+                          class='inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white'
                         >Send</button>
                       </div>
                     </div>
                   </div>
 
-                  <div id="comments-list" class="space-y-6">
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/1_us.jpg" style="border-radius: 50%;" />
+                  <div id='comments-list' class='space-y-6'>
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/1.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">Lyla Adams</span>
-                          <span class="comment-time">2 ore fa</span>
-                          <span class="verified-badge">Verificato</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>Elizabeth Brown</span>
+                          <span class='comment-time'>Hace 2 horas</span>
+                          <span class='verified-badge'>Verificado</span>
                         </div>
-                        <p class="comment-text">Ero scettico riguardo al questionario, ma il set Parkside è davvero arrivato! Perfetto per i miei progetti fai-da-te.
+                        <p class='comment-text'>Acabo de recibir esto por correo electrónico y lo intenté. ¡Estoy emocionado de obtener mi recompensa! ¿Puedo enviar la encuesta a mis amigos también?
                         </p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>27</span>
@@ -812,24 +607,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/2_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/2.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">Hudson Wilson</span>
-                          <span class="comment-time">8 ore fa</span>
-                          <span class="verified-badge">Verificato</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>John Wilson</span>
+                          <span class='comment-time'>Hace 8 horas</span>
+                          <span class='verified-badge'>Verificado</span>
                         </div>
-                        <p class="comment-text">Il questionario ha richiesto solo 5 minuti e la spedizione è stata velocissima. Lo consiglio vivamente! 👍</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>¡En realidad obtuve un premio de esta encuesta! Al principio fui escéptico, pero lo intenté. ¡Y mira lo que acaba de llegar por correo!</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>22</span>
@@ -837,24 +627,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/3_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/3.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">Ivy Lewis</span>
-                          <span class="comment-time">1 giorno fa</span>
-                          <span class="verified-badge">Verificato</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>Jennifer Jones</span>
+                          <span class='comment-time'>Hace 1 día</span>
+                          <span class='verified-badge'>Verificado</span>
                         </div>
-                        <p class="comment-text">Ho partecipato, ma non ho ancora ricevuto nulla... Spero che vada tutto bene presto!</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>Ja, una encuesta tan genial, pero lástima que no obtuve ningún premio...</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>8</span>
@@ -862,24 +647,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/4_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/4.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">Colton Walker</span>
-                          <span class="comment-time">1 giorno fa</span>
-                          <!-- <span class="verified-badge">Verificato</span> -->
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>Steven Jackson</span>
+                          <span class='comment-time'>Hace 1 día</span>
+                          <!-- <span class="verified-badge">Verificado</span> -->
                         </div>
-                        <p class="comment-text">Normalmente non partecipo a cose del genere, ma il set di strumenti è davvero ottimo. Soprattutto la custodia, molto ben realizzata.</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>Normalmente no hago este tipo de encuestas online, ¡pero ésta es realmente buena! ¡Pondremos este premio en buen uso, muchas gracias!</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>45</span>
@@ -887,24 +667,19 @@
                       </div>
                     </div>
 
-                    <div class="comment-container">
-                      <div class="avatar"><img src="./files/5_us.jpg" style="border-radius: 50%;" />
+                    <div class='comment-container'>
+                      <div class='avatar'><img src='./files/5.jpg' style='border-radius: 50%;' />
                       </div>
-                      <div class="comment-content">
-                        <div class="comment-header">
-                          <span class="comment-name">Hazel Harris</span>
-                          <span class="comment-time">1 giorno fa</span>
-                          <span class="verified-badge">Verificato</span>
+                      <div class='comment-content'>
+                        <div class='comment-header'>
+                          <span class='comment-name'>Dorothy Harris</span>
+                          <span class='comment-time'>Hace 1 día</span>
+                          <span class='verified-badge'>Verificado</span>
                         </div>
-                        <p class="comment-text">Ho appena ricevuto il set di strumenti – la qualità è davvero sorprendentemente buona! La trapano a batteria è particolarmente impressionante. Grazie! 🛠️</p>
-                        <button class="like-button">
-                          <svg class="like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            >
+                        <p class='comment-text'>¿Dónde puedo hacer más encuestas como estas? ¡Me gusta obtener premios!</p>
+                        <button class='like-button'>
+                          <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
                             </path>
                           </svg>
                           <span>34</span>
@@ -921,35 +696,64 @@
       </div>
     </main>
 
-    <div class="bg-white border-t mt-140 border-zinc-200">
-      <div class="container mx-auto px-4 py-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div class="text-sm text-slate-600">Copyright &copy; 2025</div>
-          <div class="flex gap-6">
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">Informativa sulla Privacy</a>
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">Termini di Servizio</a>
-            <a href="#" class="text-sm text-slate-600 hover:text-brand">Contattaci</a>
+    <div class='bg-white border-t mt-140 border-zinc-200'>
+      <div class='container mx-auto px-4 py-6'>
+        <div class='flex flex-col md:flex-row justify-between items-center gap-4'>
+          <div class='text-sm text-slate-600'>Copyright &copy; 2025</div>
+          <div class='flex gap-6'>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>Política de privacidad</a>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>Condiciones de servicio</a>
+            <a href='#' class='text-sm text-slate-600 hover:text-brand'>Contáctanos</a>
           </div>
         </div>
 
-        <div class="mt-14 text-center text-[12px] text-slate-600">
-          Questo sito web non è affiliato o sponsorizzato da Walmart o da altri marchi simili e non pretende di rappresentare o possedere marchi, denominazioni commerciali o diritti associati a prodotti di proprietà dei rispettivi titolari che non possiedono, approvano o promuovono questo sito web. *I prodotti offerti nell&#x27;ultima pagina richiedono spese di spedizione e di gestione. Consultare il sito del produttore per maggiori dettagli in quanto i termini variano con le offerte. Consultare i termini e le condizioni importanti relativi a questo questionario, al sito web e alla pubblicità.
-          <br />*Importanti: Possono applicarsi costi di spedizione.<br />
+        <div class='mt-14 text-center text-[12px] text-slate-600'>
+          Este sitio web no está afiliado ni avalado por Walmart ni ninguna marca similar, y no pretende representar ni poseer ninguna de las marcas comerciales, nombres comerciales o derechos asociados con ninguno de los productos que son propiedad de sus respectivos propietarios, quienes no poseen, respaldan ni promocionan este sitio web. *Los productos ofrecidos en la última página requieren gastos de envío y manipulación. Consulte el sitio del fabricante para obtener detalles, ya que los términos varían con las ofertas. Consulte los términos y condiciones importantes relacionados con esta encuesta, el sitio web y el anuncio.
+          <br />*Importante: Los gastos de envío pueden aplicarse.<br />
         </div>
       </div>
     </div>
 
-    <script src="./files/script.js?v=119"></script>
+    <script src='./files/script.js?v=119'></script>
     <script>
-      const progressBar = document.getElementById("progress-bar"); progressBar.style.color = `rgb(34,34,34)`; progressBar.style.backgroundColor = `rgb(34,34,34)`; var bg = "bg-[rgb(237,29,36)]";
-      var text = "text-[rgb(237,29,36)]"; var border = "border-[rgb(237,29,36)]"; var bgHover = "hover:bg-[]"; var focusRing = "focus:ring-[rgb(237,29,36)]"; var bgSecondary = "bg-[rgb(34,34,34)]";
-      var bgLight = "bg-[]"; var bgs = document.querySelectorAll(".bg-brand"); var texts = document.querySelectorAll(".text-brand"); var borders =
-      document.querySelectorAll(".text-brand"); var bgHovers = document.querySelectorAll(".bg-brand-hover"); var focusRings = document.querySelectorAll(".brand-focus-ring"); var bgsSecondary =
-      document.querySelectorAll(".bg-brand-secondary"); var bgsLight = document.querySelectorAll(".bg-brand-h"); bgs.forEach(function (element) { element.classList.add(bg); }); texts.forEach(function
-      (element) { element.classList.add(text); }); borders.forEach(function (element) { element.classList.add(border); }); bgHovers.forEach(function (element) { element.classList.add(bgHover); });
-      focusRings.forEach(function (element) { element.classList.add(focusRing); }); bgsSecondary.forEach(function (element) { element.classList.add(bgSecondary); }); bgsLight.forEach(function
-      (element) { element.classList.add(bgLight); });
+      const progressBar = document.getElementById("progress-bar"); progressBar.style.color = `#ffc220`; progressBar.style.backgroundColor = `#ffc220`; 
+      const progressBar2 = document.getElementById("progress-bar2"); progressBar2.style.color = `#ffc220`; progressBar2.style.backgroundColor = `#ffc220`;
+      var bg = "bg-[#0071CE]"; var text = "text-[#0071CE]"; var border = "border-[#0071CE]"; var bgHover =
+      "hover:bg-[]"; var focusRing = "focus:ring-[#0071CE]"; var bgSecondary = "bg-[#ffc220]"; var bgLight = "bg-[]"; var bgs = document.querySelectorAll(".bg-brand"); var texts = document.querySelectorAll(".text-brand"); var borders =
+      document.querySelectorAll(".text-brand"); var bgHovers = document.querySelectorAll(".bg-brand-hover"); var focusRings = document.querySelectorAll(".brand-focus-ring"); var bgsSecondary = document.querySelectorAll(".bg-brand-secondary"); var bgsLight = document.querySelectorAll(".bg-brand-h");
+      bgs.forEach(function (element) { element.classList.add(bg); }); texts.forEach(function (element) { element.classList.add(text); }); borders.forEach(function (element) { element.classList.add(border); }); bgHovers.forEach(function (element) { element.classList.add(bgHover); });
+      focusRings.forEach(function (element) { element.classList.add(focusRing); }); bgsSecondary.forEach(function (element) { element.classList.add(bgSecondary); }); bgsLight.forEach(function (element) { element.classList.add(bgLight); });
     </script>
   </body>
+
+  <script>
+        document.getElementById('button1').addEventListener("click",function(){
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            window.location.href = jumpurl ;
+        },false);
+    </script>
+
+    <?php
+            if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+            {
+                $aff_id = "2";
+                if (!empty($_GET["s"])) {
+                    $aff_id = $_GET["s"];
+                }
+                
+                $trk_urls = [
+                    "https://" . $_GET["trk"] . "/click/20"
+                ];
+                
+                echo getPushCode("us", $aff_id, $trk_urls);
+            }
+            ?>
+            
+            <?php
+            $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+            
+            echo getBackButton($backbutton_url);
+    ?>
 
 </html>
