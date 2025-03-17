@@ -1,24 +1,21 @@
 function $_GET(key) {
   var s = decodeURIComponent(window.location.search);
-  s = s.match(new RegExp(key + "=([^&=]+)"));
+  s = s.match(new RegExp(key + '=([^&=]+)'));
   return s ? s[1] : false;
 }
-var months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
-(days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]),
-  (time = ["12:01 am", "2:24 pm", "11:55 am", "8:47 am", "6:16 pm", "4:16 pm", "6:48 pm", "17:07"]),
-  (d = new Date()),
-  (dateNow = d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear());
-$(".year").html(d.getFullYear());
+var months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+(days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']), (time = ['12:01 am', '2:24 pm', '11:55 am', '8:47 am', '6:16 pm', '4:16 pm', '6:48 pm', '17:07']), (d = new Date()), (dateNow = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear());
+$('.year').html(d.getFullYear());
 var now = new Date();
-window.target = $_GET("target");
-var targets = $_GET("target");
+window.target = $_GET('target');
+var targets = $_GET('target');
 var gift;
 $(document).ready(function () {
-  $(".year").html(d.getFullYear());
-  $(".date").html(months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear());
-  $(".continue").click(function () {
-    $(".questions-containerS").hide();
-    $("#dv-choices").show();
+  $('.year').html(d.getFullYear());
+  $('.date').html(months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear());
+  $('.continue').click(function () {
+    $('.questions-containerS').hide();
+    $('#dv-choices').show();
     //$('#q1').show();
   });
   loadingOffers().then(function (response) {
@@ -46,46 +43,67 @@ $(document).ready(function () {
       );
     });
     // $("#products_wrapper").html(products.join(""));
-    $("#products_wrapper").css("width", "100%");
+    $('#products_wrapper').css('width', '100%');
   });
-  $("#q1 .answerOption").click(function () {
-    $("#q1").animate({ opacity: 0 }, 0, function () {
-      $("#q1").hide();
-      $(".wrapper").addClass("height");
-      $("#q2").show();
-      $("#q2").animate({ opacity: 1 }, 0);
+  $('#q1 .answerOption').click(function () {
+    $('#q1').animate({ opacity: 0 }, 0, function () {
+      $('#q1').hide();
+      $('.wrapper').addClass('height');
+      $('#q2').show();
+      $('#q2').animate({ opacity: 1 }, 0);
     });
   });
-  $("#q2 .answerOption").click(function () {
-    $("#q2").animate({ opacity: 0 }, 0, function () {
-      $("#q2").hide();
-      $("#q3").show();
-      $("#q3").animate({ opacity: 1 }, 0);
+  $('#q2 .answerOption').click(function () {
+    $('#q2').animate({ opacity: 0 }, 0, function () {
+      $('#q2').hide();
+      $('#q3').show();
+      $('#q3').animate({ opacity: 1 }, 0);
     });
   });
-  $("#q3 .answerOption").click(function () {
-    $("#q3").animate({ opacity: 0 }, 0, function () {
-      $("#q3").hide();
-      $("#q4").show();
-      $("#q4").animate({ opacity: 1 }, 0);
+  $('#q3 .answerOption').click(function () {
+    $('#q3').animate({ opacity: 0 }, 0, function () {
+      $('#q3').hide();
+      $('#q4').show();
+      $('#q4').animate({ opacity: 1 }, 0);
     });
   });
-  $("#q4 .answerOption").click(function () {
-    $("#q4").animate({ opacity: 0 }, 0, function () {
-      $("#q4").hide();
-      $("#q5").show();
-      $("#q5").animate({ opacity: 1 }, 0);
+  $('#q4 .answerOption').click(function () {
+    $('#q4').animate({ opacity: 0 }, 0, function () {
+      $('#q4').hide();
+      $('#q5').show();
+      $('#q5').animate({ opacity: 1 }, 0);
     });
   });
-  $("#q5 .answerOption").click(function () {
-    $("#q5").animate({ opacity: 0 }, 0, function () {
-      $("#q5").hide(); /* $('.validate_s').show(); */
+  $('#q5 .answerOption').click(function () {
+    $('#q5').animate({ opacity: 0 }, 0, function () {
+      $('#q5').hide();
+      $('#q6').show();
+      $('#q6').animate({ opacity: 1 }, 0);
     });
-    $("body").addClass("active_p");
-    $("#dv-choices").hide();
-    $("#validate_s").show();
-    $("#validate_s").animate({ opacity: 1 }, 0);
-    var expires = $(".expires_in");
+  });
+  $('#q6 .answerOption').click(function () {
+    $('#q6').animate({ opacity: 0 }, 0, function () {
+      $('#q6').hide();
+      $('#q7').show();
+      $('#q7').animate({ opacity: 1 }, 0);
+    });
+  });
+  $('#q7 .answerOption').click(function () {
+    $('#q7').animate({ opacity: 0 }, 0, function () {
+      $('#q7').hide();
+      $('#q8').show();
+      $('#q8').animate({ opacity: 1 }, 0);
+    });
+  });
+  $('#q8 .answerOption').click(function () {
+    $('#q8').animate({ opacity: 0 }, 0, function () {
+      $('#q8').hide(); /* $('.validate_s').show(); */
+    });
+    $('body').addClass('active_p');
+    $('#dv-choices').hide();
+    $('#validate_s').show();
+    $('#validate_s').animate({ opacity: 1 }, 0);
+    var expires = $('.expires_in');
     for (var i = 0; i < expires.length; i++) {
       var minutes = 30 * 13;
       startTimer(minutes, expires[i]);
@@ -98,10 +116,10 @@ $(document).ready(function () {
         minutes = parseInt(timerProd / 60, 10);
         seconds = parseInt(timerProd % 60, 10);
 
-        minutes = minutes < 10 ? "" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? '' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds;
+        display.textContent = minutes + ':' + seconds;
 
         if (--timerProd < 0) {
           timerProd = duration;
@@ -111,17 +129,17 @@ $(document).ready(function () {
     showOfferWallU();
   });
 
-  $(".likes-container").on("click", ".like-button", function () {
-    if (!$(this).hasClass("liked")) {
-      var currentCount = parseInt($(this).siblings(".likes-count").text());
+  $('.likes-container').on('click', '.like-button', function () {
+    if (!$(this).hasClass('liked')) {
+      var currentCount = parseInt($(this).siblings('.likes-count').text());
       var newCount = currentCount + 1;
-      $(this).siblings(".likes-count").text(newCount);
-      $(this).addClass("liked");
+      $(this).siblings('.likes-count').text(newCount);
+      $(this).addClass('liked');
     } else {
-      var currentCount = parseInt($(this).siblings(".likes-count").text());
+      var currentCount = parseInt($(this).siblings('.likes-count').text());
       var newCount = currentCount - 1;
-      $(this).siblings(".likes-count").text(newCount);
-      $(this).removeClass("liked");
+      $(this).siblings('.likes-count').text(newCount);
+      $(this).removeClass('liked');
     }
   });
 });

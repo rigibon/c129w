@@ -86,6 +86,9 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
           <!-- <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center"> -->
           <!-- <span class="text-brand font-bold text-lg">{{brand}}</span> -->
           <!-- </div> -->
+          <div class='flex justify-center align-center'>
+            <img src='./files/{{brandLogo}}' class='px-2' style='width: 124px !important;' />
+          </div>
           <span class='text-white'>{{title}}</span>
         </div>
         <div class='flex items-center gap-3'>
@@ -111,10 +114,10 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
       </div>
     </header>
 
-    <main class='container mx-auto px-4 pb-8 md:pb-12' id='main-content'>
-      <div class='flex justify-center align-center'>
+    <main class='container mx-auto px-4 py-8 md:py-12' id='main-content'>
+      {{!-- <div class='flex justify-center align-center'>
         <img src='./files/{{brandLogo}}' class='py-4' style='width: 200px !important;' />
-      </div>
+      </div> --}}
       <div id='content-placeholder2 relative flex justify-center align-center'>
 
         <!-- renderWelcome() -->
@@ -129,68 +132,49 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                 {{text3}}
               </p>
               <div class='flex flex-col gap-4 mb-8'>
-                {{! <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
+
+                <div class="flex items-center gap-3">
+                  <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-pen-tool h-4 w-4 text-white"
-                    >
-                      <path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z">
-                      </path>
-                      <path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18">
-                      </path>
-                      <path d="m2.3 2.3 7.286 7.286"></path>
-                      <circle cx="11" cy="11" r="2"></circle>
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-pen-tool h-4 w-4 text-white">
+                        <path
+                            d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z">
+                        </path>
+                        <path
+                            d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18">
+                        </path>
+                        <path d="m2.3 2.3 7.286 7.286"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
                     </svg>
-                  </div><span class="text-slate-700">Complete professional tool set</span>
+                  </div><span class="text-slate-700">{{feature1}}</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
+                  <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-battery h-4 w-4 text-white"
-                    >
-                      <rect width="16" height="10" x="2" y="7" rx="2" ry="2"></rect>
-                      <line x1="22" x2="22" y1="11" y2="13"></line>
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-battery h-4 w-4 text-white">
+                        <rect width="16" height="10" x="2" y="7" rx="2" ry="2"></rect>
+                        <line x1="22" x2="22" y1="11" y2="13"></line>
                     </svg>
-                  </div><span class="text-slate-700">Includes 20V cordless tools &amp; charger</span>
+                  </div><span class="text-slate-700">{{feature2}}</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
+                  <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-shield-check h-4 w-4 text-white"
-                    >
-                      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                      </path>
-                      <path d="m9 12 2 2 4-4"></path>
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-shield-check h-4 w-4 text-white">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                        </path>
+                        <path d="m9 12 2 2 4-4"></path>
                     </svg>
-                  </div><span class="text-slate-700">3-year Parkside warranty included</span>
-                </div> }}
+                  </div><span class="text-slate-700">{{feature3}}</span>
+                </div>
+                
               </div>
               <button
                 onclick='startSurvey();'
@@ -200,7 +184,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                   <path d='m9 18 6-6-6-6'></path>
                 </svg></button>
             </div>
-            <div class='order-1 md:order-2 bg-gradient-to-br from-brand-5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8'>
+            <div class='flex justify-center align-center order-1 md:order-2 bg-gradient-to-br from-[#0050AA]/5 to-[#FFE500]/5 rounded-2xl p-6 md:p-8'>
               <img src='./files/{{productImage}}' alt='Parkside Professional Tool Set' class='object-contain w-full h-auto' />
             </div>
           </div>
@@ -679,6 +663,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                           <span class='verified-badge'>{{verified}}</span>
                         </div>
                         <p class='comment-text'>{{text20}}</p>
+                         <img src="./files/{{commentImage1}}" style="max-width: 182px;" alt="">
                         <button class='like-button'>
                           <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>
@@ -719,6 +704,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                           <!-- <span class="verified-badge">{{verified}}</span> -->
                         </div>
                         <p class='comment-text'>{{text24}}</p>
+                         <img src="./files/{{commentImage2}}" style="max-width: 182px;" alt="">
                         <button class='like-button'>
                           <svg class='like-icon' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'>

@@ -103,7 +103,7 @@ export class SurveyService {
         texts.text3 = "Share your shopping experience with " + brand.name + " and get a chance to win a " + product.product + " worth over " + config.currency + product.price + ".";
         texts.text9 = "You've been selected to receive a " + product.product;
 
-        texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + "or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
+        texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
     }
 
     async addCustomComments(geo, templateName) {
@@ -130,6 +130,23 @@ export class SurveyService {
         const chat = model.startChat();
 
         const result = await chat.sendMessage(`generate 3 short positive reviews for this product: ${product}, output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`);
+
+        const response = await result.response;
+
+        return response.text();
+    }
+
+    async generateProductFeatures(product) {
+        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+        const configuration = new GoogleGenerativeAI(API_KEY);
+
+        const modelId = 'gemini-1.5-flash-8b';
+        const model = configuration.getGenerativeModel({ model: modelId });
+
+        const chat = model.startChat();
+
+        const result = await chat.sendMessage(`generate 3 features (not too long) to promote this product: ${product}. output must have this shape as JSON format: { feature1: "content", feature2: "content", feature3: "content" }`);
 
         const response = await result.response;
 
@@ -172,7 +189,10 @@ export class SurveyService {
 
         var reviews = await this.generateReviews(product.product);
 
+        var features = await this.generateProductFeatures(product.product);
+
         var newReviews = JSON.parse(reviews.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
+        var newFeatures = JSON.parse(features.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
 
         var texts;
         try {
@@ -194,7 +214,7 @@ export class SurveyService {
 
             parsedSurvey = { ...parsedSurvey, surveyTitle: `${brand.name} Shopper Experience Survey` };
 
-            texts = { ...texts, ...product, ...brand, ...parsedSurvey, ...commentNamesByCountry[config.geo], ...newReviews };
+            texts = { ...texts, ...product, ...brand, ...parsedSurvey, ...commentNamesByCountry[config.geo], ...newReviews, ...newFeatures };
         } catch (error) {
             console.error(`Error reading texts: ${error.message}`);
             throw new Error('Failed to read texts');
