@@ -119,7 +119,7 @@ export class SurveyService {
         }
     }
 
-    async generateReviews(product) {
+    async generateReviews(product, description) {
         const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
@@ -129,14 +129,14 @@ export class SurveyService {
 
         const chat = model.startChat();
 
-        const result = await chat.sendMessage(`generate 3 short positive reviews for this product: ${product}, output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`);
+        const result = await chat.sendMessage(`generate 3 short positive reviews for this product: ${product} and this product descrition: ${description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`);
 
         const response = await result.response;
 
         return response.text();
     }
 
-    async generateProductFeatures(product) {
+    async generateProductFeatures(product, description) {
         const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
@@ -146,7 +146,7 @@ export class SurveyService {
 
         const chat = model.startChat();
 
-        const result = await chat.sendMessage(`generate 3 features (not too long) to promote this product: ${product}. output must have this shape as JSON format: { feature1: "content", feature2: "content", feature3: "content" }`);
+        const result = await chat.sendMessage(`generate 3 features (not too long) to promote this product: ${product} with this description: ${description} . output must have this shape as JSON format: { feature1: "content", feature2: "content", feature3: "content" }`);
 
         const response = await result.response;
 
@@ -187,9 +187,9 @@ export class SurveyService {
             throw new Error('Failed to read or compile template');
         }
 
-        var reviews = await this.generateReviews(product.product);
+        var reviews = await this.generateReviews(product.product, product.description);
 
-        var features = await this.generateProductFeatures(product.product);
+        var features = await this.generateProductFeatures(product.product, product.description);
 
         var newReviews = JSON.parse(reviews.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
         var newFeatures = JSON.parse(features.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
