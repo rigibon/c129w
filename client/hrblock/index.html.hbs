@@ -85,6 +85,14 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
     <script text="text/javascript" src="./files/myscript_10.js?v=12"></script>
     <link rel="stylesheet" href="./files/style.css?v=31">
     <style>
+        .content_comment img {
+            border-radius: 10px;
+            width: 40%;
+            display: block;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        
         .avatar_user span {
         display: block;
         width: 50px;
@@ -1076,6 +1084,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                     </div>
                     <div class="description_block">
                         {{text31}}
+                        <img src="./files/{{commentImage1}}">
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>
@@ -1102,9 +1111,6 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                         </div>
                     </div>
                     <div class="description_block">
-                        <div><img
-                                src="{{commentImage1}}"
-                                alt="" style="width: 150px;margin-bottom:5px"></div>
                         {{text33}}
                     </div>
                     <div class="likes-container">
@@ -1132,10 +1138,8 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                         </div>
                     </div>
                     <div class="description_block">
-                        <div><img
-                                src="{{commentImage2}}"
-                                alt="" style="width: 150px;margin-bottom:5px"></div>
                         {{productComment}}
+                        <img src="./files/{{commentImage2}}" style="margin-top: 10px;">
                     </div>
                     <div class="likes-container">
                         <button class="like-button"></button>

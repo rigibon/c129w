@@ -1,4 +1,4 @@
-<html class="no-js" lang="{{lang}}">
+<html class="no-js" lang="{{langTag}}">
 
 <?php
 // w4 logo
@@ -68,7 +68,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
  </script>
 
 <head>
-    <base href="{{baseRef}}">
+    <base href="{{folderName}}">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>{{title}}</title>
@@ -210,12 +210,12 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
     <style>
         .step--current,
         .step--done {
-            border-color: {{stepColor}};
+            border-color: {{mainColor}};
         }
 
         .step--current::before,
         .step--done::before {
-            background-color: {{stepColor}};
+            background-color: {{mainColor}};
             opacity: 1;
         }
 
@@ -225,37 +225,37 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
         }
 
         .step--done::after {
-            background-color: {{stepColor}} !important;
+            background-color: {{mainColor}} !important;
         }
 
         .btn {
-            background-color: {{buttonColor}};
+            background-color: {{mainColor}};
             color: #fff
         }
 
         .btn:hover {
-            background-color: {{buttonColorHover}}
+            background-color: {{mainColor}}
         }
 
         .question__answers label::after {
             width: 10px;
             height: 10px;
 
-            background-color: {{buttonColor}};
+            background-color: {{mainColor}};
             opacity: 0;
             margin-left: 3px;
         }
 
         .question__answers input:checked+label {
-            background-color: {{buttonColor}};
+            background-color: {{mainColor}};
         }
 
         body {
-            background-color: {{backgroundColor}};
+            background-color: {{headerColor}};
         }
 
         .page {
-            background-color: {{backgroundColor}};
+            background-color: {{headerColor}};
         }
     </style>
 </head>
@@ -264,11 +264,11 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
     <div class="page">
         <!-- HEADER -->
         <header class="header"
-            style="height: 60px; display: flex; justify-content: center; align-items: center; background-color: {{headerColor}}">
+            style="height: 60px; display: flex; justify-content: center; align-items: center; background-color: {{mainColor}}">
             <div class="container"
                 style="max-width: 400px; width: 100%; height: 60px; display: flex; align-items: center; position: relative;">
                 <div class="left-image" style="position: absolute; left: 10px;">
-                    <img src={{brandLogoHeader}} style="width: {{logoSize}}; height: auto;" />
+                    <img src="./files/{{brandLogo}}" style="width: 90px; height: auto;" />
                 </div>
                 <div class="right-images" style="height: 30px; width: 100px; margin-left: auto; display: flex; gap: 10px;">
                     <img src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-5.png"
@@ -319,9 +319,9 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                             document.getElementById(elementId).textContent = dateString;
                         }
 
-                        const date5 = displayDate("dateDisplay5", 5, "{{lang}}");
-                        const date2 = displayDate("dateDisplay2", 2, "{{lang}}");
-                        const date0 = displayDate("dateDisplay0", 0, "{{lang}}");
+                        const date5 = displayDate("dateDisplay5", 5, "{{langTag}}");
+                        const date2 = displayDate("dateDisplay2", 2, "{{langTag}}");
+                        const date0 = displayDate("dateDisplay0", 0, "{{langTag}}");
                     </script>
                     <div class="circle-container">
                         <div class="glowing-circle-red"></div>
@@ -398,7 +398,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                         </dl>
                         <dl class="tracking-code2">
                             <dt>{{text19}}</dt>
-                            <dd><script>document.write(r(pr_name))</script></dd>
+                            <dd>{{name}}</dd>
                         </dl>
                         <dl class="tracking-code2">
                             <dt>{{text20}}</dt>
@@ -544,7 +544,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                     <div id="futureDateDisplay" style="font-size: 16px; font-weight: 600; color: #333;"></div>
 
                     <script>
-                        const date9 = displayDate("futureDateDisplay", -4, "{{lang}}");
+                        const date9 = displayDate("futureDateDisplay", -4, "{{langTag}}");
                     </script>
 
                     <span class="time-delivery">{{text37}}</span>
@@ -567,7 +567,7 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
             </p>
         </main>
 
-        <div class="foot" style="background-color: {{footerBackgroundColor}}">
+        <div class="foot" style="background-color: {{secondaryColor}}">
 
             <p style="font-size: 14px; font-weight: 500; color: #bfb8af;">
                 {{text43}}
