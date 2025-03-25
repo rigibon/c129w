@@ -174,6 +174,14 @@ const ZA_names = {
     commentName5: "Zanele Ndlovu",
 }
 
+const PT_names = {
+    commentName1: "Ana Oliveira",
+    commentName2: "Carlos Ferreira",
+    commentName3: "Mariana Souza",
+    commentName4: "Ricardo Mendes",
+    commentName5: "Lúcia Almeida",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -196,5 +204,6 @@ export const commentNamesByCountry = {
     "pl": PL_names,
     "sg": SG_names,
     "tr": TR_names,
-    "za": ZA_names
+    "za": ZA_names,
+    "pt": PT_names
 };
