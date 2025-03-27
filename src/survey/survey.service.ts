@@ -76,16 +76,26 @@ export class SurveyService {
     }
 
     async addCustomKeywords2(template, texts, product, brand, survey, config) {
-        texts.questionCount1 = 'Question 1 on 8';
-        texts.questionCount2 = 'Question 2 on 8';
-        texts.questionCount3 = 'Question 3 on 8';
-        texts.questionCount4 = 'Question 4 on 8';
-        texts.questionCount5 = 'Question 5 on 8';
-        texts.questionCount6 = 'Question 6 on 8';
-        texts.questionCount7 = 'Question 7 on 8';
-        texts.questionCount8 = 'Question 8 on 8';
+        console.log(template);
+        if (template === "offerwall") {
+            texts.questionCount1 = 'Question 1 on 5';
+            texts.questionCount2 = 'Question 2 on 5';
+            texts.questionCount3 = 'Question 3 on 5';
+            texts.questionCount4 = 'Question 4 on 5';
+            texts.questionCount5 = 'Question 5 on 5';
+        } else {
+            texts.questionCount1 = 'Question 1 on 8';
+            texts.questionCount2 = 'Question 2 on 8';
+            texts.questionCount3 = 'Question 3 on 8';
+            texts.questionCount4 = 'Question 4 on 8';
+            texts.questionCount5 = 'Question 5 on 8';
+            texts.questionCount6 = 'Question 6 on 8';
+            texts.questionCount7 = 'Question 7 on 8';
+            texts.questionCount8 = 'Question 8 on 8';
+        }
 
-        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of the " + product.product + ", thank you!";
+
+        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of this product, thank you!";
     }
 
     async addCustomKeywords3(template, texts, product, brand, survey, config) {
@@ -203,11 +213,15 @@ export class SurveyService {
             }
 
             if (config.templateName === "hrblock") {
-                this.addCustomKeywords2("tryetco", texts, product, brand, survey, config);
+                this.addCustomKeywords2("hrblock", texts, product, brand, survey, config);
+            }
+
+            if (config.templateName === "offerwall") {
+                this.addCustomKeywords2("offerwall", texts, product, brand, survey, config);
             }
 
             if (config.templateName === "walp") {
-                this.addCustomKeywords3("tryetco", texts, product, brand, survey, config);
+                this.addCustomKeywords3("walp", texts, product, brand, survey, config);
             }
 
             var parsedSurvey = this.parseSurvey(survey);
@@ -223,7 +237,6 @@ export class SurveyService {
         if (config.language !== '' && config.language !== 'english') {
             try {
                 texts = await this.translateKeywords(JSON.stringify(texts), config.language);
-                console.log(texts);
                 texts = JSON.parse(texts.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
             } catch (error) {
                 console.error(`Error translating keywords: ${error.message}`);
@@ -243,8 +256,6 @@ export class SurveyService {
 
         try {
             await this.writeHtmlToFile(outputFilePath, html);
-
-            console.log(config);
 
             const tempFilePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${config.geo}.png`);
             const newFilePath = path.join(__dirname, '..', 'client', config.templateName, 'files', 'flaglogo.png');

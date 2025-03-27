@@ -135,43 +135,17 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
 
                 <div class="flex items-center gap-3">
                   <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-pen-tool h-4 w-4 text-white">
-                        <path
-                            d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z">
-                        </path>
-                        <path
-                            d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18">
-                        </path>
-                        <path d="m2.3 2.3 7.286 7.286"></path>
-                        <circle cx="11" cy="11" r="2"></circle>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                   </div><span class="text-slate-700">{{feature1}}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-battery h-4 w-4 text-white">
-                        <rect width="16" height="10" x="2" y="7" rx="2" ry="2"></rect>
-                        <line x1="22" x2="22" y1="11" y2="13"></line>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                   </div><span class="text-slate-700">{{feature2}}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <div class="min-w-8 h-8 rounded-full bg-brand-secondary flex items-center justify-center">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-shield-check h-4 w-4 text-white">
-                        <path
-                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                        </path>
-                        <path d="m9 12 2 2 4-4"></path>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                   </div><span class="text-slate-700">{{feature3}}</span>
                 </div>
                 
@@ -517,6 +491,56 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
             </div>
             <div class='p-8 space-y-4' id='steps-container'>
               <!-- Steps will be injected here via JavaScript -->
+
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-400"
+                        id="step-1">
+                        <div
+                            class="h-4 w-4 border-2 border-slate-300 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <span class="text-slate-500" id="step-1-span">{{one}}</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-400"
+                        id="step-2">
+                        <div
+                            class="h-4 w-4 border-2 border-slate-300 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <span class="text-slate-500" id="step-2-span">{{two}}</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-400"
+                        id="step-3">
+                        <div
+                            class="h-4 w-4 border-2 border-slate-300 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <span class="text-slate-500" id="step-3-span">{{three}}</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-400"
+                        id="step-4">
+                        <div
+                            class="h-4 w-4 border-2 border-slate-300 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <span class="text-slate-500" id="step-4-span">{{four}}</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-400"
+                        id="step-5">
+                        <div
+                            class="h-4 w-4 border-2 border-slate-300 border-t-transparent rounded-full animate-spin">
+                        </div>
+                    </div>
+                    <span class="text-slate-500" id="step-5-span">{{five}}</span>
+                </div>
             </div>
           </div>
         </div>
@@ -624,9 +648,9 @@ $offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b7
                 <div class='space-y-6'>
                   <div class='flex gap-4'><span class='relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-0'><span class='flex h-full w-full items-center justify-center rounded-full bg-brand text-white'>Y</span></span>
                     <div class='flex-1'>
-                      <div class='relative'><input placeholder='Write a comment...' class='w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent' type='text' /><button
+                      <div class='relative'><input id="comment-input" placeholder='Write a comment...' class='w-full px-4 py-2 rounded-full border border-zinc-200 focus:outline-none focus:ring-2 brand-focus-ring focus:border-transparent' type='text' /><button
                           class='inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground py-2 absolute right-1 top-1 rounded-full bg-brand hover:bg-brand/90 px-4 h-8 text-white'
-                        >Send</button>
+                        >{{send}}</button>
                       </div>
                     </div>
                   </div>

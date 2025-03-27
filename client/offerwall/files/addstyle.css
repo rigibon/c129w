@@ -1,0 +1,349 @@
+#buttonLink i.fa-shopping-cart {
+    font-size: 23px;
+    position: relative;
+    top: 2px;
+}
+#origahog {
+    padding: 20px 20px 15px!important;
+}
+.site-logo{
+    display: block!important;
+}
+.rlt_logo{
+    display: none!important;
+}
+
+@-webkit-keyframes scroll {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+ 
+@-moz-keyframes scroll {
+    0% {
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -moz-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+ 
+@keyframes scroll {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0)
+    }
+}
+.top_bar.hd-top{
+    padding: 0!important;
+    height: 36px;
+}
+.bg-color .top_bar.hd-top div{
+    /* display: none!important; */
+    /* background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/banner_gift.png)!important; */
+    /* background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/happyeaster_banner.png)!important; */
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/3105_Gift_banner_03.png)!important;
+    background-size: cover!important;
+    width: 1920px;
+    /* width: 1255px; */
+    height: 36px;
+    display: inline-block!important;
+    margin-left: 0px!important;
+    margin-right: 0!important;
+    padding: 0!important;
+    font-size: 0!important;
+    line-height: 0!important;
+    -webkit-animation: scroll 25s infinite linear;
+    -moz-animation: scroll 25s infinite linear;
+    animation: scroll 25s infinite linear;
+}
+/* .ca .top_bar{
+    background: none;
+}
+.bg-color.ca .top_bar.hd-top .marqueeStyle,
+.bg-color.ca .top_bar .marqueeStyle.mr-2:first-child{
+    display: inline-block!important
+} */
+.attent{
+    font-size: 13px;
+}
+.att_img{
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/att_icon.png);
+    width: 16px;
+    height: 14px;
+    background-size: cover;
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: -1px;
+}
+.continue{font-size: 25px;cursor: pointer;word-spacing: 5px;letter-spacing: 1px;}
+.continue {
+    position: relative;
+    overflow: hidden;
+}
+.continue:after {
+    animation: shine 3s ease-in-out infinite;
+    animation-fill-mode: forwards;
+    content: "";
+    position: absolute;
+    top: -80%;
+    left: -200%;
+    width: 150%;
+    height: 500%;
+    opacity: 0;
+    transform: rotate(-10deg);
+    background: rgba(255,255,255,0.13);
+    background: linear-gradient(to right,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.0) 30%,rgba(255,255,255,0.13) 77%,rgba(255,255,255,0.5) 92%,rgba(255,255,255,1) 92%,rgba(255,255,255,0.0) 100%);
+}
+.promo_code{
+    color: #1e9a22;
+    padding: 5px 10px;
+    border: #1e9a22 dotted 1px;
+    display: table!important;
+  }
+@keyframes shine {
+    10% {
+        opacity: 1;
+        top: -30%;
+        left: -200%;
+        transition-property: left,top,opacity;
+        transition-duration: 0.7s,0.7s,.15s;
+        transition-timing-function: ease
+    }
+
+    100% {
+        opacity: 0;
+        top: -30%;
+        left: 100%;
+        transition-property: left,top,opacity
+    }
+}
+.sub_title{
+    width: 180px!important;
+}
+.product-container .stars{
+    margin-left: 60px;
+}
+#buttonLink{
+    font-weight: 700;
+    font-size: 20px;
+}
+#buttonLink i.fa-shopping-cart{
+    top: 1px;
+}
+.comment .img-col span,
+.comment_1 .img-col span.avatar_img{
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/sprite_comment2.png);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: -10px;
+}
+.comment.comm1 .img-col span, .comment_1.comm1 .img-col span.avatar_img{background-position: -50px 0;}
+.comment.comm2 .img-col span, .comment_1.comm2 .img-col span.avatar_img{background-position: 0 0;}
+.comment.comm3 .img-col span, .comment_1.comm3 .img-col span.avatar_img{background-position: 0 50px;}
+.comment.comm4 .img-col span, .comment_1.comm4 .img-col span.avatar_img{background-position: 50px 0;}
+.comment.comm5 .img-col span, .comment_1.comm5 .img-col span.avatar_img{background-position: -50px -50px;}
+.comment.comm6 .img-col span, .comment_1.comm6 .img-col span.avatar_img{background-position: -100px 0;}
+.comment.comm7 .img-col span, .comment_1.comm7 .img-col span.avatar_img{background-position: -100px -50px;}
+.comment.comm8 .img-col span, .comment_1.comm8 .img-col span.avatar_img{background-position: -150px -50px;}
+
+.new_comm_block .comment .img-col span{
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/newsurvey_comm.png);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: -10px;
+    background-position: 0 0px !important;
+    background-size: 160px 100px;
+}
+.new_comm_block .comment.comm1 .img-col span{background-position: 0px 50px !important;}
+.new_comm_block .comment.comm2 .img-col span{background-position: 0px 0px !important;}
+.new_comm_block .comment.comm3 .img-col span{background-position: -55px 0 !important;}
+.new_comm_block .comment.comm4 .img-col span{background-position: -55px -50px !important;}
+.new_comm_block .comment.comm5 .img-col span{background-position: -110px 0px !important;}
+.new_comm_block .comment.comm6 .img-col span{background-position: -110px -50px !important;}
+
+
+.message-footer{
+    position: relative;
+}
+.fingerWave{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -0.17rem;
+    left: -0.12rem;
+    -webkit-animation: finger-wave .8s linear infinite both;
+    animation: finger-wave .8s linear infinite both;
+  }
+  .wave1{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0.01rem solid hsla(0, 0%, 100%, .7);
+    border-radius: 50%;
+  }
+  .wave2{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border: 0.01rem solid #fff;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 100%, .25);
+  } 
+  .finger{
+    width: 40px;
+    height: 41px;
+    background-position: 0 0;
+    background-image: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/finger_move.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    -webkit-animation: finger-ani .4s ease-in-out infinite alternate both;
+    animation: finger-ani .4s ease-in-out infinite alternate both;
+  }
+  .finger{
+    position: absolute;
+    top: 15px;
+    right: -62px;
+  }
+  .buttonFinger{
+    position: absolute;
+    right: 75px;
+    top: 10px;
+  }
+  @keyframes finger-wave {
+      0% {
+          opacity: 1;
+          -webkit-transform: scale(.8);
+          transform: scale(.8)
+      }
+      50%,to {
+          opacity: 0;
+          -webkit-transform: scale(1.2);
+          transform: scale(1.2)
+      }
+  }
+  @keyframes finger-ani {
+      0% {
+          -webkit-transform: translate(0);
+          transform: translate(0)
+      }
+      to {
+          -webkit-transform: translate(.1rem,.1rem);
+          transform: translate(.1rem,.1rem)
+      }
+  }
+  .text-congrats{
+    font-size: 17px;
+  }
+  body .sub_title{
+    width: 220px !important;
+  }
+@media only screen and (max-width: 500px) {
+    .top_bar .marqueeStyle.mr-2:first-child{
+        display: inline-block!important;
+    }
+    .top_bar .marqueeStyle{
+        display: inline-block!important;
+        -webkit-animation: scrolling-left1 15s linear infinite!important;
+        animation: scrolling-left1 15s linear infinite!important;
+    }
+    .top_bar .marqueeStyle.mr-2{
+        display: inline-block!important;
+    }
+    .offer_expires{
+        font-size: 15px;
+    }
+    .offer_expires .time{
+        font-size: 15px;
+    }
+    .bottom-bar{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .footer{
+        margin-bottom: 20px;
+    }
+    .comment-page .text-center.mt-3{
+        margin-top: 0px!important;
+    }
+    .comment-page .comment_input_container{
+        margin-top: 20px!important;
+    }
+    .bg-color .top_bar.hd-top .marqueeStyle,
+    .bg-color .top_bar .marqueeStyle.mr-2:first-child{
+      display: none!important
+    }
+    .continue{
+        font-size: 22px;
+    }
+    .attent{
+        font-size: 9px;
+    }
+    .att_img {
+        background: url(https://d3e1y4kxkqljcb.cloudfront.net/survey_us_d/att_icon.png);
+        width: 12px;
+        height: 11px;
+        background-size: cover;
+        display: inline-block;
+        margin-right: 2px;
+        vertical-align: -1px;
+        position: relative;
+        left: -2px;
+    }
+    .promo_code{
+        display: none!important;
+    }
+    .product-container .stars{
+        margin-left: 0;
+    }
+    .thankyou-text_s .text-left.mb-2{
+        margin-bottom: 2rem!important;
+    }
+    #buttonLink{
+        margin-top: 1rem!important;
+    }
+    .viewing{
+        bottom: -15px!important;
+    }
+    .top_bar.hd-top{
+        height: 34px!important;
+    }
+    .top_bar.hd-top div{
+        height: 34px!important;
+    }
+    .comment .img-col span,
+    .comment_1 .img-col span.avatar_img{
+        margin-left: -15px;
+    }
+
+    .buttonFinger{
+        position: absolute;
+        right: 75px;
+        top: 7px;
+      }
+      .thanks_hands.mob{
+        margin-top: 21px!important;
+      }
+      .thankyou-text_s .text-left.mb-2{
+        margin-bottom: 0!important;
+      }
+}

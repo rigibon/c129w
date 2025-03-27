@@ -29,5 +29,11 @@
     "text28": "Terms of Service",
     "text29": "Contact Us",
     "text31": "*Important: Shipping costs may apply.",
-    "title": "Independent Customer Survey"
+    "title": "Customer Survey",
+    "one": "Answers Submitted",
+    "two": "Checking IP Address",
+    "three": "Checking Product Availability",
+    "four": "Verifying Eligibility",
+    "five": "Preparing Reward",
+    "send": "Send"
 }
