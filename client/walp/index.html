@@ -9,6 +9,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet" />
+    <script>
+        function setDate() {
+            const dateElement = document.getElementById('date');
+            const currentDate = new Date();
+            const formattedDate = `${currentDate.toLocaleString('fr', { month: 'long' })} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
+            dateElement.textContent = formattedDate;
+        }
+        window.onload = setDate; // Set the date when the page loads
+    </script>
 </head>
 
 <body class="min-h-screen bg-slate-50">
@@ -29,7 +38,7 @@
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
-                    <span>March 5, 2025</span>
+                    <span id="date">March 5, 2025</span>
                 </div>
                 <div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

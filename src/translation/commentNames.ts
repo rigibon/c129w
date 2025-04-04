@@ -182,6 +182,22 @@ const PT_names = {
     commentName5: "Lúcia Almeida",
 }
 
+const AE_names = {
+    commentName1: "Fatima Al Mazrouei",
+    commentName2: "Omar Al Mansoori",
+    commentName3: "Aisha Al Nuaimi",
+    commentName4: "Khalid Al Shamsi",
+    commentName5: "Mariam Al Suwaidi",
+}
+
+const QA_names = {
+    commentName1: "Sara Al Thani",
+    commentName2: "Hamad Al Jaber",
+    commentName3: "Noora Al Kubaisi",
+    commentName4: "Fahad Al Marri",
+    commentName5: "Latifa Al Mohannadi",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -205,5 +221,7 @@ export const commentNamesByCountry = {
     "sg": SG_names,
     "tr": TR_names,
     "za": ZA_names,
-    "pt": PT_names
+    "pt": PT_names,
+    "ae": AE_names,
+    "qa": QA_names,
 };
