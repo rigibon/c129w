@@ -198,6 +198,14 @@ const QA_names = {
     commentName5: "Latifa Al Mohannadi",
 }
 
+const SA_names = {
+    commentName1: "Amani Al Saud",
+    commentName2: "Faisal Al Harbi",
+    commentName3: "Reem Al Qahtani",
+    commentName4: "Salman Al Otaibi",
+    commentName5: "Huda Al Dossari",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -224,4 +232,5 @@ export const commentNamesByCountry = {
     "pt": PT_names,
     "ae": AE_names,
     "qa": QA_names,
+    "sa": SA_names,
 };
