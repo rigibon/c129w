@@ -206,6 +206,14 @@ const SA_names = {
     commentName5: "Huda Al Dossari",
 }
 
+const IE_names = {
+    commentName1: "Aoife Murphy",
+    commentName2: "Seán O'Connor",
+    commentName3: "Ciara Byrne",
+    commentName4: "Ciarán Kelly",
+    commentName5: "Niamh Walsh",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -233,4 +241,5 @@ export const commentNamesByCountry = {
     "ae": AE_names,
     "qa": QA_names,
     "sa": SA_names,
+    "ie": IE_names
 };

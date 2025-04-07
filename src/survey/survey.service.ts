@@ -224,6 +224,10 @@ export class SurveyService {
                 this.addCustomKeywords3("walp", texts, product, brand, survey, config);
             }
 
+            if (config.templateName === "netf-lo") {
+                texts.text9 = "Do you want a 12 month trial for only 2" + config.currency + "?";
+            }
+
             var parsedSurvey = this.parseSurvey(survey);
 
             parsedSurvey = { ...parsedSurvey, surveyTitle: `${brand.name} Shopper Experience Survey` };

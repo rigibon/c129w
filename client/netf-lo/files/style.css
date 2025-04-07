@@ -1,0 +1,158 @@
+/*  PRELANDER.PRO
+    Thematize your prelander by changing the values within the :root brackets. 
+*/
+
+:root {
+    /*COLOR PALETTE*/
+    --primary-color: #a3c0ff;
+    --secondary-color: #a3c0ff;
+    --tertiary-color: #42ff00;
+    --background-color: #161616;
+    --background-color-light: #00b95e;
+    --background-color-dark: #161616;
+
+    /*BACKGROUND IMAGE FOR BODY*/
+    --background-image: url();
+    --mobile-background-image: url();
+
+    /*FONT STYLING*/
+    --font-color-light: #ffffff;
+    --font-color-dark: #000;
+    --font-family: 'Source Sans Pro', sans-serif;
+    --font-size: 1rem;
+    --line-height: 1.6rem;
+
+
+    /*PADDING AND MARGINS*/
+    --tile-padding: 0.6rem 0;
+    /*FORM STYLING*/
+
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0px auto;
+}
+
+/*SPECIFIC ELEMENT STYLES*/
+html,
+body {
+    color: var(--font-color);
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+}
+
+.container {
+    background-color: var(--background-color-darker);
+}
+
+.header,
+.headerimg,
+.bodyimg,
+.footerimg {
+    width: 100%;
+}
+
+.tile {
+    color: var(--font-color-light);
+    text-align: center;
+    padding: var(--tile-padding);
+    margin-bottom: 0rem;
+}
+
+.lighttile {
+    color: var(--font-color-dark);
+    background-color: var(--background-color-light);
+    text-align: center;
+    padding: 0 !important;
+    padding: var(--tile-padding);
+}
+
+.darktile {
+    color: var(--font-color-light);
+    background-color: var(--background-color-dark);
+    text-align: center;
+    padding: 0 !important;
+    padding: var(--tile-padding);
+}
+
+.darktile:first-child{
+    min-height: 290px;
+}
+.navbar {
+    background: var(--background-color);
+}
+
+.vmid {
+    padding: 2% 5%;
+    display: block;
+}
+
+.terms p {
+    color: var(--font-color-light);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-align: center;
+    padding: 0.4rem;
+    margin: 0;
+}
+
+.product-button {
+    text-decoration: none;
+}
+
+/*FORM STYLES*/
+
+
+/*QUESTIONAIRE STYLES*/
+.end,
+.answer,
+.end-button {
+    display: none;
+}
+
+.questionaire {}
+
+.questionaire,
+.end {
+    text-align: center;
+    padding: var(--tile-padding);
+}
+
+.question h2,
+.end h2 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.question p {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.3;
+}
+
+.button {
+    color: var(--font-color-light);
+    white-space: normal;
+    font-weight: bold;
+    background: var(--background-color-light);
+    padding: 18px 0px;
+    font-size: 24px;
+    border-radius: 11px;
+    max-width: 284px;
+    margin: 13px auto;
+    cursor: pointer;
+}
+
+.button2 {
+    white-space: normal;
+    font-weight: bold;
+    padding: 18px 0px;
+    font-size: 24px;
+    border-radius: 11px;
+    max-width: 284px;
+    margin: 13px auto;
+    cursor: pointer;
+}
+
