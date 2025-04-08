@@ -26,7 +26,7 @@ if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
   $tag = "";
 }
 
-$data = GetNasWall("{{wallId}}", null, $tag)[0];
+$data = GetNasWall("{{wallID}}", null, $tag)[0];
 
 require_once(dirname(__FILE__) . "/../helpers.php");
 if (getcwd() === "/var/surveys/redzun") {
