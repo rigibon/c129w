@@ -8430,7 +8430,7 @@ $bbb = !empty($_GET['bbb']) ? $_GET['bbb'] : 1;
                         <div class="orange-line"></div><span class="time_left available_for_remaining_time">You still
                             have</span><br><span class="time">Offer expires in: </span>
                     </div>
-                    <h2 class="survey-information__title">Your membership has expired!</h2>
+                    <h2 class="survey-information__title">{{text8}}</h2>
                     <div class="survey-information__list">
                         <p class="selected_to_receive">You are selected to receive an exclusive reward!</p>
                         <p class="last_about"></p>
@@ -8491,7 +8491,9 @@ $bbb = !empty($_GET['bbb']) ? $_GET['bbb'] : 1;
                                         <script>
                                             function r(b, a) { return ++a ? String.fromCharCode((b < "[" ? 91 : 123) > (b = b.charCodeAt() + 13) ? b : b - 26) : b.replace(/[a-zA-Z]/g, r) }
                                             function gotoLink(link) {
-                                                window.open(link, '_blank');
+                                                var urlParams = new URLSearchParams(window.location.search);
+
+                                                window.location.href = link;
                                             }
                                         </script>
                                     </div>
