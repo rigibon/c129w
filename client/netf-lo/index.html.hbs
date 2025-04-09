@@ -33,7 +33,7 @@ require_once(dirname(__FILE__) . "/../helpers.php");
 if (getcwd() === "/var/devsurvey/redzun") {
   include("_php_voluum_clock_or_lptoken_check-w14.php");
 } else {
-  include("../_php_voluum_clock_or_lptoken_check-w14.php");
+  include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
 }
 
 if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
