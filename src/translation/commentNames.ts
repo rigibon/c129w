@@ -214,6 +214,14 @@ const IE_names = {
     commentName5: "Niamh Walsh",
 }
 
+const GR_names = {
+    commentName1: "Eleni Papadopoulou",
+    commentName2: "Giorgos Nikolaidis",
+    commentName3: "Maria Economou",
+    commentName4: "Nikos Papadakis",
+    commentName5: "Dimitra Kotsou",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -241,5 +249,6 @@ export const commentNamesByCountry = {
     "ae": AE_names,
     "qa": QA_names,
     "sa": SA_names,
-    "ie": IE_names
+    "ie": IE_names,
+    "gr": GR_names,
 };
