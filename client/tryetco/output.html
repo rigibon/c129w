@@ -1,631 +1,97 @@
-<!DOCTYPE html>
-
 <?php
-// w4 logo
 
-$page_peel_brand = "";
-  if ($_GET['s'] == "1016") {
-$page_peel_brand = <<<page_peel_brand
-<script type="text/javascript" src="/utils/banners/banner-brnd.js"></script>
-<style>
-img.banner {
-    position: fixed;
-    top: 0;
-    width: 150px;
-    z-index: 999999999999;
-}
-</style>
-page_peel_brand;
-  }
-// This is index-rp-nl-nw-exc.php - No Logo - New Window - Exclude by EPV
-session_start();
-require_once dirname(__FILE__) . "/../wall/nas-functions.php";
-if(isset($_GET['nasTag']) && !empty($_GET['nasTag'])) {
-  $tag = $_GET['nasTag'];
-} else {
-  $tag = "";
-}
+// product
+$product = "PRODUCTO_NOMBRE";
+$description = "DESCRIPCIÓN_PRODUCTO";
+$price = "20000";
+$productImage = "/templates/products/6mwyqus7hn2.png";
+$commentImage1 = "/templates/products/sr4kcgnj2rr.png";
+$commentImage2 = "/templates/products/haricprod.png";
+$wallID = "1";
 
-$data = GetNasWall("1", null, $tag)[0];
+// brand
+$name = "Fifty One East";
+$brandLogo = "/templates/brands/n2fx6dnf4kq.png";
+$favicon = "/templates/brands/sl1x6sjz5i.png";
+$backgroundImage = "/templates/brands/2v0zjmlfpfs.jpeg";
+$mainColor = "rgb(146,95,144)";
+$secondaryColor = "rgb(146,95,144)";
+$headerColor = "#ffffff";
 
-require_once(dirname(__FILE__) . "/../helpers.php");
-if (getcwd() === "/var/surveys/redzun") {
-    include("_php_voluum_clock_or_lptoken_check-w14.php");
-} else {
-    include(dirname(__FILE__) . "/../_php_voluum_clock_or_lptoken_check-w14.php");
-}
+// geo
+$geo = "nz";
+$langTag = "es";
+$currency = "€";
+$commentName1 = "Amelia Smith";
+$commentName2 = "Luca Wilson";
+$commentName3 = "Charlotte Jones";
+$commentName4 = "Isla Taylor";
+$commentName5 = "Dorothy Campbell";
+$profilePic1 = "/templates/geos/1_nz.jpg";
+$profilePic2 = "/templates/geos/2_nz.jpg";
+$profilePic3 = "/templates/geos/3_nz.jpg";
+$profilePic4 = "/templates/geos/4_nz.jpg";
+$profilePic5 = "/templates/geos/5_nz.jpg";
+$flagLogo = "/templates/geos/flaglogo_nz.png";
 
-if (isset($_GET['cc'])) $country = strtolower($_GET['cc']); // country must be defined for include
-  else $country = 'us';
+// texts
+$title = "Recompensas de la Encuesta";
+$text1 = "¡Más de 4.000.000 € en ofertas otorgadas hasta ahora!";
+$text2 = "Encuesta Sobre";
+$text3 = "Estimado cliente de Fifty One East,";
+$text4 = "Nos gustaría ofrecerle una oportunidad única para recibir un nuevo";
+$text5 = "Para reclamarlo, simplemente complete esta breve encuesta sobre su experiencia con";
+$text6 = "¡Atención!";
+$text7 = "Esta oferta de encuesta expira hoy,";
+$text8 = "INICIAR ENCUESTA";
+$text9 = "Espere mientras procesamos sus respuestas...";
+$text10 = "Enviando respuestas...";
+$text11 = "Comprobando direcciones IP duplicadas...";
+$text12 = "Comprobando nuestro inventario de productos...";
+$text13 = "Felicidades...";
+$text14 = "Respuestas enviadas";
+$text15 = "Dirección IP comprobada";
+$text16 = "Productos disponibles en stock";
+$text17 = "¡Gracias por completar la encuesta!";
+$text18 = "Debido a que ayudó a proporcionar datos de consumo extremadamente valiosos, ahora puede elegir algunas de las siguientes recompensas exclusivas a continuación.";
+$text19 = "Tenga en cuenta que si abandona esta página sin reclamar su recompensa, no tenemos más remedio que darle a otro visitante la oportunidad de participar en nuestro programa de recompensas.";
+$text20 = "Precio:";
+$text21 = "En Stock:";
+$text22 = "¡Pague solo por el envío!";
+$text23 = "RECLAMAR RECOMPENSA";
+$text24 = "Nuevo Comentario";
+$text25 = "Comentarios (5)";
+$text26 = "Enviar";
+$text27 = "Acabo de recibir esto por correo electrónico y lo intenté. ¡Estoy emocionado de obtener mi recompensa! ¿Puedo enviar la encuesta a mis amigos?";
+$text28 = "¡En realidad obtuve un premio de esta encuesta! Al principio dudaba, pero lo intenté. ¡Y mira lo que acaba de llegar por correo!";
+$text29 = "Ja, qué encuesta tan genial, pero qué pena que no haya obtenido ningún premio...";
+$text30 = "Normalmente no hago este tipo de encuestas online, ¡pero esta es realmente buena! ¡Usaremos este premio para algo bueno, muchas gracias!";
+$text31 = "¿Dónde puedo hacer más encuestas como estas? Me gusta obtener premios :)";
+$text32 = "Este sitio web no está afiliado ni avalado por Fifty One East ni ninguna marca similar, y no pretende representar ni poseer ninguna de las marcas comerciales, nombres comerciales o derechos asociados con ninguno de los productos, que son propiedad de sus respectivos propietarios, quienes no poseen, avalan ni promocionan este sitio web.";
+$text33 = "*Los productos ofrecidos en la última página requieren gastos de envío y manipulación. Consulte el sitio del fabricante para obtener detalles, ya que los términos varían con las ofertas. Consulte los términos y condiciones importantes sobre esta encuesta, el sitio web y el anuncio.";
+$text34 = "*Importante: Puede que se apliquen gastos de envío.";
+$text35 = "Oferta expira en";
+$text36 = "¡Felicidades!";
+$text37 = "Hemos reservado (1)";
+$text38 = "exclusivamente para ti.";
+$text39 = "Cómo reclamar tu";
+$text40 = "Rellene su dirección de envío.";
+$text41 = "Pague solo los costos de envío para recibir su premio.";
+$text42 = "Su premio será entregado en 5-7 días hábiles.";
+$text43 = "Continuar";
+$like = "Me gusta";
+$reply = "Responder";
+$montharray = "Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre";
 
-$_SESSION['cc'] = $country; // Set Country ID
-
-if (isset($_GET['wid'])) $wid = strtolower($_GET['wid']); // Wall ID
-  else $wid = 'default';
-
-$_SESSION['wid'] = $_GET['wid']; // Set Wall ID
-
-$offer_parameters = "?c=" . $_GET['c']."&k="."&v=".$_GET['v']."&s=".$_GET['s']."&t=".$_GET['t']."&cr=".$_GET['cr']."&src=".$_GET['src']."&lp=".$_GET['lp']."&id=".$_GET['id'];
-$offer_url = "https://" . $offer_link_domain_fold . "/de7d783b-d901-4973-8080-b75e3e249c7c". $offer_parameters;
+$survey = array(
+    array("¿Con qué frecuencia visita Fifty One East para sus necesidades de compra?", "Varias veces a la semana", "Una vez a la semana", "Unas cuantas veces al mes", "Raras veces o nunca"),
+    array("¿Qué motiva principalmente su elección de comprar en Fifty One East?", "Conveniencia de la ubicación", "Selección de productos", "Precios y ofertas", "Programa de recompensas de fidelización"),
+    array("¿Cómo suele reaccionar cuando ve anuncios de Fifty One East?", "Busco artículos que necesito", "Miro si hay alguna buena oferta", "Considero visitarlo si hay una promoción", "Normalmente ignoro los anuncios"),
+    array("Si ganara un PRODUCTO_NOMBRE de Fifty One East, ¿cómo cambiaría su opinión sobre Fifty One East?", "Significativamente más positiva", "Algo más positiva", "Sin cambios", "Más negativa"),
+    array("En cuanto al PRODUCTO_NOMBRE, ¿cuál es la característica que más le atrae?", "Durabilidad", "Eficiencia de refrigeración", "Portabilidad", "Diseño y apariencia"),
+    array("¿Qué tan probable es que utilice un PRODUCTO_NOMBRE si lo recibiera de Fifty One East?", "Muy probable", "Algo probable", "Poco probable", "No lo usaría"),
+    array("En cuanto a productos de salud y bienestar, ¿qué tan bien cree que Fifty One East satisface sus necesidades?", "Supera mis necesidades", "Satisface bien mis necesidades", "Satisface adecuadamente mis necesidades", "No satisface mis necesidades"),
+    array("¿Qué tan probable es que participe en futuras promociones o encuestas de Fifty One East?", "Muy probable", "Algo probable", "No muy probable", "Para nada probable"),
+);
 
 ?>
-<script>
-  function r(b,a){return++a?String.fromCharCode((b<"["?91:123)>(b=b.charCodeAt()+13)?b:b-26):b.replace(/[a-zA-Z]/g,r)}
-  pr_name = "<?php echo str_rot13(""); ?>";
-
-
-</script>
-
-<script>
- 			window.c_var = '<?=!empty($_GET['c']) ? $_GET['c'] : ""?>';
-			window.k_var = '<?=!empty($_GET['k']) ? str_rot13($_GET['k']) : ""?>';
-			window.s_var = '<?=!empty($_GET['s']) ? $_GET['s'] : ""?>';
-			window.src_var = '<?=!empty($_GET['src']) ? $_GET['src'] : ""?>';
-			window.id_var = '<?=!empty($_GET['id']) ? $_GET['id'] : ""?>';
-			
-			var jumpurl;
-      jumpurl = '<?php echo $data->url ?>';
- </script>
-
-<html lang="en">
-    <head>
-        <base href="/us-harico/">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Survey Rewards</title>
-        <link rel="stylesheet" href="./files/style.css?v=14">
-        <link rel="stylesheet" href="./files/animate.min.css">
-        <link rel="icon" href="./files/6mwyqus7hn2.png">
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-        <script src="./files/datehead.js"></script>
-
-        <style>
-            .con-body button{
-                font-size: 18px;
-                font-weight: 600;
-                background-color: rgb(206,34,20);
-                color: #fff;
-                text-align: center;
-                padding: .6rem;
-                margin-bottom: .5rem;
-                width: 80%;
-                border: 1px solid rgb(206,34,20);
-                border-radius: 3px;
-                cursor: pointer;
-                transition: transform .5s;
-            }
-
-            .con-body button:hover{
-                background-color: rgb(206,34,20);
-            }
-
-            .con-head-ln1 {
-                background-color: rgb(206,34,20);
-                color: #fff;
-            }
-
-            .con-body {
-                margin: 10px;
-                /* background-image: url('./banner.jpg');
-                    background-size: cover; */
-                background-color: #fff;
-                padding: 15px;
-                border-bottom: 10px solid rgb(206,34,20);
-                border-radius: 3px;
-                box-shadow: 0px 0px 2px 2px #d1d1d1;
-            }
-
-            .inn-q-verif-content-title b {
-                color: rgb(206,34,20) !important;
-            }
-
-            .con-body-ln3 b {
-                color: rgb(206,34,20);
-            }
-
-            .con-prize .prize-ln2-title {
-                color: #222;
-                padding-left: 15px !important;
-            }
-
-            .con-prize .con-prize-button {
-                font-size: 18px;
-                font-weight: 600;
-                background-color: rgb(206,34,20);
-                color: #fff;
-                text-align: center;
-                padding: 0.6rem;
-                margin: 10px -10px 0px 10px;
-                width: 80%;
-                border: 1px solid rgb(206,34,20);
-                border-radius: 3px;
-                cursor: pointer;
-                transition: transform 0.5s;
-            }
-
-            .con-prize .con-prize-button:hover {
-                background-color: rgb(206,34,20);
-                cursor: pointer;
-                transform: scale(1.1);
-            }
-
-            .comm-title button {
-                font-size: 15px;
-                padding: 7px 15px;
-                margin-left: 5px;
-                border: 0px;
-                background-color: rgb(206,34,20);
-                color: #fff;
-                border-radius: 3px;
-                cursor: pointer;
-            }
-
-            .con-footer {
-                margin: 10px;
-                background-color: #fff;
-                padding: 15px;
-                border-top: 10px solid rgb(3,88,171);
-                border-radius: 3px;
-                box-shadow: 0px 0px 2px 2px #d1d1d1;
-            }
-
-            .con-bottom-bar {
-                text-align: center !important;
-                background-color: rgb(3,88,171);
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 99;
-                width: 100%;
-                border-top: 2px solid rgb(3,88,171);
-                padding-top: 3px;
-                padding-bottom: 3px;
-                box-shadow: 11px 0px 24px 0 rgba(0, 0, 0, 0.3);
-            }
-
-            .modal-foot button {
-                font-size: 20px;
-                padding: 0.5rem 1rem;
-                font-weight: 600;
-                background-color: rgb(206,34,20);
-                color: #fff;
-                border: 1px solid #fff;
-                border-radius: 3px;
-                cursor: pointer;
-            }
-
-            .modal-foot {
-                background-color: rgb(3,88,171);
-            }
-
-            .con-head-ln2 {
-                background-color: rgb(255,255,255);
-                color: #000;
-                text-align: center;
-            }
-
-            body {
-                padding: 0px;
-                margin: 0px;
-                background-color: #e2e2e2;
-                font-family: sans-serif;
-                font-size: 14px;
-                background-image: url('./files/sr4kcgnj2rr.png');
-                background-attachment: fixed;
-                background-position: center;
-                background-repeat: repeat-y;
-                background-size: cover;
-            }
-
-            .btn-close {
-                background-color: rgb(255,255,255);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="con-full">
-            <div class="con-head">
-                <div class="con-head-ln1">
-                    <h4>Over $4,000,000 in Offers given out so far!</h4>
-                </div>
-                <div class="con-head-ln2">
-                    <div class="con-head-line">
-                        <hr/>
-                        <span>Survey About</span> 
-                        <hr/>
-                    </div>
-                    <img src="./files/gb5hkjarfd.png" style="max-width: 200px; height: auto; margin-top: 10px;" alt="">
-                    <h3><script>document.write(datehax("January, February, March, April, May, June, July, August, September, October, November, December", "us"));</script><img class="imgflg" src="./files/flaglogo.png" alt=""></h3>
-                </div>
-            </div>
-            <div class="con-body-pad">
-                <div class="con-body" id="content-changeCol">
-                    <div class="con-body-ln1">
-                        <div class="con-body-ln1-inn1">
-                            <img src="./files/image__1_-removebg-preview.png" id="product-img" alt="">
-                        </div>
-                        <div class="con-body-ln1-inn2">
-                            <p>
-                                <b>Dear Harbor Freight Shopper,</b><br/><br/>We would like to offer you a unique opportunity to receive a brand new <b>Icon Core Master Tool Set!</b>
-                                To claim, simply take this short survey about your experience with Harbor Freight.
-                            </p>
-                            <br/>
-                            <p>
-                                <b><span>Attention!</span></span> This survey offer expires today, <script>document.write(datehax("January, February, March, April, May, June, July, August, September, October, November, December", "us"));</script>.</b>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="con-body-question">
-                        <div class="con-body-ln2">
-                            <div class="inn-question">
-                                <button class="inn-q-select" id="animate_btn_0" value="1">START SURVEY</button>
-                            </div>
-                        </div>
-                        <div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 1 on 8</small><br/>
-        <b class="qeus-text">How often do you visit Harbor Freight for your shopping needs?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Multiple times a week</button>
-        <button class="inn-q-select qeus-text">Once a week</button>
-        <button class="inn-q-select qeus-text">A few times a month</button>
-        <button class="inn-q-select qeus-text">Rarely or never</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 2 on 8</small><br/>
-        <b class="qeus-text">What primarily drives your choice to shop at Harbor Freight?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Convenience of location</button>
-        <button class="inn-q-select qeus-text">Product selection</button>
-        <button class="inn-q-select qeus-text">Prices and deals</button>
-        <button class="inn-q-select qeus-text">Loyalty rewards program</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 3 on 8</small><br/>
-        <b class="qeus-text">When seeing ads from Harbor Freight, how do you typically respond?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">I look for items I need</button>
-        <button class="inn-q-select qeus-text">I browse if there&#x27;s a good deal</button>
-        <button class="inn-q-select qeus-text">I consider visiting if there&#x27;s a promo</button>
-        <button class="inn-q-select qeus-text">I usually ignore the ads</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 4 on 8</small><br/>
-        <b class="qeus-text">If you won an Icon Core Master Tool Set from Harbor Freight, how would it change your view of the Harbor Freight?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Significantly more positive</button>
-        <button class="inn-q-select qeus-text">Somewhat more positive</button>
-        <button class="inn-q-select qeus-text">No change</button>
-        <button class="inn-q-select qeus-text">More negative</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 5 on 8</small><br/>
-        <b class="qeus-text">Regarding the Icon Core Master Tool Set, which feature is most appealing to you?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Durability</button>
-        <button class="inn-q-select qeus-text">Versatility</button>
-        <button class="inn-q-select qeus-text">Portability</button>
-        <button class="inn-q-select qeus-text">Design and appearance</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 6 on 8</small><br/>
-        <b class="qeus-text">How likely are you to use an Icon Core Master Tool Set if you received one from Harbor Freight?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Very likely</button>
-        <button class="inn-q-select qeus-text">Somewhat likely</button>
-        <button class="inn-q-select qeus-text">Unlikely</button>
-        <button class="inn-q-select qeus-text">I would not use it</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 7 on 8</small><br/>
-        <b class="qeus-text">In terms of tools and equipment, how well do you think Harbor Freight meets your needs?</b>
-    </h2>
-    <div class="inn-question">
-        <button class="inn-q-select qeus-text">Exceeds my needs</button>
-        <button class="inn-q-select qeus-text">Meets my needs well</button>
-        <button class="inn-q-select qeus-text">Adequately meets my needs</button>
-        <button class="inn-q-select qeus-text">Does not meet my needs</button>
-    </div>
-</div>
-<div class="inn-q animate__animated">
-    <h2>
-        <span class="qeus-head">Harbor Freight Shopper Experience Survey</span><br/><br/>
-        <small class="qeus-numb">Question 8 on 8</small><br/>
-        <b class="qeus-text">How likely are you to participate in future promotions or surveys from Harbor Freight?</b>
-    </h2>
-    <div class="inn-question" id="inn-last-q-item">
-        <button class="inn-q-select qeus-text">Very likely</button>
-        <button class="inn-q-select qeus-text">Somewhat likely</button>
-        <button class="inn-q-select qeus-text">Not very likely</button>
-        <button class="inn-q-select qeus-text">Not at all likely</button>
-    </div>
-</div>
-
-                        <div class="inn-q-verif-content hidden" id="verif-content">
-                            <h2 class="inn-q-verif-content-title"><b>Please wait while we process your answers...</b></h2>
-                            <h2 id="inn-q-progress-state1">Submitting answers...</h2>
-                            <h2 id="inn-q-progress-state2" class="hidden">Checking for duplicate IP addresses...</h2>
-                            <h2 id="inn-q-progress-state3" class="hidden">Checking our inventory for products...</h2>
-                            <h2 id="inn-q-progress-state4" class="hidden">Congratulations...</h2>
-                            <img id="inn-q-progress-loading" src="./files/loadingBL.gif" alt="">
-                            <h2 id="inn-q-progress-dones2" class="hidden">Answers submitted</h2>
-                            <h2 id="inn-q-progress-dones3" class="hidden">IP address checked</h2>
-                            <h2 id="inn-q-progress-dones4" class="hidden">Products available in stock</h2>
-                        </div>
-
-
-                        <div class="con-body-ln3 hidden" id="prize-content-1">
-                            <h2><b>Thank you for completing the survey!</b></h2>
-                            <p>Because you helped provide extremely valuable consumer data, you may now choose some of the following exclusive rewards below.</p>
-                            <p>Please note that if you leave this page without claiming your reward, we have no choice but to give another visitor a chance to participate in our rewards program.</p>
-                            <div class="body-ln3-carret animate__animated animate__slower animate__infinite animate__shakeY"><b><i class="fas fa-angle-double-down fa-2x"></i></b></i></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="prize-content-2" class="hidden">
-                    <div class="con-prize">
-                        <div class="con-prize-outter">
-                            <div class="con-prize-ln1">
-                                <img src="./files/image__1_-removebg-preview.png" alt="">
-                            </div>
-                            <div class="con-prize-ln2">
-                                <h2 class="prize-ln2-title" id="prize-ln2-desc">
-                                    Icon Core Master Tool Set
-                                </h2>
-                                <p class="prize-ln2-desc">
-                                    Featuring 382 of the most used automotive tools including ratchets, sockets, extensions, UJ&#x27;s, adapters, pliers, wrenches, bits, screwdrivers, hex keys, picks, dead blows, punches, chisels, breaker bar, rechargeable light, and more. These tools are built to meet the rigorous standards you&#x27;ve come to expect from ICON™.           
-                                </p>
-                                <div class="prize-ln2-amount">
-                                    <div class="prize-ln2-zero1">&nbsp;Price: <del>$1299.99</del></div>
-                                    <div class="prize-ln2-zero2 animate__animated animate__heartBeat animate__slower animate__infinite">$0.00</div>
-                                </div>
-                                <p class="prize-ln2-stock">&nbsp;Left in Stock: <b>(<span class="animate__animated animate__flash animate__slower animate__infinite"> 2 </span>)</b></p>
-                                <p class="prize-ln2-pfs">&nbsp;Pay only for shipping!</p>
-                                <div class="prize-ln2-btn">
-                                    <button id="btn-claim" class="con-prize-button"><i class="fas fa-shopping-cart"></i> CLAIM REWARD</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="con-nothing" id="nothing-id"></div>
-            
-                <!-- ALL COMMENTS ARE LISTE HERE -->
-                <div id="comments" class="con-comment hidden">
-                    <div class="com_cont">
-
-                        <div class="comm-div">
-                            <div class="comm-desc">
-                                <div class="comm-name">New Comment</div>
-                                <div class="comm-box">
-                                   <textarea name="comment_box" rows="5"></textarea>
-                                </div>
-                                <div class="comm-title">
-                                    <span><i class="fas fa-comments"></i> Comments (5)</span>
-                                    <span><button><i class="fas fa-camera"></i></button><button>Submit</button></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comm-div">
-                            <div class="comm-image">
-                                <img src="./files/1.jpg" alt="">
-                            </div>
-                            <div class="comm-desc">
-                                <div class="comm-name">Elizabeth Brown</div>
-                                <div class="comm-text">
-                                    I just received this through email and gave it a try. Excited to get my reward! Can I also send the survey to my friends?
-                                </div>
-                                <div class="comm-footer">
-                                    <div class="comm-footer-datelike">
-                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div>
-                                        <div><i class="fas fa-thumbs-up"></i><span>52</span></div>
-                                    </div>
-                                    <div>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comm-div">
-                            <div class="comm-image">
-                                <img src="./files/2.jpg" alt="">
-                            </div>
-                            <div class="comm-desc">
-                                <div class="comm-name">John Wilson</div>
-                                <div class="comm-text">
-                                    Actually got a prize from this survey! I was skeptical at first but gave it a try. And look what just arrived in the mail!<br/>
-                                    <img src="./files/icon-core-master-set-arrival-v0-gqcf7m9aov8e1.jpg" alt="">
-                                </div>
-                                <div class="comm-footer">
-                                    <div class="comm-footer-datelike">
-                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
-                                        <div><i class="fas fa-thumbs-up"></i><span>84</span></div>
-                                    </div>
-                                    <div>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comm-div">
-                            <div class="comm-image">
-                                <img src="./files/3.jpg" alt="">
-                            </div>
-                            <div class="comm-desc">
-                                <div class="comm-name">Jennifer Jones</div>
-                                <div class="comm-text">
-                                    Lol such a cool survey but too bad I didn&#x27;t get any prize.. 
-                                </div>
-                                <div class="comm-footer">
-                                    <div class="comm-footer-datelike">
-                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
-                                        <div><i class="fas fa-thumbs-up"></i><span>12</span></div>
-                                    </div>
-                                    <div>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comm-div">
-                            <div class="comm-image">
-                                <img src="./files/4.jpg" alt="">
-                            </div>
-                            <div class="comm-desc">
-                                <div class="comm-name">Steven Jackson</div>
-                                <div class="comm-text">
-                                    I usually dont take these kind of online surveys but this is actually a good one!! We will put this prize to good use thanks so much!!<br/>
-                                    <img src="./files/5FF226A73F820DD7BC89D68FEC0F9A2C.app1_1737647393603_1_PZ320.jpeg" alt="">
-                                </div>
-                                <div class="comm-footer">
-                                    <div class="comm-footer-datelike">
-                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
-                                        <div><i class="fas fa-thumbs-up"></i><span>97</span></div>
-                                    </div>
-                                    <div>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comm-div">
-                            <div class="comm-image">
-                                <img src="./files/5.jpg" alt="">
-                            </div>
-                            <div class="comm-desc">
-                                <div class="comm-name">Dorothy Harris</div>
-                                <div class="comm-text">
-                                    Where can I do more surveys like these? I like getting prizes :)
-                                </div>
-                                <div class="comm-footer">
-                                    <div class="comm-footer-datelike">
-                                        <div><i class="fas fa-calendar-alt"></i><span><script>document.write(datenhax());</script></span></div> 
-                                        <div><i class="fas fa-thumbs-up"></i><span>16</span></div>
-                                    </div>
-                                    <div>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="con-footer" id="con-footer">
-                    <div class="footer-content">
-                        <br /><br />
-                        <img src="./files/f_guarantee.png" alt="guarantee" height="70px" width="auto" /> <img src="./files/f_secure_1.png"
-                            alt="secureSiteLogo" height="75px" width="auto" />
-                        <p class="copyright">Copyright © <script>document.write(datenhay());</script></p>
-                        <div class="claim">
-                            <span>This website is not affiliated with or endorsed by Harbor Freight or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.</span><br/><br/>
-                            *Products offered on the last page require shipping and handling fees. See manufacturer&#x27;s site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.
-                            <br/>*Important: Shipping costs may apply.<br>
-                            <br/><br/><br/>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="con-bottom-bar">
-           <div class="offer_expires">Offer expires in <span id="time"></span></div>     
-        </div>
-
-        <div class="mod-con mod-con-bg hidden" id="modal-prize">
-            <div class="modal mod-con-inn">
-                <div class="btn-close">
-                    <img src="./files/gb5hkjarfd.png" height="50px" alt="">
-                    <!-- <h2>Tractor Supply</h2> -->
-                    <button id="btn-close" ><!-- <i  class="fas fa-times fa-lg"></i> --></button>
-                </div>
-                <hr>
-                <div class="modal-head">
-                    <p><span>Congratulations!</span> We have reserved (1) Icon Core Master Tool Set exclusively for you.</p>
-                </div>
-                <div class="modal-body">
-                    <p><span>How to claim your Icon Core Master Tool Set:</p>
-                    <ol>
-                        <li>Fill in your shipping address.</li>
-                        <li>Pay only shipping costs to receive your prize.</li>
-                        <li>Your prize will be delivered in 5-7 working days.</li>
-                    </ol>
-                </div>
-                <div class="modal-foot">
-                    <img src="<?php echo $data->impression_url ?>" style="display:none;"></img>
-                    <button id="button1">Continue</button>
-                </div>
-            </div>
-        </div>
-    </body>
-    <script src="./files/script.js?v=29"></script>
-
-    <script>
-        document.getElementById('button1').addEventListener("click",function(){
-            var urlParams = new URLSearchParams(window.location.search);
-            
-            window.location.href = jumpurl ;
-        },false);
-    </script>
-
-    <?php
-            if (($_GET['nopush'] !== "1") && ($_GET['src'] !== "TV"))
-            {
-                $aff_id = "2";
-                if (!empty($_GET["s"])) {
-                    $aff_id = $_GET["s"];
-                }
-                
-                $trk_urls = [
-                    "https://" . $_GET["trk"] . "/click/20"
-                ];
-                
-                echo getPushCode("us", $aff_id, $trk_urls);
-            }
-            ?>
-            
-            <?php
-            $backbutton_url = "https://" . $_SERVER['HTTP_HOST'] . "/back-w14.php?c=" . $_GET['c'] . "&k=" . $_GET['k'] . "&id=" . $_GET['id'] . "&source=" . $_GET['source'];
-            
-            echo getBackButton($backbutton_url);
-    ?>
-</html>

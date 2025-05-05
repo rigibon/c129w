@@ -7,7 +7,7 @@ import { commentNamesByCountry } from 'src/translation/commentNames';
 
 export class SurveyService {
     getTemplateFilePath(templateName) {
-        return join(__dirname, '..', 'client', templateName, 'config.html.hbs');
+        return join(__dirname, '..', 'client', templateName, 'index.html.hbs');
         // return join(__dirname, '..', 'client', 'index.html.hbs');
     }
 
