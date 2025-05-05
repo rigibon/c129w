@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Post, Req, Res, UploadedFiles, UseInterceptors } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post, Req, Res, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { SurveyService } from "./survey.service";
 import * as path from 'path';
 import { promises as fs, createWriteStream } from "fs";
@@ -137,6 +137,20 @@ export class SurveyController {
                 error: error.message,
                 stack: error.stack
             });
+        }
+    }
+
+    @Post('generate')
+    async generateFromPrompt(
+        @Body() body: { prompt: string; outputFormat: string },
+    ): Promise<any> {
+        const { prompt, outputFormat } = body;
+        const responseText = await this.surveyService.generate(prompt, outputFormat);
+
+        try {
+            return JSON.parse(responseText);
+        } catch (e) {
+            return { raw: responseText };
         }
     }
 }

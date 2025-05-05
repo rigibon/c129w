@@ -7,7 +7,7 @@ import { commentNamesByCountry } from 'src/translation/commentNames';
 
 export class SurveyService {
     getTemplateFilePath(templateName) {
-        return join(__dirname, '..', 'client', templateName, 'index.html.hbs');
+        return join(__dirname, '..', 'client', templateName, 'config.html.hbs');
         // return join(__dirname, '..', 'client', 'index.html.hbs');
     }
 
@@ -116,16 +116,24 @@ export class SurveyService {
         texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
     }
 
-    async addCustomComments(geo, templateName) {
-        try {
-            for (var i = 1; i <= 5; i++) {
-                const tempFilePathImage = path.join(__dirname, '..', 'client', 'images', `${i}_${geo}.jpg`);
-                const newFilePathImage = path.join(__dirname, '..', 'client', templateName, 'files', `${i}.jpg`);
+    async addCustomComments(geo, templateName, texts = null) {
+        if (texts) {
+            texts.profilePic1 = `1_${geo}.jpg`;
+            texts.profilePic2 = `2_${geo}.jpg`;
+            texts.profilePic3 = `3_${geo}.jpg`;
+            texts.profilePic4 = `4_${geo}.jpg`;
+            texts.profilePic5 = `5_${geo}.jpg`;
+        } else {
+            try {
+                for (var i = 1; i <= 5; i++) {
+                    const tempFilePathImage = path.join(__dirname, '..', 'client', 'images', `${i}_${geo}.jpg`);
+                    const newFilePathImage = path.join(__dirname, '..', 'client', templateName, 'files', `${i}.jpg`);
 
-                await fs.copyFile(tempFilePathImage, newFilePathImage);
+                    await fs.copyFile(tempFilePathImage, newFilePathImage);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     }
 
@@ -264,10 +272,12 @@ export class SurveyService {
             const tempFilePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${config.geo}.png`);
             const newFilePath = path.join(__dirname, '..', 'client', config.templateName, 'files', 'flaglogo.png');
 
+            texts.flagLogo = `flaglogo_${config.geo}.png`;
+
             try {
                 await fs.copyFile(tempFilePath, newFilePath);
 
-                await this.addCustomComments(config.geo, config.templateName);
+                await this.addCustomComments(config.geo, config.templateName, texts);
             } catch (error) {
                 console.error(`Error copying flag logo for ${config.geo}: ${error.message}`);
                 throw new Error(`Failed to copy flag logo for ${config.geo}`);
@@ -278,5 +288,22 @@ export class SurveyService {
         }
 
         return 'Survey generated successfully';
+    }
+
+    async generate(prompt: string, outputFormat: string): Promise<string> {
+        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+
+        const configuration = new GoogleGenerativeAI(API_KEY);
+
+        const modelId = 'gemini-1.5-flash-8b';
+        const model = configuration.getGenerativeModel({ model: modelId });
+
+        const chat = model.startChat();
+
+        const fullPrompt = `${prompt}\nReturn the response in this format: ${outputFormat}`;
+
+        const result = await model.generateContent(fullPrompt);
+        const response = await result.response;
+        return response.text();
     }
 }
