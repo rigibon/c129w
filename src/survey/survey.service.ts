@@ -5,221 +5,136 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import * as path from 'path';
 import { commentNamesByCountry } from 'src/translation/commentNames';
 
+interface Product {
+    product: string;
+    description: string;
+    price: string;
+}
+
+interface Brand {
+    name: string;
+}
+
+interface Config {
+    templateName: string;
+    currency: string;
+    geo: string;
+    language: string;
+}
+
 export class SurveyService {
-    getTemplateFilePath(templateName) {
-        return join(__dirname, '..', 'client', templateName, 'index.html.hbs');
-        // return join(__dirname, '..', 'client', 'index.html.hbs');
+    private readonly AI_API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    private readonly AI_MODEL_ID = 'gemini-1.5-flash-8b';
+
+    private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
+        const basePath = join(__dirname, '..', 'client', templateName);
+
+        switch (type) {
+            case 'template':
+                return join(basePath, 'index.html.hbs');
+            case 'params':
+                return join(basePath, 'params.json');
+            case 'output':
+                return join(basePath, 'output.html');
+            default:
+                throw new Error(`Unknown file type: ${type}`);
+        }
     }
 
-    getTextsFilePath(templateName) {
-        return join(__dirname, '..', 'client', templateName, 'params.json');
-        // return join(__dirname, '..', 'client', 'params.json');
+    private async readFile(filePath: string): Promise<string> {
+        try {
+            return await fs.readFile(filePath, 'utf8');
+        } catch (error) {
+            console.error(`Error reading file ${filePath}: ${error.message}`);
+            throw new Error(`Failed to read file: ${filePath}`);
+        }
     }
 
-    getOutputFilePath(templateName) {
-        return join(__dirname, '..', 'client', templateName, 'output.html');
-        // return join(__dirname, '..', 'client', 'tryetco', 'output.html');
+    private async writeFile(filePath: string, content: string): Promise<void> {
+        try {
+            await fs.writeFile(filePath, content, 'utf8');
+        } catch (error) {
+            console.error(`Error writing to file ${filePath}: ${error.message}`);
+            throw new Error(`Failed to write to file: ${filePath}`);
+        }
     }
 
-    async readAndCompileTemplate(templateFilePath) {
-        const templateContent = await fs.readFile(templateFilePath, 'utf8');
+    private async copyFile(sourcePath: string, destinationPath: string): Promise<void> {
+        try {
+            await fs.copyFile(sourcePath, destinationPath);
+        } catch (error) {
+            console.error(`Error copying file from ${sourcePath} to ${destinationPath}: ${error.message}`);
+            throw new Error('Failed to copy file');
+        }
+    }
+
+    private async compileTemplate(templatePath: string): Promise<handlebars.TemplateDelegate> {
+        const templateContent = await this.readFile(templatePath);
         return handlebars.compile(templateContent);
     }
 
-    async readTexts(textsFilePath) {
-        const textsContent = await fs.readFile(textsFilePath, 'utf8');
-        return JSON.parse(textsContent);
-    }
+    private async callAI(prompt: string, outputFormat: string = null): Promise<string> {
+        try {
+            const configuration = new GoogleGenerativeAI(this.AI_API_KEY);
+            const model = configuration.getGenerativeModel({ model: this.AI_MODEL_ID });
 
-    async writeHtmlToFile(outputFilePath, html) {
-        await fs.writeFile(outputFilePath, html, 'utf-8');
-    }
-
-    async translateKeywords(keywords: any, language: string) {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
-
-        const configuration = new GoogleGenerativeAI(API_KEY);
-
-        const modelId = 'gemini-1.5-flash-8b';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
-
-        const result = await chat.sendMessage(`translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
-
-        const response = await result.response;
-
-        return response.text();
-    }
-
-    async loadTextsForConfig(templateFilePaths) {
-        const texts = {};
-
-        for (var i = 0; i < templateFilePaths.length; i++) {
-            const templateContent = await fs.readFile(templateFilePaths[i], 'utf8');
-            const content = JSON.parse(templateContent);
-
-            for (const key in content) {
-                if (content.hasOwnProperty(key)) {
-                    const newKey = i > 0 ? `${key}_${i + 1}` : key;
-                    texts[newKey] = content[key];
-                }
+            let fullPrompt = prompt;
+            if (outputFormat) {
+                fullPrompt = `${prompt}\nReturn the response in this format: ${outputFormat}`;
             }
-        }
 
-        console.log(texts);
-        return texts;
-    }
-
-    renameTemplateVariables(template, index) {
-        return template.replace(/{{\s*(\w+)\s*}}/g, (match, varName) => {
-            return `${varName}_${index}`;
-        });
-    }
-
-    async addCustomKeywords(template, texts, product, brand, survey, config) {
-        texts.text1 = 'Over ' + config.currency + '4,000,000 in Offers given out so far!';
-        texts.text3 = 'Dear ' + brand.name + ' Shopper,';
-        texts.text32 =
-            'This website is not affiliated with or endorsed by ' +
-            brand.name +
-            ' or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.';
-
-        texts.questionCount1 = 'Question 1 on 8';
-        texts.questionCount2 = 'Question 2 on 8';
-        texts.questionCount3 = 'Question 3 on 8';
-        texts.questionCount4 = 'Question 4 on 8';
-        texts.questionCount5 = 'Question 5 on 8';
-        texts.questionCount6 = 'Question 6 on 8';
-        texts.questionCount7 = 'Question 7 on 8';
-        texts.questionCount8 = 'Question 8 on 8';
-        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of the " + product.product + ", thank you!";
-
-        var newSurvey = { ...survey, surveyTitle: `${brand.name} Shopper Experience Survey` };
-
-        texts = { ...texts, ...newSurvey };
-    }
-
-    async addCustomKeywords2(template, texts, product, brand, survey, config) {
-        console.log(template);
-        if (template === "offerwall") {
-            texts.questionCount1 = 'Question 1 on 5';
-            texts.questionCount2 = 'Question 2 on 5';
-            texts.questionCount3 = 'Question 3 on 5';
-            texts.questionCount4 = 'Question 4 on 5';
-            texts.questionCount5 = 'Question 5 on 5';
-        } else {
-            texts.questionCount1 = 'Question 1 on 8';
-            texts.questionCount2 = 'Question 2 on 8';
-            texts.questionCount3 = 'Question 3 on 8';
-            texts.questionCount4 = 'Question 4 on 8';
-            texts.questionCount5 = 'Question 5 on 8';
-            texts.questionCount6 = 'Question 6 on 8';
-            texts.questionCount7 = 'Question 7 on 8';
-            texts.questionCount8 = 'Question 8 on 8';
-        }
-
-
-        texts.productComment = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of this product, thank you!";
-    }
-
-    async addCustomKeywords3(template, texts, product, brand, survey, config) {
-        texts.questionCount1 = 'Question 1 on 8';
-        texts.questionCount2 = 'Question 2 on 8';
-        texts.questionCount3 = 'Question 3 on 8';
-        texts.questionCount4 = 'Question 4 on 8';
-        texts.questionCount5 = 'Question 5 on 8';
-        texts.questionCount6 = 'Question 6 on 8';
-        texts.questionCount7 = 'Question 7 on 8';
-        texts.questionCount8 = 'Question 8 on 8';
-
-        texts.text2 = "Win a " + product.product + "!";
-        texts.text5 = "What The Customers Say About This Product";
-        texts.text3 = "Share your shopping experience with " + brand.name + " and get a chance to win a " + product.product + " worth over " + config.currency + product.price + ".";
-        texts.text9 = "You've been selected to receive a " + product.product;
-
-        texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
-    }
-
-    async addCustomKeywords4(template, texts, product, brand, survey, config) {
-        texts.questionCount1_2 = 'Question 1 on 8';
-        texts.questionCount2_2 = 'Question 2 on 8';
-        texts.questionCount3_2 = 'Question 3 on 8';
-        texts.questionCount4_2 = 'Question 4 on 8';
-        texts.questionCount5_2 = 'Question 5 on 8';
-        texts.questionCount6_2 = 'Question 6 on 8';
-        texts.questionCount7_2 = 'Question 7 on 8';
-        texts.questionCount8_2 = 'Question 8 on 8';
-
-        texts.text2_2 = "Win a " + product.product + "!";
-        texts.text5_2 = "What The Customers Say About This Product";
-        texts.text3_2 = "Share your shopping experience with " + brand.name + " and get a chance to win a " + product.product + " worth over " + config.currency + product.price + ".";
-        texts.text9_2 = "You've been selected to receive a " + product.product;
-
-        texts.text30_2 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
-    }
-
-    async addCustomComments(geo, templateName, texts = null) {
-        if (texts) {
-            texts.profilePic1 = `1_${geo}.jpg`;
-            texts.profilePic2 = `2_${geo}.jpg`;
-            texts.profilePic3 = `3_${geo}.jpg`;
-            texts.profilePic4 = `4_${geo}.jpg`;
-            texts.profilePic5 = `5_${geo}.jpg`;
-        } else {
-            try {
-                for (var i = 1; i <= 5; i++) {
-                    const tempFilePathImage = path.join(__dirname, '..', 'client', 'images', `${i}_${geo}.jpg`);
-                    const newFilePathImage = path.join(__dirname, '..', 'client', templateName, 'files', `${i}.jpg`);
-
-                    await fs.copyFile(tempFilePathImage, newFilePathImage);
-                }
-            } catch (error) {
-                console.log(error);
-            }
+            const result = await model.generateContent(fullPrompt);
+            const response = await result.response;
+            return response.text();
+        } catch (error) {
+            console.error(`AI API error: ${error.message}`);
+            throw new Error('Failed to get AI response');
         }
     }
 
-    async generateReviews(product, description) {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    private async translateWithAI(content: Record<string, any>, targetLanguage: string): Promise<Record<string, any>> {
+        if (targetLanguage === '' || targetLanguage === 'english') {
+            return content;
+        }
 
-        const configuration = new GoogleGenerativeAI(API_KEY);
+        try {
+            const response = await this.callAI(
+                `translate these keywords to ${targetLanguage}, output must be the same as the input but with the keywords translated, as JSON format: ${JSON.stringify(content)}`
+            );
 
-        const modelId = 'gemini-1.5-flash-8b';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
-
-        const result = await chat.sendMessage(`generate 3 short positive reviews for this product: ${product} and this product descrition: ${description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`);
-
-        const response = await result.response;
-
-        return response.text();
+            return this.parseJsonResponse(response);
+        } catch (error) {
+            console.error(`Translation error: ${error.message}`);
+            throw new Error('Failed to translate content');
+        }
     }
 
-    async generateProductFeatures(product, description) {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    private async generateReviews(product: Product): Promise<Record<string, string>> {
+        const response = await this.callAI(
+            `generate 3 short positive reviews for this product: ${product.product} and this product descrition: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
+        );
 
-        const configuration = new GoogleGenerativeAI(API_KEY);
+        return this.parseJsonResponse(response);
+    }
 
-        const modelId = 'gemini-1.5-flash-8b';
-        const model = configuration.getGenerativeModel({ model: modelId });
+    private async generateProductFeatures(product: Product): Promise<Record<string, string>> {
+        const response = await this.callAI(
+            `generate 3 features (not too long) to promote this product: ${product.product} with this description: ${product.description}. output must have this shape as JSON format: { feature1: "content", feature2: "content", feature3: "content" }`
+        );
 
-        const chat = model.startChat();
+        return this.parseJsonResponse(response);
+    }
 
-        const result = await chat.sendMessage(`generate 3 features (not too long) to promote this product: ${product} with this description: ${description} . output must have this shape as JSON format: { feature1: "content", feature2: "content", feature3: "content" }`);
-
-        const response = await result.response;
-
-        return response.text();
+    private parseJsonResponse(response: string): Record<string, any> {
+        return JSON.parse(response.replace(/```(json|JSON)?|```/g, ''));
     }
 
     private parseSurvey(surveyString: string): Record<string, string> {
         const entries = surveyString.match(/"([^"]*)"/g)?.map((entry) => entry.replace(/"/g, '')) || [];
         const surveyData: Record<string, string> = {};
 
-        let questionIndex = 1;
-        let optionIndex = 1;
+        var questionIndex = 1;
+        var optionIndex = 1;
 
         entries.forEach((entry, index) => {
             if (index % 5 === 0) {
@@ -235,124 +150,159 @@ export class SurveyService {
         return surveyData;
     }
 
-    async generateSurvey(product, brand, survey, config) {
-        const templateFilePath = this.getTemplateFilePath(config.templateName);
-        const textsFilePath = this.getTextsFilePath(config.templateName);
-        const textsFilePaths = [this.getTextsFilePath("tryetco"), this.getTextsFilePath("walp")];
-        const outputFilePath = this.getOutputFilePath(config.templateName);
-        var template;
+    private async loadTextsForMultipleTemplates(templateNames: string[]): Promise<Record<string, any>> {
+        const texts = {};
 
-        try {
-            template = await this.readAndCompileTemplate(templateFilePath);
-        } catch (error) {
-            console.error(`Error reading or compiling the template: ${error.message}`);
-            throw new Error('Failed to read or compile template');
-        }
+        for (let i = 0; i < templateNames.length; i++) {
+            const paramsPath = this.getFilePath('params', templateNames[i]);
+            const templateContent = await this.readFile(paramsPath);
+            const content = JSON.parse(templateContent);
 
-        var reviews = await this.generateReviews(product.product, product.description);
-
-        var features = await this.generateProductFeatures(product.product, product.description);
-
-        var newReviews = JSON.parse(reviews.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-        var newFeatures = JSON.parse(features.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-
-        var texts;
-        try {
-            if (config.templateName === "config") {
-                texts = await this.loadTextsForConfig(textsFilePaths);
-                this.addCustomKeywords4("config", texts, product, brand, survey, config);
-            } else {
-                texts = await this.readTexts(textsFilePath);
-            }
-
-            if (config.templateName === "tryetco" || config.templateName === "config") {
-                this.addCustomKeywords("tryetco", texts, product, brand, survey, config);
-            }
-
-            if (config.templateName === "hrblock") {
-                this.addCustomKeywords2("hrblock", texts, product, brand, survey, config);
-            }
-
-            if (config.templateName === "offerwall") {
-                this.addCustomKeywords2("offerwall", texts, product, brand, survey, config);
-            }
-
-            if (config.templateName === "walp") {
-                this.addCustomKeywords3("walp", texts, product, brand, survey, config);
-            }
-
-            if (config.templateName === "netf-lo") {
-                texts.text9 = "Do you want a 12 month trial for only 2" + config.currency + "?";
-            }
-
-            var parsedSurvey = this.parseSurvey(survey);
-
-            parsedSurvey = { ...parsedSurvey, surveyTitle: `${brand.name} Shopper Experience Survey` };
-
-            texts = { ...texts, ...product, ...brand, ...parsedSurvey, ...commentNamesByCountry[config.geo], ...newReviews, ...newFeatures };
-        } catch (error) {
-            console.error(`Error reading texts: ${error.message}`);
-            throw new Error('Failed to read texts');
-        }
-
-        if (config.language !== '' && config.language !== 'english') {
-            try {
-                texts = await this.translateKeywords(JSON.stringify(texts), config.language);
-                texts = JSON.parse(texts.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-            } catch (error) {
-                console.error(`Error translating keywords: ${error.message}`);
-                throw new Error('Failed to translate texts');
+            for (const key in content) {
+                if (content.hasOwnProperty(key)) {
+                    const newKey = i > 0 ? `${key}_${i + 1}` : key;
+                    texts[newKey] = content[key];
+                }
             }
         }
 
-        texts = { ...texts, ...config };
-
-        var html;
-        try {
-            html = template(texts);
-        } catch (error) {
-            console.error(`Error generating HTML from template: ${error.message}`);
-            throw new Error('Failed to generate HTML');
-        }
-
-        try {
-            await this.writeHtmlToFile(outputFilePath, html);
-
-            const tempFilePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${config.geo}.png`);
-            const newFilePath = path.join(__dirname, '..', 'client', config.templateName, 'files', 'flaglogo.png');
-
-            texts.flagLogo = `flaglogo_${config.geo}.png`;
-
-            try {
-                await fs.copyFile(tempFilePath, newFilePath);
-
-                await this.addCustomComments(config.geo, config.templateName, texts);
-            } catch (error) {
-                console.error(`Error copying flag logo for ${config.geo}: ${error.message}`);
-                throw new Error(`Failed to copy flag logo for ${config.geo}`);
-            }
-        } catch (error) {
-            console.error(`Error writing HTML to file: ${error.message}`);
-            throw new Error('Failed to write HTML to file');
-        }
-
-        return 'Survey generated successfully';
+        return texts;
     }
 
-    async generate(prompt: string, outputFormat: string): Promise<string> {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    private customizeQuestionCount(texts: Record<string, any>, templateName: string): void {
+        const questionCount = templateName === "offerwall" ? 5 : 8;
 
-        const configuration = new GoogleGenerativeAI(API_KEY);
+        for (let i = 1; i <= questionCount; i++) {
+            const suffix = templateName === "config" ? `_2` : '';
+            texts[`questionCount${i}${suffix}`] = `Question ${i} on ${questionCount}`;
+        }
+    }
 
-        const modelId = 'gemini-1.5-flash-8b';
-        const model = configuration.getGenerativeModel({ model: modelId });
+    private customizeTemplateTexts(
+        templateName: string,
+        texts: Record<string, any>,
+        product: Product,
+        brand: Brand,
+        config: Config
+    ): void {
+        const suffix = templateName === "config" ? "_2" : "";
 
-        const chat = model.startChat();
+        texts[`productComment${suffix}`] = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of this product, thank you!";
 
-        const fullPrompt = `${prompt}\nReturn the response in this format: ${outputFormat}`;
+        switch (templateName) {
+            case "tryetco":
+                texts[`text1${suffix}`] = `Over ${config.currency}4,000,000 in Offers given out so far!`;
+                texts[`text3${suffix}`] = `Dear ${brand.name} Shopper,`;
+                texts[`text32${suffix}`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.`;
+                break;
 
-        const result = await model.generateContent(fullPrompt);
-        const response = await result.response;
-        return response.text();
+            case "walp":
+            case "config":
+                texts[`text2${suffix}`] = `Win a ${product.product}!`;
+                texts[`text5${suffix}`] = `What The Customers Say About This Product`;
+                texts[`text3${suffix}`] = `Share your shopping experience with ${brand.name} and get a chance to win a ${product.product} worth over ${config.currency}${product.price}.`;
+                texts[`text9${suffix}`] = `You've been selected to receive a ${product.product}`;
+                texts[`text30${suffix}`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.`;
+                break;
+
+            case "netf-lo":
+                texts.text9 = `Do you want a 12 month trial for only 2${config.currency}?`;
+                break;
+        }
+    }
+
+    private async setupImages(geo: string, templateName: string, texts: Record<string, any> = null): Promise<void> {
+        if (texts) {
+            for (var i = 1; i <= 5; i++) {
+                texts[`profilePic${i}`] = `${i}_${geo}.jpg`;
+            }
+        } else {
+            try {
+                for (var i = 1; i <= 5; i++) {
+                    const sourcePath = path.join(__dirname, '..', 'client', 'images', `${i}_${geo}.jpg`);
+                    const destPath = path.join(__dirname, '..', 'client', templateName, 'files', `${i}.jpg`);
+                    await this.copyFile(sourcePath, destPath);
+                }
+            } catch (error) {
+                console.error(`Error setting up profile images: ${error.message}`);
+            }
+        }
+
+        try {
+            const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
+            const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
+            await this.copyFile(sourcePath, destPath);
+
+            if (texts) {
+                texts.flagLogo = `flaglogo_${geo}.png`;
+            }
+        } catch (error) {
+            console.error(`Error copying flag logo for ${geo}: ${error.message}`);
+        }
+    }
+
+    public async generateSurvey(product: Product, brand: Brand, survey: string, config: Config): Promise<string> {
+        try {
+            const templatePath = this.getFilePath('template', config.templateName);
+            const outputPath = this.getFilePath('output', config.templateName);
+
+            const template = await this.compileTemplate(templatePath);
+
+            var texts: Record<string, any>;
+            if (config.templateName === "config") {
+                texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp"]);
+            } else {
+                const paramsPath = this.getFilePath('params', config.templateName);
+                const textsContent = await this.readFile(paramsPath);
+                texts = JSON.parse(textsContent);
+            }
+
+            const [reviews, features] = await Promise.all([
+                this.generateReviews(product),
+                this.generateProductFeatures(product)
+            ]);
+
+            this.customizeQuestionCount(texts, config.templateName);
+
+            const templatesToConfigure = [config.templateName];
+            if (config.templateName === "config") {
+                templatesToConfigure.push("tryetco");
+            }
+
+            for (const template of templatesToConfigure) {
+                this.customizeTemplateTexts(template, texts, product, brand, config);
+            }
+
+            const parsedSurvey = this.parseSurvey(survey);
+            parsedSurvey.surveyTitle = `${brand.name} Shopper Experience Survey`;
+
+            const mergedData = {
+                ...texts,
+                ...product,
+                ...brand,
+                ...parsedSurvey,
+                ...commentNamesByCountry[config.geo],
+                ...reviews,
+                ...features,
+                ...config
+            };
+
+            const translatedData = await this.translateWithAI(mergedData, config.language);
+
+            const html = template(translatedData);
+
+            await this.writeFile(outputPath, html);
+
+            await this.setupImages(config.geo, config.templateName, translatedData);
+
+            return 'Survey generated successfully';
+        } catch (error) {
+            console.error(`Error generating survey: ${error.message}`);
+            throw new Error(`Failed to generate survey: ${error.message}`);
+        }
+    }
+
+    public async generate(prompt: string, outputFormat: string): Promise<string> {
+        return this.callAI(prompt, outputFormat);
     }
 }
