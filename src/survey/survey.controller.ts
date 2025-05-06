@@ -36,6 +36,7 @@ export class SurveyController {
                 var filePath = path.join(sourceFolder, file);
 
                 if (file === 'output.html') {
+                    archive.file(filePath, { name: path.join(folderName, 'index.php') });
                     archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
                 }
 

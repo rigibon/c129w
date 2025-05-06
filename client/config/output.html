@@ -1,97 +1,161 @@
 <?php
 
 // product
-$product = "aaaa";
-$description = "wwww";
-$price = "2";
-$productImage = "/templates/products/haricprod.png";
-$commentImage1 = "/templates/products/haricomm2.jpeg";
-$commentImage2 = "/templates/products/download.jpg";
+$product = "aa";
+$description = "asdasdadw";
+$price = "ww";
+$productImage = "/templates/products/6e19da5dab9a643ee68f42c26c1753a2.png";
+$commentImage1 = "/templates/products/download.jpg";
+$commentImage2 = "/templates/products/haul (1).jpg";
 $wallID = "1";
 
 // brand
-$name = "State Farm";
-$brandLogo = "/templates/brands/4gsgzoddk6k.png";
-$favicon = "/templates/brands/7dkgpk208br.ico";
-$backgroundImage = "/templates/brands/vpak3a1g49l.png";
-$mainColor = "rgb(237,29,36)";
-$secondaryColor = "rgb(34,34,34)";
-$headerColor = "rgb(237,29,36)";
+$name = "Walmart";
+$brandLogo = "/templates/brands/wal_logo.png";
+$favicon = "/templates/brands/wal_favicon.png";
+$backgroundImage = "/templates/brands/wal_bg.png";
+$mainColor = "#0071CE";
+$secondaryColor = "#ffc220";
+$headerColor = "#fff";
+$white = "true";
 
 // geo
-$geo = "ch";
-$langTag = "nl";
+$geo = "us";
+$langTag = "en";
 $currency = "$";
-$commentName1 = "Mia Fischer";
-$commentName2 = "Luca Müller";
-$commentName3 = "Sofia Hofmann";
-$commentName4 = "Leon Keller";
-$commentName5 = "Laura Lang";
-$profilePic1 = "/templates/geos/1_ch.jpg";
-$profilePic2 = "/templates/geos/2_ch.jpg";
-$profilePic3 = "/templates/geos/3_ch.jpg";
-$profilePic4 = "/templates/geos/4_ch.jpg";
-$profilePic5 = "/templates/geos/5_ch.jpg";
-$flagLogo = "/templates/geos/flaglogo_ch.png";
+$commentName1 = "Elizabeth Brown";
+$commentName2 = "John Wilson";
+$commentName3 = "Jennifer Jones";
+$commentName4 = "Steven Jackson";
+$commentName5 = "Dorothy Harris";
+$profilePic1 = "/templates/geos/1_us.jpg";
+$profilePic2 = "/templates/geos/2_us.jpg";
+$profilePic3 = "/templates/geos/3_us.jpg";
+$profilePic4 = "/templates/geos/4_us.jpg";
+$profilePic5 = "/templates/geos/5_us.jpg";
+$flagLogo = "/templates/geos/flaglogo_us.png";
 
 // texts
-$title = "Enquêtebeloningen";
-$text1 = "";
-$text2 = "Enquête over";
-$text3 = "";
-$text4 = "We willen je graag een unieke kans bieden om een gloednieuwe";
-$text5 = "Om te claimen, beantwoord deze korte enquête over je ervaring met";
-$text6 = "Let op!";
-$text7 = "Deze enquête-aanbieding vervalt vandaag,";
-$text8 = "ENQUÊTE STARTEN";
-$text9 = "Even wachten terwijl we je antwoorden verwerken...";
-$text10 = "Antwoorden indienen...";
-$text11 = "Controle op dubbele IP-adressen...";
-$text12 = "Controleren van onze voorraad voor producten...";
-$text13 = "Gefeliciteerd...";
-$text14 = "Antwoorden ingediend";
-$text15 = "IP-adres gecontroleerd";
-$text16 = "Producten beschikbaar op voorraad";
-$text17 = "Bedankt voor het invullen van de enquête!";
-$text18 = "Omdat je zeer waardevolle consumenten gegevens hebt verstrekt, kun je nu enkele van de volgende exclusieve beloningen kiezen.";
-$text19 = "Let op: als je deze pagina verlaat zonder je beloning op te eisen, hebben we geen andere keuze dan een andere bezoeker de kans te geven deel te nemen aan ons beloningsprogramma.";
-$text20 = "Prijs:";
-$text21 = "Nog op voorraad:";
-$text22 = "Betaal alleen verzendkosten!";
-$text23 = "BELONING OPEISEN";
-$text24 = "Nieuw Commentaar";
-$text25 = "Reacties (5)";
-$text26 = "Indienen";
-$text27 = "Ik heb dit net via e-mail ontvangen en heb het geprobeerd. Ik ben enthousiast om mijn beloning te krijgen! Kan ik de enquête ook naar mijn vrienden sturen?";
-$text28 = "Ik heb echt een prijs gewonnen met deze enquête! Ik was aanvankelijk sceptisch, maar heb het geprobeerd. En kijk wat er net per post is aangekomen!";
-$text29 = "Lol, zo&#x27;n coole enquête, maar jammer dat ik geen prijs heb gekregen..";
-$text30 = "Ik doe meestal niet aan dit soort online enquêtes, maar dit is echt een goede! We zullen deze prijs goed gebruiken, dankjewel!";
-$text31 = "Waar kan ik meer enquêtes zoals deze vinden? Ik vind het leuk om prijzen te krijgen :)";
-$text32 = "";
-$text33 = "*Voor producten die op de laatste pagina worden aangeboden, zijn verzend- en administratiekosten van toepassing. Zie de website van de fabrikant voor details, aangezien de voorwaarden per aanbieding verschillen. Zie belangrijke algemene voorwaarden met betrekking tot deze enquête, de website en de advertentie.";
-$text34 = "*Let op: Verzendkosten kunnen van toepassing zijn.";
-$text35 = "Aanbieding verloopt over";
-$text36 = "Gefeliciteerd!";
-$text37 = "We hebben (1) gereserveerd";
-$text38 = "speciaal voor jou.";
-$text39 = "Hoe je je";
-$text40 = "Vul je verzendadres in.";
-$text41 = "Betaal alleen de verzendkosten om je prijs te ontvangen.";
-$text42 = "Je prijs wordt binnen 5-7 werkdagen geleverd.";
-$text43 = "Doorgaan";
-$like = "Vind ik leuk";
-$reply = "Reageer";
-$montharray = "januari, februari, maart, april, mei, juni, juli, augustus, september, oktober, november, december";
+$texts = [
+    "tryetco" => [
+        "title" => "Survey Rewards",
+        "text1" => "Over $4,000,000 in Offers given out so far!",
+        "text2" => "Survey About",
+        "text3" => "Dear Walmart Shopper,",
+        "text4" => "We would like to offer you a unique opportunity to receive a brand new",
+        "text5" => "To claim, simply take this short survey about your experience with",
+        "text6" => "Attention!",
+        "text7" => "This survey offer expires today,",
+        "text8" => "START SURVEY",
+        "text9" => "Please wait while we process your answers...",
+        "text10" => "Submitting answers...",
+        "text11" => "Checking for duplicate IP addresses...",
+        "text12" => "Checking our inventory for products...",
+        "text13" => "Congratulations...",
+        "text14" => "Answers submitted",
+        "text15" => "IP address checked",
+        "text16" => "Products available in stock",
+        "text17" => "Thank you for completing the survey!",
+        "text18" => "Because you helped provide extremely valuable consumer data, you may now choose some of the following exclusive rewards below.",
+        "text19" => "Please note that if you leave this page without claiming your reward, we have no choice but to give another visitor a chance to participate in our rewards program.",
+        "text20" => "Price:",
+        "text21" => "Left in Stock:",
+        "text22" => "Pay only for shipping!",
+        "text23" => "CLAIM REWARD",
+        "text24" => "New Comment",
+        "text25" => "Comments (5)",
+        "text26" => "Submit",
+        "text27" => "I just received this through email and gave it a try. Excited to get my reward! Can I also send the survey to my friends?",
+        "text28" => "Actually got a prize from this survey! I was skeptical at first but gave it a try. And look what just arrived in the mail!",
+        "text29" => "Lol such a cool survey but too bad I didn&#x27;t get any prize.. ",
+        "text30" => "I usually dont take these kind of online surveys but this is actually a good one!! We will put this prize to good use thanks so much!!",
+        "text31" => "Where can I do more surveys like these? I like getting prizes :)",
+        "text32" => "This website is not affiliated with or endorsed by Walmart or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.",
+        "text33" => "*Products offered on the last page require shipping and handling fees. See manufacturer&#x27;s site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.",
+        "text34" => "*Important: Shipping costs may apply.",
+        "text35" => "Offer expires in",
+        "text36" => "Congratulations!",
+        "text37" => "We have reserved (1)",
+        "text38" => "exclusively for you.",
+        "text39" => "How to claim your",
+        "text40" => "Fill in your shipping address.",
+        "text41" => "Pay only shipping costs to receive your prize.",
+        "text42" => "Your prize will be delivered in 5-7 working days.",
+        "text43" => "Continue",
+        "like" => "Like",
+        "reply" => "Reply",
+        "montharray" => "January, February, March, April, May, June, July, August, September, October, November, December",
+    ],
+    "walp" => [
+        "text1" => "Exclusive Offer",
+        "text4" => "START SURVEY",
+        "surveyTitle" => "Help us improve your shopping experience",
+        "question" => "Question",
+        "totalQuestions" => "8 questions total",
+        "text6" => "Processing Your Response",
+        "text7" => "Please wait while we check your eligibility...",
+        "text8" => "Congratulations!",
+        "text10" => "LIMITED STOCK",
+        "text11" => "Regular Price:",
+        "text12" => "Your Price:",
+        "text13" => "Just pay shipping &amp; handling",
+        "text14" => "Claim Your Prize Now",
+        "text15" => "Offer expires in:",
+        "text16" => "Recent Comments:",
+        "text17" => "2 hours ago",
+        "verified" => "Verified",
+        "text18" => "I just received this through email and gave it a try. Excited to get my reward! Can I also send the survey to my friends?",
+        "text19" => "8 hours ago",
+        "text20" => "Actually got a prize from this survey! I was skeptical at first but gave it a try. And look what just arrived in the mail!",
+        "text21" => "1 day ago",
+        "text22" => "Lol such a cool survey but too bad I didn&#x27;t get any prize.. ",
+        "text23" => "1 day ago",
+        "text24" => "New Comment!",
+        "text25" => "1 day ago",
+        "commentt" => "Where can I do more surveys like these? I like getting prizes!",
+        "text27" => "Privacy Policy",
+        "text28" => "Terms of Service",
+        "text29" => "Contact Us",
+        "text31" => "*Important: Shipping costs may apply.",
+        "title" => "Customer Survey",
+        "one" => "Answers Submitted",
+        "two" => "Checking IP Address",
+        "three" => "Checking Product Availability",
+        "four" => "Verifying Eligibility",
+        "five" => "Preparing Reward",
+        "send" => "Send",
+        "questionCount1" => 'Question 1 on 8',
+        "questionCount2" => 'Question 2 on 8',
+        "questionCount3" => 'Question 3 on 8',
+        "questionCount4" => 'Question 4 on 8',
+        "questionCount5" => 'Question 5 on 8',
+        "questionCount6" => 'Question 6 on 8',
+        "questionCount7" => 'Question 7 on 8',
+        "questionCount8" => 'Question 8 on 8',
+        "text2" => "Win a aa!",
+        "text5" => "What The Customers Say About This Product",
+        "text3" => "Share your shopping experience with Walmart and get a chance to win a aa worth over $ww.",
+        "text9" => "You&#x27;ve been selected to receive a aa",
+        "text30" => "This website is not affiliated with or endorsed by Walmart or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer&#x27;s site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.",
+        "feature1" => "Innovative design for a seamless user experience.",
+        "feature2" => "Effortless operation for maximum productivity.",
+        "feature3" => "High-quality materials for long-lasting performance.",
+        "review1" => "This product is fantastic!  I&#x27;m really impressed with the quality and how well it works.",
+        "review2" => "I love this!  It&#x27;s exactly what I was looking for and exceeded my expectations.",
+        "review3" => "A great little product!  Simple to use and very effective.",
+    ]
+];
+
 
 $survey = array(
-    array("Hoe vaak bezoek je een State Farm locatie voor je verzekeringsbehoeften?", "Meerdere keren per week", "Eenmaal per week", "Een paar keer per maand", "Zelden of nooit"),
-    array("Wat is de belangrijkste drijfveer voor je keuze om bij State Farm te kopen?", "Handige locatie", "Productselectie", "Prijzen en aanbiedingen", "Loyaliteitsbelonings programma"),
-    array("Hoe reageer je typisch op advertenties van State Farm?", "Ik zoek naar items die ik nodig heb", "Ik blader als er een goede deal is", "Ik overweeg een bezoek als er een promotie is", "Ik negeer de advertenties meestal"),
-    array("Als je een prijs van State Farm hebt gewonnen, hoe zou dit je kijk op State Farm veranderen?", "Significante positiever", "Iets positiever", "Geen verandering", "Meer negatief"),
-    array("Wat is het meest aantrekkelijke kenmerk van de prijs voor jou?", "Duurzaamheid", "Koelingsefficiëntie", "Draagbaarheid", "Ontwerp en uiterlijk"),
-    array("Hoe waarschijnlijk ben je om de prijs te gebruiken als je er een van State Farm ontvangt?", "Zeer waarschijnlijk", "Iets waarschijnlijk", "Onwaarschijnlijk", "Ik zou het niet gebruiken"),
-    array("In termen van verzekeringsproducten, hoe goed denk je dat State Farm aan je behoeften voldoet?", "Overtreft mijn behoeften", "Voldoet goed aan mijn behoeften", "Voldoet voldoende aan mijn behoeften", "Voldoet niet aan mijn behoeften"),
-    array("Hoe waarschijnlijk ben je om deel te nemen aan toekomstige promoties of enquêtes van State Farm?", "Zeer waarschijnlijk", "Iets waarschijnlijk", "Niet erg waarschijnlijk", "Niet al te waarschijnlijk"),
+    array("How often do you visit Walmart for your shopping needs?", "Multiple times a week", "Once a week", "A few times a month", "Rarely or never"),
+    array("What primarily drives your choice to shop at Walmart?", "Convenience of location", "Product selection", "Prices and deals", "Loyalty rewards program"),
+    array("When seeing ads from Walmart, how do you typically respond?", "I look for items I need", "I browse if there&#x27;s a good deal", "I consider visiting if there&#x27;s a promo", "I usually ignore the ads"),
+    array("If you won a [AA as prize], how would it change your view of the Walmart?", "Significantly more positive", "Somewhat more positive", "No change", "More negative"),
+    array("Regarding the [AA as prize], which feature is most appealing to you?", "Durability", "Functionality", "Portability", "Design and appearance"),
+    array("How likely are you to use the [AA as prize] if you received one from Walmart?", "Very likely", "Somewhat likely", "Unlikely", "I would not use it"),
+    array("In terms of general merchandise, how well do you think Walmart meets your needs?", "Exceeds my needs", "Meets my needs well", "Adequately meets my needs", "Does not meet my needs"),
+    array("How likely are you to participate in future promotions or surveys from Walmart?", "Very likely", "Somewhat likely", "Not very likely", "Not at all likely"),
 );
 
 ?>

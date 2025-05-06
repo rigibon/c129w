@@ -52,6 +52,31 @@ export class SurveyService {
         return response.text();
     }
 
+    async loadTextsForConfig(templateFilePaths) {
+        const texts = {};
+
+        for (var i = 0; i < templateFilePaths.length; i++) {
+            const templateContent = await fs.readFile(templateFilePaths[i], 'utf8');
+            const content = JSON.parse(templateContent);
+
+            for (const key in content) {
+                if (content.hasOwnProperty(key)) {
+                    const newKey = i > 0 ? `${key}_${i + 1}` : key;
+                    texts[newKey] = content[key];
+                }
+            }
+        }
+
+        console.log(texts);
+        return texts;
+    }
+
+    renameTemplateVariables(template, index) {
+        return template.replace(/{{\s*(\w+)\s*}}/g, (match, varName) => {
+            return `${varName}_${index}`;
+        });
+    }
+
     async addCustomKeywords(template, texts, product, brand, survey, config) {
         texts.text1 = 'Over ' + config.currency + '4,000,000 in Offers given out so far!';
         texts.text3 = 'Dear ' + brand.name + ' Shopper,';
@@ -114,6 +139,24 @@ export class SurveyService {
         texts.text9 = "You've been selected to receive a " + product.product;
 
         texts.text30 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
+    }
+
+    async addCustomKeywords4(template, texts, product, brand, survey, config) {
+        texts.questionCount1_2 = 'Question 1 on 8';
+        texts.questionCount2_2 = 'Question 2 on 8';
+        texts.questionCount3_2 = 'Question 3 on 8';
+        texts.questionCount4_2 = 'Question 4 on 8';
+        texts.questionCount5_2 = 'Question 5 on 8';
+        texts.questionCount6_2 = 'Question 6 on 8';
+        texts.questionCount7_2 = 'Question 7 on 8';
+        texts.questionCount8_2 = 'Question 8 on 8';
+
+        texts.text2_2 = "Win a " + product.product + "!";
+        texts.text5_2 = "What The Customers Say About This Product";
+        texts.text3_2 = "Share your shopping experience with " + brand.name + " and get a chance to win a " + product.product + " worth over " + config.currency + product.price + ".";
+        texts.text9_2 = "You've been selected to receive a " + product.product;
+
+        texts.text30_2 = "This website is not affiliated with or endorsed by " + brand.name + " or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.";
     }
 
     async addCustomComments(geo, templateName, texts = null) {
@@ -195,6 +238,7 @@ export class SurveyService {
     async generateSurvey(product, brand, survey, config) {
         const templateFilePath = this.getTemplateFilePath(config.templateName);
         const textsFilePath = this.getTextsFilePath(config.templateName);
+        const textsFilePaths = [this.getTextsFilePath("tryetco"), this.getTextsFilePath("walp")];
         const outputFilePath = this.getOutputFilePath(config.templateName);
         var template;
 
@@ -214,9 +258,14 @@ export class SurveyService {
 
         var texts;
         try {
-            texts = await this.readTexts(textsFilePath);
+            if (config.templateName === "config") {
+                texts = await this.loadTextsForConfig(textsFilePaths);
+                this.addCustomKeywords4("config", texts, product, brand, survey, config);
+            } else {
+                texts = await this.readTexts(textsFilePath);
+            }
 
-            if (config.templateName === "tryetco") {
+            if (config.templateName === "tryetco" || config.templateName === "config") {
                 this.addCustomKeywords("tryetco", texts, product, brand, survey, config);
             }
 
