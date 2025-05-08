@@ -111,7 +111,7 @@ export class SurveyService {
 
     private async generateReviews(product: Product): Promise<Record<string, string>> {
         const response = await this.callAI(
-            `generate 3 short positive reviews for this product: ${product.product} and this product descrition: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
+            `generate 3 short positive reviews for this product: ${product.product} and this product description: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
         );
 
         return this.parseJsonResponse(response);
@@ -153,7 +153,7 @@ export class SurveyService {
     private async loadTextsForMultipleTemplates(templateNames: string[]): Promise<Record<string, any>> {
         const texts = {};
 
-        for (let i = 0; i < templateNames.length; i++) {
+        for (var i = 0; i < templateNames.length; i++) {
             const paramsPath = this.getFilePath('params', templateNames[i]);
             const templateContent = await this.readFile(paramsPath);
             const content = JSON.parse(templateContent);
@@ -174,7 +174,7 @@ export class SurveyService {
 
         for (let i = 1; i <= questionCount; i++) {
             const suffix = templateName === "config" ? `_2` : '';
-            texts[`questionCount${i}${suffix}`] = `Question ${i} on ${questionCount}`;
+            texts[`questionCount${i}`] = `Question ${i} on ${questionCount}`;
         }
     }
 
