@@ -229,9 +229,13 @@ export class SurveyService {
         }
 
         try {
-            const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
-            const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
-            await this.copyFile(sourcePath, destPath);
+            if(templateName !== "config") {
+                console.log("Copying flag logo...");
+                const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
+                const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
+                await this.copyFile(sourcePath, destPath);
+            }
+            
 
             if (texts) {
                 texts.flagLogo = `flaglogo_${geo}.png`;

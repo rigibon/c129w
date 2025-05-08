@@ -10,7 +10,7 @@ export class SurveyController {
 
     constructor(private readonly surveyService: SurveyService) { }
 
-    async createZip(sourceFolder, outPath, folderName) {
+    async createZip(sourceFolder, outPath, folderName, templateName) {
         return new Promise((resolve, reject) => {
             const output = createWriteStream(outPath);
             const archive = archiver('zip');
@@ -36,8 +36,12 @@ export class SurveyController {
                 var filePath = path.join(sourceFolder, file);
 
                 if (file === 'output.html') {
-                    archive.file(filePath, { name: path.join(folderName, 'index.php') });
-                    archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
+                    if (templateName === 'config') {
+                        archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
+                    }
+                    else {
+                        archive.file(filePath, { name: path.join(folderName, 'index.php') });
+                    }
                 }
 
                 // archive.file(filePath, { name: path.join(folderName, file) });
@@ -98,7 +102,7 @@ export class SurveyController {
 
             const zipPath = path.join(outputFilePath, 'creative.zip');
 
-            await this.createZip(templatePath, zipPath, config.folderName)
+            await this.createZip(templatePath, zipPath, config.folderName, config.templateName)
                 .then(async () => {
                     res.download(zipPath, 'final.zip', async (err) => {
                         const filesToRemove = [
