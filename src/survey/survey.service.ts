@@ -158,8 +158,6 @@ export class SurveyService {
             const templateContent = await this.readFile(paramsPath);
             const content = JSON.parse(templateContent);
 
-            console.log(content);
-
             for (const key in content) {
                 if (content.hasOwnProperty(key)) {
                     const newKey = i > 0 ? `${key}_${i + 1}` : key;
@@ -259,6 +257,8 @@ export class SurveyService {
             var texts: Record<string, any>;
             if (config.templateName === "config") {
                 texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp", "hrblock"]);
+            } else if (config.templateName === "config_tt") {
+                texts = await this.loadTextsForMultipleTemplates(["us-fdd"]);
             } else {
                 const paramsPath = this.getFilePath('params', config.templateName);
                 const textsContent = await this.readFile(paramsPath);
@@ -272,15 +272,15 @@ export class SurveyService {
 
             this.customizeQuestionCount(texts, config.templateName);
 
-            // const templatesToConfigure = [config.templateName];
             const templatesToConfigure = [];
 
-            // if (config.templateName === "config") {
-            templatesToConfigure.push("tryetco");
-            templatesToConfigure.push("walp");
-            templatesToConfigure.push("hrblock");
-            // templatesToConfigure.push("walp");
-            // }
+            if (config.templateName === "config") {
+                templatesToConfigure.push("tryetco");
+                templatesToConfigure.push("walp");
+                templatesToConfigure.push("hrblock");
+            } else if (config.templateName === "config_tt") {
+                templatesToConfigure.push("us-fdd");
+            }
 
             for (const template of templatesToConfigure) {
                 this.customizeTemplateTexts(template, texts, product, brand, config);
