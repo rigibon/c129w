@@ -23,8 +23,8 @@ export class CreativeController {
 
     async loadAndTranslateTexts(configPath, product, brand, language, generateKeywords = false) {
         try {
-            var texts = await this.readTexts(configPath);
-
+            let texts = await this.readTexts(configPath);
+    
             texts.product = product.product;
             texts.brand = brand.name;
             texts.mainColor = brand.mainColor;
@@ -33,17 +33,30 @@ export class CreativeController {
             texts.productImage = product.productImage;
             texts.commentImage1 = product.commentImage1;
             texts.commentImage2 = product.commentImage2;
-
-            texts = await this.translateKeywords(JSON.stringify(texts), language);
-            texts = JSON.parse(texts.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-
-            if (generateKeywords) {
-                var customKeywords = await this.generateCustomTexts(product.product);
-                customKeywords = await this.translateKeywords(JSON.stringify(customKeywords), language);
-                var newTexts = JSON.parse(customKeywords.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-                texts = { ...texts, ...newTexts };
+    
+            let translatedTexts = await this.translateKeywords(JSON.stringify(texts), language);
+    
+            // Sanitize and validate JSON response
+            translatedTexts = translatedTexts.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
+            try {
+                texts = JSON.parse(translatedTexts.replace(/```/g, '').replace(/JSON/gi, ''));
+            } catch (parseError) {
+                console.error('Error parsing translated JSON:', parseError.message);
+                throw new Error('Invalid JSON format in translated texts');
             }
-
+    
+            if (generateKeywords) {
+                let customKeywords = await this.generateCustomTexts(product.product);
+                customKeywords = customKeywords.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
+                try {
+                    const newTexts = JSON.parse(customKeywords.replace(/```/g, '').replace(/JSON/gi, ''));
+                    texts = { ...texts, ...newTexts };
+                } catch (parseError) {
+                    console.error('Error parsing custom keywords JSON:', parseError.message);
+                    throw new Error('Invalid JSON format in custom keywords');
+                }
+            }
+    
             return texts;
         } catch (error) {
             console.error(`Error reading or translating texts: ${error.message}`);
@@ -174,10 +187,10 @@ export class CreativeController {
 
             await this.writeHtmlFiles([outputPath1, outputPath2, outputPath3, outputPath4], [html1, html2, html3, html4]);
 
-            const zipPath = path.join(zipOutputPath, 'creative.zip');
+            const zipPath = path.join(zipOutputPath, 'creative.rar');
             await this.createZip(baseTemplatePath, zipPath);
 
-            res.download(zipPath, 'creatives.zip', async (err) => {
+            res.download(zipPath, 'creatives.rar', async (err) => {
                 if (err) {
                     console.error('Error during file download:', err);
                     return res.status(404).send('File not found');
