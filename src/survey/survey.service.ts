@@ -158,6 +158,8 @@ export class SurveyService {
             const templateContent = await this.readFile(paramsPath);
             const content = JSON.parse(templateContent);
 
+            console.log(content);
+
             for (const key in content) {
                 if (content.hasOwnProperty(key)) {
                     const newKey = i > 0 ? `${key}_${i + 1}` : key;
@@ -185,24 +187,26 @@ export class SurveyService {
         brand: Brand,
         config: Config
     ): void {
-        const suffix = templateName === "config" ? "_2" : "";
+        // const suffix = templateName === "config" ? "_2" : "";
 
-        texts[`productComment${suffix}`] = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of this product, thank you!";
+        texts[`productComment`] = "Usually not into these online surveys but this one was actually worth it. We're gonna make good use of this product, thank you!";
 
         switch (templateName) {
             case "tryetco":
-                texts[`text1${suffix}`] = `Over ${config.currency}4,000,000 in Offers given out so far!`;
-                texts[`text3${suffix}`] = `Dear ${brand.name} Shopper,`;
-                texts[`text32${suffix}`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.`;
+                texts[`text1`] = `Over ${config.currency}4,000,000 in Offers given out so far!`;
+                texts[`text3`] = `Dear ${brand.name} Shopper,`;
+                texts[`text32`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website.`;
                 break;
 
             case "walp":
-            case "config":
-                texts[`text2${suffix}`] = `Win a ${product.product}!`;
-                texts[`text5${suffix}`] = `What The Customers Say About This Product`;
-                texts[`text3${suffix}`] = `Share your shopping experience with ${brand.name} and get a chance to win a ${product.product} worth over ${config.currency}${product.price}.`;
-                texts[`text9${suffix}`] = `You've been selected to receive a ${product.product}`;
-                texts[`text30${suffix}`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.`;
+                texts[`text2_2`] = `Win a ${product.product}!`;
+                texts[`text5_2`] = `What The Customers Say About This Product`;
+                texts[`text3_2`] = `Share your shopping experience with ${brand.name} and get a chance to win a ${product.product} worth over ${config.currency}${product.price}.`;
+                texts[`text9_2`] = `You've been selected to receive a ${product.product}`;
+                texts[`text30_2`] = `This website is not affiliated with or endorsed by ${brand.name} or any similar brand and does not claim to represent or own any of the trademarks, trade names or rights associated with any of the products which are the property of their respective owners who do not own, endorse, or promote this website. *Products offered on the last page require shipping and handling fees. See manufacturer's site for details as terms vary with offers. See important terms and conditions regarding this survey, website and advertisement.`;
+                break;
+
+            case "hrblock":
                 break;
 
             case "netf-lo":
@@ -229,13 +233,13 @@ export class SurveyService {
         }
 
         try {
-            if(templateName !== "config") {
+            if (templateName !== "config") {
                 console.log("Copying flag logo...");
                 const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
                 const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
                 await this.copyFile(sourcePath, destPath);
             }
-            
+
 
             if (texts) {
                 texts.flagLogo = `flaglogo_${geo}.png`;
@@ -254,7 +258,7 @@ export class SurveyService {
 
             var texts: Record<string, any>;
             if (config.templateName === "config") {
-                texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp"]);
+                texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp", "hrblock"]);
             } else {
                 const paramsPath = this.getFilePath('params', config.templateName);
                 const textsContent = await this.readFile(paramsPath);
@@ -268,10 +272,15 @@ export class SurveyService {
 
             this.customizeQuestionCount(texts, config.templateName);
 
-            const templatesToConfigure = [config.templateName];
-            if (config.templateName === "config") {
-                templatesToConfigure.push("tryetco");
-            }
+            // const templatesToConfigure = [config.templateName];
+            const templatesToConfigure = [];
+
+            // if (config.templateName === "config") {
+            templatesToConfigure.push("tryetco");
+            templatesToConfigure.push("walp");
+            templatesToConfigure.push("hrblock");
+            // templatesToConfigure.push("walp");
+            // }
 
             for (const template of templatesToConfigure) {
                 this.customizeTemplateTexts(template, texts, product, brand, config);
