@@ -32,11 +32,12 @@ export class SurveyController {
                 return !['params.json', 'index.php', 'index.html.hbs', 'index.html'].includes(file);
             });
 
-            filterFiles.forEach(file => {
+            try {
+                filterFiles.forEach(file => {
                 var filePath = path.join(sourceFolder, file);
 
                 if (file === 'output.html') {
-                    if (templateName === 'config') {
+                    if (templateName === 'config' || templateName === 'config_offerwall') {
                         archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
                     }
                     else {
@@ -50,6 +51,11 @@ export class SurveyController {
             archive.directory(path.join(sourceFolder, 'files'), path.join(folderName, 'files'));
 
             archive.finalize();
+            } catch (error) {
+                console.error('Error while creating zip:', error);
+                reject(error);
+            }
+            
         });
     }
 
@@ -105,24 +111,39 @@ export class SurveyController {
             await this.createZip(templatePath, zipPath, config.folderName, config.templateName)
                 .then(async () => {
                     res.download(zipPath, 'final.zip', async (err) => {
-                        const filesToRemove = [
-                            path.join(baseFilesPath, product.productImage),
-                            path.join(baseFilesPath, product.commentImage1),
-                            path.join(baseFilesPath, product.commentImage2),
-                            path.join(baseFilesPath, brand.brandLogo),
-                            path.join(baseFilesPath, brand.backgroundImage),
-                            path.join(baseFilesPath, brand.favicon),
-                        ];
+                        try {
+                            let filesToRemove: string[] = [];
+                            if (product) {
+                                filesToRemove = [
+                                    product.productImage && path.join(baseFilesPath, product.productImage),
+                                    product.commentImage1 && path.join(baseFilesPath, product.commentImage1),
+                                    product.commentImage2 && path.join(baseFilesPath, product.commentImage2),
+                                    brand.brandLogo && path.join(baseFilesPath, brand.brandLogo),
+                                    brand.backgroundImage && path.join(baseFilesPath, brand.backgroundImage),
+                                    brand.favicon && path.join(baseFilesPath, brand.favicon),
+                                ].filter(Boolean);
+                            } else {
+                                filesToRemove = [
+                                    brand.brandLogo && path.join(baseFilesPath, brand.brandLogo),
+                                    brand.backgroundImage && path.join(baseFilesPath, brand.backgroundImage),
+                                    brand.favicon && path.join(baseFilesPath, brand.favicon),
+                                ].filter(Boolean);
+                            }
+                            
+                            
 
-                        for (const fileToRemove of filesToRemove) {
-                            try {
-                                await fs.stat(fileToRemove);
-                                await fs.unlink(fileToRemove);
-                            } catch (error) { }
-                        }
+                            for (const fileToRemove of filesToRemove) {
+                                try {
+                                    await fs.stat(fileToRemove);
+                                    await fs.unlink(fileToRemove);
+                                } catch (error) { }
+                            }
 
-                        if (err) {
-                            res.status(404).send('File not found');
+                            if (err) {
+                                res.status(404).send('File not found');
+                            }
+                        } catch (error) {
+                            console.error('Error removing files:', error);
                         }
                     });
                 })

@@ -231,7 +231,7 @@ export class SurveyService {
         }
 
         try {
-            if (templateName !== "config") {
+            if (templateName !== "config" && templateName !== "config_tt" && templateName !== "config_offerwall") {
                 console.log("Copying flag logo...");
                 const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
                 const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
@@ -255,10 +255,8 @@ export class SurveyService {
             const template = await this.compileTemplate(templatePath);
 
             var texts: Record<string, any>;
-            if (config.templateName === "config") {
+            if (config.templateName === "config" || config.templateName === "config_tt" || config.templateName === "config_offerwall") {
                 texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp", "hrblock"]);
-            } else if (config.templateName === "config_tt") {
-                texts = await this.loadTextsForMultipleTemplates(["us-fdd"]);
             } else {
                 const paramsPath = this.getFilePath('params', config.templateName);
                 const textsContent = await this.readFile(paramsPath);
@@ -274,7 +272,7 @@ export class SurveyService {
 
             const templatesToConfigure = [];
 
-            if (config.templateName === "config") {
+            if (config.templateName === "config" || config.templateName === "config_offerwall") {
                 templatesToConfigure.push("tryetco");
                 templatesToConfigure.push("walp");
                 templatesToConfigure.push("hrblock");
