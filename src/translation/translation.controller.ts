@@ -13,285 +13,335 @@ import { translate } from 'google-translate-api-x';
 import * as handlebars from 'handlebars';
 
 interface ProductData {
-	[key: string]: string;
+    [key: string]: string;
 }
 
 @Controller('translate')
 export class TranslationController {
-	brandLogo: string = '';
-	productData: ProductData;
+    brandLogo: string = '';
+    productData: ProductData;
 
-	constructor(
-		private readonly translationService: TranslationService,
-		private readonly brandsService: BrandsService,
-	) { }
+    constructor(
+        private readonly translationService: TranslationService,
+        private readonly brandsService: BrandsService,
+    ) { }
 
-	@Post('upload')
-	@UseInterceptors(FilesInterceptor('files'))
-	async uploadFiles(@UploadedFiles() files: Express.Multer.File[], @Req() req, @Res() res) {
-		if (!files || files.length === 0) {
-			throw new BadRequestException('No files were uploaded');
-		}
+    @Post('upload')
+    @UseInterceptors(FilesInterceptor('files'))
+    async uploadFiles(@UploadedFiles() files: Express.Multer.File[], @Req() req, @Res() res) {
+        if (!files || files.length === 0) {
+            throw new BadRequestException('No files were uploaded');
+        }
 
-		try {
-			var newDirPath;
+        try {
+            var newDirPath;
 
-			if (req.body.directory && req.body.directory === "creative") {
-				newDirPath = path.join(__dirname, '..', 'src', 'creative', 'templates', 'files');
+            if (req.body.directory && req.body.directory === "creative") {
+                newDirPath = path.join(__dirname, '..', 'src', 'creative', 'templates', 'files');
 
-				for (const file of files) {
-					var tempFilePath;
-					tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+                for (const file of files) {
+                    var tempFilePath;
+                    tempFilePath = path.join(__dirname, '..', 'client', file.filename);
 
-					const newFilePath = path.join(newDirPath, file.filename);
+                    const newFilePath = path.join(newDirPath, file.filename);
 
-					await fs.copyFile(tempFilePath, newFilePath);
-					await fs.unlink(tempFilePath);
-				}
+                    await fs.copyFile(tempFilePath, newFilePath);
+                    await fs.unlink(tempFilePath);
+                }
 
-				res.json({ message: 'Files uploaded and moved successfully!' });
-			} else {
-				newDirPath = path.join(__dirname, '..', 'client', req.body.directory);
+                res.json({ message: 'Files uploaded and moved successfully!' });
+            } else {
+                newDirPath = path.join(__dirname, '..', 'client', req.body.directory);
 
-				for (const file of files) {
-					var tempFilePath;
-					tempFilePath = path.join(__dirname, '..', 'client', file.filename);
+                for (const file of files) {
+                    var tempFilePath;
+                    tempFilePath = path.join(__dirname, '..', 'client', file.filename);
 
-					const newFilePath = path.join(newDirPath, file.filename);
+                    const newFilePath = path.join(newDirPath, file.filename);
 
-					console.log(newFilePath);
-					await fs.rename(tempFilePath, newFilePath);
-				}
+                    console.log(newFilePath);
+                    await fs.rename(tempFilePath, newFilePath);
+                }
 
-				res.json({ message: 'Files uploaded and moved successfully!' });
-			}
-		} catch (err) {
-			console.error(err);
-			res.status(500).json({ error: 'An error occurred while processing the files.' });
-		}
+                res.json({ message: 'Files uploaded and moved successfully!' });
+            }
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while processing the files.' });
+        }
 
-		return { message: 'Files uploaded successfully', files };
-	}
+        return { message: 'Files uploaded successfully', files };
+    }
 
-	@Post('translation')
-	async translation(@Req() req, @Res() res) {
-		const { textArray, language } = req.body;
-		console.log(textArray);
+    @Post('translation')
+    async translation(@Req() req, @Res() res) {
+        const { textArray, language } = req.body;
+        console.log(textArray);
 
-		const translations = Object.keys(textArray).map((key) => {
-			if (key === 'comments') return Promise.resolve('');
+        const translations = Object.keys(textArray).map((key) => {
+            if (key === 'comments') return Promise.resolve('');
 
-			const property = textArray[key];
-			return translate(property, {
-				to: language,
-				forceTo: true,
-			}).then((translationResult) => translationResult.text);
-		});
+            const property = textArray[key];
+            return translate(property, {
+                to: language,
+                forceTo: true,
+            }).then((translationResult) => translationResult.text);
+        });
 
-		try {
-			const translatedTexts = await Promise.all(translations);
+        try {
+            const translatedTexts = await Promise.all(translations);
 
-			const result = Object.keys(textArray).reduce((acc, key, index) => {
-				acc[key] = translatedTexts[index];
-				return acc;
-			}, {});
+            const result = Object.keys(textArray).reduce((acc, key, index) => {
+                acc[key] = translatedTexts[index];
+                return acc;
+            }, {});
 
-			res.send(result);
-		} catch (error) {
-			console.error('Translation error:', error);
-			res.status(500).send({ error: 'Translation failed' });
-		}
-	}
-
-
+            res.send(result);
+        } catch (error) {
+            console.error('Translation error:', error);
+            res.status(500).send({ error: 'Translation failed' });
+        }
+    }
 
 
-	@Post('build')
-	async build(@Req() req, @Res() res) {
-		const { templateName } = req.body;
 
-		const templateFilePath = path.join(__dirname, '..', 'client', templateName, 'index.html.hbs');
-		const textsFilePath = path.join(__dirname, '..', 'client', templateName, 'params.json');
-		const outputFilePath = path.join(__dirname, '..', 'client', 'hrblock', 'output.html');
 
-		const templateContent = await fs.readFile(templateFilePath, 'utf8');
-		const template = handlebars.compile(templateContent);
+    @Post('build')
+    async build(@Req() req, @Res() res) {
+        const { templateName } = req.body;
 
-		var texts = JSON.parse(await fs.readFile(textsFilePath, 'utf8'));
+        const templateFilePath = path.join(__dirname, '..', 'client', templateName, 'index.html.hbs');
+        const textsFilePath = path.join(__dirname, '..', 'client', templateName, 'params.json');
+        const outputFilePath = path.join(__dirname, '..', 'client', 'hrblock', 'output.html');
 
-		const html = template(texts);
+        const templateContent = await fs.readFile(templateFilePath, 'utf8');
+        const template = handlebars.compile(templateContent);
 
-		await fs.writeFile(outputFilePath, html, 'utf-8');
+        var texts = JSON.parse(await fs.readFile(textsFilePath, 'utf8'));
 
-		res.status(200).send({ message: "Survey generated successfully" });
-	}
+        const html = template(texts);
 
-	@Post('generate')
-	async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
-		const { productData, brandData, configData, survey } = req.body;
+        await fs.writeFile(outputFilePath, html, 'utf-8');
 
-		console.log(configData);
+        res.status(200).send({ message: "Survey generated successfully" });
+    }
 
-		const parsedSurvey = this.parseSurvey(survey);
+    @Post('generate')
+    async generate(@Query('translateTexts') translateTexts: string, @Query('language') language: string, @Req() req, @Res() res) {
+        const { productData, brandData, configData, survey } = req.body;
 
-		const templatePath = path.join(__dirname, '..', 'client', 'tryetco');
-		const outputFilePath = path.join(__dirname, '..', 'client');
+        console.log(configData);
 
-		const baseFilesPath = path.join(__dirname, '..', 'client', 'tryetco', 'files');
+        const parsedSurvey = this.parseSurvey(survey);
 
-		const translate = translateTexts === 'true';
-		await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
+        const templatePath = path.join(__dirname, '..', 'client', 'tryetco');
+        const outputFilePath = path.join(__dirname, '..', 'client');
 
-		const zipPath = path.join(outputFilePath, 'creative.zip');
+        const baseFilesPath = path.join(__dirname, '..', 'client', 'tryetco', 'files');
 
-		await this.createZip(templatePath, zipPath)
-			.then(async () => {
-				res.download(zipPath, 'final.zip', async (err) => {
-					const filesToRemove = [
-						path.join(baseFilesPath, productData.productImage),
-						path.join(baseFilesPath, productData.commentImage1),
-						path.join(baseFilesPath, productData.commentImage2),
-						path.join(baseFilesPath, brandData.brandLogo),
-						path.join(baseFilesPath, brandData.backgroundImage),
-						path.join(baseFilesPath, brandData.favicon),
-					];
+        const translate = translateTexts === 'true';
+        await this.translationService.generateHtmlWithTranslations(translate, language, brandData, productData, configData, parsedSurvey);
 
-					for (const fileToRemove of filesToRemove) {
-						try {
-							await fs.stat(fileToRemove);
-							await fs.unlink(fileToRemove);
-						} catch (error) { }
-					}
+        const zipPath = path.join(outputFilePath, 'creative.zip');
 
-					if (err) {
-						res.status(404).send('File not found');
-					}
-				});
-			})
-			.catch((error) => {
-				res.status(500).json({ message: 'Error creating zip.' });
-			});
+        await this.createZip(templatePath, zipPath)
+            .then(async () => {
+                res.download(zipPath, 'final.zip', async (err) => {
+                    const filesToRemove = [
+                        path.join(baseFilesPath, productData.productImage),
+                        path.join(baseFilesPath, productData.commentImage1),
+                        path.join(baseFilesPath, productData.commentImage2),
+                        path.join(baseFilesPath, brandData.brandLogo),
+                        path.join(baseFilesPath, brandData.backgroundImage),
+                        path.join(baseFilesPath, brandData.favicon),
+                    ];
 
-		return { message: 'HTML file generated successfully' };
-	}
+                    for (const fileToRemove of filesToRemove) {
+                        try {
+                            await fs.stat(fileToRemove);
+                            await fs.unlink(fileToRemove);
+                        } catch (error) { }
+                    }
 
-	async createZip(sourceFolder, outPath) {
-		return new Promise((resolve, reject) => {
-			const output = createWriteStream(outPath);
-			const archive = archiver('zip');
+                    if (err) {
+                        res.status(404).send('File not found');
+                    }
+                });
+            })
+            .catch((error) => {
+                res.status(500).json({ message: 'Error creating zip.' });
+            });
 
-			output.on('close', () => {
-				resolve(null);
-			});
+        return { message: 'HTML file generated successfully' };
+    }
 
-			archive.on('error', (err) => {
-				reject(err);
-			});
+    async createZip(sourceFolder, outPath) {
+        return new Promise((resolve, reject) => {
+            const output = createWriteStream(outPath);
+            const archive = archiver('zip');
 
-			archive.pipe(output);
-			archive.directory(sourceFolder, false);
-			archive.finalize();
-		});
-	}
+            output.on('close', () => {
+                resolve(null);
+            });
 
-	private parseSurvey(surveyString: string): Record<string, string> {
-		const entries = surveyString.match(/"([^"]*)"/g)?.map((entry) => entry.replace(/"/g, '')) || [];
-		const surveyData: Record<string, string> = {};
+            archive.on('error', (err) => {
+                reject(err);
+            });
 
-		let questionIndex = 1;
-		let optionIndex = 1;
+            archive.pipe(output);
+            archive.directory(sourceFolder, false);
+            archive.finalize();
+        });
+    }
 
-		entries.forEach((entry, index) => {
-			if (index % 5 === 0) {
-				surveyData[`question${questionIndex}`] = entry;
-				questionIndex++;
-				optionIndex = 1;
-			} else {
-				surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
-				optionIndex++;
-			}
-		});
+    private parseSurvey(surveyString: string): Record<string, string> {
+        const entries = surveyString.match(/"([^"]*)"/g)?.map((entry) => entry.replace(/"/g, '')) || [];
+        const surveyData: Record<string, string> = {};
 
-		return surveyData;
-	}
+        let questionIndex = 1;
+        let optionIndex = 1;
 
-	@Post('translate')
-	async translateKeywords(@Req() req) {
-		const { keywords } = req.body;
+        entries.forEach((entry, index) => {
+            if (index % 5 === 0) {
+                surveyData[`question${questionIndex}`] = entry;
+                questionIndex++;
+                optionIndex = 1;
+            } else {
+                surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
+                optionIndex++;
+            }
+        });
 
-		const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        return surveyData;
+    }
 
-		const configuration = new GoogleGenerativeAI(API_KEY);
+    @Post('translate')
+    async translateKeywords(@Req() req) {
+        const { keywords } = req.body;
 
-		const modelId = 'gemini-1.5-flash-8b';
-		const model = configuration.getGenerativeModel({ model: modelId });
+        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
 
-		const chat = model.startChat();
+        const configuration = new GoogleGenerativeAI(API_KEY);
 
-		const result = await chat.sendMessage(`translate these keywords to swedish, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
+        const modelId = 'gemini-1.5-flash-8b';
+        const model = configuration.getGenerativeModel({ model: modelId });
 
-		const response = await result.response;
+        const chat = model.startChat();
 
-		return response.text();
-	}
+        const result = await chat.sendMessage(`translate these keywords to swedish, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
 
-	@Post('survey')
-	async generateSurvey(@Req() req) {
-		const { brand, product } = req.body;
+        const response = await result.response;
 
-		const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
-		const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+        return response.text();
+    }
 
-		const configuration = new GoogleGenerativeAI(API_KEY);
+    @Post('survey')
+    async generateSurvey(@Req() req) {
+        const { brand, product, template } = req.body;
 
-		const modelId = 'gemini-1.5-flash-8b';
-		const model = configuration.getGenerativeModel({ model: modelId });
+        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
-		const chat = model.startChat();
+        const configuration = new GoogleGenerativeAI(API_KEY);
 
-		const result = await chat.sendMessage(`change these questions to fit a shopper experience survey about ${brand} and a ${product} as prize, The output must ONLY contain the strings (don't forget to include the "" and ,) NOTHING MORE:
-          "How often do you visit CVS for your shopping needs?",
-    "Multiple times a week",
-    "Once a week",
-    "A few times a month",
-    "Rarely or never",
-    "What primarily drives your choice to shop at CVS?",
-    "Convenience of location",
-    "Product selection",
-    "Prices and deals",
-    "Loyalty rewards program",
-    "When seeing ads from CVS, how do you typically respond?",
-    "I look for items I need",
-    "I browse if there's a good deal",
-    "I consider visiting if there's a promo",
-    "I usually ignore the ads",
-    "If you won a Medicare Kit from CVS, how would it change your view of the CVS?",
-    "Significantly more positive",
-    "Somewhat more positive",
-    "No change",
-    "More negative",
-    "Regarding the Medicare Kit, which feature is most appealing to you?",
-    "Durability",
-    "Cooling efficiency",
-    "Portability",
-    "Design and appearance",
-    "How likely are you to use a Medicare Kit if you received one from CVS?",
-    "Very likely",
-    "Somewhat likely",
-    "Unlikely",
-    "I would not use it",
-    "In terms of health and wellness products, how well do you think CVS meets your needs?",
-    "Exceeds my needs",
-    "Meets my needs well",
-    "Adequately meets my needs",
-    "Does not meet my needs",
-    "How likely are you to participate in future promotions or surveys from CVS?",
-    "Very likely",
-    "Somewhat likely",
-    "Not very likely",
-    "Not at all likely"
+        const modelId = 'gemini-1.5-flash-8b';
+        const model = configuration.getGenerativeModel({ model: modelId });
+
+        const chat = model.startChat();
+
+        const prompt = template === "config_offerwall" ?
+            "change these questions to fit a shopper experience survey about " + brand + ". Also change the questions that talk about a specific product to talk only about the brand." :
+            "change these questions to fit a shopper experience survey about " + brand + " and a " + product + " as prize";
+
+
+        const survey = template === "config_offerwall" ?
+            `"How often do you visit CVS for your shopping needs?",
+        "Multiple times a week",
+        "Once a week",
+        "A few times a month",
+        "Rarely or never",
+        "What primarily drives your choice to shop at CVS?",
+        "Convenience of location",
+        "Product selection",
+        "Prices and deals",
+        "Loyalty rewards program",
+        "When seeing ads from CVS, how do you typically respond?",
+        "I look for items I need",
+        "I browse if there's a good deal",
+        "I consider visiting if there's a promo",
+        "I usually ignore the ads",
+        "How has your perception of the CVS brand changed over the past year?",
+        "Significantly more positive",
+        "Somewhat more positive",
+        "No change",
+        "More negative",
+        "Which aspect of the CVS brand do you find most appealing?",
+        "Reliability",
+        "Innovation",
+        "Convenience",
+        "Store experience / design",
+        "What quality do you most associate with the CVS brand?",
+        "Trustworthiness",
+        "Affordability",
+        "Innovation",
+        "Personal care",
+        "In terms of health and wellness products, how well do you think CVS meets your needs?",
+        "Exceeds my needs",
+        "Meets my needs well",
+        "Adequately meets my needs",
+        "Does not meet my needs",
+        "How likely are you to participate in future promotions or surveys from CVS?",
+        "Very likely",
+        "Somewhat likely",
+        "Not very likely",
+        "Not at all likely"`
+            :
+            `"How often do you visit CVS for your shopping needs?",
+        "Multiple times a week",
+        "Once a week",
+        "A few times a month",
+        "Rarely or never",
+        "What primarily drives your choice to shop at CVS?",
+        "Convenience of location",
+        "Product selection",
+        "Prices and deals",
+        "Loyalty rewards program",
+        "When seeing ads from CVS, how do you typically respond?",
+        "I look for items I need",
+        "I browse if there's a good deal",
+        "I consider visiting if there's a promo",
+        "I usually ignore the ads",
+        "If you won a Medicare Kit from CVS, how would it change your view of the CVS?",
+        "Significantly more positive",
+        "Somewhat more positive",
+        "No change",
+        "More negative",
+        "Regarding the Medicare Kit, which feature is most appealing to you?",
+        "Durability",
+        "Cooling efficiency",
+        "Portability",
+        "Design and appearance",
+        "How likely are you to use a Medicare Kit if you received one from CVS?",
+        "Very likely",
+        "Somewhat likely",
+        "Unlikely",
+        "I would not use it",
+        "In terms of health and wellness products, how well do you think CVS meets your needs?",
+        "Exceeds my needs",
+        "Meets my needs well",
+        "Adequately meets my needs",
+        "Does not meet my needs",
+        "How likely are you to participate in future promotions or surveys from CVS?",
+        "Very likely",
+        "Somewhat likely",
+        "Not very likely",
+        "Not at all likely"`
+
+
+        const result = await chat.sendMessage(`${prompt}, The output must ONLY contain the strings (don't forget to include the "" and ,) NOTHING MORE:
+          ${survey}
           `);
-		const response = await result.response;
-		return response.text();
-	}
+        const response = await result.response;
+        return response.text();
+    }
 }
