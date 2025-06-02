@@ -109,10 +109,19 @@ export class SurveyService {
         }
     }
 
-    private async generateReviews(product: Product): Promise<Record<string, string>> {
-        const response = await this.callAI(
-            `generate 3 short positive reviews for this product: ${product.product} and this product description: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
-        );
+    private async generateReviews(product: Product, templateName: String): Promise<Record<string, string>> {
+        var response;
+        if(templateName === "config_offerwall") {
+            response = `{ 
+                "review1": "I honestly didn't expect much when I filled out the survey, but a few weeks later, I got an email — I'd won a smartwatch! Super easy and totally worth it.", 
+                "review2": "The survey was quick and straightforward, and I ended up winning a drone! Best surprise ever. Definitely recommending this to friends.", 
+                "review3": "I gave my honest feedback about my shopping experience, and I got a free pair of AirPods. Crazy, right? Love it!" }`;
+        } else {
+            response = await this.callAI(
+                `generate 3 short positive reviews for this product: ${product.product} and this product description: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
+            );
+        }
+        
 
         return this.parseJsonResponse(response);
     }
@@ -264,7 +273,7 @@ export class SurveyService {
             }
 
             const [reviews, features] = await Promise.all([
-                this.generateReviews(product),
+                this.generateReviews(product, config.templateName),
                 this.generateProductFeatures(product)
             ]);
 
@@ -286,6 +295,10 @@ export class SurveyService {
 
             const parsedSurvey = this.parseSurvey(survey);
             parsedSurvey.surveyTitle = `${brand.name} Shopper Experience Survey`;
+
+            if (config.templateName === "config_offerwall") {
+                parsedSurvey.productImage = "./files/feature.png";
+            }
 
             const mergedData = {
                 ...texts,
