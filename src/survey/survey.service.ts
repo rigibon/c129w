@@ -298,6 +298,8 @@ export class SurveyService {
 
             if (config.templateName === "config_offerwall") {
                 parsedSurvey.productImage = "./files/feature.png";
+                parsedSurvey.product = "brand new Exclusive Reward";
+                parsedSurvey.isOfferwall = "true";
             }
 
             const mergedData = {
