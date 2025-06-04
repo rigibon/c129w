@@ -222,6 +222,14 @@ const GR_names = {
     commentName5: "Dimitra Kotsou",
 }
 
+const LV_names = {
+    commentName1: "Elīna Bērziņa",
+    commentName2: "Jānis Kalniņš",
+    commentName3: "Laura Ozoliņa",
+    commentName4: "Mārtiņš Liepiņš",
+    commentName5: "Dace Kļaviņa",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -251,4 +259,5 @@ export const commentNamesByCountry = {
     "sa": SA_names,
     "ie": IE_names,
     "gr": GR_names,
+    "lv": LV_names,
 };
