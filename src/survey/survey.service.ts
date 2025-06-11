@@ -29,6 +29,8 @@ export class SurveyService {
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
         const basePath = join(__dirname, '..', 'client', templateName);
 
+        // console.log(join(basePath, 'params.json'));
+
         switch (type) {
             case 'template':
                 return join(basePath, 'index.html.hbs');
@@ -111,7 +113,7 @@ export class SurveyService {
 
     private async generateReviews(product: Product, templateName: String): Promise<Record<string, string>> {
         var response;
-        if(templateName === "config_offerwall") {
+        if (templateName === "config_offerwall") {
             response = `{ 
                 "review1": "I honestly didn't expect much when I filled out the survey, but a few weeks later, I got an email — I'd won a smartwatch! Super easy and totally worth it.", 
                 "review2": "The survey was quick and straightforward, and I ended up winning a drone! Best surprise ever. Definitely recommending this to friends.", 
@@ -121,7 +123,7 @@ export class SurveyService {
                 `generate 3 short positive reviews for this product: ${product.product} and this product description: ${product.description}. Output must have this shape as JSON format: { review1: "content", review2: "content", review3: "content" }`
             );
         }
-        
+
 
         return this.parseJsonResponse(response);
     }
@@ -264,7 +266,7 @@ export class SurveyService {
             const template = await this.compileTemplate(templatePath);
 
             var texts: Record<string, any>;
-            if (config.templateName === "config" || config.templateName === "config_tt" || config.templateName === "config_offerwall") {
+            if (config.templateName === "config" || config.templateName === "config_offerwall") {
                 texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp", "hrblock"]);
             } else {
                 const paramsPath = this.getFilePath('params', config.templateName);
