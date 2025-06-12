@@ -136,6 +136,21 @@ export class SurveyService {
         return this.parseJsonResponse(response);
     }
 
+    private async getProductGender(product: Product, language: string): Promise<Record<string, string>> {
+        const response = await this.callAI(
+            `Determine the grammatical gender of the product name '${product}' in the specified language '${language}'. The output should be a JSON object containing a key 'gender', with the value being either 'M' for masculine or 'F' for feminine. Please ensure the output follows the exact structure:
+            Example output:
+
+            { "gender": "m" }
+
+            { "gender": "f" }
+
+            Please handle edge cases, if applicable, and provide the correct gender based on the language's grammatical rules. NOT NEUTRAL GENDER`
+        );
+
+        return this.parseJsonResponse(response);
+    }
+
     private parseJsonResponse(response: string): Record<string, any> {
         return JSON.parse(response.replace(/```(json|JSON)?|```/g, ''));
     }
@@ -279,6 +294,8 @@ export class SurveyService {
                 this.generateProductFeatures(product)
             ]);
 
+
+
             this.customizeQuestionCount(texts, config.templateName);
 
             const templatesToConfigure = [];
@@ -312,10 +329,15 @@ export class SurveyService {
                 ...commentNamesByCountry[config.geo],
                 ...reviews,
                 ...features,
-                ...config
+                ...config,
+                // ...productGender
             };
 
             const translatedData = await this.translateWithAI(mergedData, config.language);
+
+            const productGender = await this.getProductGender(translatedData.product, config.language);
+
+            translatedData.gender = productGender.gender;
 
             const html = template(translatedData);
 
