@@ -24,7 +24,7 @@ export class CreativeController {
     async loadAndTranslateTexts(configPath, product, brand, language, generateKeywords = false) {
         try {
             let texts = await this.readTexts(configPath);
-    
+
             texts.product = product.product;
             texts.brand = brand.name;
             texts.mainColor = brand.mainColor;
@@ -33,9 +33,9 @@ export class CreativeController {
             texts.productImage = product.productImage;
             texts.commentImage1 = product.commentImage1;
             texts.commentImage2 = product.commentImage2;
-    
+
             let translatedTexts = await this.translateKeywords(JSON.stringify(texts), language);
-    
+
             // Sanitize and validate JSON response
             translatedTexts = translatedTexts.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
             try {
@@ -44,7 +44,7 @@ export class CreativeController {
                 console.error('Error parsing translated JSON:', parseError.message);
                 throw new Error('Invalid JSON format in translated texts');
             }
-    
+
             if (generateKeywords) {
                 let customKeywords = await this.generateCustomTexts(product.product);
                 customKeywords = customKeywords.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
@@ -56,7 +56,7 @@ export class CreativeController {
                     throw new Error('Invalid JSON format in custom keywords');
                 }
             }
-    
+
             return texts;
         } catch (error) {
             console.error(`Error reading or translating texts: ${error.message}`);
@@ -117,7 +117,7 @@ export class CreativeController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash-8b';
+        const modelId = 'gemini-1.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
@@ -134,7 +134,7 @@ export class CreativeController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash-8b';
+        const modelId = 'gemini-1.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();

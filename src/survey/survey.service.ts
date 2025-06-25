@@ -24,7 +24,7 @@ interface Config {
 
 export class SurveyService {
     private readonly AI_API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
-    private readonly AI_MODEL_ID = 'gemini-1.5-flash-8b';
+    private readonly AI_MODEL_ID = 'gemini-1.5-flash';
 
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
         const basePath = join(__dirname, '..', 'client', templateName);

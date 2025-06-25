@@ -223,7 +223,7 @@ export class TranslationController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash-8b';
+        const modelId = 'gemini-1.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
@@ -244,7 +244,7 @@ export class TranslationController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash-8b';
+        const modelId = 'gemini-1.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
