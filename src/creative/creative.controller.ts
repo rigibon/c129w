@@ -34,26 +34,32 @@ export class CreativeController {
             texts.commentImage1 = product.commentImage1;
             texts.commentImage2 = product.commentImage2;
 
-            let translatedTexts = await this.translateKeywords(JSON.stringify(texts), language);
+            // Only translate if language is specified and not English
+            if (language && language !== '' && language.toLowerCase() !== 'english') {
+                let translatedTexts = await this.translateKeywords(JSON.stringify(texts), language);
 
-            // Sanitize and validate JSON response
-            translatedTexts = translatedTexts.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
-            try {
-                texts = JSON.parse(translatedTexts.replace(/```/g, '').replace(/JSON/gi, ''));
-            } catch (parseError) {
-                console.error('Error parsing translated JSON:', parseError.message);
-                throw new Error('Invalid JSON format in translated texts');
+                // Clean and parse the translated response
+                translatedTexts = this.cleanJsonResponse(translatedTexts);
+                try {
+                    texts = JSON.parse(translatedTexts);
+                } catch (parseError) {
+                    console.error('Error parsing translated JSON:', parseError.message);
+                    console.error('Translated response:', translatedTexts);
+                    console.warn('Using original texts due to translation parsing error');
+                    // Fall back to original texts if translation fails
+                }
             }
 
             if (generateKeywords) {
-                let customKeywords = await this.generateCustomTexts(product.product);
-                customKeywords = customKeywords.replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
                 try {
-                    const newTexts = JSON.parse(customKeywords.replace(/```/g, '').replace(/JSON/gi, ''));
+                    let customKeywords = await this.generateCustomTexts(product.product);
+                    customKeywords = this.cleanJsonResponse(customKeywords);
+                    const newTexts = JSON.parse(customKeywords);
                     texts = { ...texts, ...newTexts };
                 } catch (parseError) {
                     console.error('Error parsing custom keywords JSON:', parseError.message);
-                    throw new Error('Invalid JSON format in custom keywords');
+                    console.warn('Continuing without custom keywords due to parsing error');
+                    // Continue without custom keywords if they fail to parse
                 }
             }
 
@@ -113,6 +119,10 @@ export class CreativeController {
     }
 
     async translateKeywords(keywords: any, language: string) {
+        if (language === '' || language === 'english') {
+            return keywords; // Return as-is if no translation needed
+        }
+
         const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
@@ -122,7 +132,9 @@ export class CreativeController {
 
         const chat = model.startChat();
 
-        const result = await chat.sendMessage(`translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
+        const result = await chat.sendMessage(
+            `Translate these keywords to ${language}. The output must be EXACTLY the same JSON structure as the input but with the keywords translated. Return only valid JSON, no explanations or extra text: ${keywords}`
+        );
 
         const response = await result.response;
 
@@ -139,9 +151,16 @@ export class CreativeController {
 
         const chat = model.startChat();
 
-        const keywords = { title: "Your no-compromises backpack for everyday chores.", firstItem: "Commuting and air travel friendly", secondItem: "Various organizational pockets. Fits up to 26oz", thirdItem: "Bottle and up to 1L/34oz" };
+        const keywords = { 
+            title: "Your no-compromises backpack for everyday chores.", 
+            firstItem: "Commuting and air travel friendly", 
+            secondItem: "Various organizational pockets. Fits up to 26oz", 
+            thirdItem: "Bottle and up to 1L/34oz" 
+        };
 
-        const result = await chat.sendMessage(`change the values of these keys to match the product "${product}": ${JSON.stringify(keywords)}`);
+        const result = await chat.sendMessage(
+            `Change the values of these keys to match the product "${product}". Return only valid JSON with the same structure, no explanations or extra text: ${JSON.stringify(keywords)}`
+        );
 
         const response = await result.response;
 
@@ -275,5 +294,33 @@ export class CreativeController {
 
             archive.finalize();
         });
+    }
+
+    private cleanJsonResponse(response: string): string {
+        try {
+            // Remove any markdown code blocks
+            let cleaned = response.replace(/```(json|JSON)?|```/g, '').trim();
+            
+            // Remove control characters
+            cleaned = cleaned.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+            
+            // Remove any potential BOM or invisible characters
+            cleaned = cleaned.replace(/^\uFEFF/, '');
+            
+            // Try to extract JSON if there's extra text
+            const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                cleaned = jsonMatch[0];
+            }
+            
+            // Log for debugging
+            //console.log('Original AI response:', response);
+            //console.log('Cleaned response:', cleaned);
+            
+            return cleaned;
+        } catch (error) {
+            console.error('Error cleaning JSON response:', error.message);
+            return response;
+        }
     }
 }
