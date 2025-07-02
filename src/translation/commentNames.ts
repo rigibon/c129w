@@ -238,6 +238,14 @@ const MX_names = {
     commentName5: "Carlos Hernandez",
 }
 
+const IL_names = {
+    commentName1: "Yael Cohen",
+    commentName2: "Avi Levi",
+    commentName3: "Noa Mizrahi",
+    commentName4: "Daniel Azulay",
+    commentName5: "Tamar Ben-David",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -269,4 +277,5 @@ export const commentNamesByCountry = {
     "gr": GR_names,
     "lv": LV_names,
     "mx": MX_names,
+    "il": IL_names,
 };
