@@ -223,7 +223,7 @@ export class TranslationController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
@@ -240,11 +240,11 @@ export class TranslationController {
         const { brand, product, template } = req.body;
 
         const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
-        const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+        const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-latest:generateContent';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();

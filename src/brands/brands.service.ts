@@ -41,7 +41,7 @@ export class BrandsService {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
@@ -66,7 +66,7 @@ export class BrandsService {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-1.5-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
