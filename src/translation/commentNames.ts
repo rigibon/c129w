@@ -199,11 +199,11 @@ const QA_names = {
 }
 
 const SA_names = {
-    commentName1: "Amani Al Saud",
-    commentName2: "Faisal Al Harbi",
-    commentName3: "Reem Al Qahtani",
-    commentName4: "Salman Al Otaibi",
-    commentName5: "Huda Al Dossari",
+    commentName1: "أماني آل سعود",
+    commentName2: "فيصل الحربي",
+    commentName3: "ريم القحطاني",
+    commentName4: "سلمان العتيبي",
+    commentName5: "هدى الدوسري",
 }
 
 const IE_names = {
