@@ -12,6 +12,7 @@ import { CreatorService } from './creator/creator.service';
 import { CreatorController } from './creator/creator.controller';
 import { SurveyModule } from './survey/survey.module';
 import { CreativeModule } from './creative/creative.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 const storage = diskStorage({
   destination: path.join(__dirname, '..', 'client'),
@@ -32,8 +33,10 @@ const storage = diskStorage({
     MulterModule.register({ storage: storage }),
     SurveyModule,
     CreativeModule,
+    ReviewsModule,
   ],
   controllers: [TranslationController, CreatorController],
   providers: [TranslationService, CreatorService],
 })
+
 export class AppModule { }

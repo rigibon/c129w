@@ -37,7 +37,7 @@ export class BrandsService {
     }
 
     async translateKeywords(keywords: any, language: string) {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
@@ -62,7 +62,7 @@ export class BrandsService {
     }
 
     async getBrandSuggestions(product: string, geo: string): Promise<string> {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 

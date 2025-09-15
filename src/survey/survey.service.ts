@@ -22,8 +22,17 @@ interface Config {
     language: string;
 }
 
+interface Review {
+  name: string;
+  stars: string;
+  comment: string;
+  date: string;
+  profilePic?: string;
+  commentImage?: string;
+}
+
 export class SurveyService {
-    private readonly AI_API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+    private readonly AI_API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
     private readonly AI_MODEL_ID = 'gemini-2.5-flash';
 
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
@@ -335,7 +344,7 @@ export class SurveyService {
         }
     }
 
-    public async generateSurvey(product: Product, brand: Brand, survey: string, config: Config): Promise<string> {
+    public async generateSurvey(product: Product, brand: Brand, survey: string, config: Config, reviews2: Review[]): Promise<string> {
         try {
             const templatePath = this.getFilePath('template', config.templateName);
             const outputPath = this.getFilePath('output', config.templateName);
@@ -395,9 +404,10 @@ export class SurveyService {
                 ...brand,
                 ...parsedSurvey,
                 ...commentNamesByCountry[config.geo],
-                ...reviews,
                 ...features,
                 ...config,
+                ...reviews,
+                ...reviews2,
                 // ...productGender
             };
 

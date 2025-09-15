@@ -90,7 +90,7 @@ export class SurveyController {
     @Post('build')
     async build(@Req() req, @Res() res) {
         try {
-            const { product, brand, survey, config } = req.body;
+            const { product, brand, survey, config, reviews2 } = req.body;
 
             if (!product || !brand || !config) {
                 return res.status(400).send({
@@ -104,7 +104,7 @@ export class SurveyController {
 
             const templatePath = path.join(__dirname, '..', 'client', config.templateName);
 
-            const message = await this.surveyService.generateSurvey(product, brand, survey, config);
+            const message = await this.surveyService.generateSurvey(product, brand, survey, config, reviews2);
 
             const zipPath = path.join(outputFilePath, 'creative.zip');
 

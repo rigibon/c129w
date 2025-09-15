@@ -123,7 +123,7 @@ export class CreativeController {
             return keywords; // Return as-is if no translation needed
         }
 
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
@@ -142,7 +142,7 @@ export class CreativeController {
     }
 
     async generateCustomTexts(product: string) {
-        const API_KEY = 'AIzaSyD_YOrEpX3fm8WR6lru0IK7_-MOkfkk_g4';
+        const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
