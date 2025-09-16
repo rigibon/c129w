@@ -254,6 +254,14 @@ const CO_names = {
     commentName5: "Amelia Moreno",
 }
 
+const CL_names = {
+    commentName1: "María González",
+    commentName2: "José Martínez",
+    commentName3: "Juan Pérez",
+    commentName4: "Laura Rodríguez",
+    commentName5: "Carlos Hernandez",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -287,4 +295,5 @@ export const commentNamesByCountry = {
     "mx": MX_names,
     "il": IL_names,
     "co": CO_names,
+    "cl": CL_names
 };
