@@ -61,9 +61,16 @@ $survey = array(
 );
 
 $reviews = [
-    {{#each reviews2}}
-    "{{this}}",
-    {{/each}}
+  {{#each reviews2}}
+    [
+      "name" => "{{this.name}}",
+      "stars" => "{{this.stars}}",
+      "comment" => "{{this.comment}}",
+      "date" => "{{this.date}}",
+      "profilePic" => "{{#if this.profilePic}}{{this.profilePic}}{{else}}null{{/if}}",
+      "commentImage" => "{{#if this.commentImage}}{{this.commentImage}}{{else}}null{{/if}}"
+    ],
+  {{/each}}
 ];
 
 ?>

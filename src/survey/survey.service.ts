@@ -371,8 +371,6 @@ export class SurveyService {
                 this.generateProductFeatures(product)
             ]);
 
-
-
             this.customizeQuestionCount(texts, config.templateName);
 
             const templatesToConfigure = [];
@@ -407,8 +405,7 @@ export class SurveyService {
                 ...features,
                 ...config,
                 ...reviews,
-                ...reviews2,
-                // ...productGender
+                reviews2
             };
 
             const translatedData = await this.translateWithAI(mergedData, config.language);
