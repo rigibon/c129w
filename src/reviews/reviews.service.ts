@@ -5,7 +5,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 export class ReviewsService {
     async generateReviews(prompt: string): Promise<string> {
         try {
-            const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
+            const API_KEY = process.env.API_KEY;
             const configuration = new GoogleGenerativeAI(API_KEY);
 
             const modelId = 'gemini-2.5-flash';

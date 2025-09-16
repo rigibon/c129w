@@ -34,28 +34,28 @@ export class SurveyController {
 
             try {
                 filterFiles.forEach(file => {
-                var filePath = path.join(sourceFolder, file);
+                    var filePath = path.join(sourceFolder, file);
 
-                if (file === 'output.html') {
-                    if (templateName === 'config' || templateName==='config_tt' || templateName === 'config_offerwall' || templateName==='config_9.99') {
-                        archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
+                    if (file === 'output.html') {
+                        if (templateName === 'config' || templateName === 'config_tt' || templateName === 'config_offerwall' || templateName === 'config_9.99') {
+                            archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
+                        }
+                        else {
+                            archive.file(filePath, { name: path.join(folderName, 'index.php') });
+                        }
                     }
-                    else {
-                        archive.file(filePath, { name: path.join(folderName, 'index.php') });
-                    }
-                }
 
-                // archive.file(filePath, { name: path.join(folderName, file) });
-            });
+                    // archive.file(filePath, { name: path.join(folderName, file) });
+                });
 
-            archive.directory(path.join(sourceFolder, 'files'), path.join(folderName, 'files'));
+                archive.directory(path.join(sourceFolder, 'files'), path.join(folderName, 'files'));
 
-            archive.finalize();
+                archive.finalize();
             } catch (error) {
                 console.error('Error while creating zip:', error);
                 reject(error);
             }
-            
+
         });
     }
 
@@ -113,11 +113,21 @@ export class SurveyController {
                     res.download(zipPath, 'final.zip', async (err) => {
                         try {
                             let filesToRemove: string[] = [];
+
                             if (product) {
+                                Object.keys(product).forEach((key) => {
+                                    // If the key matches the pattern 'productImage_*', handle it
+                                    if (key.startsWith('productImages_')) {
+                                        const imagePath = path.join(baseFilesPath, product[key]);
+                                        filesToRemove.push(imagePath);
+                                    }
+                                });
+
                                 filesToRemove = [
                                     product.productImage && path.join(baseFilesPath, product.productImage),
                                     product.commentImage1 && path.join(baseFilesPath, product.commentImage1),
                                     product.commentImage2 && path.join(baseFilesPath, product.commentImage2),
+                                    product.bannerImage && path.join(baseFilesPath, product.bannerImage),
                                     brand.brandLogo && path.join(baseFilesPath, brand.brandLogo),
                                     brand.backgroundImage && path.join(baseFilesPath, brand.backgroundImage),
                                     brand.favicon && path.join(baseFilesPath, brand.favicon),
@@ -129,8 +139,8 @@ export class SurveyController {
                                     brand.favicon && path.join(baseFilesPath, brand.favicon),
                                 ].filter(Boolean);
                             }
-                            
-                            
+
+
 
                             for (const fileToRemove of filesToRemove) {
                                 try {

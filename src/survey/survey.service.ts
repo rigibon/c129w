@@ -32,7 +32,7 @@ interface Review {
 }
 
 export class SurveyService {
-    private readonly AI_API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
+    private readonly AI_API_KEY = process.env.API_KEY;
     private readonly AI_MODEL_ID = 'gemini-2.5-flash';
 
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {

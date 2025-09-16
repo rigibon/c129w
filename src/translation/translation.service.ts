@@ -96,7 +96,7 @@ export class TranslationService {
   }
 
   private async translateKeywords(keywords: any, language: string) {
-    const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
+    const API_KEY = process.env.API_KEY;
 
     const configuration = new GoogleGenerativeAI(API_KEY);
 
@@ -146,7 +146,7 @@ export class TranslationService {
   }
 
   private async translateKeyword(keyword: string, language: string) {
-    const API_KEY = 'AIzaSyBONsjWbe1El8g8L_Lrl8HeOnS1xEb_NHg';
+    const API_KEY = process.env.API_KEY;
 
     const configuration = new GoogleGenerativeAI(API_KEY);
 
