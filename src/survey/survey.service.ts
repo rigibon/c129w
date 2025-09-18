@@ -9,6 +9,7 @@ interface Product {
     product: string;
     description: string;
     price: string;
+    promo_price?: string;
 }
 
 interface Brand {
