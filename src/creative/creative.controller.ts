@@ -21,7 +21,7 @@ export class CreativeController {
         }
     }
 
-    async loadAndTranslateTexts(configPath, product, brand, language, generateKeywords = false) {
+    async loadAndTranslateTexts(configPath, product, brand, language, generateKeywords = false, config = null) {
         try {
             let texts = await this.readTexts(configPath);
 
@@ -33,6 +33,11 @@ export class CreativeController {
             texts.productImage = product.productImage;
             texts.commentImage1 = product.commentImage1;
             texts.commentImage2 = product.commentImage2;
+            texts.geo = config ? config.geo : "US";
+            texts.currency = config ? config.currency : "$";
+
+            texts.price = product.price;
+            texts.promo_price = product.promo_price;
 
             // Only translate if language is specified and not English
             if (language && language !== '' && language.toLowerCase() !== 'english') {
@@ -180,31 +185,37 @@ export class CreativeController {
             const templatePath2 = path.join(baseTemplatePath, 'sweeps2.html.hbs');
             const templatePath3 = path.join(baseTemplatePath, 'sweeps3.html.hbs');
             const templatePath4 = path.join(baseTemplatePath, 'sweeps4.html.hbs');
+            const templatePath_fb = path.join(baseTemplatePath, 'fb.html.hbs');
             const configPath1 = path.join(baseTemplatePath, 'sweeps.json');
             const configPath2 = path.join(baseTemplatePath, 'sweeps2.json');
             const configPath3 = path.join(baseTemplatePath, 'sweeps3.json');
             const configPath4 = path.join(baseTemplatePath, 'sweeps4.json');
+            const configPath_fb = path.join(baseTemplatePath, 'fb.json');
             const outputPath1 = path.join(baseTemplatePath, 'sweeps.html');
             const outputPath2 = path.join(baseTemplatePath, 'sweeps2.html');
             const outputPath3 = path.join(baseTemplatePath, 'sweeps3.html');
             const outputPath4 = path.join(baseTemplatePath, 'sweeps4.html');
+            const outputPath_fb = path.join(baseTemplatePath, 'fb.html');
 
             const template1 = await this.loadTemplate(templatePath1);
             const template2 = await this.loadTemplate(templatePath2);
             const template3 = await this.loadTemplate(templatePath3);
             const template4 = await this.loadTemplate(templatePath4);
+            const template_fb = await this.loadTemplate(templatePath_fb);
 
             const texts1 = await this.loadAndTranslateTexts(configPath1, product, brand, config.language);
             const texts2 = await this.loadAndTranslateTexts(configPath2, product, brand, config.language);
             const texts3 = await this.loadAndTranslateTexts(configPath3, product, brand, config.language, true);
             const texts4 = await this.loadAndTranslateTexts(configPath4, product, brand, config.language);
+            const texts_fb = await this.loadAndTranslateTexts(configPath_fb, product, brand, config.language, false, config);
 
             const html1 = this.generateHtml(template1, texts1);
             const html2 = this.generateHtml(template2, texts2);
             const html3 = this.generateHtml(template3, texts3);
             const html4 = this.generateHtml(template4, texts4);
+            const html_fb = this.generateHtml(template_fb, texts_fb);
 
-            await this.writeHtmlFiles([outputPath1, outputPath2, outputPath3, outputPath4], [html1, html2, html3, html4]);
+            await this.writeHtmlFiles([outputPath1, outputPath2, outputPath3, outputPath4, outputPath_fb], [html1, html2, html3, html4, html_fb]);
 
             const zipPath = path.join(zipOutputPath, 'creative.rar');
             await this.createZip(baseTemplatePath, zipPath);
@@ -274,7 +285,7 @@ export class CreativeController {
             const templateFiles = readdirSync(sourceFolder);
 
             // Filter out only the files that need to be processed (ignoring /files)
-            const creatives = ['sweeps', 'sweeps2', 'sweeps3', 'sweeps4'];
+            const creatives = ['sweeps', 'sweeps2', 'sweeps3', 'sweeps4', 'fb'];
             creatives.forEach((creative, index) => {
                 const creativeFolder = `creative${index + 1}`;
 
