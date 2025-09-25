@@ -207,6 +207,11 @@ export class CreativeController {
                 config: path.join(baseTemplatePath, 'fb.json'),
                 output: path.join(baseTemplatePath, 'fb.html'),
             },
+            "5": {
+                template: path.join(baseTemplatePath, 'fb2.html.hbs'),
+                config: path.join(baseTemplatePath, 'fb2.json'),
+                output: path.join(baseTemplatePath, 'fb2.html'),
+            },
         };
 
         try {
@@ -296,6 +301,7 @@ export class CreativeController {
                 "2": "sweeps3",
                 "3": "sweeps4",
                 "4": "fb",
+                "5": "fb2",
             };
 
             // loop only over selected IDs

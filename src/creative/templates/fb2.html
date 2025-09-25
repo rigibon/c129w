@@ -31,7 +31,7 @@
         }
 
         .offer-banner {
-            background: linear-gradient(135deg, {{mainColor}} 0%, {{mainColor}} 100%);
+            background: linear-gradient(135deg, #E31937 0%, #E31937 100%);
             border-radius: 25px;
             padding: 20px 30px;
             margin-bottom: 30px;
@@ -149,19 +149,19 @@
             transform: translateY(-50%);
             width: 140px;
             height: 140px;
-            background: linear-gradient(135deg, {{mainColor}} 0%, {{mainColor}} 100%);
+            background: linear-gradient(135deg, #E31937 0%, #E31937 100%);
             clip-path: polygon(50% 0%, 55% 25%, 75% 15%, 65% 35%, 90% 35%, 70% 50%, 85% 70%, 60% 60%, 65% 85%, 50% 70%, 35% 85%, 40% 60%, 15% 70%, 30% 50%, 10% 35%, 35% 35%, 25% 15%, 45% 25%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 10;
-            border: 2px solid {{mainColor}};
+            border: 2px solid #E31937;
         }
 
         .star {
             align-items: center;
-            background-color: {{mainColor}};
+            background-color: #E31937;
             display: flex;
             font-size: 20px;
             height: 100px;
@@ -173,7 +173,7 @@
 
             &::before,
             &::after {
-                background-color: {{mainColor}};
+                background-color: #E31937;
                 content: '';
                 display: block;
                 height: 100%;
@@ -214,7 +214,7 @@
 
         .shipping-banner {
             position: relative;
-            background: {{secondaryColor}};
+            background: #222;
             border-radius: 20px;
             padding: 15px 25px;
             text-align: center;
@@ -314,34 +314,34 @@
 </head>
 
 <body>
-    <div class="promo-container">
+    <div class="promo-container" style="background-image: url('./files/bg.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            width: 100%;">
         <!-- Top Banner -->
         <div class="offer-banner" style="margin: 0; margin-bottom: 10px;">
             <div class="offer-text">
-                <strong>{{text1}}</strong> {{text2}}<br>
-                {{text3}} {{product}} {{text4}} <span class="mega-descuento">{{text5}}</span>.
+                <strong>TODAY ONLY:</strong> LIMITED STOCK<br>
+                GET YOUR asd WITH <span class="mega-descuento">DISCOUNT</span>.
             </div>
         </div>
 
-        <div class="" style="display: flex; justify-content: center; align-items: center; width: 100%;">
-                <img src="./files/{{brandLogo}}" style="max-width: 50%;">
-        </div>
-
         <div class="star" style="position:absolute; z-index: 1; top: 50%">
-            <div class="original-price" style="position:absolute; z-index: 1; top: 20%; color: black;">{{currency}}{{price}}</div>
-            <div class="sale-price" style="position:absolute; z-index: 1; top: 40%; color: white;">{{currency}}{{promo_price}}</div>
+            <div class="original-price" style="position:absolute; z-index: 1; top: 20%; color: black;">$asd</div>
+            <div class="sale-price" style="position:absolute; z-index: 1; top: 40%; color: white;">$asd</div>
         </div>
 
         <!-- Product Section -->
         <div class="product-section" style="padding: 0; margin: 0;">
 
             <!-- Air Fryer -->
-            <img src="./files/{{productImage}}" style="max-width: 100%;">
+            <img src="./files/louist.png" style="max-width: 50%;">
         </div>
 
         <!-- Shipping Banner -->
-        <div class="shipping-banner" style="color: {{secondaryColor}}; margin: 0;">
-            <div class="shipping-text">{{text6}}{{geo}}</div>
+        <div class="shipping-banner" style="color: #222; margin: 0;">
+            <div class="shipping-text">FREE SHIPPING TO US</div>
         </div>
 
 
