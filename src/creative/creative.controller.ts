@@ -156,11 +156,11 @@ export class CreativeController {
 
         const chat = model.startChat();
 
-        const keywords = { 
-            title: "Your no-compromises backpack for everyday chores.", 
-            firstItem: "Commuting and air travel friendly", 
-            secondItem: "Various organizational pockets. Fits up to 26oz", 
-            thirdItem: "Bottle and up to 1L/34oz" 
+        const keywords = {
+            title: "Your no-compromises backpack for everyday chores.",
+            firstItem: "Commuting and air travel friendly",
+            secondItem: "Various organizational pockets. Fits up to 26oz",
+            thirdItem: "Bottle and up to 1L/34oz"
         };
 
         const result = await chat.sendMessage(
@@ -174,51 +174,58 @@ export class CreativeController {
 
     @Post('generate')
     async generateCreatives(@Req() req, @Res() res) {
-        const { product, brand, config } = req.body;
+        const { product, brand, config, selectedTemplates } = req.body;
 
         const baseFilesPath = path.join(__dirname, '..', 'src', 'creative', 'templates', 'files');
         const baseTemplatePath = path.join(__dirname, '..', 'src', 'creative', 'templates');
         const zipOutputPath = path.join(__dirname, '..', 'client');
 
+        // map id -> paths
+        const templateMap: Record<string, { template: string; config: string; output: string }> = {
+            "0": {
+                template: path.join(baseTemplatePath, 'sweeps.html.hbs'),
+                config: path.join(baseTemplatePath, 'sweeps.json'),
+                output: path.join(baseTemplatePath, 'sweeps.html'),
+            },
+            "1": {
+                template: path.join(baseTemplatePath, 'sweeps2.html.hbs'),
+                config: path.join(baseTemplatePath, 'sweeps2.json'),
+                output: path.join(baseTemplatePath, 'sweeps2.html'),
+            },
+            "2": {
+                template: path.join(baseTemplatePath, 'sweeps3.html.hbs'),
+                config: path.join(baseTemplatePath, 'sweeps3.json'),
+                output: path.join(baseTemplatePath, 'sweeps3.html'),
+            },
+            "3": {
+                template: path.join(baseTemplatePath, 'sweeps4.html.hbs'),
+                config: path.join(baseTemplatePath, 'sweeps4.json'),
+                output: path.join(baseTemplatePath, 'sweeps4.html'),
+            },
+            "4": {
+                template: path.join(baseTemplatePath, 'fb.html.hbs'),
+                config: path.join(baseTemplatePath, 'fb.json'),
+                output: path.join(baseTemplatePath, 'fb.html'),
+            },
+        };
+
         try {
-            const templatePath1 = path.join(baseTemplatePath, 'sweeps.html.hbs');
-            const templatePath2 = path.join(baseTemplatePath, 'sweeps2.html.hbs');
-            const templatePath3 = path.join(baseTemplatePath, 'sweeps3.html.hbs');
-            const templatePath4 = path.join(baseTemplatePath, 'sweeps4.html.hbs');
-            const templatePath_fb = path.join(baseTemplatePath, 'fb.html.hbs');
-            const configPath1 = path.join(baseTemplatePath, 'sweeps.json');
-            const configPath2 = path.join(baseTemplatePath, 'sweeps2.json');
-            const configPath3 = path.join(baseTemplatePath, 'sweeps3.json');
-            const configPath4 = path.join(baseTemplatePath, 'sweeps4.json');
-            const configPath_fb = path.join(baseTemplatePath, 'fb.json');
-            const outputPath1 = path.join(baseTemplatePath, 'sweeps.html');
-            const outputPath2 = path.join(baseTemplatePath, 'sweeps2.html');
-            const outputPath3 = path.join(baseTemplatePath, 'sweeps3.html');
-            const outputPath4 = path.join(baseTemplatePath, 'sweeps4.html');
-            const outputPath_fb = path.join(baseTemplatePath, 'fb.html');
+            const outputs: string[] = [];
 
-            const template1 = await this.loadTemplate(templatePath1);
-            const template2 = await this.loadTemplate(templatePath2);
-            const template3 = await this.loadTemplate(templatePath3);
-            const template4 = await this.loadTemplate(templatePath4);
-            const template_fb = await this.loadTemplate(templatePath_fb);
+            for (const id of selectedTemplates) {
+                const { template, config: configPath, output } = templateMap[id];
 
-            const texts1 = await this.loadAndTranslateTexts(configPath1, product, brand, config.language);
-            const texts2 = await this.loadAndTranslateTexts(configPath2, product, brand, config.language);
-            const texts3 = await this.loadAndTranslateTexts(configPath3, product, brand, config.language, true);
-            const texts4 = await this.loadAndTranslateTexts(configPath4, product, brand, config.language);
-            const texts_fb = await this.loadAndTranslateTexts(configPath_fb, product, brand, config.language, false, config);
+                const tmpl = await this.loadTemplate(template);
+                const texts = await this.loadAndTranslateTexts(configPath, product, brand, config.language);
+                const html = this.generateHtml(tmpl, texts);
 
-            const html1 = this.generateHtml(template1, texts1);
-            const html2 = this.generateHtml(template2, texts2);
-            const html3 = this.generateHtml(template3, texts3);
-            const html4 = this.generateHtml(template4, texts4);
-            const html_fb = this.generateHtml(template_fb, texts_fb);
+                await this.writeHtmlFiles([output], [html]);
+                outputs.push(output);
+            }
 
-            await this.writeHtmlFiles([outputPath1, outputPath2, outputPath3, outputPath4, outputPath_fb], [html1, html2, html3, html4, html_fb]);
-
+            // Zip all selected outputs
             const zipPath = path.join(zipOutputPath, 'creative.rar');
-            await this.createZip(baseTemplatePath, zipPath);
+            await this.createZip(baseTemplatePath, zipPath, selectedTemplates);
 
             res.download(zipPath, 'creatives.rar', async (err) => {
                 if (err) {
@@ -226,6 +233,7 @@ export class CreativeController {
                     return res.status(404).send('File not found');
                 }
 
+                // cleanup images
                 const filesToRemove = [
                     path.join(baseFilesPath, product.productImage),
                     path.join(baseFilesPath, brand.brandLogo),
@@ -247,7 +255,7 @@ export class CreativeController {
             return res.status(500).send({
                 message: 'Error generating creatives',
                 error: error.message,
-                stack: error.stack
+                stack: error.stack,
             });
         }
     }
@@ -266,7 +274,7 @@ export class CreativeController {
         await fs.writeFile(outputFilePath, html, 'utf-8');
     }
 
-    async createZip(sourceFolder, outPath) {
+    async createZip(sourceFolder: string, outPath: string, selectedIds: string[]) {
         return new Promise((resolve, reject) => {
             const output = createWriteStream(outPath);
             const archive = archiver('zip');
@@ -281,26 +289,30 @@ export class CreativeController {
 
             archive.pipe(output);
 
-            // Step 1: Read the source folder and process the files
-            const templateFiles = readdirSync(sourceFolder);
+            // map IDs to creative base names
+            const idToCreative: Record<string, string> = {
+                "0": "sweeps",
+                "1": "sweeps2",
+                "2": "sweeps3",
+                "3": "sweeps4",
+                "4": "fb",
+            };
 
-            // Filter out only the files that need to be processed (ignoring /files)
-            const creatives = ['sweeps', 'sweeps2', 'sweeps3', 'sweeps4', 'fb'];
-            creatives.forEach((creative, index) => {
+            // loop only over selected IDs
+            selectedIds.forEach((id, index) => {
+                const creative = idToCreative[id];
+                if (!creative) return;
+
                 const creativeFolder = `creative${index + 1}`;
 
-                // Step 2: Create a folder for each creative and add files
-                archive.directory(path.join(sourceFolder, 'files'), `${creativeFolder}/files`);
+                // add common assets (files/)
+                archive.directory(path.join(sourceFolder, "files"), `${creativeFolder}/files`);
 
-                // Step 3: Add the renamed index.html (renamed from sweeps.html)
-                const sweepsFile = path.join(sourceFolder, `${creative}.html`);
+                // add generated HTML, renamed to index.html
+                const htmlFile = path.join(sourceFolder, `${creative}.html`);
                 const indexHtmlPath = `${creativeFolder}/index.html`;
-                archive.append(createReadStream(sweepsFile), { name: indexHtmlPath });
 
-                // Step 4: Exclude sweeps.json and sweeps.html.hbs
-                // (We don't add them to the zip archive, so no need to read them)
-
-                // Step 5: Finalize and add the creative folder to the archive
+                archive.append(createReadStream(htmlFile), { name: indexHtmlPath });
             });
 
             archive.finalize();
@@ -311,23 +323,23 @@ export class CreativeController {
         try {
             // Remove any markdown code blocks
             let cleaned = response.replace(/```(json|JSON)?|```/g, '').trim();
-            
+
             // Remove control characters
             cleaned = cleaned.replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
-            
+
             // Remove any potential BOM or invisible characters
             cleaned = cleaned.replace(/^\uFEFF/, '');
-            
+
             // Try to extract JSON if there's extra text
             const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
                 cleaned = jsonMatch[0];
             }
-            
+
             // Log for debugging
             //console.log('Original AI response:', response);
             //console.log('Cleaned response:', cleaned);
-            
+
             return cleaned;
         } catch (error) {
             console.error('Error cleaning JSON response:', error.message);
