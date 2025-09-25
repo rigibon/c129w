@@ -21,7 +21,7 @@ export class CreativeController {
         }
     }
 
-    async loadAndTranslateTexts(configPath, product, brand, language, generateKeywords = false, config = null) {
+    async loadAndTranslateTexts(configPath, product, brand, config, generateKeywords = false) {
         try {
             let texts = await this.readTexts(configPath);
 
@@ -39,9 +39,9 @@ export class CreativeController {
             texts.price = product.price;
             texts.promo_price = product.promo_price;
 
-            // Only translate if language is specified and not English
-            if (language && language !== '' && language.toLowerCase() !== 'english') {
-                let translatedTexts = await this.translateKeywords(JSON.stringify(texts), language);
+            // Only translate if config.language is specified and not English
+            if (config.language && config.language !== '' && config.language.toLowerCase() !== 'english') {
+                let translatedTexts = await this.translateKeywords(JSON.stringify(texts), config.language);
 
                 // Clean and parse the translated response
                 translatedTexts = this.cleanJsonResponse(translatedTexts);
@@ -221,7 +221,7 @@ export class CreativeController {
                 const { template, config: configPath, output } = templateMap[id];
 
                 const tmpl = await this.loadTemplate(template);
-                const texts = await this.loadAndTranslateTexts(configPath, product, brand, config.language);
+                const texts = await this.loadAndTranslateTexts(configPath, product, brand, config, false);
                 const html = this.generateHtml(tmpl, texts);
 
                 await this.writeHtmlFiles([output], [html]);
