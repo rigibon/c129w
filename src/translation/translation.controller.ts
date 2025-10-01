@@ -338,7 +338,7 @@ export class TranslationController {
         "Not at all likely"`
 
 
-        const result = await chat.sendMessage(`${prompt}, The output must ONLY contain the strings (don't forget to include the "" and ,) NOTHING MORE:
+        const result = await chat.sendMessage(`${prompt}, The output must ONLY contain the strings (don't forget to include the "" , \`) NOTHING MORE. Keep the same format as the original input:
           ${survey}
           `);
         const response = await result.response;
