@@ -367,10 +367,13 @@ export class SurveyService {
                 }
             }
 
-            const [reviews, features] = await Promise.all([
-                this.generateReviews(product, config.templateName),
-                this.generateProductFeatures(product)
-            ]);
+            let reviews = {};
+            const features = await this.generateProductFeatures(product);
+            
+            // Only generate reviews if templateName is "config"
+            if (config.templateName !== "config_tt") {
+                reviews = await this.generateReviews(product, config.templateName);
+            }
 
             this.customizeQuestionCount(texts, config.templateName);
 
