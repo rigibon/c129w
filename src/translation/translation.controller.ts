@@ -338,10 +338,42 @@ export class TranslationController {
         "Not at all likely"`
 
 
-        const result = await chat.sendMessage(`${prompt}, The output must ONLY contain the strings (don't forget to include the "" and ,) NOTHING MORE:
-          ${survey}
-          `);
+        const fullPrompt = `${prompt}. 
+
+IMPORTANT: Return ONLY a valid JSON array where each element is an object with the following structure:
+{
+  "question": "Question text here?",
+  "options": ["Option 1", "Option 2", "Option 3", "Option 4"]
+}
+
+Example format:
+[
+  {
+    "question": "How often do you visit CVS for your shopping needs?",
+    "options": ["Multiple times a week", "Once a week", "A few times a month", "Rarely or never"]
+  },
+  {
+    "question": "What primarily drives your choice to shop at CVS?",
+    "options": ["Convenience", "Prices", "Product selection", "Location"]
+  }
+]
+
+Based on this survey data, generate 8 questions with 4 options each:
+${survey}
+
+Return ONLY the JSON array, no additional text or explanations.`;
+
+        const result = await chat.sendMessage(fullPrompt);
         const response = await result.response;
-        return response.text();
+        const responseText = response.text();
+        
+        
+        // Try to validate the JSON response
+        try {
+            const parsed = JSON.parse(responseText.replace(/```json\n?|```\n?/g, ''));
+            return responseText;
+        } catch (parseError) {
+            return responseText;
+        }
     }
 }
