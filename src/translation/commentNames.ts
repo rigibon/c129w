@@ -262,6 +262,14 @@ const CL_names = {
     commentName5: "Carlos Hernandez",
 }
 
+const HU_names = {
+    commentName1: "Erzsébet Kovács",
+    commentName2: "János Varga",
+    commentName3: "Judit Szabó",
+    commentName4: "István Tóth",
+    commentName5: "Dorottya Németh",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -295,5 +303,6 @@ export const commentNamesByCountry = {
     "mx": MX_names,
     "il": IL_names,
     "co": CO_names,
-    "cl": CL_names
+    "cl": CL_names,
+    "hu": HU_names
 };
