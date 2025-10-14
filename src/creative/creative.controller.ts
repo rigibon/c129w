@@ -132,7 +132,7 @@ export class CreativeController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-2.0-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();
@@ -151,7 +151,7 @@ export class CreativeController {
 
         const configuration = new GoogleGenerativeAI(API_KEY);
 
-        const modelId = 'gemini-2.0-flash';
+        const modelId = 'gemini-2.5-flash';
         const model = configuration.getGenerativeModel({ model: modelId });
 
         const chat = model.startChat();

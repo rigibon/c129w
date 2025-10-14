@@ -34,7 +34,7 @@ interface Review {
 
 export class SurveyService {
     private readonly AI_API_KEY = process.env.API_KEY;
-    private readonly AI_MODEL_ID = 'gemini-2.0-flash';
+    private readonly AI_MODEL_ID = 'gemini-2.5-flash';
 
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
         const basePath = join(__dirname, '..', 'client', templateName);

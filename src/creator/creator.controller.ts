@@ -55,7 +55,7 @@ export class CreatorController {
   async adjustText(brand, text) {
     const config = new GoogleGenerativeAI(process.env.API_KEY);
 
-    const modelId = 'gemini-2.0-flash';
+    const modelId = 'gemini-2.5-flash';
     const model = config.getGenerativeModel({ model: modelId });
 
     const chat = model.startChat();
@@ -70,7 +70,7 @@ export class CreatorController {
   async generateComments(brand: string, comments): Promise<string[]> {
     const config = new GoogleGenerativeAI(process.env.API_KEY);
 
-    const modelId = 'gemini-2.0-flash';
+    const modelId = 'gemini-2.5-flash';
     const model = config.getGenerativeModel({ model: modelId });
 
     const chat = model.startChat();
