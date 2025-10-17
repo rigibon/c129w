@@ -420,7 +420,9 @@ export class SurveyService {
 
             const html = template(translatedData);
 
-            await this.writeFile(outputPath, html);
+            const unescapedHtml = html.replace(/&#x27;/g, "'");
+
+            await this.writeFile(outputPath, unescapedHtml);
 
             await this.setupImages(config.geo, config.templateName, translatedData);
 
