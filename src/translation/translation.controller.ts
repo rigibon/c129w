@@ -132,7 +132,12 @@ export class TranslationController {
 
         console.log(configData);
 
-        const parsedSurvey = this.parseSurvey(survey);
+        const parsedSurveyData = this.parseSurvey(survey);
+        const parsedSurvey = {
+            ...parsedSurveyData,
+            surveyTitle: `${brandData.name} Shopper Experience Survey`,
+            surveyQuestions: this.formatSurveyForPHP(parsedSurveyData)
+        };
 
         const templatePath = path.join(__dirname, '..', 'client', 'tryetco');
         const outputFilePath = path.join(__dirname, '..', 'client');
@@ -195,24 +200,147 @@ export class TranslationController {
     }
 
     private parseSurvey(surveyString: string): Record<string, string> {
-        const entries = surveyString.match(/"([^"]*)"/g)?.map((entry) => entry.replace(/"/g, '')) || [];
-        const surveyData: Record<string, string> = {};
+        try {
+            console.log('=== PARSING SURVEY DATA (Translation Controller) ===');
+            console.log('Raw survey data received:');
+            console.log(surveyString);
+            console.log('Data type:', typeof surveyString);
+            console.log('Data length:', surveyString.length);
+            
+            // Clean the string first - remove markdown formatting
+            let cleanedString = surveyString;
+            
+            // Remove markdown code blocks
+            cleanedString = cleanedString.replace(/```json\s*/g, '').replace(/```\s*/g, '');
+            
+            // Remove any leading/trailing whitespace
+            cleanedString = cleanedString.trim();
+            
+            console.log('Cleaned survey data:');
+            console.log(cleanedString);
 
-        let questionIndex = 1;
-        let optionIndex = 1;
-
-        entries.forEach((entry, index) => {
-            if (index % 5 === 0) {
-                surveyData[`question${questionIndex}`] = entry;
-                questionIndex++;
-                optionIndex = 1;
+            // Check if this is the new JSON array format from frontend
+            if (cleanedString.includes('["') || cleanedString.includes("[\"")) {
+                console.log('Detected JSON array format');
+                
+                // Try to extract individual JSON arrays
+                const arrayMatches = cleanedString.match(/\[[^\]]*\]/g);
+                console.log('Array matches found:', arrayMatches);
+                
+                if (arrayMatches && arrayMatches.length > 0) {
+                    const surveyData: Record<string, string> = {};
+                    
+                    arrayMatches.forEach((arrayStr, index) => {
+                        try {
+                            // Clean individual array string
+                            let cleanArrayStr = arrayStr.trim();
+                            if (cleanArrayStr.endsWith(',')) {
+                                cleanArrayStr = cleanArrayStr.slice(0, -1);
+                            }
+                            
+                            console.log(`Parsing array ${index + 1}:`, cleanArrayStr);
+                            
+                            const parsedArray = JSON.parse(cleanArrayStr);
+                            if (Array.isArray(parsedArray) && parsedArray.length > 0) {
+                                surveyData[`question${index + 1}`] = parsedArray[0]; // First element is the question
+                                
+                                // Rest are options
+                                for (let i = 1; i < parsedArray.length; i++) {
+                                    surveyData[`option${index + 1}_${i}`] = parsedArray[i];
+                                }
+                                
+                                console.log(`Successfully parsed question ${index + 1}:`, parsedArray[0]);
+                            }
+                        } catch (e) {
+                            console.error(`Error parsing survey array ${index + 1}:`, e);
+                            console.error('Array content:', arrayStr);
+                        }
+                    });
+                    
+                    console.log('Final parsed survey data (JSON format):', surveyData);
+                    return surveyData;
+                }
+            }
+            
+            console.log('Detected old comma-separated format');
+            
+            // Fallback to old format - but let's try a different approach
+            // Split by commas and parse each part
+            let entries: string[] = [];
+            
+            // Try to split by quotes first
+            const quotedEntries = cleanedString.match(/"([^"]*)"/g);
+            if (quotedEntries) {
+                entries = quotedEntries.map((entry) => entry.replace(/"/g, ''));
+                console.log('Found quoted entries:', entries);
             } else {
-                surveyData[`option${questionIndex - 1}_${optionIndex}`] = entry;
+                // If no quotes, try to split by commas
+                entries = cleanedString.split(',').map(s => s.trim()).filter(s => s.length > 0);
+                console.log('Found comma-separated entries:', entries);
+            }
+
+            const surveyData: Record<string, string> = {};
+            
+            // Different approach: assume every 5 entries = 1 question + 4 options
+            let questionIndex = 1;
+            
+            for (let i = 0; i < entries.length; i += 5) {
+                const question = entries[i];
+                
+                if (question && question.trim()) {
+                    surveyData[`question${questionIndex}`] = question.trim();
+                    
+                    // Add the options (next 4 entries)
+                    for (let j = 1; j <= 4; j++) {
+                        const optionIndex = i + j;
+                        if (optionIndex < entries.length && entries[optionIndex] && entries[optionIndex].trim()) {
+                            surveyData[`option${questionIndex}_${j}`] = entries[optionIndex].trim();
+                        }
+                    }
+                    
+                    console.log(`Old format - parsed question ${questionIndex}:`, question.trim());
+                    questionIndex++;
+                }
+            }
+            
+            console.log('Final parsed survey data (old format):', surveyData);
+            return surveyData;
+        } catch (error) {
+            console.error('Error parsing survey:', error);
+            console.error('Survey string was:', surveyString);
+            return {};
+        }
+    }
+
+    private formatSurveyForPHP(surveyData: Record<string, string>): string {
+        const surveys: string[][] = [];
+        
+        // Group questions and their options
+        const questionKeys = Object.keys(surveyData).filter(key => key.startsWith('question'));
+        
+        questionKeys.forEach(questionKey => {
+            const questionNum = questionKey.replace('question', '');
+            const question = surveyData[questionKey];
+            const options: string[] = [];
+            
+            // Find all options for this question
+            let optionIndex = 1;
+            while (surveyData[`option${questionNum}_${optionIndex}`]) {
+                options.push(surveyData[`option${questionNum}_${optionIndex}`]);
                 optionIndex++;
             }
+            
+            // Create the array: [question, option1, option2, option3, option4]
+            surveys.push([question, ...options]);
         });
-
-        return surveyData;
+        
+        // Convert to PHP array format
+        const phpArrays = surveys.map(survey => {
+            const quotedItems = survey.map(item => `"${item.replace(/"/g, '\\"')}"`);
+            return `array(${quotedItems.join(', ')})`;
+        });
+        
+        return `$survey = array(\n    ${phpArrays.join(',\n    ')}\n);`;
     }
 
     @Post('translate')
@@ -340,28 +468,16 @@ export class TranslationController {
 
         const fullPrompt = `${prompt}. 
 
-IMPORTANT: Return ONLY a valid JSON array where each element is an object with the following structure:
-{
-  "question": "Question text here?",
-  "options": ["Option 1", "Option 2", "Option 3", "Option 4"]
-}
+IMPORTANT: Return ONLY individual JSON arrays, one per line, where each array contains the question as the first element followed by the answer options.
 
 Example format:
-[
-  {
-    "question": "How often do you visit CVS for your shopping needs?",
-    "options": ["Multiple times a week", "Once a week", "A few times a month", "Rarely or never"]
-  },
-  {
-    "question": "What primarily drives your choice to shop at CVS?",
-    "options": ["Convenience", "Prices", "Product selection", "Location"]
-  }
-]
+["How often do you visit CVS for your shopping needs?", "Multiple times a week", "Once a week", "A few times a month", "Rarely or never"]
+["What primarily drives your choice to shop at CVS?", "Convenience of location", "Product selection", "Prices and deals", "Loyalty rewards program"]
 
 Based on this survey data, generate 8 questions with 4 options each:
 ${survey}
 
-Return ONLY the JSON array, no additional text or explanations.`;
+Return ONLY the JSON arrays, one per line, no additional text, explanations, or code blocks.`;
 
         const result = await chat.sendMessage(fullPrompt);
         const response = await result.response;
