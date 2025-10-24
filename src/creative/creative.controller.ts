@@ -228,11 +228,13 @@ export class CreativeController {
                 outputs.push(output);
             }
 
-            // Zip all selected outputs
-            const zipPath = path.join(zipOutputPath, 'creative.rar');
-            await this.createZip(baseTemplatePath, zipPath, selectedTemplates);
+            // Create archive name in format: "US - Apple iPhone 17 Pro"
+            const archiveName = `${config.geo.toUpperCase()} - ${brand.name} ${product.product}`;
+            const sanitizedArchiveName = this.sanitizeFilename(archiveName);
+            const zipPath = path.join(zipOutputPath, `${sanitizedArchiveName}.rar`);
+            await this.createZip(baseTemplatePath, zipPath, selectedTemplates, archiveName);
 
-            res.download(zipPath, 'creatives.rar', async (err) => {
+            res.download(zipPath, `${sanitizedArchiveName}.rar`, async (err) => {
                 if (err) {
                     console.error('Error during file download:', err);
                     return res.status(404).send('File not found');
@@ -279,7 +281,7 @@ export class CreativeController {
         await fs.writeFile(outputFilePath, html, 'utf-8');
     }
 
-    async createZip(sourceFolder: string, outPath: string, selectedIds: string[]) {
+    async createZip(sourceFolder: string, outPath: string, selectedIds: string[], folderName: string) {
         return new Promise((resolve, reject) => {
             const output = createWriteStream(outPath);
             const archive = archiver('zip');
@@ -309,7 +311,7 @@ export class CreativeController {
                 const creative = idToCreative[id];
                 if (!creative) return;
 
-                const creativeFolder = `creative${index + 1}`;
+                const creativeFolder = `${folderName}/creative${index + 1}`;
 
                 // add common assets (files/)
                 archive.directory(path.join(sourceFolder, "files"), `${creativeFolder}/files`);
@@ -351,5 +353,14 @@ export class CreativeController {
             console.error('Error cleaning JSON response:', error.message);
             return response;
         }
+    }
+
+    private sanitizeFilename(filename: string): string {
+        // Remove or replace characters that are not allowed in filenames
+        return filename
+            .replace(/[<>:"/\\|?*]/g, '_') // Replace invalid characters with underscore
+            .replace(/\s+/g, '_') // Replace spaces with underscores
+            .replace(/_+/g, '_') // Replace multiple underscores with single underscore
+            .replace(/^_+|_+$/g, ''); // Remove leading and trailing underscores
     }
 }
