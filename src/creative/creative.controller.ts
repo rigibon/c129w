@@ -212,6 +212,21 @@ export class CreativeController {
                 config: path.join(baseTemplatePath, 'fb2.json'),
                 output: path.join(baseTemplatePath, 'fb2.html'),
             },
+            "6": {
+                template: path.join(baseTemplatePath, 'halloween.html.hbs'),
+                config: path.join(baseTemplatePath, 'halloween.json'),
+                output: path.join(baseTemplatePath, 'halloween.html'),
+            },
+            "7": {
+                template: path.join(baseTemplatePath, 'xmas.html.hbs'),
+                config: path.join(baseTemplatePath, 'xmas.json'),
+                output: path.join(baseTemplatePath, 'xmas.html'),
+            },
+            "8": {
+                template: path.join(baseTemplatePath, 'blackfriday.html.hbs'),
+                config: path.join(baseTemplatePath, 'blackfriday.json'),
+                output: path.join(baseTemplatePath, 'blackfriday.html'),
+            },
         };
 
         try {
@@ -304,6 +319,9 @@ export class CreativeController {
                 "3": "sweeps4",
                 "4": "fb",
                 "5": "fb2",
+                "6": "halloween",
+                "7": "xmas",
+                "8": "blackfriday",
             };
 
             // loop only over selected IDs
