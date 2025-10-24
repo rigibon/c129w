@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      @font-face {
+        font-family: "customFont";
+        src: url("files/font.otf") format("opentype");
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .background-image {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+        z-index: -1;
+      }
+
+      .content-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        width: 90%;
+        max-width: 1200px;
+        padding: 20px;
+      }
+
+      .heading {
+        font-size: 2rem;
+        font-family: "customFont";
+        color: white;
+        font-weight: 900;
+        margin-top: -40px;
+      }
+
+      .subheading {
+        font-size: 1.5rem;
+        font-family: "customFont";
+        color: white;
+        font-weight: 900;
+        margin-top: -40px;
+      }
+
+      .logo {
+        width: 200px;
+        margin-top: -20px;
+        max-width: 100%;
+      }
+
+      .survey-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 10px;
+      }
+
+      .survey-text-description {
+        font-size: 1rem;
+        font-weight: 400;
+        color: white;
+        margin-top: 20px;
+        line-height: 1.5;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .mystery-box-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 1px 1px 2px #444;
+        margin-top: -20px;
+      }
+
+      .product-image {
+        width: 200px;
+        margin-top: -20px;
+        max-width: 100%;
+      }
+
+      .survey-button {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 15px;
+        background-color: rgb(0, 98, 65);
+        border: 0;
+        color: #fff;
+        width: 200px;
+        border-radius: 5px;
+        height: 40px;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 480px) {
+        .heading {
+          font-size: 1.4rem;
+          margin-bottom: 40px;
+        }
+
+        .subheading {
+          font-size: 0.8rem;
+        }
+
+        .survey-text {
+          font-size: 0.7rem;
+        }
+
+        .survey-text-description {
+          font-size: 0.8rem;
+        }
+
+        .survey-button {
+          width: 80%;
+        }
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+    <!-- BACKGROUND IMAGE !! -->
+    <img src="./files/bgx.png" class="background-image" />
+
+    <div class="content-container">
+        <p class="heading" style="text-shadow: 1px 1px 2px #000">{{text1}}</p>
+        <p class="subheading" style="text-shadow: 1px 1px 2px #000">{{text2}}</p>
+        <img src="./files/{{brandLogo}}" class="logo" />
+        <p class="survey-text">{{text3}} <br /> {{text4}}!</p>
+        <p class="mystery-box-text">{{product}}</p>
+        <img src="./files/{{productImage}}" class="product-image" />
+        <p class="survey-text-description" style="text-shadow: 1px 1px 2px #000">
+            {{text5}} <br /> {{text6}}
+            {{product}}!
+        </p>
+        <button class="survey-button">{{text7}}</button>
+    </div>
+</div>
+  </body>
+</html>
