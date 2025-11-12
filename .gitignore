@@ -57,5 +57,11 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Zip files
 *.zip
+*.rar
+
+# Output files
+**/output.html
+output*.html
+output.html
 
 .env
