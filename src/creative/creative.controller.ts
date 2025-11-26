@@ -227,6 +227,11 @@ export class CreativeController {
                 config: path.join(baseTemplatePath, 'blackfriday.json'),
                 output: path.join(baseTemplatePath, 'blackfriday.html'),
             },
+            "9": {
+                template: path.join(baseTemplatePath, 'thanksgiving.html.hbs'),
+                config: path.join(baseTemplatePath, 'thanksgiving.json'),
+                output: path.join(baseTemplatePath, 'thanksgiving.html'),
+            },
         };
 
         try {
@@ -320,6 +325,7 @@ export class CreativeController {
                 "6": "halloween",
                 "7": "xmas",
                 "8": "blackfriday",
+                "9": "thanksgiving",
             };
 
             // loop only over selected IDs

@@ -120,7 +120,7 @@
             font-family: Poppins;
             font-weight: 500;
             font-size: 15px;
-            background-color: rgb(0, 98, 65);
+            background-color: rgb(182,86,42);
             border: 0;
             color: #fff;
             width: 200px;
@@ -131,7 +131,7 @@
         }
 
         .survey-button:hover {
-            background-color: rgb(0, 118, 78);
+            background-color: rgb(182,86,42);
         }
 
         @media (max-width: 768px) {
@@ -276,19 +276,19 @@
 <body>
     <div class="container">
         <!-- BACKGROUND IMAGE !! -->
-        <img src="./files/bgh.png" class="background-image" />
+        <img src="./files/bgt.png" class="background-image" />
 
         <div class="content-container">
-            <p class="heading" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">HAPPY HALLOWEEN</p>
-            <p class="subheading" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">FROM</p>
-            <img src="./files/wal_logo.png" class="logo" />
-            <p class="survey-text" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">TAKE A SURVEY AND <br /> WIN A REWARD!</p>
-            <p class="mystery-box-text" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">HP 250 G10 core i5 13th Gen Laptop</p>
-            <img src="./files/03203b76b5c39ba88c0a091a09d40f68.png" class="product-image" />
+            <p class="heading" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">{{text1}}</p>
+            <p class="subheading" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">{{text2}}</p>
+            <img src="./files/{{brandLogo}}" class="logo" />
+            <p class="survey-text" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">{{text3}} <br /> {{text4}}!</p>
+            <p class="mystery-box-text" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">{{product}}</p>
+            <img src="./files/{{productImage}}" class="product-image" />
             <p class="survey-text-description" style="text-shadow: 10px 10px 10px #000; font-size: 17px;">
-                By participating,  <br /> you could win a HP 250 G10 core i5 13th Gen Laptop!
+                {{text5}} <br /> {{text6}}{{product}}!
             </p>
-            <button class="survey-button">Start the Survey</button>
+            <button class="survey-button">{{text7}}</button>
         </div>
     </div>
 </body>
