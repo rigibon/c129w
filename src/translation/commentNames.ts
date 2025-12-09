@@ -270,6 +270,30 @@ const HU_names = {
     commentName5: "Dorottya Németh",
 }
 
+const AR_names = {
+    commentName1: "María González",
+    commentName2: "José Martínez",
+    commentName3: "Juan Pérez",
+    commentName4: "Laura Rodríguez",
+    commentName5: "Carlos Hernandez",
+}
+
+const KZ_names = {
+    commentName1: "Aida Nurbekova",
+    commentName2: "Muratbek Sarsenov",
+    commentName3: "Dana Zhanar",
+    commentName4: "Alisher Ilyasov",
+    commentName5: "Sholpan Kassenova",
+}
+
+const ID_names = {
+    commentName1: "Budi Santoso",
+    commentName2: "Siti Aisyah",
+    commentName3: "Rudi Setiawan",
+    commentName4: "Dewi Lestari",
+    commentName5: "Andi Pratama",
+}
+
 export const commentNamesByCountry = {
     "us": US_names,
     "uk": UK_names,
@@ -304,5 +328,8 @@ export const commentNamesByCountry = {
     "il": IL_names,
     "co": CO_names,
     "cl": CL_names,
-    "hu": HU_names
+    "hu": HU_names,
+    "ar": AR_names,
+    "kz": KZ_names,
+    "id": ID_names
 };

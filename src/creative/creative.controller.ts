@@ -245,6 +245,8 @@ export class CreativeController {
                 const html = this.generateHtml(tmpl, texts);
 
                 await this.writeHtmlFiles([output], [html]);
+                await this.writeHtmlFiles([output], [html]);
+                outputs.push(output);
                 outputs.push(output);
             }
 
