@@ -2,13 +2,16 @@ import { Controller, Get, Req, Res } from '@nestjs/common';
 import { response, Response } from 'express';
 import { CreatorService } from './creator.service';
 import * as dotenv from 'dotenv';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { AIProviderService } from '../ai-provider/ai-provider.service';
 
 dotenv.config();
 
 @Controller('creator')
 export class CreatorController {
-  constructor(private readonly creatorService: CreatorService) {}
+  constructor(
+    private readonly creatorService: CreatorService,
+    private readonly aiProvider: AIProviderService,
+  ) {}
 
   @Get('/index')
   async getIndex(@Res() res): Promise<void> {
@@ -53,36 +56,16 @@ export class CreatorController {
   }
 
   async adjustText(brand, text) {
-    const config = new GoogleGenerativeAI(process.env.API_KEY);
-
-    const modelId = 'gemini-2.5-flash';
-    const model = config.getGenerativeModel({ model: modelId });
-
-    const chat = model.startChat();
-
-    const result = await chat.sendMessage(`Adapt this subtitle to fit ${brand}, the output must be ONLY the modified text: ${text}`);
-
-    const response = await result.response;
-
-    return response.text();
+    const prompt = `Adapt this subtitle to fit ${brand}, the output must be ONLY the modified text: ${text}`;
+    return await this.aiProvider.sendMessage(prompt);
   }
 
   async generateComments(brand: string, comments): Promise<string[]> {
-    const config = new GoogleGenerativeAI(process.env.API_KEY);
-
-    const modelId = 'gemini-2.5-flash';
-    const model = config.getGenerativeModel({ model: modelId });
-
-    const chat = model.startChat();
-
     const productList = ['Portable Vacuum', 'Dash-Cam with Night-Vision', 'Robot Vacuum Cleaner', 'Smart Watch', 'Pressure Washer', 'Camera', 'Doorbell'];
 
     const promises = comments.map(async (comment, index) => {
-      const result = await chat.sendMessage(`Adapt this comment to ${brand}, the output must be ONLY the comment modified to fit that brand, USE THIS PRODUCT ${productList[index]}, don't write it inside parenthesis nor brackets, here is the comment to modify: ${comment}`);
-
-      const response = await result.response;
-
-      return response.text();
+      const prompt = `Adapt this comment to ${brand}, the output must be ONLY the comment modified to fit that brand, USE THIS PRODUCT ${productList[index]}, don't write it inside parenthesis nor brackets, here is the comment to modify: ${comment}`;
+      return await this.aiProvider.sendMessage(prompt);
     });
 
     comments = await Promise.all(promises);

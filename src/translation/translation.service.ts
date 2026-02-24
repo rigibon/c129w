@@ -5,12 +5,14 @@ import { translate } from 'google-translate-api-x';
 import * as path from 'path';
 import * as archiver from 'archiver';
 import { commentNamesByCountry } from './commentNames';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { AIProviderService } from '../ai-provider/ai-provider.service';
 
 @Injectable()
 export class TranslationService {
   private readonly templateFilePath = path.join(__dirname, '..', 'client', 'index.html.hbs');
   private readonly textsFilePath = path.join(__dirname, '..', 'client', 'params.json');
+
+  constructor(private aiProvider: AIProviderService) {}
 
   async generateHtmlWithTranslations(translateTexts: boolean, language: string, brandData: any, productData: any, configData: any, survey: any) {
     const templateContent = await fs.readFile(this.templateFilePath, 'utf8');
@@ -96,20 +98,8 @@ export class TranslationService {
   }
 
   private async translateKeywords(keywords: any, language: string) {
-    const API_KEY = process.env.API_KEY;
-
-    const configuration = new GoogleGenerativeAI(API_KEY);
-
-    const modelId = 'gemini-2.5-flash';
-    const model = configuration.getGenerativeModel({ model: modelId });
-
-    const chat = model.startChat();
-
-    const result = await chat.sendMessage(`translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
-
-    const response = await result.response;
-
-    return response.text();
+    const prompt = `translate these keywords to ${language}, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`;
+    return await this.aiProvider.sendMessage(prompt);
   }
 
   private async getTranslationPromises(textArray: Record<string, string>, language: string) {
@@ -146,19 +136,7 @@ export class TranslationService {
   }
 
   private async translateKeyword(keyword: string, language: string) {
-    const API_KEY = process.env.API_KEY;
-
-    const configuration = new GoogleGenerativeAI(API_KEY);
-
-    const modelId = 'gemini-2.5-flash';
-    const model = configuration.getGenerativeModel({ model: modelId });
-
-    const chat = model.startChat();
-
-    const result = await chat.sendMessage(`translate this string to ${language}, output must be only the string translated, nothing else: ${keyword}`);
-
-    const response = await result.response;
-
-    return response.text();
+    const prompt = `translate this string to ${language}, output must be only the string translated, nothing else: ${keyword}`;
+    return await this.aiProvider.sendMessage(prompt);
   }
 }

@@ -1,7 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { join } from 'path';
 import { promises as fs } from 'fs';
 import handlebars from 'handlebars';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { AIProviderService } from '../ai-provider/ai-provider.service';
 import * as path from 'path';
 import { commentNamesByCountry } from 'src/translation/commentNames';
 
@@ -32,9 +33,9 @@ interface Review {
   commentImage?: string;
 }
 
+@Injectable()
 export class SurveyService {
-    private readonly AI_API_KEY = process.env.API_KEY;
-    private readonly AI_MODEL_ID = 'gemini-2.5-flash';
+    constructor(private readonly aiProvider: AIProviderService) {}
 
     private getFilePath(type: 'template' | 'params' | 'output', templateName: string): string {
         const basePath = join(__dirname, '..', 'client', templateName);
@@ -87,17 +88,12 @@ export class SurveyService {
 
     private async callAI(prompt: string, outputFormat: string = null): Promise<string> {
         try {
-            const configuration = new GoogleGenerativeAI(this.AI_API_KEY);
-            const model = configuration.getGenerativeModel({ model: this.AI_MODEL_ID });
-
             let fullPrompt = prompt;
             if (outputFormat) {
                 fullPrompt = `${prompt}\nReturn the response in this format: ${outputFormat}`;
             }
 
-            const result = await model.generateContent(fullPrompt);
-            const response = await result.response;
-            return response.text();
+            return await this.aiProvider.sendMessage(fullPrompt);
         } catch (error) {
             console.error(`AI API error: ${error.message}`);
             throw new Error('Failed to get AI response');

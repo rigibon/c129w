@@ -13,6 +13,7 @@ import { CreatorController } from './creator/creator.controller';
 import { SurveyModule } from './survey/survey.module';
 import { CreativeModule } from './creative/creative.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { AIProviderModule } from './ai-provider/ai-provider.module';
 
 const storage = diskStorage({
   destination: path.join(__dirname, '..', 'client'),
@@ -29,6 +30,7 @@ const storage = diskStorage({
     MongooseModule.forRoot(
       'mongodb+srv://new_user_01:qWASO8ex9CbKZtCI@cluster0.n3ac2vj.mongodb.net/creatives-db',
     ),
+    AIProviderModule,
     BrandsModule,
     MulterModule.register({ storage: storage }),
     SurveyModule,

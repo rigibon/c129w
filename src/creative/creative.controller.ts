@@ -4,13 +4,16 @@ import * as path from "path";
 import { copyFileSync, createReadStream, createWriteStream, promises as fs, mkdirSync, readdirSync, rmSync } from 'fs';
 import handlebars from 'handlebars';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { AIProviderService } from '../ai-provider/ai-provider.service';
 import * as archiver from "archiver";
 
 @Controller('creative')
 export class CreativeController {
 
-    constructor(private readonly creativeService: CreativeService) { }
+    constructor(
+        private readonly creativeService: CreativeService,
+        private readonly aiProvider: AIProviderService,
+    ) { }
 
     async loadTemplate(templatePath) {
         try {
@@ -128,34 +131,12 @@ export class CreativeController {
             return keywords; // Return as-is if no translation needed
         }
 
-        const API_KEY = process.env.API_KEY;
+        const prompt = `Translate these keywords to ${language}. The output must be EXACTLY the same JSON structure as the input but with the keywords translated. Return only valid JSON, no explanations or extra text: ${keywords}`;
 
-        const configuration = new GoogleGenerativeAI(API_KEY);
-
-        const modelId = 'gemini-2.5-flash';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
-
-        const result = await chat.sendMessage(
-            `Translate these keywords to ${language}. The output must be EXACTLY the same JSON structure as the input but with the keywords translated. Return only valid JSON, no explanations or extra text: ${keywords}`
-        );
-
-        const response = await result.response;
-
-        return response.text();
+        return await this.aiProvider.sendMessage(prompt);
     }
 
     async generateCustomTexts(product: string) {
-        const API_KEY = process.env.API_KEY;
-
-        const configuration = new GoogleGenerativeAI(API_KEY);
-
-        const modelId = 'gemini-2.5-flash';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
-
         const keywords = {
             title: "Your no-compromises backpack for everyday chores.",
             firstItem: "Commuting and air travel friendly",
@@ -163,13 +144,9 @@ export class CreativeController {
             thirdItem: "Bottle and up to 1L/34oz"
         };
 
-        const result = await chat.sendMessage(
-            `Change the values of these keys to match the product "${product}". Return only valid JSON with the same structure, no explanations or extra text: ${JSON.stringify(keywords)}`
-        );
+        const prompt = `Change the values of these keys to match the product "${product}". Return only valid JSON with the same structure, no explanations or extra text: ${JSON.stringify(keywords)}`;
 
-        const response = await result.response;
-
-        return response.text();
+        return await this.aiProvider.sendMessage(prompt);
     }
 
     @Post('generate')

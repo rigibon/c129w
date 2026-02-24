@@ -8,7 +8,7 @@ import { promises as fs, createWriteStream } from 'fs';
 import * as archiver from 'archiver';
 import axios from 'axios';
 import OpenAI from 'openai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { AIProviderService } from '../ai-provider/ai-provider.service';
 import { translate } from 'google-translate-api-x';
 import * as handlebars from 'handlebars';
 
@@ -24,6 +24,7 @@ export class TranslationController {
     constructor(
         private readonly translationService: TranslationService,
         private readonly brandsService: BrandsService,
+        private readonly aiProvider: AIProviderService,
     ) { }
 
     @Post('upload')
@@ -347,35 +348,14 @@ export class TranslationController {
     async translateKeywords(@Req() req) {
         const { keywords } = req.body;
 
-        const API_KEY = process.env.API_KEY;
+        const prompt = `translate these keywords to swedish, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`;
 
-        const configuration = new GoogleGenerativeAI(API_KEY);
-
-        const modelId = 'gemini-2.5-flash';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
-
-        const result = await chat.sendMessage(`translate these keywords to swedish, output must be the same as the input but with the keywords translated, as JSON format: ${keywords}`);
-
-        const response = await result.response;
-
-        return response.text();
+        return await this.aiProvider.sendMessage(prompt);
     }
 
     @Post('survey')
     async generateSurvey(@Req() req) {
         const { brand, product, template } = req.body;
-
-        const API_KEY = process.env.API_KEY;
-        const URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-latest:generateContent';
-
-        const configuration = new GoogleGenerativeAI(API_KEY);
-
-        const modelId = 'gemini-2.5-flash';
-        const model = configuration.getGenerativeModel({ model: modelId });
-
-        const chat = model.startChat();
 
         const prompt = template === "config_offerwall" ?
             "change these questions to fit a shopper experience survey about " + brand + ". Also change the questions that talk about a specific product to talk only about the brand." :
@@ -479,9 +459,7 @@ ${survey}
 
 Return ONLY the JSON arrays, one per line, no additional text, explanations, or code blocks.`;
 
-        const result = await chat.sendMessage(fullPrompt);
-        const response = await result.response;
-        const responseText = response.text();
+        const responseText = await this.aiProvider.sendMessage(fullPrompt);
         
         
         // Try to validate the JSON response
