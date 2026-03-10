@@ -11,7 +11,7 @@ export class AnthropicAdapter implements IAIProvider {
   private client: Anthropic;
   private model: string;
 
-  constructor(apiKey: string, model: string = 'claude-3-5-haiku-20241022') {
+  constructor(apiKey: string, model: string = 'claude-3-5-haiku-latest') {
     this.client = new Anthropic({
       apiKey: apiKey,
     });
@@ -21,7 +21,7 @@ export class AnthropicAdapter implements IAIProvider {
   async sendMessage(prompt: string): Promise<string> {
     const message = await this.client.messages.create({
       model: this.model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       messages: [
         {
           role: 'user',

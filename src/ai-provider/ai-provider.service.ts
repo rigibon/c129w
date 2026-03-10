@@ -51,7 +51,7 @@ export class AIProviderService {
         if (!anthropicKey) {
           throw new Error('ANTHROPIC_API_KEY is required when using Anthropic provider');
         }
-        const anthropicModel = process.env.ANTHROPIC_MODEL || 'claude-3-5-haiku-20241022';
+        const anthropicModel = process.env.ANTHROPIC_MODEL || 'claude-3-5-haiku-latest';
         console.log(`🤖 AI Provider: Anthropic Claude (${anthropicModel})`);
         return new AnthropicAdapter(anthropicKey, anthropicModel);
       

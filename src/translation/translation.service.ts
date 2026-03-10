@@ -43,10 +43,10 @@ export class TranslationService {
 
     if (configData.language !== '' && configData.language !== 'english') {
       productData.description = await this.translateKeyword(productData.description, configData.language);
-      newData = await this.translateKeywords(JSON.stringify(newData), configData.language);
-
-      newData = JSON.parse(newData.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
-
+      const { toTranslate, toKeep } = this.filterTranslatableFields(newData);
+      let translated: any = await this.translateKeywords(JSON.stringify(toTranslate), configData.language);
+      translated = JSON.parse(translated.replace(/```/g, '').replace(/JSON/g, '').replace(/json/g, ''));
+      newData = { ...toKeep, ...translated };
       console.log(newData);
     }
 
@@ -95,6 +95,31 @@ export class TranslationService {
     // var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     // var montharray = new Array("Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December")
     return '' + montharray[month] + ' ' + daym + ', ' + year + '';
+  }
+
+  private filterTranslatableFields(data: any): { toTranslate: Record<string, string>; toKeep: Record<string, any> } {
+    const skipKeys = new Set([
+      'mainColor', 'mainColor_3', 'secondaryColor', 'headerColor', 'brandLogo', 'favicon',
+      'backgroundImage', '_id', 'wallID', '__v', 'price', 'promo_price',
+      'productImage', 'commentImage1', 'commentImage2', 'flagLogo', 'flagLogo_3',
+      'langTag', 'geo', 'currency', 'folderName', 'templateName', 'language',
+      'countryName', 'surveyQuestions',
+    ]);
+    const toTranslate: Record<string, string> = {};
+    const toKeep: Record<string, any> = {};
+    for (const [key, value] of Object.entries(data)) {
+      if (skipKeys.has(key) || typeof value !== 'string') {
+        toKeep[key] = value;
+        continue;
+      }
+      if (/\.(png|jpg|jpeg|gif|ico|svg|avif|jfif|webp|x-icon)/i.test(value)) { toKeep[key] = value; continue; }
+      if (/^#[0-9a-fA-F]{3,8}$/.test(value) || /^rgb\(/i.test(value)) { toKeep[key] = value; continue; }
+      if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(value)) { toKeep[key] = value; continue; }
+      if (value.trim().startsWith('$')) { toKeep[key] = value; continue; }
+      if (key.startsWith('commentName') || key.startsWith('commentImage')) { toKeep[key] = value; continue; }
+      toTranslate[key] = value;
+    }
+    return { toTranslate, toKeep };
   }
 
   private async translateKeywords(keywords: any, language: string) {
