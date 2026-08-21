@@ -37,7 +37,7 @@ export class SurveyController {
                     var filePath = path.join(sourceFolder, file);
 
                     if (file === 'output.html') {
-                        if (templateName === 'config' || templateName === 'config_tt' || templateName === 'config_offerwall' || templateName === 'config_9.99') {
+                        if (templateName === 'config' || templateName === 'config_tt' || templateName === 'config_offerwall' || templateName === 'config_9.99' || templateName === 'template1_rds') {
                             archive.file(filePath, { name: path.join(folderName, folderName + '.php') });
                         }
                         else {

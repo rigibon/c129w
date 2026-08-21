@@ -448,7 +448,7 @@ export class SurveyService {
         }
 
         try {
-            if (templateName !== "config" && templateName !== "config_tt" && templateName !== "config_offerwall") {
+            if (templateName !== "config" && templateName !== "config_tt" && templateName !== "config_offerwall" && templateName !== "template1_rds") {
                 console.log("Copying flag logo...");
                 const sourcePath = path.join(__dirname, '..', 'client', 'images', `flaglogo_${geo}.png`);
                 const destPath = path.join(__dirname, '..', 'client', templateName, 'files', 'flaglogo.png');
@@ -472,7 +472,7 @@ export class SurveyService {
             const template = await this.compileTemplate(templatePath);
 
             var texts: Record<string, any>;
-            if (config.templateName === "config" || config.templateName === "config_offerwall") {
+            if (config.templateName === "config" || config.templateName === "config_offerwall" || config.templateName === "template1_rds") {
                 texts = await this.loadTextsForMultipleTemplates(["tryetco", "walp", "hrblock"]);
             } else {
                 const paramsPath = this.getFilePath('params', config.templateName);
@@ -498,7 +498,7 @@ export class SurveyService {
 
             const templatesToConfigure = [];
 
-            if (config.templateName === "config" || config.templateName === "config_offerwall") {
+            if (config.templateName === "config" || config.templateName === "config_offerwall" || config.templateName === "template1_rds") {
                 templatesToConfigure.push("tryetco");
                 templatesToConfigure.push("walp");
                 templatesToConfigure.push("hrblock");
