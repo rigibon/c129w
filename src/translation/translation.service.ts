@@ -99,7 +99,7 @@ export class TranslationService {
 
   private filterTranslatableFields(data: any): { toTranslate: Record<string, string>; toKeep: Record<string, any> } {
     const skipKeys = new Set([
-      'mainColor', 'mainColor_3', 'secondaryColor', 'headerColor', 'brandLogo', 'favicon',
+      'mainColor', 'mainColor_3', 'secondaryColor', 'headerColor', 'logoBgColor', 'brandLogo', 'favicon',
       'backgroundImage', '_id', 'wallID', 'wallID2', '__v', 'price', 'promo_price',
       'productImage', 'commentImage1', 'commentImage2', 'flagLogo', 'flagLogo_3',
       'langTag', 'geo', 'currency', 'folderName', 'templateName', 'language',

@@ -21,6 +21,9 @@ export class Brand {
   headerColor: string;
 
   @Prop()
+  logoBgColor: string;
+
+  @Prop()
   brandLogo: string;
 
   @Prop()

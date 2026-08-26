@@ -23,6 +23,10 @@ export class CreateBrandDto {
 
   @IsString()
   @IsOptional()
+  logoBgColor?: string;
+
+  @IsString()
+  @IsOptional()
   brandLogo?: string;
 
   @IsString()
